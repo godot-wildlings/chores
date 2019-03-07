@@ -12,11 +12,18 @@ extends Node
 
 # Declare member variables here. Examples:
 onready var global = get_node("/root/global")
+onready var BGMusic = get_node("BGMusic")
+var Music_Last_Playback_Position : float = 0.0
+
+onready var PauseLabel = get_node("GUIContainer/FullRect/PauseLabel")
+
 var DialogBox = preload("res://GUI/DialogBox.tscn")
 onready var DialogBoxContainer = get_node("GUIContainer/FullRect/CenterContainer/DialogBoxes")
 
 enum States { initializing, playing, paused }
 var State = States.initializing
+
+
 
 signal DialogBox_completed(box_name)
 
@@ -42,9 +49,21 @@ func spawn_dialog_box(boxTitle : String, textArray : Array, requestedBy):
 
 func show_pause_menu():
 	find_node("PauseMenu").show()
+	PauseLabel.set_text("PAUSED")
+	
+	Music_Last_Playback_Position = BGMusic.get_playback_position()
+	BGMusic.stop()
+
+#	BGMusic.set_stream_paused(true)
+	global.pause_game()
 
 func hide_pause_menu():
 	find_node("PauseMenu").hide()
+	global.resume_game()
+	PauseLabel.set_text("Press esc to Pause Game")
+#	BGMusic.set_stream_paused(false)
+	BGMusic.play()
+	BGMusic.seek(Music_Last_Playback_Position)
 
 func start_game():
 	set_state(States.playing)
@@ -56,10 +75,12 @@ func _input(event):
 		if event.is_action_pressed("pause"):
 			show_pause_menu()
 			set_state(States.paused)
+			global.pause_game()
 	elif State == States.paused:
 		if event.is_action_pressed("pause"):
 			hide_pause_menu()
 			set_state(States.playing)
+			global.resume_game()
 			
 	
 func _on_DialogBox_completed(dialog_box_title, requesting_node):

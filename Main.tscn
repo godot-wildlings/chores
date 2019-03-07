@@ -6,12 +6,14 @@
 [ext_resource path="res://BGMusic/testBGMusic.ogg" type="AudioStream" id=4]
 
 [node name="Main" type="Node"]
+pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="Design Notes" type="Node" parent="."]
 script = ExtResource( 2 )
 
 [node name="LevelContainer" type="Node2D" parent="."]
+pause_mode = 1
 
 [node name="GUIContainer" type="CanvasLayer" parent="."]
 
@@ -40,7 +42,7 @@ margin_bottom = 150.0
 [node name="PauseMenu" parent="GUIContainer/FullRect" instance=ExtResource( 3 )]
 visible = false
 
-[node name="Label" type="Label" parent="GUIContainer/FullRect"]
+[node name="PauseLabel" type="Label" parent="GUIContainer/FullRect"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -68.5
