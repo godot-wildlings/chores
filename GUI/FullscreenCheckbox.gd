@@ -12,6 +12,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
+	
 
 func _on_FullscreenCheckbox_toggled(button_pressed):
-	pass # Replace with function body.
+	OS.set_window_fullscreen(button_pressed)

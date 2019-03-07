@@ -26,6 +26,7 @@ margin_bottom = 293.0
 tab_align = 0
 
 [node name="Instructions" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -61,7 +62,6 @@ Dig deep, face your fears, overcome the ____ and come back with your ___, having
 Standard Story Circle based on the Hero's journey from Joseph Campbell via Dan Harmon"
 
 [node name="Options" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0

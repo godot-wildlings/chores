@@ -1,14 +1,13 @@
 extends OptionButton
 
 # Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var sizes = [ Vector2(1920, 1080), Vector2(1024, 768), Vector2(800, 600)  ]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_item("1920x1080")
-	add_item("1024x768")
-	add_item("800x600")
+	for size in sizes:
+		add_item(str(size.x) + "x" + str(size.y))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -16,4 +15,4 @@ func _ready():
 
 
 func _on_ResolutionList_item_selected(ID):
-	pass # Replace with function body.
+	OS.set_window_size(sizes[ID])
