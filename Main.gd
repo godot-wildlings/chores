@@ -49,7 +49,7 @@ func spawn_dialog_box(boxTitle : String, textArray : Array, requestedBy):
 
 func show_pause_menu():
 	find_node("PauseMenu").show()
-	PauseLabel.set_text("PAUSED")
+	PauseLabel.set_text("PAUSED. Press esc to resume.")
 	
 	Music_Last_Playback_Position = BGMusic.get_playback_position()
 	BGMusic.stop()
@@ -60,7 +60,7 @@ func show_pause_menu():
 func hide_pause_menu():
 	find_node("PauseMenu").hide()
 	global.resume_game()
-	PauseLabel.set_text("Press esc to Pause Game")
+	PauseLabel.set_text("Press esc to Pause Game.")
 #	BGMusic.set_stream_paused(false)
 	BGMusic.play()
 	BGMusic.seek(Music_Last_Playback_Position)
