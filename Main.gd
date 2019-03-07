@@ -26,7 +26,7 @@ var State = States.initializing
 onready var LevelContainer = $LevelContainer
 var LevelScenes = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn" ]
 var Level_Num : int = -1
-#var Current_Level_Node
+var Current_Level_Node
 
 signal DialogBox_completed(box_name)
 
