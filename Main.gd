@@ -34,7 +34,7 @@ signal DialogBox_completed(box_name)
 func _ready():
 	spawn_dialog_box("IntroText", ["Welcome to GWJ7", "Have Fun"], self)
 	global.set_main(self)
-	
+	transition("fade-in")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,9 +73,21 @@ func start_game():
 	$BGMusic.play()
 	start_next_level()
 
+
+func transition(animation_name):
+	$AnimationPlayer.play(animation_name)
+
+
+	
+	
+
+
 func start_next_level():
 	# Need to add fade out and fade in
 
+	transition("fade-out")
+	yield(get_tree().create_timer(0.5), "timeout")
+	
 	if Current_Level_Node != null:
 		if Current_Level_Node.has_method("end"):
 			Current_Level_Node.end() # levels should free themselves
@@ -87,9 +99,12 @@ func start_next_level():
 	var current_level_scene = load(LevelScenes[Level_Num])
 	Current_Level_Node = current_level_scene.instance()
 	LevelContainer.add_child(Current_Level_Node)
-
+	
 	if Current_Level_Node.has_method("start"):
 		Current_Level_Node.start()
+
+	transition("fade-in")
+	yield(get_tree().create_timer(0.5), "timeout")
 		
 func _input(event):
 	if State == States.playing:
