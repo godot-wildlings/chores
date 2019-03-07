@@ -23,7 +23,10 @@ onready var DialogBoxContainer = get_node("GUIContainer/FullRect/CenterContainer
 enum States { initializing, playing, paused }
 var State = States.initializing
 
-
+onready var LevelContainer = $LevelContainer
+var LevelScenes = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn" ]
+var Level_Num : int = -1
+var Current_Level_Node
 
 signal DialogBox_completed(box_name)
 
@@ -68,7 +71,25 @@ func hide_pause_menu():
 func start_game():
 	set_state(States.playing)
 	$BGMusic.play()
+	start_next_level()
+
+func start_next_level():
+	# Need to add fade out and fade in
+
+	if Current_Level_Node != null:
+		if Current_Level_Node.has_method("end"):
+			Current_Level_Node.end() # levels should free themselves
+		else:
+			Current_Level_Node.queue_free()
+		
+	Level_Num = wrapi(Level_Num+1, 0, LevelScenes.size())
 	
+	var current_level_scene = load(LevelScenes[Level_Num])
+	Current_Level_Node = current_level_scene.instance()
+	LevelContainer.add_child(Current_Level_Node)
+
+	if Current_Level_Node.has_method("start"):
+		Current_Level_Node.start()
 		
 func _input(event):
 	if State == States.playing:
@@ -81,7 +102,9 @@ func _input(event):
 			hide_pause_menu()
 			set_state(States.playing)
 			global.resume_game()
-			
+	
+	if event.is_action_pressed("next_level"):
+		start_next_level()
 	
 func _on_DialogBox_completed(dialog_box_title, requesting_node):
 	if dialog_box_title == "IntroText":

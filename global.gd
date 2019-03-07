@@ -4,6 +4,11 @@ extends Node
 enum States { initializing, ready, paused }
 var State : int = States.initializing
 
+enum Difficulties { easy, medium, hard }
+var Difficulty : int = Difficulties.medium
+
+var Game_Speed = 1.0
+
 var MainScene : Node
 
 # Called when the node enters the scene tree for the first time.
@@ -24,8 +29,20 @@ func pause_game():
 func resume_game():
 	get_tree().paused = false
 
+func set_difficulty(difficulty: int):
+	Difficulty = difficulty
+
+func get_difficult():
+	return Difficulty
+
 func get_state():
 	return State
+
+func get_game_speed():
+	return Game_Speed
+	
+func set_game_speed(speed):
+	Game_Speed = speed
 
 func set_main(node):
 	MainScene = node

@@ -1,8 +1,7 @@
 extends OptionButton
 
 # Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var global = get_node("/root/global")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,4 +15,5 @@ func _ready():
 
 
 func _on_DifficultyButton_item_selected(ID):
+	global.set_difficulty(ID)
 	pass # Replace with function body.
