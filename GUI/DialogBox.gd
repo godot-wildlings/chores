@@ -43,7 +43,8 @@ func _ready():
 	TextBox = get_node("MarginContainer/DialogTextBox")
 	KeypressAudio = get_node("KeypressNoise")
 	LetterTimer = get_node("LetterTimer")
-	LetterTimer.connect("timeout", self, "_on_LetterTimer_timeout")
+	var _err = LetterTimer.connect("timeout", self, "_on_LetterTimer_timeout")
+	if _err: push_warning(_err)
 		# I connect this signal in code rather than in the inspector, because
 		# too many times I've had bugs related to inspector signals I forgot to connect.
 	LetterTimer.start()
@@ -126,11 +127,6 @@ func _on_LetterTimer_timeout():
 	showNextLetter()
 
 
-func _on_DialogTextBox_gui_input(event):
-	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index == BUTTON_LEFT:
-			revealAllLettersOrShowNextLine()
-			
 
 func _on_DialogTextBox_meta_clicked(meta):
 	print(self.name, " meta == ", meta )
@@ -143,4 +139,15 @@ func _on_Panel_gui_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == BUTTON_LEFT:
 			revealAllLettersOrShowNextLine()
+
+func fast_forward_on_mouseclick(event):
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == BUTTON_LEFT:
+			revealAllLettersOrShowNextLine()
+			
+func _on_DialogBox_gui_input(event):
+	fast_forward_on_mouseclick(event)
+
+func _on_DialogTextBox_gui_input(event):
+	fast_forward_on_mouseclick(event)
 

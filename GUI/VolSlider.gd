@@ -1,19 +1,18 @@
-extends OptionButton
+extends HSlider
 
 # Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var Bus : int = 0
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_item("Easy")
-	add_item("Medium")
-	add_item("Hard")
-
+	var _err = connect("value_changed", self, "_on_VolSlider_value_changed")
+	if _err: push_warning(_err)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 
-func _on_DifficultyButton_item_selected(ID):
-	pass # Replace with function body.
+func _on_VolSlider_value_changed(value):
+	AudioServer.set_bus_volume_db(Bus, value)

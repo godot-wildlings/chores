@@ -1,4 +1,4 @@
-extends OptionButton
+extends CheckBox
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -6,14 +6,12 @@ extends OptionButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_item("Easy")
-	add_item("Medium")
-	add_item("Hard")
+	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 
-func _on_DifficultyButton_item_selected(ID):
+func _on_FullscreenCheckbox_toggled(button_pressed):
 	pass # Replace with function body.

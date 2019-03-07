@@ -45,6 +45,10 @@ func show_pause_menu():
 
 func hide_pause_menu():
 	find_node("PauseMenu").hide()
+
+func start_game():
+	set_state(States.playing)
+	$BGMusic.play()
 	
 		
 func _input(event):
@@ -60,10 +64,11 @@ func _input(event):
 	
 func _on_DialogBox_completed(dialog_box_title, requesting_node):
 	if dialog_box_title == "IntroText":
-		set_state(States.playing)
+		start_game()
 
 	# other nodes may need dialog boxes, they'll ask Main for one, then expect a callback
 	elif requesting_node != self:
-		connect("DialogBox_completed", requesting_node, "_on_BialogBox_completed")
+		var _err = connect("DialogBox_completed", requesting_node, "_on_BialogBox_completed")
+		if _err: push_warning(_err)
 		emit_signal("DialogBox_completed", dialog_box_title)
 		disconnect("DialogBox_completed", requesting_node, "_on_BialogBox_completed")

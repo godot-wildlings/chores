@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Design Notes.gd" type="Script" id=2]
 [ext_resource path="res://GUI/PauseMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BGMusic/testBGMusic.ogg" type="AudioStream" id=4]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -38,4 +39,17 @@ margin_bottom = 150.0
 
 [node name="PauseMenu" parent="GUIContainer/FullRect" instance=ExtResource( 3 )]
 visible = false
+
+[node name="Label" type="Label" parent="GUIContainer/FullRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -68.5
+margin_right = 68.5
+margin_bottom = 14.0
+text = "Press esc for Options"
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -9.0
+bus = "Music"
 

@@ -39,5 +39,8 @@ one_shot = true
 
 [node name="KeypressNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -12.0
+volume_db = -30.0
+bus = "SoundFX"
 
+[connection signal="gui_input" from="." to="." method="_on_DialogBox_gui_input"]
+[connection signal="gui_input" from="MarginContainer/DialogTextBox" to="." method="_on_DialogTextBox_gui_input"]

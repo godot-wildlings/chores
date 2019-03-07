@@ -1,4 +1,4 @@
-extends ItemList
+extends OptionButton
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,3 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_ResolutionList_item_selected(ID):
+	pass # Replace with function body.
