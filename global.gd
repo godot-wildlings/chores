@@ -5,16 +5,20 @@ enum Difficulties { EASY, MEDIUM, HARD }
 
 # Declare member variables here. Examples:
 var _state : int = States.INITIALIZING setget _set_state
+#warning-ignore:unused_class_variable
 var difficulty : int = Difficulties.MEDIUM
+#warning-ignore:unused_class_variable
 var game_speed : float = 1.0
+#warning-ignore:unused_class_variable
 var main_scene : Node
 
 func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+#warning-ignore:unused_argument
+func _process(delta):
+	pass
 
 func _set_state(new_state : int):
 	_state = new_state
