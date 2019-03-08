@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://GUI/Themes/basic_theme.tres" type="Theme" id=1]
+[ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/VolSlider.gd" type="Script" id=2]
 [ext_resource path="res://GUI/FullscreenCheckbox.gd" type="Script" id=3]
 [ext_resource path="res://GUI/ResolutionList.gd" type="Script" id=4]
@@ -27,13 +27,9 @@ margin_bottom = 293.0
 tab_align = 0
 
 [node name="Instructions" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_top = 20.0
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Instructions"]
 anchor_right = 1.0
@@ -44,8 +40,8 @@ margin_right = -10.0
 margin_bottom = -10.0
 
 [node name="InstructionText" type="RichTextLabel" parent="TabContainer/Instructions/MarginContainer"]
-margin_right = 358.0
-margin_bottom = 230.0
+margin_right = 366.0
+margin_bottom = 246.0
 bbcode_enabled = true
 bbcode_text = "The usual: WASD, Space, etc.
 
@@ -63,6 +59,7 @@ Dig deep, face your fears, overcome the ____ and come back with your ___, having
 Standard Story Circle based on the Hero's journey from Joseph Campbell via Dan Harmon"
 
 [node name="Options" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -153,7 +150,6 @@ min_value = -24.0
 max_value = 24.0
 ticks_on_borders = true
 script = ExtResource( 2 )
-Bus = 1
 
 [node name="FX" type="HSplitContainer" parent="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/VolumeOptions"]
 margin_top = 58.0
@@ -179,7 +175,6 @@ min_value = -24.0
 max_value = 24.0
 ticks_on_borders = true
 script = ExtResource( 2 )
-Bus = 2
 
 [node name="DisplayOptions" type="VBoxContainer" parent="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide"]
 margin_top = 104.0
