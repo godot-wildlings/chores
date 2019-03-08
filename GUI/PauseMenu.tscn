@@ -27,6 +27,7 @@ margin_bottom = 293.0
 tab_align = 0
 
 [node name="Instructions" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -62,7 +63,6 @@ Dig deep, face your fears, overcome the ____ and come back with your ___, having
 Standard Story Circle based on the Hero's journey from Joseph Campbell via Dan Harmon"
 
 [node name="Options" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -313,9 +313,6 @@ Software: Godot Game Engine, Inkscape, Audacity, Gimp, Github, GitKraken
 Inspirations: ...
 "
 
-[connection signal="value_changed" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/VolumeOptions/Master/MasterVolSlider" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/VolumeOptions/Master/MasterVolSlider" method="_on_MasterVolSlider_value_changed"]
-[connection signal="value_changed" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/VolumeOptions/Music/MusicVolSlider" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/VolumeOptions/Music/MusicVolSlider" method="_on_MusicVolSlider_value_changed"]
-[connection signal="value_changed" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/VolumeOptions/FX/SoundFxVolSlider" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/VolumeOptions/FX/SoundFxVolSlider" method="_on_SoundFxVolSlider_value_changed"]
 [connection signal="toggled" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Container/FullscreenCheckbox" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Container/FullscreenCheckbox" method="_on_FullscreenCheckbox_toggled"]
 [connection signal="item_selected" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Container2/ResolutionList" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Container2/ResolutionList" method="_on_ResolutionList_item_selected"]
 [connection signal="item_selected" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Container3/DifficultyButton" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Container3/DifficultyButton" method="_on_DifficultyButton_item_selected"]
