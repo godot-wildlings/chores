@@ -4,7 +4,7 @@ enum States { IDLE, WALKING, RUNNING }
 
 const SPEED : int = 200
 var _state : int = States.IDLE setget _set_state
-var _move_dir =  directions.CENTER
+var _move_dir =  Vector2.ZERO
 
 func _ready():
 	global.player = self
@@ -20,13 +20,13 @@ func _physics_process(delta):
 
 func _state_idle():
 	_controls_loop()
-	if _move_dir != directions.CENTER:
+	if _move_dir != Vector2.ZERO:
 		self._state = States.WALKING
 
 #warning-ignore:unused_argument
 func _state_walking(delta : float):
 	_controls_loop()
-	if _move_dir == directions.CENTER:
+	if _move_dir == Vector2.ZERO:
 		self._state = States.IDLE
 	else:
 		_movement_loop()
@@ -49,8 +49,7 @@ func _movement_loop():
 	motion = _move_dir.normalized() * SPEED
 	
 	#warning-ignore:return_value_discarded
-	move_and_slide(motion, directions.CENTER)
+	move_and_slide(motion, Vector2.ZERO)
 
 func _set_state(new_state : int):
-	print(new_state)
 	_state = new_state
