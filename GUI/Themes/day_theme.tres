@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=6 format=2]
+
+[ext_resource path="res://GUI/Themes/styles/panel_day-style.tres" type="StyleBox" id=1]
+[ext_resource path="res://GUI/Themes/styles/tab_day-style.tres" type="StyleBox" id=2]
+[ext_resource path="res://GUI/Themes/styles/tab_disables-daystyle.tres" type="StyleBox" id=3]
+[ext_resource path="res://GUI/Themes/styles/tab_day-fg-style.tres" type="StyleBox" id=4]
+[ext_resource path="res://GUI/Themes/Fonts/Dancing_Script/DancingScript-16.tres" type="DynamicFont" id=5]
+
+[resource]
+default_font = ExtResource( 5 )
+Panel/styles/panel = ExtResource( 1 )
+Panel/styles/panelf = null
+Panel/styles/panelnc = null
+PanelContainer/styles/panel = null
+TabContainer/colors/font_color_bg = Color( 0, 0, 0, 1 )
+TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
+TabContainer/constants/hseparation = 4
+TabContainer/constants/label_valign_bg = 2
+TabContainer/constants/label_valign_fg = 0
+TabContainer/constants/side_margin = 8
+TabContainer/constants/top_margin = 24
+TabContainer/fonts/font = null
+TabContainer/icons/decrement = null
+TabContainer/icons/decrement_highlight = null
+TabContainer/icons/increment = null
+TabContainer/icons/increment_highlight = null
+TabContainer/icons/menu = null
+TabContainer/icons/menu_highlight = null
+TabContainer/styles/panel = ExtResource( 1 )
+TabContainer/styles/tab_bg = ExtResource( 2 )
+TabContainer/styles/tab_disabled = ExtResource( 3 )
+TabContainer/styles/tab_fg = ExtResource( 4 )
+
