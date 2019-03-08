@@ -3,7 +3,6 @@ extends Node
 enum States { INITIALIZING, READY, PAUSED }
 enum Difficulties { EASY, MEDIUM, HARD }
 
-# Declare member variables here. Examples:
 var _state : int = States.INITIALIZING setget _set_state
 #warning-ignore:unused_class_variable
 var difficulty : int = Difficulties.MEDIUM
@@ -11,6 +10,10 @@ var difficulty : int = Difficulties.MEDIUM
 var game_speed : float = 1.0
 #warning-ignore:unused_class_variable
 var main_scene : Node
+#warning-ignore:unused_class_variable
+var player : KinematicBody2D
+#warning-ignore:unused_class_variable
+var directions = [ Vector2(1920, 1080), Vector2(1024, 768), Vector2(800, 600)  ]
 
 func _ready():
 	pass # Replace with function body.
