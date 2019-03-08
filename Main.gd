@@ -17,25 +17,24 @@ onready var level_container : Node2D = $LevelContainer
 onready var pause_label : Label = $GUIContainer/FullRect/PauseLabel
 onready var dialog_box : PackedScene = preload("res://GUI/DialogBox.tscn")
 
-enum States { initializing, playing, paused }
+enum States { INITIALIZING, PLAYING, PAUSED }
 
-var _state : int = States.initializing setget _set_state
+var _state : int = States.INITIALIZING setget _set_state
 var music_last_playback_position : float = 0.0
 var level_scenes : Array = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn" ]
 var level_num : int = -1
 var current_level_node : Node
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_dialog_box("IntroText", ["Welcome to GWJ7", "Have Fun"], self)
-	global.set_main(self)
+	global.main_scene = self
 	transition("fade-in")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func _set_state(new_state):
+func _set_state(new_state : int):
 	_state = new_state
 	# could check here whether or not the state was actually changed,
 	# and then react on state change (emit signal e.g.)
@@ -53,23 +52,23 @@ func show_pause_menu():
 	music_last_playback_position = bg_music.get_playback_position()
 	bg_music.stop()
 
-#	bg_music.set_stream_paused(true)
+#	bg_music.set_stream_PAUSED(true)
 	global.pause_game()
 
 func hide_pause_menu():
 	find_node("PauseMenu").hide()
 	global.resume_game()
 	pause_label.set_text("Press esc to Pause Game.")
-#	bg_music.set_stream_paused(false)
+#	bg_music.set_stream_PAUSED(false)
 	bg_music.play()
 	bg_music.seek(music_last_playback_position)
 
 func start_game():
-	self._state = States.playing
+	self._state = States.PLAYING
 	bg_music.play()
 	start_next_level()
 
-func transition(animation_name):
+func transition(animation_name : String):
 	$AnimationPlayer.play(animation_name)
 
 func start_next_level():
@@ -95,23 +94,23 @@ func start_next_level():
 
 	transition("fade-in")
 	yield(get_tree().create_timer(0.5), "timeout")
-		
-func _input(event):
-	if _state == States.playing:
+
+func _input(event : InputEvent):
+	if _state == States.PLAYING:
 		if event.is_action_pressed("pause"):
 			show_pause_menu()
-			_set_state(States.paused)
+			_set_state(States.PAUSED)
 			global.pause_game()
-	elif _state == States.paused:
+	elif _state == States.PAUSED:
 		if event.is_action_pressed("pause"):
 			hide_pause_menu()
-			_set_state(States.playing)
+			_set_state(States.PLAYING)
 			global.resume_game()
 	
 	if event.is_action_pressed("next_level"):
 		start_next_level()
 	
-func _on_DialogBox_completed(dialog_box_title, requesting_node):
+func _on_DialogBox_completed(dialog_box_title : String, requesting_node : Node):
 	if dialog_box_title == "IntroText":
 		start_game()
 
