@@ -6,6 +6,7 @@ enum States { IDLE, WALKING, RUNNING, DEAD }
 
 onready var health : float = max_health setget _set_health
 
+#warning-ignore:unused_class_variable
 export var speed : float = 100
 export var max_health : float = 3
 
@@ -17,8 +18,10 @@ var _move_dir =  Vector2.ZERO
 func _ready():
 	global.player = self
 	$Label.text = "Health: " + str(health)
+	#warning-ignore:return_value_discarded
 	connect("health_changed", self, "_on_health_change")
-	
+
+#warning-ignore:unused_argument
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
 		$WeaponSlots.attack()

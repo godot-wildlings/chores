@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export var speed : float = 200
+#warning-ignore:unused_class_variable
 export var damage : int = 1
 
 var velocity : Vector2 = Vector2.ZERO
