@@ -21,7 +21,7 @@ enum States { INITIALIZING, PLAYING, PAUSED }
 
 var _state : int = States.INITIALIZING setget _set_state
 var music_last_playback_position : float = 0.0
-var level_scenes : Array = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn" ]
+var level_scenes : Array = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn", "res://Levels/Level3.tscn" ]
 var level_num : int = -1
 var current_level_node : Node
 

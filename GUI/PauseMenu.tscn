@@ -30,7 +30,6 @@ size_flags_vertical = 3
 tab_align = 0
 
 [node name="Instructions" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -79,6 +78,7 @@ Phase 4. Exorcism (Nighttime)
 The demon will not control me. I will fight it in my subconscious."
 
 [node name="Options" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -330,7 +330,7 @@ editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 20.0
+margin_top = 39.0
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Credits"]
 anchor_right = 1.0
@@ -342,7 +342,7 @@ margin_bottom = -10.0
 
 [node name="CreditsText" type="RichTextLabel" parent="TabContainer/Credits/MarginContainer"]
 margin_right = 580.0
-margin_bottom = 360.0
+margin_bottom = 341.0
 bbcode_enabled = true
 bbcode_text = "Game Produced for Godot Wild Jam 7
 
