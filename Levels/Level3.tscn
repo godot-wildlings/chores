@@ -1,76 +1,30 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=1]
-[ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=2]
-[ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=3]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 198.262, 98.4105 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 311.578, 145.157 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 4096, 20 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 174.426, 382.996 )
+extents = Vector2( 240, 160 )
 
 [node name="Level3" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 8192.0
-margin_bottom = 600.0
-texture = ExtResource( 1 )
-stretch_mode = 2
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Level3. Press n to switch"
 
-[node name="House1" type="StaticBody2D" parent="."]
-position = Vector2( 753.883, 262.983 )
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 191.982, 419.315 )
 
-[node name="Sprite" type="Sprite" parent="House1"]
+[node name="House" type="StaticBody2D" parent="."]
+position = Vector2( 640, 300 )
+collision_layer = 2
+
+[node name="Sprite" type="Sprite" parent="House"]
+modulate = Color( 0.160784, 0.882353, 0.121569, 1 )
+scale = Vector2( 8, 5 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House1"]
-position = Vector2( -2.93628, 8.80896 )
+[node name="HouseShape" type="CollisionShape2D" parent="House"]
 shape = SubResource( 1 )
-
-[node name="House2" type="StaticBody2D" parent="."]
-position = Vector2( 1600.75, 195.213 )
-
-[node name="Sprite" type="Sprite" parent="House2"]
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House2"]
-position = Vector2( -8.80896, 23.4907 )
-shape = SubResource( 2 )
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 202, 180 )
-
-[node name="invisibleWall" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="invisibleWall"]
-position = Vector2( 4096.9, -18.8626 )
-shape = SubResource( 3 )
-
-[node name="invisibleWall2" type="StaticBody2D" parent="."]
-position = Vector2( -0.681152, 639.113 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="invisibleWall2"]
-position = Vector2( 4096.9, -18.8626 )
-shape = SubResource( 3 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -178.971, 311.255 )
-shape = SubResource( 4 )
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 8551.72, -23.344 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( -178.971, 311.255 )
-shape = SubResource( 4 )
 
