@@ -52,5 +52,4 @@ func _movement_loop():
 	move_and_slide(motion, Vector2.ZERO)
 
 func _set_state(new_state : int):
-	print(new_state)
 	_state = new_state

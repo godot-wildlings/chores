@@ -21,11 +21,17 @@ enum States { INITIALIZING, PLAYING, PAUSED }
 
 var _state : int = States.INITIALIZING setget _set_state
 var music_last_playback_position : float = 0.0
-var level_scenes : Array = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn", "res://Levels/Level3.tscn" ]
+var level_scenes : Array = []
 var level_num : int = -1
 var current_level_node : Node
 
 func _ready():
+	
+	level_scenes.push_back("res://Levels/Level1.tscn")
+	level_scenes.push_back("res://Levels/Level2.tscn")
+	level_scenes.push_back("res://Levels/Level3.tscn")
+	level_scenes.push_back("res://Levels/Level4.tscn")
+	
 	spawn_dialog_box("IntroText", ["Welcome to GWJ7", "Have Fun"], self)
 	global.main_scene = self
 	transition("fade-in")
