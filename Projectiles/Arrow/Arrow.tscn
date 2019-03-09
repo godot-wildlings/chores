@@ -6,7 +6,9 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.0
 
-[node name="Arrow" type="KinematicBody2D"]
+[node name="Arrow" type="KinematicBody2D" groups=[
+"projectiles",
+]]
 rotation = 1.5708
 collision_layer = 8
 collision_mask = 16
