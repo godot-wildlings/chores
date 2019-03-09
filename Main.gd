@@ -1,3 +1,4 @@
+extends Node
 """
 Main.gd is the default scene. 
 
@@ -6,7 +7,6 @@ Responsibilities:
 -relay messages between sibling children
 
 """
-extends Node
 
 # Declare member variables here. Examples:
 signal Dialog_box_completed(box_name)
