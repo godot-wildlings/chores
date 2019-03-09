@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/QuillOnPaper.wav-3641811577b9a54e78c71420f2a550bf.sample"
+
+[deps]
+
+source_file="res://GUI/audio/QuillOnPaper.wav"
+dest_files=[ "res://.import/QuillOnPaper.wav-3641811577b9a54e78c71420f2a550bf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

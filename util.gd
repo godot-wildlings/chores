@@ -12,3 +12,7 @@ func rand_dir():
 			return Vector2.UP
 		3:
 			return Vector2.DOWN
+			
+func rand_dir_float():
+	var d = randf() * 2 * PI
+	return Vector2(1, 0).rotated(d)
