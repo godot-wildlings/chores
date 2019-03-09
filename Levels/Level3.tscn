@@ -28,3 +28,5 @@ texture = ExtResource( 2 )
 [node name="HouseShape" type="CollisionShape2D" parent="House"]
 shape = SubResource( 1 )
 
+[node name="ProjectileContainer" type="Node2D" parent="."]
+

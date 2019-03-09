@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arrow.png-d6b44294ef870d2a23b991082b807e55.stex"
+path="res://.import/arrow.png-a00ca6a6172efea12df496532f0a8af5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Projectiles/arrow.png"
-dest_files=[ "res://.import/arrow.png-d6b44294ef870d2a23b991082b807e55.stex" ]
+source_file="res://Projectiles/Arrow/arrow.png"
+dest_files=[ "res://.import/arrow.png-a00ca6a6172efea12df496532f0a8af5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -9,6 +9,10 @@ var _move_dir =  Vector2.ZERO
 
 func _ready():
 	global.player = self
+	
+func _process(delta):
+	if Input.is_action_just_pressed("attack"):
+		$WeaponSlots.attack()
 
 func _physics_process(delta):
 	match _state:
