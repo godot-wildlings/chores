@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=3]
 [ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 34, 34 )
+
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 86
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -30,4 +35,17 @@ offset_distance = 40.0
 [node name="Ranged" type="Node2D" parent="WeaponSlots"]
 
 [node name="Bow" parent="WeaponSlots/Ranged" instance=ExtResource( 4 )]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -27.824
+margin_top = -67.9423
+margin_right = 26.176
+margin_bottom = -47.9423
+theme = ExtResource( 5 )
+text = "Health: 3"
 

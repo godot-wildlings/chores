@@ -16,3 +16,6 @@ func rand_dir():
 func rand_dir_float():
 	var d = randf() * 2 * PI
 	return Vector2(1, 0).rotated(d)
+
+func get_main_node():
+	return get_tree().root.get_child(get_tree().root.get_child_count() - 1)

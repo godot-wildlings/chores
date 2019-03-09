@@ -3,12 +3,12 @@ extends Node2D
 Weapon slots
 
 Does the following:
-- Makes sure the currently equipped weapons (both meele & raned) are correctly orientated,
+- Makes sure the currently equipped weapons (both melee & raned) are correctly orientated,
 	based on the players mouse position
 - Adjusts the weapons sprite z-index depth in order to hide it behind the players head, 
 	when pointing the weapon above him
 - Flips weapon sprites on y axis based on the mouse position.x
-- Player can only always have one of either ranged or meele weapons equipped
+- Player can only always have one of either ranged or melee weapons equipped
 """
 signal weapon_changed
 
@@ -29,9 +29,17 @@ func _ready():
 
 #warning-ignore:unused_argument
 func _process(delta : float):
+	if Input.is_action_pressed("equip_melee_weapon"):
+		_equip_first_melee_weapon()
+	elif Input.is_action_pressed("equip_ranged_weapon"):
+		_equip_first_ranged_weapon()
+
 	_orientate_weapon()
 	_adjust_weapon_depth()
 	_flip_weapon_sprites()
+
+func attack():
+	active_weapon.attack()
 
 func _orientate_weapon():
 	position = Vector2.ZERO

@@ -1,13 +1,27 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal shoot
 
-# Called when the node enters the scene tree for the first time.
+onready var bullet_container : Node2D = util.get_main_node().get_node("ProjectileContainer")
+
+export var projectile_tscn : PackedScene = preload("res://Projectiles/Arrow/Arrow.tscn") as PackedScene
+export var spawn_distance : float = 10
+
+var _spawn_position : Position2D
+
 func _ready():
-	pass # Replace with function body.
+	_spawn_position = Position2D.new()
+	_spawn_position.name = "SpawnPosition"
+	add_child(_spawn_position)
+	_spawn_position.global_position = global_position + Vector2(spawn_distance, 0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func attack():
+	_shoot()
+
+func _shoot():
+	var projectile_instance : Node2D = projectile_tscn.instance()
+	bullet_container.add_child(projectile_instance)
+	if projectile_instance.has_method("shoot"):
+		projectile_instance.shoot(_spawn_position.global_position, global_rotation_degrees)
+#		$AudioStreamPlayer.play()
+		emit_signal("shoot")

@@ -107,6 +107,8 @@ script = ExtResource( 2 )
 [node name="LevelContainer" type="Node2D" parent="."]
 pause_mode = 1
 
+[node name="ProjectileContainer" type="Node2D" parent="."]
+
 [node name="GUIContainer" type="CanvasLayer" parent="."]
 
 [node name="FullRect" type="ReferenceRect" parent="GUIContainer"]
