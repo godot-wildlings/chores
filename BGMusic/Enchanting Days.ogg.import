@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Enchanting Days.ogg-307f77bff71516593bd53a33f774ecbf.oggstr"
+
+[deps]
+
+source_file="res://BGMusic/Enchanting Days.ogg"
+dest_files=[ "res://.import/Enchanting Days.ogg-307f77bff71516593bd53a33f774ecbf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

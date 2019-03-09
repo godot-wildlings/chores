@@ -21,7 +21,7 @@ enum States { INITIALIZING, PLAYING, PAUSED }
 
 var _state : int = States.INITIALIZING setget _set_state
 var music_last_playback_position : float = 0.0
-var level_scenes : Array = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn" ]
+var level_scenes : Array = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn", "res://Levels/Level3.tscn" ]
 var level_num : int = -1
 var current_level_node : Node
 
@@ -50,7 +50,7 @@ func show_pause_menu():
 	pause_label.set_text("PAUSED. Press esc to resume.")
 	
 	music_last_playback_position = bg_music.get_playback_position()
-	bg_music.stop()
+	#bg_music.stop()
 
 #	bg_music.set_stream_PAUSED(true)
 	global.pause_game()
@@ -60,7 +60,7 @@ func hide_pause_menu():
 	global.resume_game()
 	pause_label.set_text("Press esc to Pause Game.")
 #	bg_music.set_stream_PAUSED(false)
-	bg_music.play()
+	#bg_music.play()
 	bg_music.seek(music_last_playback_position)
 
 func start_game():
