@@ -78,7 +78,10 @@ func show_next_letter():
 	if num_letters_displayed < current_line_text.length():
 		letter_timer.start()
 		num_letters_displayed += 1
-		keypress_audio.play()
+		if keypress_audio.is_playing() == false:
+			keypress_audio.set_pitch_scale(rand_range(0.9, 1.1))
+			keypress_audio.set_volume_db(rand_range(-38.0, -28.0))
+			keypress_audio.play()
 
 	text_box.set_visible_characters(num_letters_displayed)
 	#DialogBox.set_text(current_line_text.left(num_letters_displayed))

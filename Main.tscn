@@ -3,7 +3,7 @@
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Design Notes.gd" type="Script" id=2]
 [ext_resource path="res://GUI/PauseMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://BGMusic/testBGMusic.ogg" type="AudioStream" id=4]
+[ext_resource path="res://BGMusic/Enchanting Days.ogg" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade-in"

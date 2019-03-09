@@ -21,12 +21,21 @@ enum States { INITIALIZING, PLAYING, PAUSED }
 
 var _state : int = States.INITIALIZING setget _set_state
 var music_last_playback_position : float = 0.0
-var level_scenes : Array = [ "res://Levels/Level1.tscn", "res://Levels/Level2.tscn" ]
+var level_scenes : Array = []
 var level_num : int = -1
 var current_level_node : Node
 
 func _ready():
-	spawn_dialog_box("IntroText", ["Welcome to GWJ7", "Have Fun"], self)
+	
+	level_scenes.push_back("res://Levels/Level4.tscn")
+	level_scenes.push_back("res://Levels/Level1.tscn")
+	level_scenes.push_back("res://Levels/Level2.tscn")
+	level_scenes.push_back("res://Levels/Level3.tscn")
+	
+	var intro_text = [
+			"You're a good boy, Friederich. You do your chores and complete your studies. \n\nGo see what your grandparents have for you today. \n\nI've gone to town.\n\tLove, Mother"
+	]
+	spawn_dialog_box("IntroText", intro_text, self)
 	global.main_scene = self
 	transition("fade-in")
 
@@ -50,7 +59,7 @@ func show_pause_menu():
 	pause_label.set_text("PAUSED. Press esc to resume.")
 	
 	music_last_playback_position = bg_music.get_playback_position()
-	bg_music.stop()
+	#bg_music.stop()
 
 #	bg_music.set_stream_PAUSED(true)
 	global.pause_game()
@@ -60,7 +69,7 @@ func hide_pause_menu():
 	global.resume_game()
 	pause_label.set_text("Press esc to Pause Game.")
 #	bg_music.set_stream_PAUSED(false)
-	bg_music.play()
+	#bg_music.play()
 	bg_music.seek(music_last_playback_position)
 
 func start_game():
@@ -120,3 +129,7 @@ func _on_DialogBox_completed(dialog_box_title : String, requesting_node : Node):
 		if _err: push_warning(_err)
 		emit_signal("Dialog_box_completed", dialog_box_title)
 		disconnect("Dialog_box_completed", requesting_node, "_on_DialogBox_completed")
+
+func _on_DialogBox_requested(dialog_box_title : String, text_array : Array, requested_by ):
+		spawn_dialog_box(dialog_box_title, text_array, requested_by)
+		
