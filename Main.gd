@@ -50,7 +50,7 @@ func show_pause_menu():
 	pause_label.set_text("PAUSED. Press esc to resume.")
 	
 	music_last_playback_position = bg_music.get_playback_position()
-	bg_music.stop()
+	#bg_music.stop()
 
 #	bg_music.set_stream_PAUSED(true)
 	global.pause_game()
@@ -60,7 +60,7 @@ func hide_pause_menu():
 	global.resume_game()
 	pause_label.set_text("Press esc to Pause Game.")
 #	bg_music.set_stream_PAUSED(false)
-	bg_music.play()
+	#bg_music.play()
 	bg_music.seek(music_last_playback_position)
 
 func start_game():
