@@ -1,14 +1,27 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=1]
-[ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=2]
-[ext_resource path="res://Levels/Scenery/background-far.png" type="Texture" id=3]
-[ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=4]
-[ext_resource path="res://Levels/Scenery/background-near2.png" type="Texture" id=5]
-[ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=6]
-[ext_resource path="res://Levels/Scenery/bushes.png" type="Texture" id=7]
-[ext_resource path="res://Levels/Scenery/wall1.png" type="Texture" id=8]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Levels/Scenery/background-far.png" type="Texture" id=1]
+[ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=2]
+[ext_resource path="res://Levels/Scenery/background-near2.png" type="Texture" id=3]
+[ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=4]
+[ext_resource path="res://Levels/Scenery/bushes.png" type="Texture" id=5]
+[ext_resource path="res://Levels/Scenery/wall1.png" type="Texture" id=6]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=9]
+[ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=10]
+[ext_resource path="res://Levels/Scenery/pond.png" type="Texture" id=11]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 50.3812, 657.9 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 4494.9, 91.8439 )
+
+[sub_resource type="NavigationPolygon" id=5]
+vertices = PoolVector2Array( 857.953, 884.988, 1956.21, 767.232, 5878.42, 685.581, 6672.12, 685.581, 7777.08, 708.925, 2461.08, 1018.25, 2132.99, 1035.51, 1744.73, 762.197, 2663.97, 1169.34, 8228.4, 1463.72, -79.0376, 1477.85, 104.003, 1352.01, 2219.33, 1162.86, 8220.62, 576.642, 2754.63, 1089.48, 1739.7, 651.426, 837.448, 725.045, 1137.48, 695.806, 4027.61, 664.832, 4220.99, 553.298, 4687.88, 670.018, 2055.61, 587.397, 2164.02, 535.774, 2628.62, 633.858, 1956.21, 641.356, 6228.59, 553.298, 5061.38, 685.581, 3650.76, 716.455, 538.068, 907.544, 1968.95, 1102.43, 258.444, 951.607, 2336.63, 1137.83, 2079.03, 1115.38, 275.604, 637.006, 536.017, 731.197, 636.736, 659.67, 1405.92, 633.858, 1772.45, 561.586, 2891.9, 675.157, 3397.81, 685.481 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6 ), PoolIntArray( 7, 1, 0 ), PoolIntArray( 8, 9, 10, 11, 12 ), PoolIntArray( 4, 13, 9 ), PoolIntArray( 14, 4, 9, 8 ), PoolIntArray( 15, 7, 0, 16, 17 ), PoolIntArray( 18, 19, 20 ), PoolIntArray( 21, 22, 23, 1, 24 ), PoolIntArray( 2, 25, 3 ), PoolIntArray( 26, 2, 1, 27 ), PoolIntArray( 4, 14, 5 ), PoolIntArray( 28, 0, 6, 29, 11, 30 ), PoolIntArray( 12, 31, 8 ), PoolIntArray( 32, 12, 11, 29 ), PoolIntArray( 28, 30, 33, 34 ), PoolIntArray( 16, 34, 33, 35, 17 ), PoolIntArray( 15, 17, 36, 37 ), PoolIntArray( 24, 15, 37, 21 ), PoolIntArray( 1, 23, 38 ), PoolIntArray( 27, 18, 20, 26 ), PoolIntArray( 1, 38, 39, 27 ) ]
+outlines = [ PoolVector2Array( 275.604, 637.006, 258.444, 951.607, 104.003, 1352.01, -79.0376, 1477.85, 8228.4, 1463.72, 8220.62, 576.642, 7777.08, 708.925, 6672.12, 685.581, 6228.59, 553.298, 5878.42, 685.581, 5061.38, 685.581, 4687.88, 670.018, 4220.99, 553.298, 4027.61, 664.832, 3650.76, 716.455, 3397.81, 685.481, 2891.9, 675.157, 2628.62, 633.858, 2164.02, 535.774, 2055.61, 587.397, 1772.45, 561.586, 1405.92, 633.858, 1137.48, 695.806, 636.736, 659.67 ), PoolVector2Array( 2461.08, 1018.25, 2132.99, 1035.51, 1968.95, 1102.43, 2079.03, 1115.38, 2219.33, 1162.86, 2336.63, 1137.83, 2663.97, 1169.34, 2754.63, 1089.48 ), PoolVector2Array( 1739.7, 651.426, 1744.73, 762.197, 1956.21, 767.232, 1956.21, 641.356 ), PoolVector2Array( 536.017, 731.197, 538.068, 907.544, 857.953, 884.988, 837.448, 725.045 ) ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 157.725, 81.1065 )
@@ -16,39 +29,7 @@ extents = Vector2( 157.725, 81.1065 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 103.18, 55.7823 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 50.3812, 657.9 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 4116.63, 91.8439 )
-
 [node name="Level4" type="Node2D"]
-
-[node name="House1" type="StaticBody2D" parent="."]
-position = Vector2( 696.813, 806.425 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House1"]
-shape = SubResource( 1 )
-
-[node name="HouseSprite" type="Sprite" parent="House1"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 1 )
-
-[node name="House2" type="StaticBody2D" parent="."]
-position = Vector2( 1848.66, 705.747 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House2"]
-shape = SubResource( 2 )
-
-[node name="HouseSprite" type="Sprite" parent="House2"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -60,7 +41,7 @@ motion_scale = Vector2( 0.5, 1 )
 [node name="BG-Far" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
 position = Vector2( 3983.96, -56.6622 )
 scale = Vector2( 2, 1 )
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 7320, 537 )
 
@@ -70,7 +51,7 @@ motion_scale = Vector2( 0.75, 1 )
 [node name="BG-Med" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxMed"]
 position = Vector2( 3727.06, 241.972 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 5520, 131 )
 
@@ -80,7 +61,7 @@ motion_scale = Vector2( 0.85, 1 )
 [node name="BG-Near" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxNear"]
 position = Vector2( 3805.17, 375.869 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 5520, 131 )
 
@@ -89,46 +70,118 @@ region_rect = Rect2( 0, 0, 5520, 131 )
 [node name="Grass" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxStatic"]
 position = Vector2( 4184.76, 997.507 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 6144, 508 )
 
 [node name="Bushes" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxStatic"]
 position = Vector2( 4220.81, 500.012 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
+texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 6144, 196 )
 
-[node name="InvisWallLeft" type="StaticBody2D" parent="."]
-position = Vector2( 28.9417, 1205.4 )
+[node name="InvisWalls" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="InvisWallLeft"]
+[node name="InvisWallLeft" type="StaticBody2D" parent="InvisWalls"]
+position = Vector2( 28.9417, 1205.4 )
+collision_layer = 2
+
+[node name="Sprite" type="Sprite" parent="InvisWalls/InvisWallLeft"]
 position = Vector2( -223.692, -127.824 )
 scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 8 )
+texture = ExtResource( 6 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InvisWallLeft"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InvisWalls/InvisWallLeft"]
 polygon = PoolVector2Array( 239.398, -593.219, 187.47, -433.439, 223.42, -301.62, 115.569, -109.884, 51.6566, 49.8962, 83.6127, 125.792, -64.184, 161.742, -235.948, 421.385, -859.09, 461.33, -839.118, -641.153 )
 
-[node name="InvisWallRight" type="StaticBody2D" parent="."]
-position = Vector2( 8306.51, 695.238 )
+[node name="InvisWallRight" type="StaticBody2D" parent="InvisWalls"]
+editor/display_folded = true
+position = Vector2( 8257.12, 880.435 )
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWallRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallRight"]
 shape = SubResource( 3 )
 
-[node name="InvisWallTop" type="StaticBody2D" parent="."]
+[node name="InvisWallTop" type="StaticBody2D" parent="InvisWalls"]
+editor/display_folded = true
 position = Vector2( 4191.17, 577.43 )
+collision_layer = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InvisWallTop"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InvisWalls/InvisWallTop"]
 polygon = PoolVector2Array( -4094.7, 49.7904, -3720.7, 72.1816, -3535.69, 55.3626, -3178.29, 93.2054, -3014.3, 84.7958, -2740.99, 21.7248, -2413.02, -41.3464, -2257.45, -20.3227, -2156.53, -11.9131, -2009.37, -66.5748, -1706.63, -7.70844, -1420.71, 59.5674, -958.184, 89.0005, -728.207, 73.1266, -462.572, 95.8952, -193.143, 65.537, 0.390625, -67.2802, 250.846, -17.9481, 558.223, 65.537, 1006.01, 80.7161, 1465.17, 99.69, 1748.16, 62.4053, 2019.86, -57.1431, 2220.92, -40.8411, 2514.36, 51.5373, 2954.51, 84.1413, 3459.88, 100.443, 3818.52, 35.2352, 4035.88, -19.105, 4236.94, -29.9731, 4285.85, -247.334, -4280.48, -184.819, -4345.18, 26.1012 )
 
-[node name="InvisWallBottom" type="StaticBody2D" parent="."]
+[node name="InvisWallBottom" type="StaticBody2D" parent="InvisWalls"]
 position = Vector2( 4195.3, 1592.05 )
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWallBottom"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallBottom"]
 shape = SubResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 9 )]
+[node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 674.389, 1049.88 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+editor/display_folded = true
+
+[node name="NavPolygon" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 5 )
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="UncleAnton" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 887.897, 972.194 )
+collision_layer = 4
+
+[node name="Grandpa" parent="NPCs" instance=ExtResource( 8 )]
+modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
+position = Vector2( 1911.02, 886.279 )
+collision_layer = 4
+home = "House2"
+reward_item_name = "Rod"
+dialog_text_array = [ "Friederich. Are you here to go fishing? The trout are jumping!
+
+Take this." ]
+
+[node name="Scenery" type="Node2D" parent="."]
+
+[node name="House1" type="StaticBody2D" parent="Scenery"]
+editor/display_folded = true
+position = Vector2( 696.813, 806.425 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House1"]
+shape = SubResource( 1 )
+
+[node name="HouseSprite" type="Sprite" parent="Scenery/House1"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+
+[node name="House2" type="StaticBody2D" parent="Scenery"]
+editor/display_folded = true
+position = Vector2( 1848.66, 705.747 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House2"]
+shape = SubResource( 2 )
+
+[node name="HouseSprite" type="Sprite" parent="Scenery/House2"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+
+[node name="Pond" type="StaticBody2D" parent="Scenery"]
+editor/display_folded = true
+
+[node name="PondSprite" type="Sprite" parent="Scenery/Pond"]
+position = Vector2( 2385.25, 1086.8 )
+texture = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Scenery/Pond"]
+polygon = PoolVector2Array( 2782.84, 1058.36, 2700.82, 1158.84, 2411.7, 1148.59, 2237.4, 1162.94, 1954.42, 1091.17, 2145.12, 1019.4, 2409.65, 1011.2 )
 

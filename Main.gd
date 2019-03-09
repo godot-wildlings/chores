@@ -27,12 +27,15 @@ var current_level_node : Node
 
 func _ready():
 	
+	level_scenes.push_back("res://Levels/Level4.tscn")
 	level_scenes.push_back("res://Levels/Level1.tscn")
 	level_scenes.push_back("res://Levels/Level2.tscn")
 	level_scenes.push_back("res://Levels/Level3.tscn")
-	level_scenes.push_back("res://Levels/Level4.tscn")
 	
-	spawn_dialog_box("IntroText", ["Welcome to GWJ7", "Have Fun"], self)
+	var intro_text = [
+			"You're a good boy, Friederich. You do your chores and complete your studies. \n\nGo see what your grandparents have for you today. \n\nI've gone to town.\n\tLove, Mother"
+	]
+	spawn_dialog_box("IntroText", intro_text, self)
 	global.main_scene = self
 	transition("fade-in")
 
@@ -126,3 +129,7 @@ func _on_DialogBox_completed(dialog_box_title : String, requesting_node : Node):
 		if _err: push_warning(_err)
 		emit_signal("Dialog_box_completed", dialog_box_title)
 		disconnect("Dialog_box_completed", requesting_node, "_on_DialogBox_completed")
+
+func _on_DialogBox_requested(dialog_box_title : String, text_array : Array, requested_by ):
+		spawn_dialog_box(dialog_box_title, text_array, requested_by)
+		

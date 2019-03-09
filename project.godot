@@ -73,6 +73,7 @@ next_level={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="blocking"
+2d_physics/layer_3="NPCs"
 
 [rendering]
 
