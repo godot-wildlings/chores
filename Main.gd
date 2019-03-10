@@ -26,7 +26,7 @@ var level_num : int = -1
 var current_level_node : Node
 
 func _ready():
-	
+
 	level_scenes.push_back("res://Levels/Level4.tscn")
 	level_scenes.push_back("res://Levels/Level1.tscn")
 	level_scenes.push_back("res://Levels/Level2.tscn")

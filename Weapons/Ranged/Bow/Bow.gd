@@ -2,7 +2,7 @@ extends Node2D
 
 signal shoot
 
-onready var bullet_container : Node2D = util.get_main_node().get_node("ProjectileContainer")
+onready var projectile_container : Node2D = util.get_main_node().get_node("ProjectileContainer")
 
 export var projectile_tscn : PackedScene = preload("res://Projectiles/Arrow/Arrow.tscn") as PackedScene
 export var spawn_distance : float = 10
@@ -20,7 +20,7 @@ func attack():
 
 func _shoot():
 	var projectile_instance : Node2D = projectile_tscn.instance()
-	bullet_container.add_child(projectile_instance)
+	projectile_container.add_child(projectile_instance)
 	if projectile_instance.has_method("shoot"):
 		projectile_instance.shoot(_spawn_position.global_position, global_rotation_degrees)
 #		$AudioStreamPlayer.play()
