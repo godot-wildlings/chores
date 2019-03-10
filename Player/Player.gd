@@ -15,6 +15,7 @@ const RUN_SPEED_MULTIPLIER : float = 2.0
 var _state : int = States.IDLE setget _set_state
 var _iframes : int = 0
 var _move_dir =  Vector2.ZERO
+
 func _ready():
 	global.player = self
 	$Label.text = "Health: " + str(health)
@@ -40,6 +41,7 @@ func _state_idle():
 	if _move_dir != Vector2.ZERO:
 		self._state = States.WALKING
 	else:
+		_update_animation(Vector2.ZERO)
 		_damage_loop()
 
 #warning-ignore:unused_argument
@@ -79,9 +81,27 @@ func _movement_loop():
 		motion = _move_dir.normalized() * SPEED * RUN_SPEED_MULTIPLIER
 	elif _state == States.WALKING:
 		motion = _move_dir.normalized() * SPEED
+		
+	_update_animation(motion)
 	
 	#warning-ignore:return_value_discarded
 	move_and_slide(motion, Vector2.ZERO)
+
+func _update_animation(motion : Vector2):
+	if _state == States.RUNNING:
+		$AnimationPlayer.play("player_run")
+	elif _state == States.WALKING:
+		$AnimationPlayer.play("player_walk")
+	if motion.x > 0:
+		$Sprite.flip_h = false
+	elif motion.x < 0:
+		$Sprite.flip_h = true
+	elif motion == Vector2.ZERO:
+		$AnimationPlayer.play("player_idle")
+	if get_local_mouse_position().x >= 0:
+		$Sprite.flip_h = false
+	elif get_local_mouse_position().x <= 0:
+		$Sprite.flip_h = true
 
 func _damage_loop():
 	health = min(max_health, health)
