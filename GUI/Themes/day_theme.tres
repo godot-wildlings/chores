@@ -1,0 +1,83 @@
+[gd_resource type="Theme" load_steps=8 format=2]
+
+[ext_resource path="res://GUI/Themes/styles/panel_day-style.tres" type="StyleBox" id=1]
+[ext_resource path="res://GUI/Themes/styles/panel_container-empty.tres" type="StyleBox" id=2]
+[ext_resource path="res://GUI/Themes/Fonts/Dancing_Script/DancingScript-16.tres" type="DynamicFont" id=3]
+[ext_resource path="res://GUI/Themes/Fonts/Dancing_Script/DancingScript-32.tres" type="DynamicFont" id=4]
+[ext_resource path="res://GUI/Themes/styles/tab_day-style.tres" type="StyleBox" id=5]
+[ext_resource path="res://GUI/Themes/styles/tab_disables-daystyle.tres" type="StyleBox" id=6]
+[ext_resource path="res://GUI/Themes/styles/tab_day-fg-style.tres" type="StyleBox" id=7]
+
+[resource]
+default_font = ExtResource( 3 )
+Fonts/fonts/large = null
+Fonts/fonts/normal = null
+Label/colors/font_color = Color( 0, 0, 0, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+Panel/styles/panel = ExtResource( 1 )
+Panel/styles/panelf = null
+Panel/styles/panelnc = null
+PanelContainer/styles/panel = ExtResource( 2 )
+RichTextLabel/colors/default_color = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/font_color_selected = Color( 0.27451, 0.27451, 0.27451, 1 )
+RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+RichTextLabel/colors/selection_color = Color( 0.1, 0.1, 1, 0.8 )
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/shadow_as_outline = 0
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/table_hseparation = 3
+RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = ExtResource( 3 )
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = null
+TabContainer/colors/font_color_bg = Color( 0, 0, 0, 1 )
+TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
+TabContainer/constants/hseparation = 24
+TabContainer/constants/label_valign_bg = 2
+TabContainer/constants/label_valign_fg = 0
+TabContainer/constants/side_margin = 30
+TabContainer/constants/top_margin = 24
+TabContainer/fonts/font = ExtResource( 4 )
+TabContainer/icons/decrement = null
+TabContainer/icons/decrement_highlight = null
+TabContainer/icons/increment = null
+TabContainer/icons/increment_highlight = null
+TabContainer/icons/menu = null
+TabContainer/icons/menu_highlight = null
+TabContainer/styles/panel = ExtResource( 1 )
+TabContainer/styles/tab_bg = ExtResource( 5 )
+TabContainer/styles/tab_disabled = ExtResource( 6 )
+TabContainer/styles/tab_fg = ExtResource( 7 )
+Tabs/colors/font_color_bg = Color( 0.690196, 0.690196, 0.690196, 1 )
+Tabs/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Tabs/colors/font_color_fg = Color( 0.941176, 0.941176, 0.941176, 1 )
+Tabs/constants/hseparation = 10
+Tabs/constants/label_valign_bg = 2
+Tabs/constants/label_valign_fg = 0
+Tabs/constants/top_margin = 24
+Tabs/fonts/font = null
+Tabs/icons/close = null
+Tabs/icons/decrement = null
+Tabs/icons/decrement_highlight = null
+Tabs/icons/increment = null
+Tabs/icons/increment_highlight = null
+Tabs/styles/button = null
+Tabs/styles/button_pressed = null
+Tabs/styles/panel = null
+Tabs/styles/tab_bg = null
+Tabs/styles/tab_disabled = null
+Tabs/styles/tab_fg = null
+

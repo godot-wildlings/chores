@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Weapons/Ranged/Bow/Bow.gd" type="Script" id=1]
+[ext_resource path="res://Projectiles/Arrow/Arrow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/bow_hand_exp.png" type="Texture" id=3]
+[ext_resource path="res://Player/right_hand_exp.png" type="Texture" id=4]
+[ext_resource path="res://Weapons/Ranged/Bow/bow_wind_up.anim" type="Animation" id=5]
+
+[node name="Bow" type="Node2D" groups=[
+"ranged_weapons",
+]]
+script = ExtResource( 1 )
+projectile_tscn = ExtResource( 2 )
+
+[node name="SpriteBow" type="Sprite" parent="."]
+position = Vector2( 4, 0 )
+texture = ExtResource( 3 )
+hframes = 5
+frame = 4
+
+[node name="SpriteHand" type="Sprite" parent="."]
+position = Vector2( -8.17671, 0 )
+texture = ExtResource( 4 )
+hframes = 5
+frame = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bow_wind_up = ExtResource( 5 )
+
