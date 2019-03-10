@@ -75,5 +75,5 @@ func _equip_first_ranged_weapon():
 func _set_active_weapon(new_active_weapon):
 	if new_active_weapon != active_weapon:
 		active_weapon = new_active_weapon
-		active_weapon_sprite = new_active_weapon.get_node("Sprite") as Sprite
+		active_weapon_sprite = new_active_weapon.get_node("Sprite" + str(active_weapon.name)) as Sprite
 		emit_signal("weapon_changed")
