@@ -11,6 +11,9 @@ var game_speed : float = 1.0
 #warning-ignore:unused_class_variable
 var main_scene : Node
 #warning-ignore:unused_class_variable
+var current_level : Node2D
+
+#warning-ignore:unused_class_variable
 var player : KinematicBody2D
 #warning-ignore:unused_class_variable
 var directions = [ Vector2(1920, 1080), Vector2(1024, 768), Vector2(800, 600)  ]
