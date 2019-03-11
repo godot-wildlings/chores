@@ -17,25 +17,22 @@ var _move_dir : Vector2
 var _texture_default : Texture
 var _texture_hurt : Texture
 
-
 func _ready():
-	yield(get_tree().create_timer(0.2), "timeout") # wait for player
-	_player = global.player
-	
 	_texture_default = $Sprite.texture
-	_texture_hurt = load($Sprite.get_texture().get_path().replace(".png", "_hurt.png")) as Texture
+	_texture_hurt = load($Sprite.texture.get_path().replace(".png", "_hurt.png")) as Texture
 	$Label.text = "Health: " + str(health)
 	connect("health_changed", self, "_on_health_change")
-	
+
 func _physics_process(delta : float):
 	_movement_loop()
 	_damage_loop()
-	
-	if _move_timer > 0:
-		_move_timer -= 1
-	if _move_timer == 0 || is_on_wall():
-		_move_dir = _player.position - position
-		_move_timer = _move_timer_length
+
+	if is_instance_valid(_player):
+		if _move_timer > 0:
+			_move_timer -= 1
+		if _move_timer == 0 || is_on_wall():
+			_move_dir = _player.position - position
+			_move_timer = _move_timer_length
 
 func _movement_loop():
 	var motion : Vector2
@@ -64,6 +61,9 @@ func _damage_loop():
 				_hitstun = 10
 				_knock_dir = get_global_transform().origin - body.get_global_transform().origin 
 				body.queue_free()
+
+func _on_level_initialized():
+	_player = global.player
 
 func _on_health_change():
 	$Label.text = "Health: " + str(health)
