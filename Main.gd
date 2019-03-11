@@ -11,7 +11,6 @@ Responsibilities:
 # Declare member variables here. Examples:
 signal Dialog_box_completed(box_name)
 
-onready var bg_music : AudioStreamPlayer = $BGMusic
 onready var dialog_box_container : Control = $GUIContainer/FullRect/CenterContainer/DialogBoxes
 onready var level_container : Node2D = $LevelContainer
 onready var pause_label : Label = $GUIContainer/FullRect/PauseLabel
@@ -19,17 +18,17 @@ onready var dialog_box : PackedScene = preload("res://GUI/DialogBox.tscn")
 
 enum States { INITIALIZING, PLAYING, PAUSED }
 
+var first_scene : String = "res://Levels/InteriorCottageStart.tscn"
+
 var _state : int = States.INITIALIZING setget _set_state
-var music_last_playback_position : float = 0.0
-var level_scenes : Array = []
-var level_num : int = -1
 var current_level_node : Node
 
 func _ready():
-	load_level(load("res://Levels/InteriorCottageStart.tscn"))
+	
 	global.main_scene = self
 	transition("fade-in")
-
+	load_level(first_scene)
+	
 
 func _set_state(new_state : int):
 	_state = new_state
@@ -45,31 +44,23 @@ func spawn_dialog_box(boxTitle : String, textArray : Array, requested_by):
 func show_pause_menu():
 	find_node("PauseMenu").show()
 	pause_label.set_text("PAUSED. Press esc to resume.")
-	
-	music_last_playback_position = bg_music.get_playback_position()
-	#bg_music.stop()
-
-#	bg_music.set_stream_PAUSED(true)
 	global.pause_game()
 
 func hide_pause_menu():
 	find_node("PauseMenu").hide()
 	global.resume_game()
 	pause_label.set_text("Press esc to Pause Game.")
-#	bg_music.set_stream_PAUSED(false)
-	#bg_music.play()
-	bg_music.seek(music_last_playback_position)
 
-func start_game():
-	self._state = States.PLAYING
-	bg_music.play()
-	#start_next_level()
+#func start_game():
+#	self._state = States.PLAYING
 
 func transition(animation_name : String):
 	$AnimationPlayer.play(animation_name)
 
 
-func load_level(level_scene):
+func load_level(level_path : String):
+	var level_scene = load(level_path)
+	print(self.name, " loading ", level_scene)
 	transition("fade-out")
 	yield(get_tree().create_timer(0.5), "timeout")
 	
@@ -89,8 +80,11 @@ func load_level(level_scene):
 	yield(get_tree().create_timer(0.5), "timeout")
 
 	
-func _on_level_requested(level_scene : PackedScene):
-	load_level(level_scene)
+func _on_level_requested(level_path : String):
+	load_level(level_path)
+
+func _on_level_initialized():
+	_set_state(States.PLAYING)
 
 func _input(event : InputEvent):
 	if _state == States.PLAYING:

@@ -30,6 +30,9 @@ start attacking (timer based cooldown)
 """
 
 func _ready():
+	yield(get_tree().create_timer(0.2), "timeout") # wait for player
+	_player = global.player
+	
 	_texture_default = $Sprite.texture
 	_texture_hurt = load($Sprite.texture.get_path().replace(".png", "_hurt.png")) as Texture
 	$Label.text = "Health: " + str(health)
