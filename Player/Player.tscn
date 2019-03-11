@@ -10,8 +10,8 @@
 [ext_resource path="res://Player/player_run.anim" type="Animation" id=8]
 [ext_resource path="res://Player/player_walk.anim" type="Animation" id=9]
 
-[sub_resource type="CapsuleShape2D" id=1]
-height = 32.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11.9355, 6.13056 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 11.0
@@ -27,7 +27,7 @@ hframes = 4
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2( -0.75103, 21.2793 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

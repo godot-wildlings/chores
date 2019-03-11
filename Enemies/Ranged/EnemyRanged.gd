@@ -42,15 +42,16 @@ func _ready():
 func _physics_process(delta : float):
 	_damage_loop()
 	
-	if not _is_in_attack_range:
-		_movement_loop()
-		if _move_timer > 0:
-			_move_timer -= 1
-		if _move_timer == 0 || is_on_wall():
-			_move_dir = _player.position - position
-			_move_timer = _move_timer_length
-	else:
-		_attack()
+	if is_instance_valid(_player):
+		if not _is_in_attack_range:
+			_movement_loop()
+			if _move_timer > 0:
+				_move_timer -= 1
+			if _move_timer == 0 || is_on_wall():
+				_move_dir = _player.position - position
+				_move_timer = _move_timer_length
+		else:
+			_attack()
 		
 func _movement_loop():
 	var motion : Vector2
@@ -88,6 +89,9 @@ func _attack():
 #		$AudioStreamPlayer.play()
 		emit_signal("shoot")
 
+func _on_level_initialized():
+	_player = global.player
+	
 func _on_AttackRadius_body_entered(body : PhysicsBody2D):
 	if body == global.player:
 		_is_in_attack_range = true
