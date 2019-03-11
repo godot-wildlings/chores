@@ -45,9 +45,9 @@ func _ready():
 
 #warning-ignore:unused_argument
 func _physics_process(delta : float):
-	_damage_loop()
-	
+
 	if is_instance_valid(_player):
+		_damage_loop()
 		if not _is_in_attack_range:
 			_movement_loop()
 			if _move_timer > 0:
@@ -94,7 +94,7 @@ func _attack():
 	var projectile_instance : Node2D = projectile_tscn.instance()
 	projectile_container.add_child(projectile_instance)
 	if projectile_instance.has_method("shoot"):
-		projectile_instance.shoot(global_position, (_player.global_position - global_position).angle())
+		projectile_instance.shoot(global_position, (_player.global_position - global_position))
 #		$AudioStreamPlayer.play()
 		emit_signal("shoot")
 
