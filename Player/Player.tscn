@@ -19,6 +19,7 @@ height = 32.0
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 86
 script = ExtResource( 1 )
+max_health = 5.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -44,7 +45,7 @@ script = ExtResource( 3 )
 position = Vector2( 10, -3 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
+collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 2 )
