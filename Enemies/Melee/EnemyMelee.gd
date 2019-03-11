@@ -24,14 +24,13 @@ func _ready():
 
 #warning-ignore:unused_argument	
 func _physics_process(delta : float):
-	_movement_loop()
-	_damage_loop()
-
 	if is_instance_valid(_player):
+		_movement_loop()
+		_damage_loop()
 		if _move_timer > 0:
 			_move_timer -= 1
 		if _move_timer == 0 || is_on_wall():
-			_move_dir = _player.position - position
+			_move_dir = _player.global_position - global_position
 			_move_timer = _move_timer_length
 
 func _movement_loop():
