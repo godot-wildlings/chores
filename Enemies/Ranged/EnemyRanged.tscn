@@ -24,7 +24,6 @@ projectile_tscn = ExtResource( 2 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
@@ -41,6 +40,7 @@ collision_layer = 16
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 shape = SubResource( 2 )
 
 [node name="AttackRadius" type="Area2D" parent="."]
@@ -48,4 +48,6 @@ collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
 shape = SubResource( 3 )
+
+[node name="AttackTimer" type="Timer" parent="."]
 

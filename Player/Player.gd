@@ -114,10 +114,14 @@ func _damage_loop():
 			self._state = States.DEAD
 	
 	for body in $Hitbox.get_overlapping_bodies():
-		if body.is_in_group("enemies"):
-			if _iframes == 0 and body.on_hit_dmg != 0:
-				self.health -= body.on_hit_dmg
-				_iframes = 10
+		if body.is_in_group("enemies") or body.is_in_group("projectiles"):
+			if _iframes == 0:
+				if body.get("on_hit_dmg") != null and body.on_hit_dmg != 0:
+					self.health -= body.on_hit_dmg
+					_iframes = 10
+				elif body.get("damage") != null and body.damage != 0:
+					self.health -= body.damage
+					_iframes = 10
 
 func _on_health_change():
 	if health <= 0:
