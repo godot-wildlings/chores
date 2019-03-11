@@ -26,22 +26,10 @@ var level_num : int = -1
 var current_level_node : Node
 
 func _ready():
-
-	level_scenes.push_back("res://Levels/Level4.tscn")
-	level_scenes.push_back("res://Levels/Level1.tscn")
-	level_scenes.push_back("res://Levels/Level2.tscn")
-	level_scenes.push_back("res://Levels/Level3.tscn")
-	
-	var intro_text = [
-			"You're a good boy, Friederich. You do your chores and complete your studies. \n\nGo see what your grandparents have for you today. \n\nI've gone to town.\n\tLove, Mother"
-	]
-	spawn_dialog_box("IntroText", intro_text, self)
+	load_level(load("res://Levels/InteriorCottageStart.tscn"))
 	global.main_scene = self
 	transition("fade-in")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func _set_state(new_state : int):
 	_state = new_state
@@ -75,14 +63,13 @@ func hide_pause_menu():
 func start_game():
 	self._state = States.PLAYING
 	bg_music.play()
-	start_next_level()
+	#start_next_level()
 
 func transition(animation_name : String):
 	$AnimationPlayer.play(animation_name)
 
-func start_next_level():
-	# Need to add fade out and fade in
 
+func load_level(level_scene):
 	transition("fade-out")
 	yield(get_tree().create_timer(0.5), "timeout")
 	
@@ -92,10 +79,7 @@ func start_next_level():
 		else:
 			current_level_node.queue_free()
 		
-	level_num = wrapi(level_num+1, 0, level_scenes.size())
-	
-	var current_level_scene = load(level_scenes[level_num])
-	current_level_node = current_level_scene.instance()
+	current_level_node = level_scene.instance()
 	level_container.add_child(current_level_node)
 	
 	if current_level_node.has_method("start"):
@@ -103,6 +87,10 @@ func start_next_level():
 
 	transition("fade-in")
 	yield(get_tree().create_timer(0.5), "timeout")
+
+	
+func _on_level_requested(level_scene : PackedScene):
+	load_level(level_scene)
 
 func _input(event : InputEvent):
 	if _state == States.PLAYING:
@@ -115,16 +103,11 @@ func _input(event : InputEvent):
 			hide_pause_menu()
 			_set_state(States.PLAYING)
 			global.resume_game()
-	
-	if event.is_action_pressed("next_level"):
-		start_next_level()
-	
-func _on_DialogBox_completed(dialog_box_title : String, requesting_node : Node):
-	if dialog_box_title == "IntroText":
-		start_game()
 
-	# other nodes may need dialog boxes, they'll ask Main for one, then expect a callback
-	elif requesting_node != self:
+
+func _on_DialogBox_completed(dialog_box_title : String, requesting_node : Node):
+	# other nodes will expect a callback when their dialog box is done
+	if requesting_node != self:
 		var _err = connect("Dialog_box_completed", requesting_node, "_on_DialogBox_completed")
 		if _err: push_warning(_err)
 		emit_signal("Dialog_box_completed", dialog_box_title)
