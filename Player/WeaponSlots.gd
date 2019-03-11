@@ -8,7 +8,9 @@ Does the following:
 - Adjusts the weapons sprite z-index depth in order to hide it behind the players head, 
 	when pointing the weapon above him
 - Flips weapon sprites on y axis based on the mouse position.x
-- Player can only always have one of either ranged or melee weapons equipped
+
+ToDo's:
+	- Player can only always have one of either ranged or melee weapons equipped
 """
 signal weapon_changed
 
