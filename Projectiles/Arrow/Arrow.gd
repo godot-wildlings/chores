@@ -15,3 +15,9 @@ func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float
 	var base_velocity = direction.normalized() * speed
 	velocity = initial_velocity + base_velocity
 	rotation += direction.angle()
+
+func disappear():
+	call_deferred("queue_free")
+
+func _on_DurationTimer_timeout():
+	disappear()

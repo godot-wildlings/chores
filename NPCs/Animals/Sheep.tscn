@@ -91,6 +91,7 @@ autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
+volume_db = -22.0
 
 [node name="NoiseTimer" type="Timer" parent="."]
 wait_time = 3.0
