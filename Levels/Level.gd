@@ -42,7 +42,7 @@ func _process(_delta):
 #		print_debug_info()
 	pass
 
-func _on_projectile_requested(bullet_scene, pos, rot, vel):
+func _on_projectile_requested(bullet_scene, vel, pos, rot_deg):
 	if has_node("Projectiles") == false:
 		var container = Node2D.new()
 		container.name = "Projectiles"
@@ -50,5 +50,5 @@ func _on_projectile_requested(bullet_scene, pos, rot, vel):
 	var new_projectile = bullet_scene.instance()
 	$Projectiles.add_child(new_projectile)
 	if new_projectile.has_method("shoot"):
-		new_projectile.shoot(pos, rot, vel)
+		new_projectile.shoot(vel, pos, rot_deg)
 	

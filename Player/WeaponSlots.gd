@@ -40,8 +40,8 @@ func _process(delta : float):
 	_adjust_weapon_depth()
 	_flip_weapon_sprites()
 
-func attack(pos, rot, vel):
-	active_weapon.attack(pos, rot, vel)
+func attack(vel):
+	active_weapon.attack(vel)
 
 func _orientate_weapon():
 	position = Vector2.ZERO

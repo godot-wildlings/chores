@@ -7,8 +7,6 @@ enum States { IDLE, WALKING, RUNNING, DEAD }
 
 onready var health : float = max_health setget _set_health
 
-#warning-ignore:unused_class_variable
-export var speed : float = 100
 export var max_health : float = 3
 
 const SPEED : int = 200
@@ -27,12 +25,7 @@ func _ready():
 #warning-ignore:unused_argument
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
-		attack()
-
-func attack():
-	var my_pos = get_global_position()
-	var my_rot = get_angle_to(get_global_mouse_position())
-	$WeaponSlots.attack(my_pos, my_rot, velocity)
+		$WeaponSlots.attack(velocity)
 
 func _physics_process(delta):
 	match _state:
@@ -70,7 +63,6 @@ func _state_running(delta : float):
 		_controls_loop()
 		if _move_dir == Vector2.ZERO:
 			self._state = States.IDLE
-			velocity = Vector2.ZERO
 		else:
 			_movement_loop(delta)
 
@@ -89,7 +81,6 @@ func _movement_loop(delta):
 		motion = _move_dir.normalized() * SPEED * RUN_SPEED_MULTIPLIER
 	elif _state == States.WALKING:
 		motion = _move_dir.normalized() * SPEED
-		
 	_update_animation(motion)
 	
 	#warning-ignore:return_value_discarded
@@ -150,15 +141,14 @@ func die():
 	disconnect("level_requested", global.main_scene, "_on_level_requested")
 
 	queue_free()
-			
-			
-
 
 func _set_state(new_state : int):
 	if _state != new_state:
 		_state = new_state
 		if new_state == States.DEAD:
 			die()
+		elif new_state == States.IDLE:
+			velocity = Vector2.ZERO
 
 func _on_book_picked_up():
 	# do something. turn into a demon?

@@ -9,8 +9,9 @@ var velocity : Vector2 = Vector2.ZERO
 func _process(delta):
 	position += velocity * delta
 
-func shoot(bullet_position : Vector2, rot : float, initial_velocity: Vector2):
+func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float):
 	global_position = bullet_position
-	var base_velocity = Vector2(1,0).rotated(rot)*speed
+	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
+	var base_velocity = direction.normalized() * speed
 	velocity = initial_velocity + base_velocity
-	rotation = rot
+	rotation += direction.angle()
