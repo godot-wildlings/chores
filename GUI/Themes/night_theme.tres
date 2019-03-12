@@ -40,7 +40,7 @@ shadow_size = 5
 size = 48
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 32
 outline_size = 4
 outline_color = Color( 0.282353, 0, 0, 1 )
@@ -50,10 +50,10 @@ font_data = ExtResource( 3 )
 size = 22
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 
 [resource]
-default_font = SubResource( 5 )
+default_font = SubResource( 7 )
 Button/colors/font_color = Color( 0.529412, 0, 0, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.764706, 0.741176, 0.101961, 1 )
@@ -84,7 +84,7 @@ RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1
 RichTextLabel/constants/table_hseparation = 3
 RichTextLabel/constants/table_vseparation = 3
-RichTextLabel/fonts/bold_font = SubResource( 7 )
+RichTextLabel/fonts/bold_font = SubResource( 5 )
 RichTextLabel/fonts/bold_italics_font = null
 RichTextLabel/fonts/italics_font = null
 RichTextLabel/fonts/mono_font = null

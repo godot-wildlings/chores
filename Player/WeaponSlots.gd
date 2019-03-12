@@ -38,7 +38,7 @@ func _process(delta : float):
 
 	_orientate_weapon()
 	_adjust_weapon_depth()
-	_flip_weapon_sprites()
+	#_flip_weapon_sprites()
 
 func attack():
 	active_weapon.attack()

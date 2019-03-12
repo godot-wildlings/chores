@@ -38,6 +38,14 @@ func _set_state(new_state : int):
 func get_state():
 	return _state
 
+
+func is_paused():
+	if _state == States.PLAYING:
+		return false
+	else:
+		return true
+
+
 func spawn_dialog_box(boxTitle : String, textArray : Array, requested_by):
 	var new_dialog_box = dialog_box.instance()
 	dialog_box_container.add_child(new_dialog_box)

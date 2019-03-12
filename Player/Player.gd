@@ -7,8 +7,6 @@ enum States { IDLE, WALKING, RUNNING, DEAD }
 
 onready var health : float = max_health setget _set_health
 
-#warning-ignore:unused_class_variable
-export var speed : float = 100
 export var max_health : float = 3
 
 const SPEED : int = 200
@@ -16,6 +14,7 @@ const RUN_SPEED_MULTIPLIER : float = 2.0
 var _state : int = States.IDLE setget _set_state
 var _iframes : int = 0
 var _move_dir =  Vector2.ZERO
+var velocity : Vector2
 
 func _ready():
 	global.player = self
@@ -54,7 +53,7 @@ func _state_walking(delta : float):
 		if _move_dir == Vector2.ZERO:
 			self._state = States.IDLE
 		else:
-			_movement_loop()
+			_movement_loop(delta)
 
 #warning-ignore:unused_argument
 func _state_running(delta : float):
@@ -65,7 +64,7 @@ func _state_running(delta : float):
 		if _move_dir == Vector2.ZERO:
 			self._state = States.IDLE
 		else:
-			_movement_loop()
+			_movement_loop(delta)
 
 func _controls_loop():
 	var up : bool = Input.is_action_pressed("mv_up")
@@ -76,17 +75,17 @@ func _controls_loop():
 	_move_dir.x = - int(left) + int(right)
 	_move_dir.y = - int(up) + int(down)
 	
-func _movement_loop():
+func _movement_loop(delta):
 	var motion : Vector2
 	if _state == States.RUNNING:
 		motion = _move_dir.normalized() * SPEED * RUN_SPEED_MULTIPLIER
 	elif _state == States.WALKING:
 		motion = _move_dir.normalized() * SPEED
-		
 	_update_animation(motion)
 	
 	#warning-ignore:return_value_discarded
-	move_and_slide(motion, Vector2.ZERO)
+	var collision = move_and_collide(motion * delta)
+	velocity = motion
 
 func _update_animation(motion : Vector2):
 	if _state == States.RUNNING:
@@ -142,15 +141,14 @@ func die():
 	disconnect("level_requested", global.main_scene, "_on_level_requested")
 
 	queue_free()
-			
-			
-
 
 func _set_state(new_state : int):
 	if _state != new_state:
 		_state = new_state
 		if new_state == States.DEAD:
 			die()
+		elif new_state == States.IDLE:
+			velocity = Vector2.ZERO
 
 func _on_book_picked_up():
 	# do something. turn into a demon?

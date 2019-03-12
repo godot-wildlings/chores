@@ -36,7 +36,19 @@ func print_debug_info():
 	print("==> global.main_scene.current_level_node == ", global.main_scene.current_level_node)
 	print("==> global.main_scene._state == ", global.main_scene.get_state())
 
-func _process(delta):
-	Ticks += 1
-	if Debug == true and Ticks % 20 == 0:
-		print_debug_info()
+func _process(_delta):
+#	Ticks += 1
+#	if Debug == true and Ticks % 20 == 0:
+#		print_debug_info()
+	pass
+
+func _on_projectile_requested(bullet_scene, vel, pos, rot_deg):
+	if has_node("Projectiles") == false:
+		var container = Node2D.new()
+		container.name = "Projectiles"
+		add_child(container)
+	var new_projectile = bullet_scene.instance()
+	$Projectiles.add_child(new_projectile)
+	if new_projectile.has_method("shoot"):
+		new_projectile.shoot(vel, pos, rot_deg)
+	
