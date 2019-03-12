@@ -27,7 +27,6 @@ func _ready():
 	if _err: push_warning(_err)
 	$DeadBody.hide()
 	
-	
 #warning-ignore:unused_argument	
 func _physics_process(delta : float):
 	if is_instance_valid(_player) and _state == States.ALIVE:
@@ -46,9 +45,10 @@ func _movement_loop():
 	else:
 		motion = _knock_dir.normalized() * 125
 	
+	_update_animation(motion)
+	
 	var _collision = move_and_slide(motion, Vector2.ZERO)
 	
-
 func _damage_loop():
 	health = min(max_health, health)
 	if _hitstun > 0:
@@ -78,6 +78,14 @@ func die():
 	$DeadBody/CorpseDuration.start() # disappear later
 	_state = States.DEAD
 
+func _update_animation(motion : Vector2):
+	if motion != Vector2.ZERO:
+		$AnimationPlayer.play("enemy_melee_walk")
+		if motion.x > 0:
+			$Sprite.flip_h = false
+		elif motion.x < 0:
+			$Sprite.flip_h = true
+	
 func _on_level_initialized():
 	_player = global.player
 
