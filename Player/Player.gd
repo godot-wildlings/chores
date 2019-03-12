@@ -84,8 +84,8 @@ func _movement_loop(delta):
 	_update_animation(motion)
 	
 	#warning-ignore:return_value_discarded
-	var collision = move_and_collide(motion * delta)
-	velocity = motion
+	var redirected_velocity = move_and_slide(motion, Vector2.ZERO)
+	velocity = redirected_velocity
 
 func _update_animation(motion : Vector2):
 	if _state == States.RUNNING:
