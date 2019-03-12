@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://BGMusic/Enchanting Days.ogg" type="AudioStream" id=2]
-[ext_resource path="res://Levels/Scenery/background-far.png" type="Texture" id=3]
+[ext_resource path="res://Levels/Scenery/BackgroundNight.png" type="Texture" id=3]
 [ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=4]
 [ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=5]
 [ext_resource path="res://Levels/Scenery/bushes.png" type="Texture" id=6]
@@ -11,11 +11,18 @@
 [ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=9]
 [ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=10]
 [ext_resource path="res://Levels/Scenery/pond.png" type="Texture" id=11]
-[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=12]
-[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=13]
-[ext_resource path="res://NPCs/grandad.png" type="Texture" id=14]
-[ext_resource path="res://NPCs/grandma.png" type="Texture" id=15]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=12]
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=13]
+[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=14]
+[ext_resource path="res://NPCs/grandad.png" type="Texture" id=15]
+[ext_resource path="res://NPCs/grandma.png" type="Texture" id=16]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=17]
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[sub_resource type="NoiseTexture" id=7]
+seamless = true
+noise = SubResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50.3812, 657.9 )
@@ -45,18 +52,16 @@ autoplay = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
-editor/display_folded = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
 motion_scale = Vector2( 0.5, 1 )
 
 [node name="BG-Far" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
 self_modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
-position = Vector2( 2010.91, 673.479 )
-scale = Vector2( 1, 0.5 )
+position = Vector2( 1184.57, 715.013 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 7320, 537 )
+region_rect = Rect2( 0, 0, 3840, 224 )
 
 [node name="ParallaxMed" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
 motion_scale = Vector2( 0.75, 1 )
@@ -93,6 +98,15 @@ position = Vector2( 2210.12, 825.367 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 6144, 196 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color( 0.25098, 0.054902, 0.054902, 1 )
+self_modulate = Color( 1, 1, 1, 0.227451 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource( 7 )
+expand = true
 
 [node name="InvisWalls" type="Node2D" parent="."]
 editor/display_folded = true
@@ -196,49 +210,64 @@ texture = ExtResource( 11 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Scenery/Pond"]
 polygon = PoolVector2Array( 2782.84, 1058.36, 2700.82, 1158.84, 2411.7, 1148.59, 2237.4, 1162.94, 1954.42, 1091.17, 2145.12, 1019.4, 2409.65, 1011.2 )
 
-[node name="NPCs" type="Node2D" parent="."]
-editor/display_folded = true
+[node name="BloodStains" type="Node2D" parent="."]
 
-[node name="UncleAnton" parent="NPCs" instance=ExtResource( 12 )]
+[node name="BloodSplotch" type="Sprite" parent="BloodStains"]
+position = Vector2( 518.088, 1034.98 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 12 )
+
+[node name="BloodSplotch2" type="Sprite" parent="BloodStains"]
+position = Vector2( 1104.51, 984.662 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 12 )
+
+[node name="BloodSplotch3" type="Sprite" parent="BloodStains"]
+position = Vector2( 2380.39, 1225.95 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 12 )
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="UncleAnton" parent="NPCs" instance=ExtResource( 13 )]
+editor/display_folded = true
 position = Vector2( 507.779, 1026.21 )
 collision_layer = 4
-dialog_text_array = [ "Hello Friedrich,
-
-The Chaos Wastes are expanding. It's time you learned to fight. Take my bow." ]
+dialog_text_array = [ "... Why?  Wh, who are you? Aaaaahhhhghh..." ]
 
 [node name="Sprite" parent="NPCs/UncleAnton" index="0"]
+rotation = 1.48353
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 
-[node name="Grandpa" parent="NPCs" instance=ExtResource( 12 )]
+[node name="Grandpa" parent="NPCs" instance=ExtResource( 13 )]
+editor/display_folded = true
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 1101.55, 975.883 )
 collision_layer = 4
 home = "House2"
 reward_item_name = "Rod"
-dialog_text_array = [ "Hello Friedrich,
-
-The trout are jumping. I don't think there's anything urgent today. You go play. But stay away from those caves! If I have trouble with the sheep, I'll let you know." ]
+dialog_text_array = [ "The pain. What do you want? Why would you do this?..  Wait. Something about your movement reminds me of Friedrich. Oh my god, Friedrich! What have you done to Friedrich?" ]
 
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+rotation = 1.06465
+scale = Vector2( 0.36, 0.59 )
+texture = ExtResource( 15 )
 
-[node name="Agneth" parent="NPCs" instance=ExtResource( 12 )]
+[node name="Agneth" parent="NPCs" instance=ExtResource( 13 )]
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 2372.11, 1210.09 )
 collision_layer = 4
 home = "House2"
 reward_item_name = "Rod"
-dialog_text_array = [ "Friederich, don't go in there. It's dangerous.
-I've seen beastmen coming from the caves.
-Be safe!" ]
+dialog_text_array = [ "Friederich, I know it's you, Friedrich. I warned you not to go into those caves.  .... Friedrich. ... I ... Forgive you." ]
 
 [node name="Sprite" parent="NPCs/Agneth" index="0"]
+rotation = 1.39626
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
-[node name="Player" parent="." instance=ExtResource( 16 )]
+[node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 674.389, 1049.88 )
 
 

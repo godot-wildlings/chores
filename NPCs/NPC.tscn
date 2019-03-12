@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://NPCs/NPC.gd" type="Script" id=1]
 [ext_resource path="res://icon2.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=3]
-[ext_resource path="res://NPCs/NPCStateLabel.gd" type="Script" id=4]
+[ext_resource path="res://GUI/Themes/Fonts/droid-sans/DroidSans22.tres" type="DynamicFontData" id=4]
+[ext_resource path="res://NPCs/NPCStateLabel.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.7607
@@ -11,6 +12,10 @@ height = 11.5152
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 86.9013, 57.1785 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 22
+font_data = ExtResource( 4 )
 
 [node name="NPC" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -36,9 +41,13 @@ margin_left = -23.3507
 margin_top = -82.6257
 margin_right = 16.6493
 margin_bottom = -68.6257
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 3 )
 text = "State"
-script = ExtResource( 4 )
+align = 1
+script = ExtResource( 5 )
 
 [connection signal="body_entered" from="DialogRange" to="." method="_on_DialogRange_body_entered"]
 [connection signal="body_exited" from="DialogRange" to="." method="_on_DialogRange_body_exited"]

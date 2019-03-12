@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal health_changed
+signal level_requested(path_to_level)
 
 enum States { IDLE, WALKING, RUNNING, DEAD }
 
@@ -133,11 +134,24 @@ func _set_health(new_health : float):
 		health = new_health
 		emit_signal("health_changed")
 
+func die():
+	print("GAME OVER")
+	var _err = connect("level_requested", global.main_scene, "_on_level_requested")
+	if _err: push_warning(_err)
+	emit_signal("level_requested", "res://Levels/RIPFriederich.tscn")
+	disconnect("level_requested", global.main_scene, "_on_level_requested")
+
+	queue_free()
+			
+			
+
+
 func _set_state(new_state : int):
 	if _state != new_state:
 		_state = new_state
 		if new_state == States.DEAD:
-			print("GAME OVER")
-			queue_free()
-			get_tree().quit()
+			die()
 
+func _on_book_picked_up():
+	# do something. turn into a demon?
+	pass

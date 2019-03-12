@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mozartDirge.ogg-1e54117e49a7bc2d75014e011c618803.oggstr"
+
+[deps]
+
+source_file="res://BGMusic/mozartDirge.ogg"
+dest_files=[ "res://.import/mozartDirge.ogg-1e54117e49a7bc2d75014e011c618803.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -41,6 +41,10 @@ Architecture:
 		enum States { initializing, idle, hunting, retreating }
 		var State = States.initializing
 
+	The Main scene occupied canvas layer 1.
+		If you have gui controls on levels, they needs to be on layer 2 or higher
+	
+
 	
 Bugs:
 	probably use issues in github
