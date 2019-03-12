@@ -4,7 +4,7 @@
 [ext_resource path="res://Projectiles/Arrow/BigArrow.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 26.5188, 3.3884 )
+extents = Vector2( 36.8816, 3.3884 )
 
 [node name="Arrow" type="KinematicBody2D" groups=[
 "projectiles",
@@ -19,6 +19,7 @@ scale = Vector2( 0.433, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -9.94405, -0.209351 )
 shape = SubResource( 1 )
 
 [node name="DurationTimer" type="Timer" parent="."]

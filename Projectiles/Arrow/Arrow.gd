@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed : float = 400
+export var speed : float = 600
 #warning-ignore:unused_class_variable
 export var damage : int = 1
 
