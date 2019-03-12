@@ -45,6 +45,7 @@ script = ExtResource( 3 )
 position = Vector2( 10, -3 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

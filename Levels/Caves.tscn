@@ -94,3 +94,5 @@ autoplay = true
 [node name="EvilBook" parent="." instance=ExtResource( 9 )]
 position = Vector2( 3888.42, 1725.91 )
 
+[node name="Projectiles" type="Node2D" parent="."]
+

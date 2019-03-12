@@ -5,6 +5,9 @@ signal health_changed
 onready var _player : KinematicBody2D = global.player
 onready var health : float = max_health setget _set_health
 
+enum States { ALIVE, DEAD }
+var _state = States.ALIVE
+
 export var speed : float = 100
 #warning-ignore:unused_class_variable
 export var on_hit_dmg : float = 1
@@ -22,10 +25,12 @@ func _ready():
 	_initial_modulate = modulate
 	var _err = connect("health_changed", self, "_on_health_change")
 	if _err: push_warning(_err)
+	$DeadBody.hide()
+	
 	
 #warning-ignore:unused_argument	
 func _physics_process(delta : float):
-	if is_instance_valid(_player):
+	if is_instance_valid(_player) and _state == States.ALIVE:
 		_movement_loop()
 		_damage_loop()
 		if _move_timer > 0:
@@ -52,16 +57,26 @@ func _damage_loop():
 	else:
 		modulate = _initial_modulate
 		if health <= 0:
-			queue_free()
+			die()
 
 	if health > 0:
 		for body in $Hitbox.get_overlapping_bodies():
 			if body.is_in_group("projectiles"):
 				if _hitstun == 0 and body.damage != 0:
 					self.health -= body.damage
+					$HitNoise.play()
 					_hitstun = 10
 					_knock_dir = get_global_transform().origin - body.get_global_transform().origin 
-					body.queue_free()
+					body.queue_free() # make arrows disappear
+
+
+func die():
+	# spawn corpse and bloodstain
+	# queue_free after a timer, if desired
+	$Sprite.hide()
+	$DeadBody.show()
+	$DeadBody/CorpseDuration.start() # disappear later
+	_state = States.DEAD
 
 func _on_level_initialized():
 	_player = global.player
@@ -73,3 +88,15 @@ func _set_health(new_health : float):
 	if new_health != health:
 		health = new_health
 		emit_signal("health_changed")
+		
+
+#func _on_hit(damage): # signal from BigArrow.tscn
+#	$HitNoise.play()
+#	health -= damage
+#	if health < 0:
+#		die()
+		
+	
+
+func _on_CorpseDuration_timeout():
+	call_deferred("queue_free")

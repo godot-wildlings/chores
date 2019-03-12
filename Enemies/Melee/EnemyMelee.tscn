@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Enemies/Melee/EnemyMelee.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Melee/enemy.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/Melee/DeadRobot.png" type="Texture" id=5]
+[ext_resource path="res://Effects/hitNoise.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -38,3 +41,21 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 2 )
 
+[node name="DeadBody" type="Node2D" parent="."]
+visible = false
+
+[node name="BloodSplotch" type="Sprite" parent="DeadBody"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="CorpseDuration" type="Timer" parent="DeadBody"]
+wait_time = 15.0
+
+[node name="BrokenBody" type="Sprite" parent="DeadBody"]
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 5 )
+
+[node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[connection signal="timeout" from="DeadBody/CorpseDuration" to="." method="_on_CorpseDuration_timeout"]

@@ -16,6 +16,7 @@ const RUN_SPEED_MULTIPLIER : float = 2.0
 var _state : int = States.IDLE setget _set_state
 var _iframes : int = 0
 var _move_dir =  Vector2.ZERO
+var velocity : Vector2
 
 func _ready():
 	global.player = self
@@ -26,7 +27,12 @@ func _ready():
 #warning-ignore:unused_argument
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
-		$WeaponSlots.attack()
+		attack()
+
+func attack():
+	var my_pos = get_global_position()
+	var my_rot = get_angle_to(get_global_mouse_position())
+	$WeaponSlots.attack(my_pos, my_rot, velocity)
 
 func _physics_process(delta):
 	match _state:
@@ -54,7 +60,7 @@ func _state_walking(delta : float):
 		if _move_dir == Vector2.ZERO:
 			self._state = States.IDLE
 		else:
-			_movement_loop()
+			_movement_loop(delta)
 
 #warning-ignore:unused_argument
 func _state_running(delta : float):
@@ -65,7 +71,7 @@ func _state_running(delta : float):
 		if _move_dir == Vector2.ZERO:
 			self._state = States.IDLE
 		else:
-			_movement_loop()
+			_movement_loop(delta)
 
 func _controls_loop():
 	var up : bool = Input.is_action_pressed("mv_up")
@@ -76,7 +82,7 @@ func _controls_loop():
 	_move_dir.x = - int(left) + int(right)
 	_move_dir.y = - int(up) + int(down)
 	
-func _movement_loop():
+func _movement_loop(delta):
 	var motion : Vector2
 	if _state == States.RUNNING:
 		motion = _move_dir.normalized() * SPEED * RUN_SPEED_MULTIPLIER
@@ -86,7 +92,8 @@ func _movement_loop():
 	_update_animation(motion)
 	
 	#warning-ignore:return_value_discarded
-	move_and_slide(motion, Vector2.ZERO)
+	var collision = move_and_collide(motion * delta)
+	velocity = motion
 
 func _update_animation(motion : Vector2):
 	if _state == States.RUNNING:
