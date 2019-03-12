@@ -48,7 +48,7 @@ export var dialog_text_array : Array = [
 
 
 
-var _state : int = States.IDLE
+var _state : int = States.IDLE setget set_state, get_state
 var _goal : int = Goals.GO_TO_WORK
 
 onready var level : Node2D = global.main_scene.current_level_node
@@ -82,6 +82,12 @@ func _process(delta):
 	move(delta)
 	get_input()
 
+
+func set_state(state):
+	_state = state
+	
+func get_state():
+	return _state
 
 func consider_goals():
 	match _goal:

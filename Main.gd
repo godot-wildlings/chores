@@ -20,7 +20,7 @@ enum States { INITIALIZING, PLAYING, PAUSED }
 
 var first_scene : String = "res://Levels/InteriorCottageStart.tscn"
 
-var _state : int = States.INITIALIZING setget _set_state
+var _state : int = States.INITIALIZING setget _set_state, get_state
 var current_level_node : Node
 
 func _ready():
@@ -34,6 +34,17 @@ func _set_state(new_state : int):
 	_state = new_state
 	# could check here whether or not the state was actually changed,
 	# and then react on state change (emit signal e.g.)
+
+func get_state():
+	return _state
+
+
+func is_paused():
+	if _state == States.PLAYING:
+		return false
+	else:
+		return true
+
 
 func spawn_dialog_box(boxTitle : String, textArray : Array, requested_by):
 	var new_dialog_box = dialog_box.instance()

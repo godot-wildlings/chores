@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy_ranged_hurt.png-fe75bcfa68768b4526e6ab5cecd0fcc2.stex"
+path="res://.import/DeadRobot.png-ada7b1cb48407ee23de598ea21008fd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Ranged/enemy_ranged_hurt.png"
-dest_files=[ "res://.import/enemy_ranged_hurt.png-fe75bcfa68768b4526e6ab5cecd0fcc2.stex" ]
+source_file="res://Enemies/Melee/DeadRobot.png"
+dest_files=[ "res://.import/DeadRobot.png-ada7b1cb48407ee23de598ea21008fd8.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

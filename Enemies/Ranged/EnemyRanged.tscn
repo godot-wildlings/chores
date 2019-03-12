@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Enemies/Ranged/EnemyRanged.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Fireball/Fireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Ranged/enemy_ranged.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=4]
+[ext_resource path="res://Enemies/Ranged/PosLabel.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -24,7 +25,6 @@ projectile_tscn = ExtResource( 2 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
@@ -41,6 +41,7 @@ collision_layer = 16
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 shape = SubResource( 2 )
 
 [node name="AttackRadius" type="Area2D" parent="."]
@@ -48,4 +49,14 @@ collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
 shape = SubResource( 3 )
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="PosLabel" type="Label" parent="."]
+margin_left = -19.9996
+margin_top = 35.471
+margin_right = 20.0004
+margin_bottom = 49.471
+text = "POS"
+script = ExtResource( 5 )
 

@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Levels/Level.gd" type="Script" id=1]
+[ext_resource path="res://Levels/Scenery/friedrich-cloister-cemetery.jpg" type="Texture" id=2]
+[ext_resource path="res://GUI/Themes/night_theme.tres" type="Theme" id=3]
+[ext_resource path="res://GUI/RestartButton.gd" type="Script" id=4]
+[ext_resource path="res://GUI/QuitButton.gd" type="Script" id=5]
+
+[node name="RIPFriederich" type="Node2D"]
+position = Vector2( 0.250351, -0.250347 )
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+margin_left = 358.0
+margin_top = 243.0
+margin_right = 666.0
+margin_bottom = 357.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+margin_right = 308.0
+margin_bottom = 51.0
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/MarginContainer"]
+margin_right = 308.0
+margin_bottom = 51.0
+text = "RIP Friedrich"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+margin_top = 55.0
+margin_right = 308.0
+margin_bottom = 114.0
+dragger_visibility = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer"]
+margin_right = 159.0
+margin_bottom = 59.0
+text = "Restart"
+script = ExtResource( 4 )
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer"]
+margin_left = 171.0
+margin_right = 308.0
+margin_bottom = 59.0
+text = "Quit"
+script = ExtResource( 5 )
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer/RestartButton" to="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer/RestartButton" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer/QuitButton" to="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer/QuitButton" method="_on_QuitButton_pressed"]

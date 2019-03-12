@@ -1,13 +1,12 @@
 extends KinematicBody2D
 
 signal health_changed
+signal level_requested(path_to_level)
 
 enum States { IDLE, WALKING, RUNNING, DEAD }
 
 onready var health : float = max_health setget _set_health
 
-#warning-ignore:unused_class_variable
-export var speed : float = 100
 export var max_health : float = 3
 
 const SPEED : int = 200
@@ -15,6 +14,7 @@ const RUN_SPEED_MULTIPLIER : float = 2.0
 var _state : int = States.IDLE setget _set_state
 var _iframes : int = 0
 var _move_dir =  Vector2.ZERO
+var velocity : Vector2
 
 func _ready():
 	global.player = self
@@ -53,7 +53,7 @@ func _state_walking(delta : float):
 		if _move_dir == Vector2.ZERO:
 			self._state = States.IDLE
 		else:
-			_movement_loop()
+			_movement_loop(delta)
 
 #warning-ignore:unused_argument
 func _state_running(delta : float):
@@ -64,7 +64,7 @@ func _state_running(delta : float):
 		if _move_dir == Vector2.ZERO:
 			self._state = States.IDLE
 		else:
-			_movement_loop()
+			_movement_loop(delta)
 
 func _controls_loop():
 	var up : bool = Input.is_action_pressed("mv_up")
@@ -75,17 +75,17 @@ func _controls_loop():
 	_move_dir.x = - int(left) + int(right)
 	_move_dir.y = - int(up) + int(down)
 	
-func _movement_loop():
+func _movement_loop(delta):
 	var motion : Vector2
 	if _state == States.RUNNING:
 		motion = _move_dir.normalized() * SPEED * RUN_SPEED_MULTIPLIER
 	elif _state == States.WALKING:
 		motion = _move_dir.normalized() * SPEED
-		
 	_update_animation(motion)
 	
 	#warning-ignore:return_value_discarded
-	move_and_slide(motion, Vector2.ZERO)
+	var collision = move_and_collide(motion * delta)
+	velocity = motion
 
 func _update_animation(motion : Vector2):
 	if _state == States.RUNNING:
@@ -114,10 +114,14 @@ func _damage_loop():
 			self._state = States.DEAD
 	
 	for body in $Hitbox.get_overlapping_bodies():
-		if body.is_in_group("enemies"):
-			if _iframes == 0 and body.on_hit_dmg != 0:
-				self.health -= body.on_hit_dmg
-				_iframes = 10
+		if body.is_in_group("enemies") or body.is_in_group("projectiles"):
+			if _iframes == 0:
+				if body.get("on_hit_dmg") != null and body.on_hit_dmg != 0:
+					self.health -= body.on_hit_dmg
+					_iframes = 10
+				elif body.get("damage") != null and body.damage != 0:
+					self.health -= body.damage
+					_iframes = 10
 
 func _on_health_change():
 	if health <= 0:
@@ -129,11 +133,23 @@ func _set_health(new_health : float):
 		health = new_health
 		emit_signal("health_changed")
 
+func die():
+	print("GAME OVER")
+	var _err = connect("level_requested", global.main_scene, "_on_level_requested")
+	if _err: push_warning(_err)
+	emit_signal("level_requested", "res://Levels/RIPFriederich.tscn")
+	disconnect("level_requested", global.main_scene, "_on_level_requested")
+
+	queue_free()
+
 func _set_state(new_state : int):
 	if _state != new_state:
 		_state = new_state
 		if new_state == States.DEAD:
-			print("GAME OVER")
-			queue_free()
-			get_tree().quit()
+			die()
+		elif new_state == States.IDLE:
+			velocity = Vector2.ZERO
 
+func _on_book_picked_up():
+	# do something. turn into a demon?
+	pass

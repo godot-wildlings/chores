@@ -16,13 +16,12 @@ projectile_tscn = ExtResource( 2 )
 position = Vector2( 4, 0 )
 texture = ExtResource( 3 )
 hframes = 5
-frame = 4
 
 [node name="SpriteHand" type="Sprite" parent="."]
 position = Vector2( -8.17671, 0 )
 texture = ExtResource( 4 )
 hframes = 5
-frame = 4
+frame = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
