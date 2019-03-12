@@ -25,7 +25,7 @@ func _ready():
 #warning-ignore:unused_argument
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
-		$WeaponSlots.attack(velocity)
+		$WeaponSlots.attack()
 
 func _physics_process(delta):
 	match _state:
