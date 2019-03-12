@@ -36,7 +36,10 @@ func print_debug_info():
 	print("==> global.main_scene.current_level_node == ", global.main_scene.current_level_node)
 	print("==> global.main_scene._state == ", global.main_scene.get_state())
 
-func _process(delta):
-	Ticks += 1
-	if Debug == true and Ticks % 20 == 0:
-		print_debug_info()
+func _process(_delta):
+#	Ticks += 1
+#	if Debug == true and Ticks % 20 == 0:
+#		print_debug_info()
+	pass
+
+

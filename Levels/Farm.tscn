@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
-[ext_resource path="res://BGMusic/Enchanting Days.ogg" type="AudioStream" id=2]
+[ext_resource path="res://BGMusic/Title_Screen_draft.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Levels/Scenery/background-far.png" type="Texture" id=3]
 [ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=4]
 [ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=5]
@@ -11,11 +11,12 @@
 [ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=9]
 [ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=10]
 [ext_resource path="res://Levels/Scenery/pond.png" type="Texture" id=11]
-[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=12]
-[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=13]
-[ext_resource path="res://NPCs/grandad.png" type="Texture" id=14]
-[ext_resource path="res://NPCs/grandma.png" type="Texture" id=15]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=16]
+[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=12]
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=13]
+[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=14]
+[ext_resource path="res://NPCs/grandad.png" type="Texture" id=15]
+[ext_resource path="res://NPCs/grandma.png" type="Texture" id=16]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50.3812, 657.9 )
@@ -196,10 +197,32 @@ texture = ExtResource( 11 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Scenery/Pond"]
 polygon = PoolVector2Array( 2782.84, 1058.36, 2700.82, 1158.84, 2411.7, 1148.59, 2237.4, 1162.94, 1954.42, 1091.17, 2145.12, 1019.4, 2409.65, 1011.2 )
 
-[node name="NPCs" type="Node2D" parent="."]
-editor/display_folded = true
+[node name="Animals" type="Node2D" parent="."]
 
-[node name="UncleAnton" parent="NPCs" instance=ExtResource( 12 )]
+[node name="Sheep2" type="Node2D" parent="Animals"]
+
+[node name="Sheep" parent="Animals/Sheep2" instance=ExtResource( 12 )]
+position = Vector2( 800.321, 1103.15 )
+
+[node name="Sheep2" parent="Animals/Sheep2" instance=ExtResource( 12 )]
+position = Vector2( 797.004, 1037.47 )
+
+[node name="Sheep3" parent="Animals/Sheep2" instance=ExtResource( 12 )]
+position = Vector2( 899.834, 1081.25 )
+
+[node name="Sheep4" parent="Animals/Sheep2" instance=ExtResource( 12 )]
+position = Vector2( 912.022, 1142.19 )
+
+[node name="Sheep5" parent="Animals/Sheep2" instance=ExtResource( 12 )]
+position = Vector2( 880.997, 1011.45 )
+
+[node name="Sheep6" parent="Animals/Sheep2" instance=ExtResource( 12 )]
+position = Vector2( 972.964, 1051.34 )
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="UncleAnton" parent="NPCs" instance=ExtResource( 13 )]
+editor/display_folded = true
 position = Vector2( 507.779, 1026.21 )
 collision_layer = 4
 dialog_text_array = [ "Hello Friedrich,
@@ -208,9 +231,11 @@ The Chaos Wastes are expanding. It's time you learned to fight. Take my bow." ]
 
 [node name="Sprite" parent="NPCs/UncleAnton" index="0"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
+flip_h = true
 
-[node name="Grandpa" parent="NPCs" instance=ExtResource( 12 )]
+[node name="Grandpa" parent="NPCs" instance=ExtResource( 13 )]
+editor/display_folded = true
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 1101.55, 975.883 )
 collision_layer = 4
@@ -221,10 +246,11 @@ dialog_text_array = [ "Hello Friedrich,
 The trout are jumping. I don't think there's anything urgent today. You go play. But stay away from those caves! If I have trouble with the sheep, I'll let you know." ]
 
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+scale = Vector2( 0.66, 0.66 )
+texture = ExtResource( 15 )
 
-[node name="Agneth" parent="NPCs" instance=ExtResource( 12 )]
+[node name="Agneth" parent="NPCs" instance=ExtResource( 13 )]
+editor/display_folded = true
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 2372.11, 1210.09 )
 collision_layer = 4
@@ -236,9 +262,9 @@ Be safe!" ]
 
 [node name="Sprite" parent="NPCs/Agneth" index="0"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
-[node name="Player" parent="." instance=ExtResource( 16 )]
+[node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 674.389, 1049.88 )
 
 

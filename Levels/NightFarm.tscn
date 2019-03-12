@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
-[ext_resource path="res://BGMusic/Enchanting Days.ogg" type="AudioStream" id=2]
+[ext_resource path="res://BGMusic/Night_Theme_draft.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Levels/Scenery/BackgroundNight.png" type="Texture" id=3]
 [ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=4]
 [ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=5]
@@ -18,27 +18,27 @@
 [ext_resource path="res://NPCs/grandma.png" type="Texture" id=16]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=17]
 
-[sub_resource type="OpenSimplexNoise" id=6]
+[sub_resource type="OpenSimplexNoise" id=1]
 
-[sub_resource type="NoiseTexture" id=7]
+[sub_resource type="NoiseTexture" id=2]
 seamless = true
-noise = SubResource( 6 )
+noise = SubResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 50.3812, 657.9 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 4494.9, 91.8439 )
 
-[sub_resource type="NavigationPolygon" id=3]
+[sub_resource type="NavigationPolygon" id=5]
 vertices = PoolVector2Array( 857.953, 884.988, 1956.21, 767.232, 5878.42, 685.581, 6672.12, 685.581, 7777.08, 708.925, 2461.08, 1018.25, 2132.99, 1035.51, 2754.63, 1089.48, 8228.4, 1463.72, 3503.6, 1471.76, 2663.97, 1169.34, 1744.73, 762.197, -79.0376, 1477.85, 104.003, 1352.01, 258.444, 951.607, 2219.33, 1162.86, 8220.62, 576.642, 1739.7, 651.426, 837.448, 725.045, 1137.48, 695.806, 4027.61, 664.832, 4220.99, 553.298, 4687.88, 670.018, 2055.61, 587.397, 2164.02, 535.774, 2628.62, 633.858, 1956.21, 641.356, 6228.59, 553.298, 5061.38, 685.581, 3650.76, 716.455, 1968.95, 1102.43, 538.068, 907.544, 2336.63, 1137.83, 2079.03, 1115.38, 275.604, 637.006, 536.017, 731.197, 636.736, 659.67, 1405.92, 633.858, 1772.45, 561.586, 2891.9, 675.157, 3397.81, 685.481 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6 ), PoolIntArray( 7, 4, 8, 9, 10 ), PoolIntArray( 11, 1, 0 ), PoolIntArray( 9, 12, 13 ), PoolIntArray( 9, 13, 14, 15 ), PoolIntArray( 4, 16, 8 ), PoolIntArray( 17, 11, 0, 18, 19 ), PoolIntArray( 20, 21, 22 ), PoolIntArray( 23, 24, 25, 1, 26 ), PoolIntArray( 2, 27, 3 ), PoolIntArray( 28, 2, 1, 29 ), PoolIntArray( 4, 7, 5 ), PoolIntArray( 0, 6, 30, 14, 31 ), PoolIntArray( 15, 32, 10, 9 ), PoolIntArray( 33, 15, 14, 30 ), PoolIntArray( 31, 14, 34, 35 ), PoolIntArray( 18, 35, 34, 36, 19 ), PoolIntArray( 17, 19, 37, 38 ), PoolIntArray( 26, 17, 38, 23 ), PoolIntArray( 1, 25, 39 ), PoolIntArray( 29, 20, 22, 28 ), PoolIntArray( 1, 39, 40, 29 ) ]
 outlines = [ PoolVector2Array( 275.604, 637.006, 258.444, 951.607, 104.003, 1352.01, -79.0376, 1477.85, 3503.6, 1471.76, 8228.4, 1463.72, 8220.62, 576.642, 7777.08, 708.925, 6672.12, 685.581, 6228.59, 553.298, 5878.42, 685.581, 5061.38, 685.581, 4687.88, 670.018, 4220.99, 553.298, 4027.61, 664.832, 3650.76, 716.455, 3397.81, 685.481, 2891.9, 675.157, 2628.62, 633.858, 2164.02, 535.774, 2055.61, 587.397, 1772.45, 561.586, 1405.92, 633.858, 1137.48, 695.806, 636.736, 659.67 ), PoolVector2Array( 2461.08, 1018.25, 2132.99, 1035.51, 1968.95, 1102.43, 2079.03, 1115.38, 2219.33, 1162.86, 2336.63, 1137.83, 2663.97, 1169.34, 2754.63, 1089.48 ), PoolVector2Array( 1739.7, 651.426, 1744.73, 762.197, 1956.21, 767.232, 1956.21, 641.356 ), PoolVector2Array( 536.017, 731.197, 538.068, 907.544, 857.953, 884.988, 837.448, 725.045 ) ]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 157.725, 81.1065 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 103.18, 55.7823 )
 
 [node name="Farm" type="Node2D"]
@@ -105,7 +105,7 @@ self_modulate = Color( 1, 1, 1, 0.227451 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = SubResource( 7 )
+texture = SubResource( 2 )
 expand = true
 
 [node name="InvisWalls" type="Node2D" parent="."]
@@ -133,7 +133,7 @@ position = Vector2( 8415.68, 2002.11 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallRight"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="InvisWallTop" type="StaticBody2D" parent="InvisWalls"]
 editor/display_folded = true
@@ -151,7 +151,7 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallBottom"]
 position = Vector2( -46.749, 1064.6 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Portal" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2863.97, 885.655 )
@@ -163,7 +163,7 @@ editor/display_folded = true
 [node name="NavPolygon" type="NavigationPolygonInstance" parent="Navigation2D"]
 position = Vector2( 70.4719, 549.093 )
 scale = Vector2( 0.5, 0.5 )
-navpoly = SubResource( 3 )
+navpoly = SubResource( 5 )
 
 [node name="Scenery" type="Node2D" parent="."]
 editor/display_folded = true
@@ -178,7 +178,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House1"]
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House1"]
 scale = Vector2( 0.5, 0.5 )
@@ -194,7 +194,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House2"]
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House2"]
 scale = Vector2( 0.5, 0.5 )

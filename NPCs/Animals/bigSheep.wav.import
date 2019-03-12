@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bigSheep.wav-ee1c3e41d8a2c6cf55f53eb6f788ddc7.sample"
+
+[deps]
+
+source_file="res://NPCs/Animals/bigSheep.wav"
+dest_files=[ "res://.import/bigSheep.wav-ee1c3e41d8a2c6cf55f53eb6f788ddc7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
