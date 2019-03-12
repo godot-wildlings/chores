@@ -20,8 +20,9 @@ var _initial_modulate : Color
 func _ready():
 	$Label.text = "Health: " + str(health)
 	_initial_modulate = modulate
-	connect("health_changed", self, "_on_health_change")
-
+	var _err = connect("health_changed", self, "_on_health_change")
+	if _err: push_warning(_err)
+	
 #warning-ignore:unused_argument	
 func _physics_process(delta : float):
 	if is_instance_valid(_player):
@@ -40,7 +41,7 @@ func _movement_loop():
 	else:
 		motion = _knock_dir.normalized() * 125
 	
-	move_and_slide(motion, Vector2.ZERO)
+	var _collision = move_and_slide(motion, Vector2.ZERO)
 	
 
 func _damage_loop():

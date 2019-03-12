@@ -35,8 +35,9 @@ func _ready():
 	$Label.text = "Health: " + str(health)
 	_initial_modulate = modulate
 	_attack_timer.wait_time = attack_pause_time
+	#warning-ignore:return_value_discarded
 	_attack_timer.connect("timeout", self, "_on_AttackTimer_timeout")
-#warning-ignore:return_value_discarded
+	#warning-ignore:return_value_discarded
 	connect("health_changed", self, "_on_health_change")
 	#warning-ignore:return_value_discarded
 	$AttackRadius.connect("body_entered", self, "_on_AttackRadius_body_entered")
