@@ -70,6 +70,7 @@ func _state_running(delta : float):
 		_controls_loop()
 		if _move_dir == Vector2.ZERO:
 			self._state = States.IDLE
+			velocity = Vector2.ZERO
 		else:
 			_movement_loop(delta)
 

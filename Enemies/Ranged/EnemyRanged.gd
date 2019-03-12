@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 signal health_changed
-signal shoot
+signal shoot(projectile_scene, pos, rot, vel)
 
 onready var health : float = max_health setget _set_health
-onready var projectile_container : Node2D = util.get_main_node().get_node("ProjectileContainer")
+#onready var projectile_container : Node2D = util.get_main_node().get_node("ProjectileContainer")
 onready var _player : KinematicBody2D = global.player
 onready var _attack_timer : Timer = $AttackTimer
 
@@ -25,6 +25,8 @@ var _move_dir : Vector2
 var _is_in_attack_range : bool = false
 var _initial_modulate : Color
 var _can_attack : bool = true
+var motion : Vector2
+
 """
 walk up until in range (determined by area2d collisionshape)
 start attacking (timer based cooldown)
@@ -63,7 +65,7 @@ func _physics_process(delta : float):
 				_attack_timer.start()
 		
 func _movement_loop():
-	var motion : Vector2
+	
 	if _hitstun == 0:
 		motion = _move_dir.normalized() * speed 
 	else:
@@ -92,12 +94,18 @@ func _damage_loop():
 					body.queue_free()
 
 func _attack():
-	var projectile_instance : Node2D = projectile_tscn.instance()
-	projectile_container.add_child(projectile_instance)
-	if projectile_instance.has_method("shoot"):
-		projectile_instance.shoot(global_position, (_player.global_position - global_position))
-#		$AudioStreamPlayer.play()
-		emit_signal("shoot")
+	
+#	var projectile_instance : Node2D = projectile_tscn.instance()
+#	projectile_container.add_child(projectile_instance)
+#	if projectile_instance.has_method("shoot"):
+#		projectile_instance.shoot(global_position, (_player.global_position - global_position))
+##		$AudioStreamPlayer.play()
+	var my_pos = get_global_position()
+	if is_instance_valid(global.player):
+		var player_pos = global.player.get_global_position()
+		connect("shoot", global.current_level, "_on_projectile_requested")
+		emit_signal("shoot", projectile_tscn, my_pos, Vector2(1,0).angle_to(player_pos-my_pos), motion)
+		disconnect("shoot", global.current_level, "_on_projectile_requested")
 
 func _on_level_initialized():
 	_player = global.player
