@@ -7,7 +7,7 @@ That might give us a herd-the-sheep minigame.
 
 extends KinematicBody2D
 
-enum States { INITIALIZING, FLOCKING, GRAZING, IDLE, FLEEING }
+enum States { INITIALIZING, FLOCKING, GRAZING, IDLE, FLEEING, DEAD }
 var _state = States.INITIALIZING
 
 var velocity = Vector2.ZERO
@@ -15,9 +15,14 @@ var speed : float = 100
 var direction : float = 0
 var base_scale : Vector2 = Vector2(0.5, 0.5)
 var Ticks : int = 0
-
+var fear_of_player : float = 3.0
+var fear_range : float = 100.0
+var health : int = 30
 
 func _ready():
+	$DeadBody.hide()
+	$BodyParts.show()
+	
 	get_random_color()
 	get_random_size()
 	set_random_behaviour_state()
@@ -34,7 +39,7 @@ func flock():
 	velocity += get_random_direction_vector() * 2
 	velocity += get_vector_toward_flock()
 	velocity += get_vector_away_from_neighbours()
-	velocity += get_vector_away_from_player() * 3 # overweight this one. It's important
+	velocity += get_vector_away_from_player() * fear_of_player # overweight this one. It's important
 	velocity = velocity.normalized()
 	
 	
@@ -62,11 +67,11 @@ func get_random_size():
 
 func get_vector_away_from_player():
 	var avoid_vector : Vector2 = Vector2.ZERO
-	var avoidance_range : float = 200.0
+	
 	if is_instance_valid(global.player):
 		var myPos = get_global_position()
 		var playerPos = global.player.get_global_position()
-		if myPos.distance_squared_to(playerPos) < avoidance_range * avoidance_range:
+		if myPos.distance_squared_to(playerPos) < fear_range * fear_range:
 			avoid_vector = (myPos - playerPos).normalized()
 		return avoid_vector
 		
@@ -142,22 +147,42 @@ func _on_BehaviourChangeTimer_timeout():
 	$BehaviourChangeTimer.set_wait_time(rand_range(0.5, 1.0))
 	$BehaviourChangeTimer.start()
 
+func bleet():
+	if has_node("AudioStreamPlayer2D"):
+		if $AudioStreamPlayer2D.is_playing() == false: # don't stutter/beatbox
+			$AudioStreamPlayer2D.play()
+
+
 
 func _on_NoiseTimer_timeout():
-	if randf() < 0.2:
-		if has_node("AudioStreamPlayer2D"):
-			if $AudioStreamPlayer2D.is_playing() == false: # don't stutter/beatbox
-				$AudioStreamPlayer2D.play()
-			if global.main_scene.is_paused() == false:
-				$NoiseTimer.set_wait_time(rand_range(1.0, 3.0))
-				$NoiseTimer.start()
+	var chance_of_bleeting = 0.2
+	if randf() < chance_of_bleeting:
+		bleet()
+	if global.main_scene.is_paused() == false:
+		$NoiseTimer.set_wait_time(rand_range(1.0, 3.0))
+		$NoiseTimer.start()
 				
 
+func die():
+	# spawn a blood splotch and a dead sheep sprite
+	_state = States.DEAD
+	$DeadBody.show()
+	$BodyParts.hide()
+	$AnimationPlayer.stop()
+	$BehaviourChangeTimer.stop()
+	$NoiseTimer.stop()
 
 func _on_HitBox_body_entered(body):
 	if body.name.find("Sheep") > -1:
 		return
 		
-	print(self.name, " body entered HitBox: ", body.name )
-	if body.name == "Arrow":
-		print("BAAA")
+	if body.name.find("Arrow") > -1:
+		health -= 10
+		if health <= 0:
+			die()
+		else:
+			bleet()
+			fear_of_player = 30.0
+			fear_range = 300.0
+			
+		

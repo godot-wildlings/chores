@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://NPCs/Animals/Animal.gd" type="Script" id=1]
 [ext_resource path="res://NPCs/Animals/bigSheep.wav" type="AudioStream" id=2]
 [ext_resource path="res://NPCs/Animals/SheepParts.png" type="Texture" id=3]
+[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=4]
+[ext_resource path="res://Projectiles/Arrow/arrow.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.464, 8.71214 )
@@ -143,10 +145,40 @@ region_rect = Rect2( 200.727, -1.59, 61, 62 )
 anims/walk = SubResource( 2 )
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0.751038, -1.50207 )
 shape = SubResource( 3 )
+
+[node name="DeadBody" type="Node2D" parent="."]
+visible = false
+position = Vector2( 9.10083, 17.6329 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Body" type="Sprite" parent="DeadBody"]
+rotation = -0.296706
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 87, 5, 113, 61 )
+
+[node name="BloodSplotchSprite" type="Sprite" parent="DeadBody"]
+self_modulate = Color( 1, 1, 1, 0.964706 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Head" type="Sprite" parent="DeadBody"]
+position = Vector2( -39.0037, 4.75656 )
+rotation = 2.18166
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 199, 6, 67, 59 )
+
+[node name="arrow" type="Sprite" parent="DeadBody"]
+position = Vector2( -32.6422, -23.1323 )
+rotation = -0.666716
+texture = ExtResource( 5 )
 
 [connection signal="timeout" from="BehaviourChangeTimer" to="." method="_on_BehaviourChangeTimer_timeout"]
 [connection signal="timeout" from="NoiseTimer" to="." method="_on_NoiseTimer_timeout"]
