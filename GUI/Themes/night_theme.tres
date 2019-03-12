@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=11 format=2]
 
 [ext_resource path="res://GUI/Themes/Fonts/UnifrakturMaguntia/UnifrakturMaguntia-Book.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://GUI/Themes/Fonts/UnifrakturMaguntia/Unifraktur48.tres" type="DynamicFontData" id=2]
+[ext_resource path="res://GUI/Themes/Fonts/Eater/Eater-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -39,6 +40,16 @@ shadow_size = 5
 size = 48
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=7]
+size = 32
+outline_size = 4
+outline_color = Color( 0.282353, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 22
+font_data = ExtResource( 1 )
+
 [sub_resource type="DynamicFont" id=5]
 
 [resource]
@@ -63,4 +74,21 @@ Label/constants/shadow_offset_x = 2
 Label/constants/shadow_offset_y = 2
 Label/fonts/font = SubResource( 4 )
 Label/styles/normal = null
+RichTextLabel/colors/default_color = Color( 0.529412, 0, 0, 1 )
+RichTextLabel/colors/font_color_selected = Color( 0.490196, 0.490196, 0.490196, 1 )
+RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+RichTextLabel/colors/selection_color = Color( 0.1, 0.1, 1, 0.8 )
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/shadow_as_outline = 0
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/table_hseparation = 3
+RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/fonts/bold_font = SubResource( 7 )
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = SubResource( 6 )
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = null
 

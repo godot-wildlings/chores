@@ -151,3 +151,7 @@ func _set_state(new_state : int):
 		_state = new_state
 		if new_state == States.DEAD:
 			die()
+
+func _on_book_picked_up():
+	# do something. turn into a demon?
+	pass
