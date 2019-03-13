@@ -71,6 +71,8 @@ func _ready():
 		#warning-ignore:return_value_discarded
 		$AttackRadius.connect("body_exited", self, "_on_AttackRadius_body_exited")
 
+
+#warning-ignore:unused_argument
 func _process(delta):
 	if debug:
 		update()
@@ -98,7 +100,7 @@ func _draw():
 	# figure out where you're trying to go
 	var myPos = get_global_position()
 	var targetPos = myPos + _move_dir
-	print(self.name, " _move_dir == ", _move_dir )
+	#print(self.name, " _move_dir == ", _move_dir )
 	draw_line( to_local(myPos), to_local(targetPos), Color.blue, 3.0, true )
 
 		

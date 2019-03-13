@@ -69,7 +69,6 @@ radius = 243.719
 collision_layer = 128
 collision_mask = 9
 script = ExtResource( 1 )
-debug = true
 health = 300.0
 projectile_tscn = ExtResource( 2 )
 on_hit_dmg = 25.0
