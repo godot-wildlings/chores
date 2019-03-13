@@ -4,14 +4,10 @@
 [ext_resource path="res://Projectiles/Fireball/Fireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Boss/goat.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 53.7125
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 640.816
-
-[sub_resource type="Animation" id=1]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("HeadParts/LowerJaw:position")
@@ -29,13 +25,23 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=4]
 radius = 39.3588
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 640.816
+
 [node name="Baphomet" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 9
 script = ExtResource( 1 )
+health = 300.0
 projectile_tscn = ExtResource( 2 )
+speed = 500.0
+on_hit_dmg = 25.0
+max_health = 300.0
+attack_pause_time = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.50941, 15.094 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Aura" type="Node2D" parent="."]
 
@@ -45,11 +51,6 @@ position = Vector2( 0.0836182, 15.3633 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 278, -1, 150, 133 )
-
-[node name="AttackRadius" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
-shape = SubResource( 3 )
 
 [node name="HeadParts" type="Node2D" parent="."]
 
@@ -109,7 +110,7 @@ region_rect = Rect2( 236.5, 73.409, 27.5, 13.5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/idle = SubResource( 1 )
+anims/idle = SubResource( 3 )
 
 [node name="Flames" type="Sprite" parent="."]
 
@@ -124,8 +125,16 @@ margin_right = 17.4131
 margin_bottom = -58.894
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0.513336, 13.3468 )
 shape = SubResource( 4 )
+
+[node name="AttackRadius" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource( 2 )
 
