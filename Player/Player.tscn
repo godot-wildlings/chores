@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/char_bow_walk_exp.png" type="Texture" id=2]
+[ext_resource path="res://Player/char_idle_exp.png" type="Texture" id=2]
 [ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=3]
 [ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Weapons/Ranged/Fireballs/FireCaster.tscn" type="PackedScene" id=5]
@@ -280,8 +280,8 @@ is_demon = true
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 2 )
-hframes = 4
-frame = 3
+hframes = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.75103, 21.2793 )
