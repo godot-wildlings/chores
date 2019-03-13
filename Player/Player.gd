@@ -90,6 +90,7 @@ func _physics_process(delta):
 			_state_idle()
 		States.WALKING:
 			_state_walking(delta)
+			
 		States.RUNNING:
 			_state_running(delta)
 
@@ -106,7 +107,7 @@ func _state_idle():
 
 #warning-ignore:unused_argument
 func _state_walking(delta : float):
-	if Input.is_action_pressed("mv_run"):
+	if not Input.is_action_pressed("mv_walk"):
 		self._state = States.RUNNING
 	else:
 		_controls_loop()
@@ -117,7 +118,7 @@ func _state_walking(delta : float):
 
 #warning-ignore:unused_argument
 func _state_running(delta : float):
-	if not Input.is_action_pressed("mv_run"):
+	if Input.is_action_pressed("mv_walk"):
 		self._state = States.WALKING
 	else:
 		_controls_loop()

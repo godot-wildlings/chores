@@ -128,7 +128,7 @@ func _attack():
 		var player_pos = global.player.get_global_position()
 		var _err = connect("shoot", global.current_level, "_on_projectile_requested")
 		if _err: push_warning(_err)
-		emit_signal("shoot", projectile_tscn, my_pos, Vector2(1,0).angle_to(player_pos-my_pos), motion)
+		emit_signal("shoot", projectile_tscn, my_pos, Vector2(1,0).angle_to(player_pos - my_pos), motion)
 		disconnect("shoot", global.current_level, "_on_projectile_requested")
 
 func _on_level_initialized():
