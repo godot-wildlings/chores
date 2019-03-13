@@ -1,13 +1,25 @@
+"""
+Player should be able to:
+	- move
+	- shoot
+	- switch forms (demon/human)
+	- take damage
+	- die
+	- interact with NPCs
+"""
+
 extends KinematicBody2D
 
 signal health_changed
 signal level_requested(path_to_level)
+signal weapon_requested(weapon_name)
 
 enum States { IDLE, WALKING, RUNNING, DEAD }
 
 onready var health : float = max_health setget _set_health
 
 export var max_health : float = 3
+export var is_demon : bool = false
 
 const SPEED : int = 200
 const RUN_SPEED_MULTIPLIER : float = 2.0
@@ -20,12 +32,52 @@ func _ready():
 	global.player = self
 	$Label.text = "Health: " + str(health)
 	#warning-ignore:return_value_discarded
-	connect("health_changed", self, "_on_health_change")
+	connect_signals()
+
+	
+	if is_demon == true:
+		become_demon()
+	else:
+		become_human()
+
+func connect_signals():
+	var _err
+	_err = connect("health_changed", self, "_on_health_change")
+	if _err: push_warning(_err)
+	_err = null
+	_err = connect("weapon_requested", $WeaponSlots, "_on_weapon_requested")
+	if _err: push_warning(_err)
+
+func toggle_form():
+	if is_demon == true:
+		become_human()
+	else:
+		become_demon()
+			
+func become_demon():
+	emit_signal("weapon_requested", "FireCaster")
+	show_demon_sprites()
+	is_demon = true
+	
+func become_human():
+	emit_signal("weapon_requested", "Bow")
+	show_human_sprites()
+	is_demon = false
+		
+func show_human_sprites():
+	$Sprite.show()
+	$DemonForm.hide()
+
+func show_demon_sprites():
+	$DemonForm.show()
+	$Sprite.hide()
 
 #warning-ignore:unused_argument
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
 		$WeaponSlots.attack()
+	if Input.is_action_just_pressed("transform"):
+		toggle_form()
 
 func _physics_process(delta):
 	match _state:
@@ -41,7 +93,10 @@ func _state_idle():
 	if _move_dir != Vector2.ZERO:
 		self._state = States.WALKING
 	else:
-		_update_animation(Vector2.ZERO)
+		if is_demon == false:
+			_update_human_animation(Vector2.ZERO)
+		else:
+			_update_demon_animation(Vector2.ZERO)
 		_damage_loop()
 
 #warning-ignore:unused_argument
@@ -81,13 +136,17 @@ func _movement_loop(delta):
 		motion = _move_dir.normalized() * SPEED * RUN_SPEED_MULTIPLIER
 	elif _state == States.WALKING:
 		motion = _move_dir.normalized() * SPEED
-	_update_animation(motion)
+	if is_demon == false:
+		_update_human_animation(motion)
+	else:
+		_update_demon_animation(motion)
+	
 	
 	#warning-ignore:return_value_discarded
 	var redirected_velocity = move_and_slide(motion, Vector2.ZERO)
 	velocity = redirected_velocity
 
-func _update_animation(motion : Vector2):
+func _update_human_animation(motion : Vector2):
 	if _state == States.RUNNING:
 		$AnimationPlayer.play("player_run")
 	elif _state == States.WALKING:
@@ -102,6 +161,27 @@ func _update_animation(motion : Vector2):
 		$Sprite.flip_h = false
 	elif get_local_mouse_position().x <= 0:
 		$Sprite.flip_h = true
+
+func _update_demon_animation(motion : Vector2):
+	if _state == States.RUNNING:
+		$AnimationPlayer.play("demon_walk")
+	elif _state == States.WALKING:
+		$AnimationPlayer.play("demon_walk")
+	if motion.x > 0:
+		#$Sprite.flip_h = false
+		pass
+	elif motion.x < 0:
+		#$Sprite.flip_h = true
+		pass
+	elif motion == Vector2.ZERO:
+		$AnimationPlayer.play("demon_idle")
+	if get_local_mouse_position().x >= 0:
+		#$Sprite.flip_h = false
+		pass
+	elif get_local_mouse_position().x <= 0:
+		#$Sprite.flip_h = true
+		pass
+
 
 func _damage_loop():
 	health = min(max_health, health)

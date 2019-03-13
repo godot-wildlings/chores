@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Projectiles/RangedProjectile.gd" type="Script" id=1]
-[ext_resource path="res://Projectiles/Arrow/BigArrow.png" type="Texture" id=2]
+[ext_resource path="res://Projectiles/Fireball/fireball.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 36.8816, 3.3884 )
+extents = Vector2( 9.66629, 7.99404 )
 
-[node name="Arrow" type="Area2D" groups=[
+[node name="PlayerFireball" type="Area2D" groups=[
 "projectiles",
 ]]
 collision_layer = 8
@@ -15,15 +15,13 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.246525, 0.0801392 )
-scale = Vector2( 0.433, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -9.94405, -0.209351 )
+position = Vector2( -0.104675, -4.23193e-006 )
 shape = SubResource( 1 )
 
 [node name="DurationTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_Arrow_body_entered"]
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

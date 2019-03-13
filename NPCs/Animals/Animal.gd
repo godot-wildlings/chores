@@ -17,7 +17,7 @@ var base_scale : Vector2 = Vector2(0.5, 0.5)
 var Ticks : int = 0
 var fear_of_player : float = 3.0
 var fear_range : float = 100.0
-var health : int = 30
+export var health : int = 30
 
 func _ready():
 	$DeadBody.hide()
@@ -25,7 +25,11 @@ func _ready():
 	
 	get_random_color()
 	get_random_size()
-	set_random_behaviour_state()
+	
+	if health > 0:
+		set_random_behaviour_state()
+	else:
+		die()
 
 func set_random_behaviour_state():
 	if randf() < 0.5:
@@ -174,17 +178,25 @@ func die():
 	$BehaviourChangeTimer.stop()
 	$NoiseTimer.stop()
 
-func _on_HitBox_body_entered(body):
-	if body.name.find("Sheep") > -1:
-		return
-		
-	if body.name.find("Arrow") > -1:
-		health -= 10
-		if health <= 0:
-			die()
-		else:
-			bleet()
-			fear_of_player = 30.0
-			fear_range = 300.0
+#func _on_HitBox_body_entered(body):
+#	if body.name.find("Sheep") > -1:
+#		return
+#
+#	if body.name.find("Arrow") > -1:
+#		health -= 10
+#		if health <= 0:
+#			die()
+#		else:
+#			bleet()
+#			fear_of_player = 30.0
+#			fear_range = 300.0
 			
 		
+func _on_hit(damage): # signal from arrow
+	health -= damage
+	if health <= 0:
+		die()
+	else:
+		bleet()
+		fear_of_player = 30.0
+		fear_range = 300.0

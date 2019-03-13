@@ -2,8 +2,11 @@ extends Node2D
 
 signal level_initialized
 
-var Ticks : int = 0
-var Debug : bool = true
+#var Ticks : int = 0
+#var Debug : bool = true
+
+#warning-ignore:unused_class_variable
+export var params : Dictionary
 
 func start():
 	print(self.name, " level started.")
