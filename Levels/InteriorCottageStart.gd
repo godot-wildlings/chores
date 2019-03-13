@@ -13,7 +13,7 @@ func start():
 	var _err = connect("dialog_box_requested", global.main_scene, "_on_DialogBox_requested")
 	
 	var intro_text = [
-			"You're a good boy, Friederich. You do your chores and complete your studies. \n\nGo see what your grandparents have for you today. \n\nI've gone to town.\n\tLove, Mother"
+			"You're a good boy, Friedrich. You do your chores and complete your studies. \n\nGo see what your grandparents have for you today. \n\nI've gone to town.\n\tLove, Mother"
 	]
 	
 	

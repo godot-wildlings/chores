@@ -1,23 +1,37 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Projectiles/Arrow/Arrow.gd" type="Script" id=1]
-[ext_resource path="res://Projectiles/Arrow/arrow.png" type="Texture" id=2]
+[ext_resource path="res://Projectiles/RangedProjectile.gd" type="Script" id=1]
+[ext_resource path="res://Projectiles/Arrow/BigArrow.png" type="Texture" id=2]
+[ext_resource path="res://Effects/pluck.wav" type="AudioStream" id=3]
+[ext_resource path="res://Effects/WoodCrack.wav" type="AudioStream" id=4]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 1.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 36.8816, 3.3884 )
 
-[node name="Arrow" type="KinematicBody2D" groups=[
+[node name="Arrow" type="Area2D" groups=[
 "projectiles",
 ]]
-rotation = 1.5708
 collision_layer = 8
-collision_mask = 16
+collision_mask = 18
 script = ExtResource( 1 )
-speed = 400.0
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.246525, 0.0801392 )
+scale = Vector2( 0.433, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -9.94405, -0.209351 )
 shape = SubResource( 1 )
 
+[node name="DurationTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -9.0
+
+[node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

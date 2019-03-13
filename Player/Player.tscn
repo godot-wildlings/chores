@@ -1,14 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/char_bow_walk_exp.png" type="Texture" id=2]
-[ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=3]
-[ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=4]
-[ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=5]
-[ext_resource path="res://Player/player_holding_bow.anim" type="Animation" id=6]
-[ext_resource path="res://Player/player_idle.anim" type="Animation" id=7]
-[ext_resource path="res://Player/player_run.anim" type="Animation" id=8]
-[ext_resource path="res://Player/player_walk.anim" type="Animation" id=9]
+[ext_resource path="res://Player/char_idle_exp.png" type="Texture" id=2]
+[ext_resource path="res://GUI/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=4]
+[ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Weapons/Ranged/Fireballs/FireCaster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=7]
+[ext_resource path="res://Player/player_holding_bow.anim" type="Animation" id=8]
+[ext_resource path="res://Player/player_idle.anim" type="Animation" id=9]
+[ext_resource path="res://Player/player_run.anim" type="Animation" id=10]
+[ext_resource path="res://Player/player_walk.anim" type="Animation" id=11]
+[ext_resource path="res://Player/MonsterParts.png" type="Texture" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -16,15 +19,270 @@
 radius = 11.0
 height = 32.0
 
+[sub_resource type="Animation" id=3]
+resource_name = "demon_idle"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("DemonForm/Body:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 28.0, 35.0, 28.0, 28.0, 28.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DemonForm/Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.47244, 2.04868 ), Vector2( -1.47244, 2.04868 ), Vector2( -1.47244, 2.04868 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DemonForm/LegLeft:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.80036, 3.1453 ), Vector2( 1.80036, 3.1453 ), Vector2( 1.80036, 3.1453 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DemonForm/LegLeft:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 12.0, 24.125, 12.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DemonForm/LegRight:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2.93194, 4.1161 ), Vector2( -2.93194, 4.1161 ), Vector2( -2.93194, 4.1161 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("DemonForm/LegRight:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -12.0625, -12.0625, -12.0625 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("DemonForm/Body/ArmLeft:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 0.85, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 2.1125, -30.1, 2.1125, 2.1125 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("DemonForm/Body/LoinCloth:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.34752, 1.91023 ), Vector2( 1.34752, 1.91023 ), Vector2( 1.34752, 1.91023 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("DemonForm/Body/LoinCloth:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -28.8442, -28.8442, -28.8442 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("DemonForm/Body/ArmRight:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -5.16641, -15.9109 ), Vector2( -5.16641, -15.9109 ), Vector2( -5.16641, -15.9109 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("DemonForm/Body/ArmRight:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -34.3125, -20.5, -34.3125, -52.6, -34.3125 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("DemonForm/Body/Head:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5.03407, -18.0316 ), Vector2( 6.43792, -15.9186 ), Vector2( 5.03407, -18.0316 ), Vector2( 5.03407, -18.0316 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("DemonForm/Body/Head:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -32.2, -32.2, -32.2 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "demon_walk"
+length = 0.8
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("DemonForm/Body:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 32.2, 28.0, 32.2, 38.0, 32.2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DemonForm/Body/ArmRight:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -54.9, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DemonForm/Body/ArmLeft:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -32.2, 22.7, -32.2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DemonForm/Body/Head:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -32.2, -32.2, -32.2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DemonForm/LegRight:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -19.3, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("DemonForm/LegLeft:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 38.6, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("DemonForm/Body/Head:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.45, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4.17485, -19.6866 ), Vector2( 5.72143, -16.7075 ), Vector2( 4.17485, -19.6866 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 13.0701, 27.4213 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 86
 script = ExtResource( 1 )
 max_health = 5.0
+is_demon = true
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
-hframes = 4
-frame = 3
+hframes = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.75103, 21.2793 )
@@ -33,18 +291,23 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.8, 0.8 )
+script = ExtResource( 3 )
 
 [node name="WeaponSlots" type="Node2D" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Melee" type="Node2D" parent="WeaponSlots"]
 
 [node name="Ranged" type="Node2D" parent="WeaponSlots"]
+visible = false
 
-[node name="Bow" parent="WeaponSlots/Ranged" instance=ExtResource( 4 )]
+[node name="Bow" parent="WeaponSlots/Ranged" instance=ExtResource( 5 )]
 position = Vector2( 10, -3 )
 
+[node name="FireCaster" parent="WeaponSlots/Ranged" instance=ExtResource( 6 )]
+
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -55,12 +318,85 @@ margin_left = -27.824
 margin_top = -67.9423
 margin_right = 26.176
 margin_bottom = -47.9423
-theme = ExtResource( 5 )
+theme = ExtResource( 7 )
 text = "Health: 3"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/player_holding_bow = ExtResource( 6 )
-anims/player_idle = ExtResource( 7 )
-anims/player_run = ExtResource( 8 )
-anims/player_walk = ExtResource( 9 )
+autoplay = "demon_walk"
+anims/demon_idle = SubResource( 3 )
+anims/demon_walk = SubResource( 4 )
+anims/player_holding_bow = ExtResource( 8 )
+anims/player_idle = ExtResource( 9 )
+anims/player_run = ExtResource( 10 )
+anims/player_walk = ExtResource( 11 )
+
+[node name="DemonForm" type="Node2D" parent="."]
+position = Vector2( -0.614716, -15.6752 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="DemonHitBox" type="Area2D" parent="DemonForm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DemonForm/DemonHitBox"]
+visible = false
+position = Vector2( 0.204905, 0 )
+shape = SubResource( 5 )
+
+[node name="LegLeft" type="Sprite" parent="DemonForm"]
+show_behind_parent = true
+position = Vector2( 1.80036, 3.1453 )
+rotation = 0.20944
+texture = ExtResource( 12 )
+offset = Vector2( 4.50791, 10.2452 )
+region_enabled = true
+region_rect = Rect2( 117.93, 3.571, 12.625, 27.75 )
+
+[node name="LegRight" type="Sprite" parent="DemonForm"]
+show_behind_parent = true
+position = Vector2( -2.93194, 4.1161 )
+rotation = -0.21053
+texture = ExtResource( 12 )
+offset = Vector2( -3.68829, 10.86 )
+region_enabled = true
+region_rect = Rect2( 96.75, 2.696, 11.5, 29.125 )
+
+[node name="Body" type="Sprite" parent="DemonForm"]
+position = Vector2( -1.47244, 2.04868 )
+rotation = 0.488692
+texture = ExtResource( 12 )
+offset = Vector2( 0.248688, -6.21887 )
+region_enabled = true
+region_rect = Rect2( 73.5, 2.946, 14.25, 38.25 )
+
+[node name="ArmLeft" type="Sprite" parent="DemonForm/Body"]
+show_behind_parent = true
+position = Vector2( 5.07885, -15.5011 )
+rotation = 0.0368701
+texture = ExtResource( 12 )
+offset = Vector2( 3.73208, 9.14901 )
+region_enabled = true
+region_rect = Rect2( 54.5, 4.142, 10.25, 26.25 )
+
+[node name="LoinCloth" type="Sprite" parent="DemonForm/Body"]
+position = Vector2( 1.34752, 1.91023 )
+rotation = -0.503426
+texture = ExtResource( 12 )
+offset = Vector2( -0.041482, 5.09855 )
+region_enabled = true
+region_rect = Rect2( 9.52813, 24.071, 13.75, 16.375 )
+
+[node name="ArmRight" type="Sprite" parent="DemonForm/Body"]
+position = Vector2( -5.16641, -15.9109 )
+rotation = -0.598866
+texture = ExtResource( 12 )
+offset = Vector2( -3.0298, 12.0177 )
+region_enabled = true
+region_rect = Rect2( 34.625, 1.571, 12.25, 33.875 )
+
+[node name="Head" type="Sprite" parent="DemonForm/Body"]
+position = Vector2( 5.03407, -18.0316 )
+rotation = -0.561996
+texture = ExtResource( 12 )
+offset = Vector2( -2.00527, -3.76002 )
+region_enabled = true
+region_rect = Rect2( 2.125, 2.95762, 24, 17.875 )
 

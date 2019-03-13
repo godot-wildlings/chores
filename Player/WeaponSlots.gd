@@ -38,7 +38,7 @@ func _process(delta : float):
 
 	_orientate_weapon()
 	_adjust_weapon_depth()
-	_flip_weapon_sprites()
+	#_flip_weapon_sprites()
 
 func attack():
 	active_weapon.attack()
@@ -77,5 +77,17 @@ func _equip_first_ranged_weapon():
 func _set_active_weapon(new_active_weapon):
 	if new_active_weapon != active_weapon:
 		active_weapon = new_active_weapon
-		active_weapon_sprite = new_active_weapon.get_node("Sprite" + str(active_weapon.name)) as Sprite
+		if new_active_weapon.has_node("Sprite" + str(active_weapon.name)):
+			active_weapon_sprite = new_active_weapon.get_node("Sprite" + str(active_weapon.name)) as Sprite
 		emit_signal("weapon_changed")
+
+func _on_weapon_requested(weapon_name): # signal from player
+	if $Ranged.has_node(weapon_name):
+		self.active_weapon = $Ranged.get_node(weapon_name)
+	elif $Melee.has_node(weapon_name):
+		self.active_weapon = $Melee.get_node(weapon_name)
+	else:
+		push_error(self.name + " doesn't have that weapon: " + weapon_name)
+	
+	
+	

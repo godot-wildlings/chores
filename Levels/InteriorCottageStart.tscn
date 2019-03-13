@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Levels/InteriorCottageStart.gd" type="Script" id=1]
 [ext_resource path="res://Levels/Scenery/interior-cottage.png" type="Texture" id=2]
+[ext_resource path="res://BGMusic/Title_Screen_draft.ogg" type="AudioStream" id=3]
 
 [node name="InteriorCottageStart" type="Node2D"]
 script = ExtResource( 1 )
@@ -19,4 +20,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
 expand = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -9.0
+autoplay = true
 
