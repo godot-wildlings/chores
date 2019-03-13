@@ -228,7 +228,7 @@ position = Vector2( 507.779, 1026.21 )
 collision_layer = 4
 dialog_text_array = [ "Hello Friedrich,
 
-The Chaos Wastes are expanding. It's time you learned to fight. Take my bow." ]
+The Chaos Wastes are expanding. It's time you learned to fight.  Use that bow I gave you earlier." ]
 
 [node name="Sprite" parent="NPCs/UncleAnton" index="0"]
 scale = Vector2( 0.5, 0.5 )
@@ -252,7 +252,7 @@ texture = ExtResource( 15 )
 
 [node name="Agneth" parent="NPCs" instance=ExtResource( 13 )]
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
-position = Vector2( 2377, 1162 )
+position = Vector2( 3887.5, 1127.67 )
 collision_layer = 4
 home = "House2"
 reward_item_name = "Rod"
@@ -266,6 +266,7 @@ texture = ExtResource( 16 )
 
 [node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 674.389, 1049.88 )
+is_demon = false
 
 
 [editable path="NPCs/UncleAnton"]

@@ -15,5 +15,6 @@ func _ready():
 #	pass
 
 func _on_hit(damage):
+	print(self.name, " received hit for ", damage )
 	emit_signal("hit", damage)
 	

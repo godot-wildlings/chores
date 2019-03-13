@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal health_changed
 
 onready var _player : KinematicBody2D = global.player
-onready var health : float = max_health setget _set_health
+export var health : float = 3 setget _set_health
 
 enum States { ALIVE, DEAD }
 var _state = States.ALIVE
@@ -26,6 +26,10 @@ func _ready():
 	var _err = connect("health_changed", self, "_on_health_change")
 	if _err: push_warning(_err)
 	$DeadBody.hide()
+	if health == null:
+		health = max_health
+	if health < 0:
+		die()
 	
 #warning-ignore:unused_argument	
 func _physics_process(delta : float):
@@ -64,15 +68,21 @@ func _damage_loop():
 			if body.is_in_group("projectiles"):
 				if _hitstun == 0 and body.damage != 0:
 					self.health -= body.damage
-					$HitNoise.play()
+					if has_node("HitNoise"):
+						$HitNoise.play()
 					_hitstun = 10
 					_knock_dir = get_global_transform().origin - body.get_global_transform().origin 
 					body.queue_free() # make arrows disappear
+
+func disable_hitboxes():
+	$CollisionShape2D.call_deferred("set_disabled", true)
+	$Hitbox/CollisionShape2D.call_deferred("set_disabled", true)
 
 
 func die():
 	# spawn corpse and bloodstain
 	# queue_free after a timer, if desired
+	disable_hitboxes()
 	$Sprite.hide()
 	$DeadBody.show()
 	$DeadBody/CorpseDuration.start() # disappear later
@@ -98,11 +108,11 @@ func _set_health(new_health : float):
 		emit_signal("health_changed")
 		
 
-#func _on_hit(damage): # signal from BigArrow.tscn
-#	$HitNoise.play()
-#	health -= damage
-#	if health < 0:
-#		die()
+func _on_hit(damage): # signal from BigArrow.tscn
+	$HitNoise.play()
+	health -= damage
+	if health < 0:
+		die()
 		
 	
 

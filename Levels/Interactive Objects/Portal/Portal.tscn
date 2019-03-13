@@ -4,19 +4,21 @@
 [ext_resource path="res://Levels/Scenery/CavePortal.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 149.314, 163.069 )
+extents = Vector2( 99.2089, 106.283 )
 
 [node name="Portal" type="Node2D"]
+position = Vector2( 0, 6.10352e-005 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 43.4247, 225.474 )
+position = Vector2( -0.990032, -0.300964 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 3.70123, -1.85065 )
 collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 43.4246, 225.474 )
+position = Vector2( -2.84072, 3.40027 )
 shape = SubResource( 1 )
 

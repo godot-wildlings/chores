@@ -3,7 +3,10 @@ extends KinematicBody2D
 signal health_changed
 signal shoot(projectile_scene, pos, rot, vel)
 
-onready var health : float = max_health setget _set_health
+enum States { ALIVE, DEAD }
+var _state = States.ALIVE
+
+export var health : float = 3 setget _set_health
 #onready var projectile_container : Node2D = util.get_main_node().get_node("ProjectileContainer")
 onready var _player : KinematicBody2D = global.player
 onready var _attack_timer : Timer = $AttackTimer
@@ -34,6 +37,11 @@ start attacking (timer based cooldown)
 """
 
 func _ready():
+	if health == null:
+		health = max_health
+	if health < 0:
+		die()
+		
 	$Label.text = "Health: " + str(health)
 	_initial_modulate = modulate
 	_attack_timer.wait_time = attack_pause_time
@@ -49,7 +57,7 @@ func _ready():
 #warning-ignore:unused_argument
 func _physics_process(delta : float):
 
-	if is_instance_valid(_player):
+	if is_instance_valid(_player) and _state == States.ALIVE:
 		_damage_loop()
 		if not _is_in_attack_range:
 			_movement_loop()
@@ -103,7 +111,8 @@ func _attack():
 	var my_pos = get_global_position()
 	if is_instance_valid(global.player):
 		var player_pos = global.player.get_global_position()
-		connect("shoot", global.current_level, "_on_projectile_requested")
+		var _err = connect("shoot", global.current_level, "_on_projectile_requested")
+		if _err: push_warning(_err)
 		emit_signal("shoot", projectile_tscn, my_pos, Vector2(1,0).angle_to(player_pos-my_pos), motion)
 		disconnect("shoot", global.current_level, "_on_projectile_requested")
 
@@ -128,3 +137,31 @@ func _set_health(new_health : float):
 	if new_health != health:
 		health = new_health
 		emit_signal("health_changed")
+		
+func disable_hitboxes():
+	$CollisionShape2D.call_deferred("set_disabled", true)
+	$Hitbox/CollisionShape2D.call_deferred("set_disabled", true)
+
+
+func die():
+	# spawn corpse and bloodstain
+	# queue_free after a timer, if desired
+	disable_hitboxes()
+	$Sprite.hide()
+	
+	if has_node("DeadBody"):
+		$DeadBody.show()
+		if $DeadBody.has_node("CorposeDuration"):
+			$DeadBody/CorpseDuration.start() # disappear later
+	_state = States.DEAD
+	
+func _on_hit(damage): # signal from BigArrow.tscn
+	if has_node("HitNoise"):
+		$HitNoise.play()
+	health -= damage
+	if health < 0:
+		die()
+
+
+func _on_CorpseDuration_timeout():
+	call_deferred("queue_free")

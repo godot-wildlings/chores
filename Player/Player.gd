@@ -14,7 +14,7 @@ signal health_changed
 signal level_requested(path_to_level)
 signal weapon_requested(weapon_name)
 
-enum States { IDLE, WALKING, RUNNING, DEAD }
+enum States { IDLE, WALKING, RUNNING, CHATTING, DEAD }
 
 onready var health : float = max_health setget _set_health
 
@@ -74,8 +74,13 @@ func show_demon_sprites():
 
 #warning-ignore:unused_argument
 func _process(delta):
+	if _state == States.CHATTING or _state == States.DEAD:
+		return
+		
+
 	if Input.is_action_just_pressed("attack"):
 		$WeaponSlots.attack()
+
 	if Input.is_action_just_pressed("transform"):
 		toggle_form()
 
@@ -233,3 +238,9 @@ func _set_state(new_state : int):
 func _on_book_picked_up():
 	# do something. turn into a demon?
 	pass
+
+func _on_NPC_started_chatting():
+	_state = States.CHATTING
+	
+func _on_NPC_stopped_chatting():
+	_state = States.IDLE

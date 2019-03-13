@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fwoosh.wav-54f4bb1d9ed38e2cbe45a276954f8f67.sample"
+
+[deps]
+
+source_file="res://Effects/fwoosh.wav"
+dest_files=[ "res://.import/fwoosh.wav-54f4bb1d9ed38e2cbe45a276954f8f67.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

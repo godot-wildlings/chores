@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Projectiles/RangedProjectile.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Fireball/fireball.png" type="Texture" id=2]
+[ext_resource path="res://Effects/fwoosh.wav" type="AudioStream" id=3]
+[ext_resource path="res://Effects/fwoosh2.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9.66629, 7.99404 )
@@ -10,8 +12,9 @@ extents = Vector2( 9.66629, 7.99404 )
 "projectiles",
 ]]
 collision_layer = 8
-collision_mask = 16
+collision_mask = 30
 script = ExtResource( 1 )
+damage = 25
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.246525, 0.0801392 )
@@ -23,5 +26,12 @@ shape = SubResource( 1 )
 
 [node name="DurationTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -9.0
+
+[node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

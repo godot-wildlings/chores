@@ -21,6 +21,8 @@ signal dialog_box_requested(textArr)
 # I might need to add decision tree dialog boxes?
 		# time permitting
 
+signal started_chatting() # tell the player to stop shooting and moving
+signal stopped_chatting()
 
 enum States { IDLE, WAITING_FOR_DIALOG, INTERACTING, MOVING, SLEEPING, FIGHTING }
 
@@ -104,8 +106,11 @@ func get_input():
 		if Input.is_action_just_pressed("ui_accept"):
 			_state = States.INTERACTING
 			print(self.name, " requested dialog box: ", dialog_box_title)
+			var _err = connect("started_chatting", global.player, "_on_NPC_started_chatting")
+			if _err: push_warning(_err)
 			emit_signal("dialog_box_requested", dialog_box_title, dialog_text_array, self)
-
+			emit_signal("started_chatting")
+			disconnect("started_chatting", global.player, "_on_NPC_started_chatting")
 
 func get_vector_toward_goal(_delta):
 	# use the nav mesh on the level to get there.
@@ -145,5 +150,8 @@ func _on_DialogRange_body_exited(body):
 func _on_DialogBox_completed(_title):
 	# pick a new goal.
 	_state = States.IDLE
-	
+	var _err = connect("stopped_chatting", global.player, "_on_NPC_stopped_chatting")
+	if _err: push_warning(_err)
+	emit_signal("stopped_chatting")
+	disconnect("stopped_chatting", global.player, "_on_NPC_stopped_chatting")
 	
