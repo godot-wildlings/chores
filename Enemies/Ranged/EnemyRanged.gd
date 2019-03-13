@@ -49,7 +49,7 @@ start attacking (timer based cooldown)
 
 func _ready():
 	if health == null:
-		health = max_health
+		self.health = max_health
 	if health < 0:
 		_die()
 		
@@ -197,7 +197,7 @@ func _die():
 func _on_hit(damage): # signal from BigArrow.tscn
 	if has_node("HitNoise"):
 		$HitNoise.play()
-	health -= damage
+	self.health -= damage
 	if health < 0:
 		_die()
 

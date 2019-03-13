@@ -65,7 +65,9 @@ radius = 39.3588
 [sub_resource type="CircleShape2D" id=4]
 radius = 243.719
 
-[node name="Baphomet" type="KinematicBody2D"]
+[node name="Baphomet" type="KinematicBody2D" groups=[
+"enemies",
+]]
 collision_layer = 128
 collision_mask = 9
 script = ExtResource( 1 )
