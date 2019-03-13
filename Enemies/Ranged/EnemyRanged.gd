@@ -1,3 +1,12 @@
+"""
+Ranged Enemy
+
+Requires:
+	- Hitbox Area2D
+	- AttackTimer Timer
+	- AttackRadius Area2D
+"""
+
 extends KinematicBody2D
 
 signal health_changed
@@ -42,17 +51,23 @@ func _ready():
 	if health < 0:
 		die()
 		
-	$Label.text = "Health: " + str(health)
+	
+	if has_node("Label"):
+		$Label.text = "Health: " + str(health)
 	_initial_modulate = modulate
+
+	
 	_attack_timer.wait_time = attack_pause_time
 	#warning-ignore:return_value_discarded
 	_attack_timer.connect("timeout", self, "_on_AttackTimer_timeout")
 	#warning-ignore:return_value_discarded
 	connect("health_changed", self, "_on_health_change")
 	#warning-ignore:return_value_discarded
-	$AttackRadius.connect("body_entered", self, "_on_AttackRadius_body_entered")
-	#warning-ignore:return_value_discarded
-	$AttackRadius.connect("body_exited", self, "_on_AttackRadius_body_exited")
+	
+	if has_node("AttackRadius"):
+		$AttackRadius.connect("body_entered", self, "_on_AttackRadius_body_entered")
+		#warning-ignore:return_value_discarded
+		$AttackRadius.connect("body_exited", self, "_on_AttackRadius_body_exited")
 
 #warning-ignore:unused_argument
 func _physics_process(delta : float):
