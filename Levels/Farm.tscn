@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://BGMusic/Title_Screen_draft.ogg" type="AudioStream" id=2]
@@ -11,12 +11,13 @@
 [ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=9]
 [ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=10]
 [ext_resource path="res://Levels/Scenery/pond.png" type="Texture" id=11]
-[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=12]
-[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=13]
-[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=14]
-[ext_resource path="res://NPCs/grandad.png" type="Texture" id=15]
-[ext_resource path="res://NPCs/grandma.png" type="Texture" id=16]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Levels/Scenery/SheepHerdingZone.tscn" type="PackedScene" id=12]
+[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=13]
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=14]
+[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=15]
+[ext_resource path="res://NPCs/grandad.png" type="Texture" id=16]
+[ext_resource path="res://NPCs/grandma.png" type="Texture" id=17]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50.3812, 657.9 )
@@ -132,7 +133,6 @@ position = Vector2( 155.646, 1139.33 )
 polygon = PoolVector2Array( -4094.7, 49.7904, -3720.7, 72.1816, -3535.69, 55.3626, -3178.29, 93.2054, -3014.3, 84.7958, -2740.99, 21.7248, -2413.02, -41.3464, -2257.45, -20.3227, -2156.53, -11.9131, -2009.37, -66.5748, -1706.63, -7.70844, -1420.71, 59.5674, -958.184, 89.0005, -728.207, 73.1266, -462.572, 95.8952, -193.143, 65.537, 0.390625, -67.2802, 250.846, -17.9481, 558.223, 65.537, 1006.01, 80.7161, 1465.17, 99.69, 1748.16, 62.4053, 2019.86, -57.1431, 2220.92, -40.8411, 2514.36, 51.5373, 2954.51, 84.1413, 3459.88, 100.443, 3818.52, 35.2352, 4035.88, -19.105, 4236.94, -29.9731, 4285.85, -247.334, -4280.48, -184.819, -4345.18, 26.1012 )
 
 [node name="InvisWallBottom" type="StaticBody2D" parent="InvisWalls"]
-editor/display_folded = true
 position = Vector2( 4195.3, 1592.05 )
 collision_layer = 2
 
@@ -153,7 +153,6 @@ scale = Vector2( 0.5, 0.5 )
 navpoly = SubResource( 3 )
 
 [node name="Scenery" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="House1" type="StaticBody2D" parent="Scenery"]
 editor/display_folded = true
@@ -197,32 +196,36 @@ texture = ExtResource( 11 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Scenery/Pond"]
 polygon = PoolVector2Array( 2782.84, 1058.36, 2700.82, 1158.84, 2411.7, 1148.59, 2237.4, 1162.94, 1954.42, 1091.17, 2145.12, 1019.4, 2409.65, 1011.2 )
 
+[node name="SheepHerdingZone" parent="Scenery" instance=ExtResource( 12 )]
+position = Vector2( 1688, 1068 )
+scale = Vector2( 0.25, 0.25 )
+
 [node name="Animals" type="Node2D" parent="."]
 
 [node name="FlockOfSheep" type="Node2D" parent="Animals"]
 position = Vector2( 3314.19, 1061.24 )
 
-[node name="Sheep1" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+[node name="Sheep1" parent="Animals/FlockOfSheep" instance=ExtResource( 13 )]
 position = Vector2( -55.6429, 13.9824 )
 
-[node name="Sheep2" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+[node name="Sheep2" parent="Animals/FlockOfSheep" instance=ExtResource( 13 )]
 position = Vector2( 12.5912, 59.6041 )
 
-[node name="Sheep3" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+[node name="Sheep3" parent="Animals/FlockOfSheep" instance=ExtResource( 13 )]
 position = Vector2( 73.0205, 13.2827 )
 
-[node name="Sheep4" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+[node name="Sheep4" parent="Animals/FlockOfSheep" instance=ExtResource( 13 )]
 position = Vector2( 48.1079, -34.4292 )
 
-[node name="Sheep5" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+[node name="Sheep5" parent="Animals/FlockOfSheep" instance=ExtResource( 13 )]
 position = Vector2( -38.5677, -40.617 )
 
-[node name="Sheep6" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+[node name="Sheep6" parent="Animals/FlockOfSheep" instance=ExtResource( 13 )]
 position = Vector2( -55.2526, 84.0745 )
 
 [node name="NPCs" type="Node2D" parent="."]
 
-[node name="UncleAnton" parent="NPCs" instance=ExtResource( 13 )]
+[node name="UncleAnton" parent="NPCs" instance=ExtResource( 14 )]
 editor/display_folded = true
 position = Vector2( 507.779, 1026.21 )
 collision_layer = 4
@@ -232,11 +235,10 @@ The Chaos Wastes are expanding. It's time you learned to fight.  Use that bow I 
 
 [node name="Sprite" parent="NPCs/UncleAnton" index="0"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 flip_h = true
 
-[node name="Grandpa" parent="NPCs" instance=ExtResource( 13 )]
-editor/display_folded = true
+[node name="Grandpa" parent="NPCs" instance=ExtResource( 14 )]
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 1101.55, 975.883 )
 collision_layer = 4
@@ -248,9 +250,9 @@ I do have a chore for you. The sheep are away. Please herd them back to the farm
 
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
 scale = Vector2( 0.66, 0.66 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
-[node name="Agneth" parent="NPCs" instance=ExtResource( 13 )]
+[node name="Agneth" parent="NPCs" instance=ExtResource( 14 )]
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 3887.5, 1127.67 )
 collision_layer = 4
@@ -262,9 +264,9 @@ Be safe!" ]
 
 [node name="Sprite" parent="NPCs/Agneth" index="0"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
-[node name="Player" parent="." instance=ExtResource( 17 )]
+[node name="Player" parent="." instance=ExtResource( 18 )]
 position = Vector2( 674.389, 1049.88 )
 is_demon = false
 
