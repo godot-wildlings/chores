@@ -155,7 +155,7 @@ shape = SubResource( 4 )
 
 [node name="Portal" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2863.97, 885.655 )
-level_path = "res://Levels/Caves.tscn"
+path_to_exit_scene = "res://Levels/NightCaves.tscn"
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 editor/display_folded = true

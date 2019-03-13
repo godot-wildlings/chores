@@ -141,8 +141,8 @@ position = Vector2( -46.749, 1064.6 )
 shape = SubResource( 2 )
 
 [node name="Portal" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2863.97, 885.655 )
-level_path = "res://Levels/Caves.tscn"
+position = Vector2( 4046.73, 944.235 )
+path_to_exit_scene = "res://Levels/Caves.tscn"
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 editor/display_folded = true
@@ -199,25 +199,26 @@ polygon = PoolVector2Array( 2782.84, 1058.36, 2700.82, 1158.84, 2411.7, 1148.59,
 
 [node name="Animals" type="Node2D" parent="."]
 
-[node name="Sheep2" type="Node2D" parent="Animals"]
+[node name="FlockOfSheep" type="Node2D" parent="Animals"]
+position = Vector2( 3314.19, 1061.24 )
 
-[node name="Sheep" parent="Animals/Sheep2" instance=ExtResource( 12 )]
-position = Vector2( 800.321, 1103.15 )
+[node name="Sheep1" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+position = Vector2( -55.6429, 13.9824 )
 
-[node name="Sheep2" parent="Animals/Sheep2" instance=ExtResource( 12 )]
-position = Vector2( 797.004, 1037.47 )
+[node name="Sheep2" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+position = Vector2( 12.5912, 59.6041 )
 
-[node name="Sheep3" parent="Animals/Sheep2" instance=ExtResource( 12 )]
-position = Vector2( 899.834, 1081.25 )
+[node name="Sheep3" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+position = Vector2( 73.0205, 13.2827 )
 
-[node name="Sheep4" parent="Animals/Sheep2" instance=ExtResource( 12 )]
-position = Vector2( 912.022, 1142.19 )
+[node name="Sheep4" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+position = Vector2( 48.1079, -34.4292 )
 
-[node name="Sheep5" parent="Animals/Sheep2" instance=ExtResource( 12 )]
-position = Vector2( 880.997, 1011.45 )
+[node name="Sheep5" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+position = Vector2( -38.5677, -40.617 )
 
-[node name="Sheep6" parent="Animals/Sheep2" instance=ExtResource( 12 )]
-position = Vector2( 972.964, 1051.34 )
+[node name="Sheep6" parent="Animals/FlockOfSheep" instance=ExtResource( 12 )]
+position = Vector2( -55.2526, 84.0745 )
 
 [node name="NPCs" type="Node2D" parent="."]
 
@@ -227,7 +228,7 @@ position = Vector2( 507.779, 1026.21 )
 collision_layer = 4
 dialog_text_array = [ "Hello Friedrich,
 
-The Chaos Wastes are expanding. It's time you learned to fight. Take my bow." ]
+The Chaos Wastes are expanding. It's time you learned to fight.  Use that bow I gave you earlier." ]
 
 [node name="Sprite" parent="NPCs/UncleAnton" index="0"]
 scale = Vector2( 0.5, 0.5 )
@@ -243,7 +244,7 @@ home = "House2"
 reward_item_name = "Rod"
 dialog_text_array = [ "Hello Friedrich,
 
-The trout are jumping. I don't think there's anything urgent today. You go play. But stay away from those caves! If I have trouble with the sheep, I'll let you know." ]
+I do have a chore for you. The sheep are away. Please herd them back to the farm. After that, you go play, but stay away from those caves!" ]
 
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
 scale = Vector2( 0.66, 0.66 )
@@ -251,7 +252,7 @@ texture = ExtResource( 15 )
 
 [node name="Agneth" parent="NPCs" instance=ExtResource( 13 )]
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
-position = Vector2( 2377, 1162 )
+position = Vector2( 3887.5, 1127.67 )
 collision_layer = 4
 home = "House2"
 reward_item_name = "Rod"
@@ -265,6 +266,7 @@ texture = ExtResource( 16 )
 
 [node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 674.389, 1049.88 )
+is_demon = false
 
 
 [editable path="NPCs/UncleAnton"]

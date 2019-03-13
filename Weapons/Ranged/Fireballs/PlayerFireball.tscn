@@ -1,27 +1,27 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Projectiles/RangedProjectile.gd" type="Script" id=1]
-[ext_resource path="res://Projectiles/Arrow/BigArrow.png" type="Texture" id=2]
-[ext_resource path="res://Effects/pluck.wav" type="AudioStream" id=3]
-[ext_resource path="res://Effects/WoodCrack.wav" type="AudioStream" id=4]
+[ext_resource path="res://Projectiles/Fireball/fireball.png" type="Texture" id=2]
+[ext_resource path="res://Effects/fwoosh.wav" type="AudioStream" id=3]
+[ext_resource path="res://Effects/fwoosh2.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 36.8816, 3.3884 )
+extents = Vector2( 9.66629, 7.99404 )
 
-[node name="Arrow" type="Area2D" groups=[
+[node name="PlayerFireball" type="Area2D" groups=[
 "projectiles",
 ]]
 collision_layer = 8
-collision_mask = 18
+collision_mask = 158
 script = ExtResource( 1 )
+damage = 25
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.246525, 0.0801392 )
-scale = Vector2( 0.433, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -9.94405, -0.209351 )
+position = Vector2( -0.104675, -4.23193e-006 )
 shape = SubResource( 1 )
 
 [node name="DurationTimer" type="Timer" parent="."]

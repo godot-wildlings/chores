@@ -1,0 +1,184 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Enemies/Ranged/EnemyRanged.gd" type="Script" id=1]
+[ext_resource path="res://Projectiles/Fireball/Fireball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Boss/goat.png" type="Texture" id=3]
+[ext_resource path="res://Effects/HAHAHA.wav" type="AudioStream" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 53.7125
+
+[sub_resource type="Animation" id=2]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeadParts/LowerJaw:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2.84398, 72.8059 ), Vector2( 3.59868, 63.3721 ), Vector2( 2.84398, 72.8059 ), Vector2( 0.57988, 79.9755 ), Vector2( 9.63629, 76.3907 ), Vector2( 2.84398, 72.8059 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Aura/Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.211765 ), Color( 1, 1, 1, 0.501961 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HeadParts/Head/LeftEar:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HeadParts/Head/RightEar:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, 0.0 ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 39.3588
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 243.719
+
+[node name="Baphomet" type="KinematicBody2D"]
+collision_layer = 128
+collision_mask = 9
+script = ExtResource( 1 )
+health = 300.0
+projectile_tscn = ExtResource( 2 )
+on_hit_dmg = 25.0
+max_health = 300.0
+attack_pause_time = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.50941, 15.094 )
+shape = SubResource( 1 )
+
+[node name="Aura" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Aura"]
+self_modulate = Color( 1, 1, 1, 0.324143 )
+position = Vector2( 0.0836182, 15.3633 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 278, -1, 150, 133 )
+
+[node name="HeadParts" type="Node2D" parent="."]
+
+[node name="Head" type="Sprite" parent="HeadParts"]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( -7, -4, 131, 115 )
+
+[node name="RightEar" type="Sprite" parent="HeadParts/Head"]
+show_behind_parent = true
+position = Vector2( -23.0212, -0.930645 )
+rotation = 0.0381947
+texture = ExtResource( 3 )
+offset = Vector2( -13.8665, 2.50406 )
+region_enabled = true
+region_rect = Rect2( 123.612, 1.951, 46, 35 )
+
+[node name="LeftEar" type="Sprite" parent="HeadParts/Head"]
+show_behind_parent = true
+position = Vector2( 24.1811, -6.35017 )
+rotation = -0.0334203
+texture = ExtResource( 3 )
+offset = Vector2( 9.99815, -3.87406 )
+region_enabled = true
+region_rect = Rect2( 178.306, 4.4755, 31, 33 )
+
+[node name="TopTeeth" type="Sprite" parent="HeadParts/Head"]
+position = Vector2( 2.27518, 46.0725 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 226, 48, 48, 21 )
+
+[node name="LeftGooglyEye" type="Sprite" parent="HeadParts/Head"]
+self_modulate = Color( 0.752941, 0.0823529, 0.0823529, 1 )
+position = Vector2( 21.5301, 2.29478 )
+texture = ExtResource( 3 )
+offset = Vector2( -0.500618, -0.0300598 )
+region_enabled = true
+region_rect = Rect2( 183.612, 37.951, 38, 27 )
+
+[node name="RightGooglyEye" type="Sprite" parent="HeadParts/Head"]
+self_modulate = Color( 0.721569, 0.0901961, 0.0901961, 1 )
+position = Vector2( -15.5295, 4.85297 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 127.612, 36.951, 40, 30 )
+
+[node name="LowerJaw" type="Sprite" parent="HeadParts"]
+position = Vector2( 3.57462, 63.6728 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 160.432, 79.815, 31.875, 37 )
+
+[node name="BottomTeeth" type="Sprite" parent="HeadParts/LowerJaw"]
+position = Vector2( -0.568787, -10.8071 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 236.5, 73.409, 27.5, 13.5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/idle = SubResource( 2 )
+
+[node name="Flames" type="Sprite" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = -22.5869
+margin_top = -72.894
+margin_right = 17.4131
+margin_bottom = -58.894
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0.513336, 13.3468 )
+shape = SubResource( 3 )
+
+[node name="AttackRadius" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -9.0
+autoplay = true
+max_distance = 10000.0
+

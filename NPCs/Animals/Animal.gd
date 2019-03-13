@@ -16,8 +16,8 @@ var direction : float = 0
 var base_scale : Vector2 = Vector2(0.5, 0.5)
 var Ticks : int = 0
 var fear_of_player : float = 3.0
-var fear_range : float = 100.0
-var health : int = 30
+var fear_range : float = 400.0
+export var health : int = 3
 
 func _ready():
 	$DeadBody.hide()
@@ -25,10 +25,14 @@ func _ready():
 	
 	get_random_color()
 	get_random_size()
-	set_random_behaviour_state()
+	
+	if health > 0:
+		set_random_behaviour_state()
+	else:
+		die()
 
 func set_random_behaviour_state():
-	if randf() < 0.5:
+	if randf() < 0.95:
 		_state = States.FLOCKING
 	else:
 		_state = States.GRAZING
@@ -36,7 +40,7 @@ func set_random_behaviour_state():
 
 func flock():
 	velocity = Vector2.ZERO
-	velocity += get_random_direction_vector() * 2
+	velocity += get_random_direction_vector()
 	velocity += get_vector_toward_flock()
 	velocity += get_vector_away_from_neighbours()
 	velocity += get_vector_away_from_player() * fear_of_player # overweight this one. It's important
@@ -52,7 +56,7 @@ func flock():
 
 		
 func graze(_delta):
-	$AnimationPlayer.stop()
+	$AnimationPlayer.play("graze")
 		
 
 
@@ -73,7 +77,7 @@ func get_vector_away_from_player():
 		var playerPos = global.player.get_global_position()
 		if myPos.distance_squared_to(playerPos) < fear_range * fear_range:
 			avoid_vector = (myPos - playerPos).normalized()
-		return avoid_vector
+	return avoid_vector
 		
 	
 
@@ -106,7 +110,7 @@ func get_vector_away_from_neighbours() -> Vector2:
 	return avoid_vector
 			
 func get_random_speed():
-	return rand_range(50, 150.0)
+	return rand_range(200, 250.0)
 
 
 			
@@ -165,26 +169,28 @@ func _on_NoiseTimer_timeout():
 		$NoiseTimer.start()
 				
 
+func disable_hitboxes():
+	$CollisionShape2D.call_deferred("set_disabled", true)
+	$HitBox/CollisionShape2D.call_deferred("set_disabled", true)
+	
+
 func die():
 	# spawn a blood splotch and a dead sheep sprite
 	_state = States.DEAD
+	disable_hitboxes()
 	$DeadBody.show()
 	$BodyParts.hide()
 	$AnimationPlayer.stop()
 	$BehaviourChangeTimer.stop()
 	$NoiseTimer.stop()
 
-func _on_HitBox_body_entered(body):
-	if body.name.find("Sheep") > -1:
-		return
+	
 		
-	if body.name.find("Arrow") > -1:
-		health -= 10
-		if health <= 0:
-			die()
-		else:
-			bleet()
-			fear_of_player = 30.0
-			fear_range = 300.0
-			
-		
+func _on_hit(damage): # signal from arrow
+	health -= damage
+	if health <= 0:
+		die()
+	else:
+		bleet()
+		fear_of_player = 30.0
+		fear_range = 600.0
