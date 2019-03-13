@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal health_changed
+signal died(dead_node)
 
 onready var _player : KinematicBody2D = global.player
 export var health : float = 3 setget _set_health
@@ -84,8 +85,16 @@ func die():
 	# queue_free after a timer, if desired
 	disable_hitboxes()
 	$Sprite.hide()
-	$DeadBody.show()
-	$DeadBody/CorpseDuration.start() # disappear later
+	if has_node("DeadBody"):
+		$DeadBody.show()
+		$DeadBody/CorpseDuration.start() # disappear later
+
+	var _err = connect("died", global.current_level, "_on_enemy_died")
+	if _err : push_warning(_err)
+	emit_signal("died", self) # so the level can move our corpse to the back
+	disconnect("died", global.current_level, "_on_enemy_died")
+
+
 	_state = States.DEAD
 
 func _update_animation(motion : Vector2):

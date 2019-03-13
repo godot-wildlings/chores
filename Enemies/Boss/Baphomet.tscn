@@ -22,33 +22,68 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 2.84398, 72.8059 ), Vector2( 3.59868, 63.3721 ), Vector2( 2.84398, 72.8059 ), Vector2( 0.57988, 79.9755 ), Vector2( 9.63629, 76.3907 ), Vector2( 2.84398, 72.8059 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Aura/Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.211765 ), Color( 1, 1, 1, 0.501961 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HeadParts/Head/LeftEar:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HeadParts/Head/RightEar:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, 0.0 ]
+}
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 39.3588
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 640.816
+radius = 243.719
 
 [node name="Baphomet" type="KinematicBody2D"]
-collision_layer = 16
+collision_layer = 128
 collision_mask = 9
 script = ExtResource( 1 )
+debug = true
 health = 300.0
 projectile_tscn = ExtResource( 2 )
-speed = 500.0
 on_hit_dmg = 25.0
 max_health = 300.0
 attack_pause_time = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -1.50941, 15.094 )
 shape = SubResource( 1 )
 
 [node name="Aura" type="Node2D" parent="."]
 
-[node name="Sprite2" type="Sprite" parent="Aura"]
-self_modulate = Color( 1, 1, 1, 0.501961 )
+[node name="Sprite" type="Sprite" parent="Aura"]
+self_modulate = Color( 1, 1, 1, 0.324143 )
 position = Vector2( 0.0836182, 15.3633 )
 texture = ExtResource( 3 )
 region_enabled = true
@@ -64,6 +99,7 @@ region_rect = Rect2( -7, -4, 131, 115 )
 [node name="RightEar" type="Sprite" parent="HeadParts/Head"]
 show_behind_parent = true
 position = Vector2( -23.0212, -0.930645 )
+rotation = 0.0381947
 texture = ExtResource( 3 )
 offset = Vector2( -13.8665, 2.50406 )
 region_enabled = true
@@ -72,6 +108,7 @@ region_rect = Rect2( 123.612, 1.951, 46, 35 )
 [node name="LeftEar" type="Sprite" parent="HeadParts/Head"]
 show_behind_parent = true
 position = Vector2( 24.1811, -6.35017 )
+rotation = -0.0334203
 texture = ExtResource( 3 )
 offset = Vector2( 9.99815, -3.87406 )
 region_enabled = true
@@ -99,7 +136,7 @@ region_enabled = true
 region_rect = Rect2( 127.612, 36.951, 40, 30 )
 
 [node name="LowerJaw" type="Sprite" parent="HeadParts"]
-position = Vector2( 2.47876, 73.9624 )
+position = Vector2( 3.57462, 63.6728 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 160.432, 79.815, 31.875, 37 )
@@ -127,7 +164,6 @@ margin_right = 17.4131
 margin_bottom = -58.894
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 9
 
@@ -136,7 +172,6 @@ position = Vector2( 0.513336, 13.3468 )
 shape = SubResource( 3 )
 
 [node name="AttackRadius" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
@@ -146,4 +181,5 @@ shape = SubResource( 4 )
 stream = ExtResource( 4 )
 volume_db = -9.0
 autoplay = true
+max_distance = 10000.0
 

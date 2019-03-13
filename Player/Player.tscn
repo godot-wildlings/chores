@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/char_idle_exp.png" type="Texture" id=2]
-[ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=3]
-[ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Weapons/Ranged/Fireballs/FireCaster.tscn" type="PackedScene" id=5]
-[ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=6]
-[ext_resource path="res://Player/player_holding_bow.anim" type="Animation" id=7]
-[ext_resource path="res://Player/player_idle.anim" type="Animation" id=8]
-[ext_resource path="res://Player/player_run.anim" type="Animation" id=9]
-[ext_resource path="res://Player/player_walk.anim" type="Animation" id=10]
-[ext_resource path="res://Player/MonsterParts.png" type="Texture" id=11]
+[ext_resource path="res://GUI/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=4]
+[ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Weapons/Ranged/Fireballs/FireCaster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=7]
+[ext_resource path="res://Player/player_holding_bow.anim" type="Animation" id=8]
+[ext_resource path="res://Player/player_idle.anim" type="Animation" id=9]
+[ext_resource path="res://Player/player_run.anim" type="Animation" id=10]
+[ext_resource path="res://Player/player_walk.anim" type="Animation" id=11]
+[ext_resource path="res://Player/MonsterParts.png" type="Texture" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -290,19 +291,20 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.8, 0.8 )
+script = ExtResource( 3 )
 
 [node name="WeaponSlots" type="Node2D" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Melee" type="Node2D" parent="WeaponSlots"]
 
 [node name="Ranged" type="Node2D" parent="WeaponSlots"]
 visible = false
 
-[node name="Bow" parent="WeaponSlots/Ranged" instance=ExtResource( 4 )]
+[node name="Bow" parent="WeaponSlots/Ranged" instance=ExtResource( 5 )]
 position = Vector2( 10, -3 )
 
-[node name="FireCaster" parent="WeaponSlots/Ranged" instance=ExtResource( 5 )]
+[node name="FireCaster" parent="WeaponSlots/Ranged" instance=ExtResource( 6 )]
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
@@ -316,17 +318,17 @@ margin_left = -27.824
 margin_top = -67.9423
 margin_right = 26.176
 margin_bottom = -47.9423
-theme = ExtResource( 6 )
+theme = ExtResource( 7 )
 text = "Health: 3"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "demon_walk"
 anims/demon_idle = SubResource( 3 )
 anims/demon_walk = SubResource( 4 )
-anims/player_holding_bow = ExtResource( 7 )
-anims/player_idle = ExtResource( 8 )
-anims/player_run = ExtResource( 9 )
-anims/player_walk = ExtResource( 10 )
+anims/player_holding_bow = ExtResource( 8 )
+anims/player_idle = ExtResource( 9 )
+anims/player_run = ExtResource( 10 )
+anims/player_walk = ExtResource( 11 )
 
 [node name="DemonForm" type="Node2D" parent="."]
 position = Vector2( -0.614716, -15.6752 )
@@ -343,7 +345,7 @@ shape = SubResource( 5 )
 show_behind_parent = true
 position = Vector2( 1.80036, 3.1453 )
 rotation = 0.20944
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( 4.50791, 10.2452 )
 region_enabled = true
 region_rect = Rect2( 117.93, 3.571, 12.625, 27.75 )
@@ -352,7 +354,7 @@ region_rect = Rect2( 117.93, 3.571, 12.625, 27.75 )
 show_behind_parent = true
 position = Vector2( -2.93194, 4.1161 )
 rotation = -0.21053
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( -3.68829, 10.86 )
 region_enabled = true
 region_rect = Rect2( 96.75, 2.696, 11.5, 29.125 )
@@ -360,7 +362,7 @@ region_rect = Rect2( 96.75, 2.696, 11.5, 29.125 )
 [node name="Body" type="Sprite" parent="DemonForm"]
 position = Vector2( -1.47244, 2.04868 )
 rotation = 0.488692
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( 0.248688, -6.21887 )
 region_enabled = true
 region_rect = Rect2( 73.5, 2.946, 14.25, 38.25 )
@@ -369,7 +371,7 @@ region_rect = Rect2( 73.5, 2.946, 14.25, 38.25 )
 show_behind_parent = true
 position = Vector2( 5.07885, -15.5011 )
 rotation = 0.0368701
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( 3.73208, 9.14901 )
 region_enabled = true
 region_rect = Rect2( 54.5, 4.142, 10.25, 26.25 )
@@ -377,7 +379,7 @@ region_rect = Rect2( 54.5, 4.142, 10.25, 26.25 )
 [node name="LoinCloth" type="Sprite" parent="DemonForm/Body"]
 position = Vector2( 1.34752, 1.91023 )
 rotation = -0.503426
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( -0.041482, 5.09855 )
 region_enabled = true
 region_rect = Rect2( 9.52813, 24.071, 13.75, 16.375 )
@@ -385,7 +387,7 @@ region_rect = Rect2( 9.52813, 24.071, 13.75, 16.375 )
 [node name="ArmRight" type="Sprite" parent="DemonForm/Body"]
 position = Vector2( -5.16641, -15.9109 )
 rotation = -0.598866
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( -3.0298, 12.0177 )
 region_enabled = true
 region_rect = Rect2( 34.625, 1.571, 12.25, 33.875 )
@@ -393,7 +395,7 @@ region_rect = Rect2( 34.625, 1.571, 12.25, 33.875 )
 [node name="Head" type="Sprite" parent="DemonForm/Body"]
 position = Vector2( 5.03407, -18.0316 )
 rotation = -0.561996
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( -2.00527, -3.76002 )
 region_enabled = true
 region_rect = Rect2( 2.125, 2.95762, 24, 17.875 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/Themes/Fonts/Dancing_Script/DancingScript-32.tres" type="DynamicFont" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://GUI/DifficultyButton.gd" type="Script" id=6]
 [ext_resource path="res://GUI/illustrations/800px-Tap_(démon).png" type="Texture" id=7]
 [ext_resource path="res://GUI/QuitButton.gd" type="Script" id=8]
-[ext_resource path="res://GUI/JumpToLevel.gd" type="Script" id=9]
+[ext_resource path="res://GUI/Themes/Fonts/droid-sans/droid_sans.tres" type="DynamicFont" id=9]
+[ext_resource path="res://GUI/JumpToLevel.gd" type="Script" id=10]
 
 [node name="PauseMenu" type="PanelContainer"]
 pause_mode = 2
@@ -31,6 +32,7 @@ size_flags_vertical = 3
 tab_align = 0
 
 [node name="Instructions" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -366,7 +368,6 @@ Inspirations: ...
 "
 
 [node name="Cheat" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -393,13 +394,37 @@ margin_bottom = 26.0
 margin_right = 454.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 9 )
 
 [node name="JumpToLevel" type="Button" parent="TabContainer/Cheat/MarginContainer/VBoxContainer/HSplitContainer"]
 margin_left = 466.0
 margin_right = 560.0
 margin_bottom = 26.0
 text = "Jump To Level"
-script = ExtResource( 9 )
+script = ExtResource( 10 )
+
+[node name="CenterContainer" type="MarginContainer" parent="TabContainer/Cheat/MarginContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 560.0
+margin_bottom = 321.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 30
+custom_constants/margin_top = 30
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Cheat/MarginContainer/VBoxContainer/CenterContainer"]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 530.0
+margin_bottom = 261.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 9 )
+text = "ctrl-shift-t to Transform
+ctrl-shift-b to spawn Baphomet
+"
 
 [connection signal="toggled" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Fullscreen/FullscreenCheckbox" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Fullscreen/FullscreenCheckbox" method="_on_FullscreenCheckbox_toggled"]
 [connection signal="item_selected" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Resolution/ResolutionList" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Resolution/ResolutionList" method="_on_ResolutionList_item_selected"]

@@ -11,10 +11,12 @@ extends KinematicBody2D
 
 signal health_changed
 signal shoot(projectile_scene, pos, rot, vel)
+signal died(deadNode)
 
 enum States { ALIVE, DEAD }
 var _state = States.ALIVE
 
+export var debug : bool = false
 export var health : float = 3 setget _set_health
 #onready var projectile_container : Node2D = util.get_main_node().get_node("ProjectileContainer")
 onready var _player : KinematicBody2D = global.player
@@ -49,7 +51,7 @@ func _ready():
 	if health == null:
 		health = max_health
 	if health < 0:
-		die()
+		_die()
 		
 	
 	if has_node("Label"):
@@ -69,6 +71,10 @@ func _ready():
 		#warning-ignore:return_value_discarded
 		$AttackRadius.connect("body_exited", self, "_on_AttackRadius_body_exited")
 
+func _process(delta):
+	if debug:
+		update()
+
 #warning-ignore:unused_argument
 func _physics_process(delta : float):
 
@@ -77,15 +83,24 @@ func _physics_process(delta : float):
 		if not _is_in_attack_range:
 			_movement_loop()
 			if _move_timer > 0:
-				_move_timer -= 1
+				_move_timer -= 1 # frames
 			if _move_timer == 0 || is_on_wall():
-				_move_dir = _player.position - position
+				_move_dir = _player.get_global_position() - get_global_position()
 				_move_timer = _move_timer_length
 		else:
 			if _can_attack:
 				_attack()
 				_can_attack = false
 				_attack_timer.start()
+	
+
+func _draw():
+	# figure out where you're trying to go
+	var myPos = get_global_position()
+	var targetPos = myPos + _move_dir
+	print(self.name, " _move_dir == ", _move_dir )
+	draw_line( to_local(myPos), to_local(targetPos), Color.blue, 3.0, true )
+
 		
 func _movement_loop():
 	
@@ -112,7 +127,7 @@ func _damage_loop():
 			if body.is_in_group("projectiles"):
 				if _hitstun == 0 and body.damage != 0:
 					self.health -= body.damage
-					_hitstun = 10
+					_hitstun = 10 # frames
 					_knock_dir = get_global_transform().origin - body.get_global_transform().origin 
 					body.queue_free()
 
@@ -128,7 +143,10 @@ func _attack():
 		var player_pos = global.player.get_global_position()
 		var _err = connect("shoot", global.current_level, "_on_projectile_requested")
 		if _err: push_warning(_err)
-		emit_signal("shoot", projectile_tscn, my_pos, Vector2(1,0).angle_to(player_pos - my_pos), motion)
+		#var initial_vel = motion
+		var initial_vel = Vector2.ZERO # testing
+		emit_signal("shoot", projectile_tscn, my_pos, Vector2.RIGHT.angle_to(player_pos - my_pos), initial_vel)
+		
 		disconnect("shoot", global.current_level, "_on_projectile_requested")
 
 func _on_level_initialized():
@@ -158,12 +176,16 @@ func disable_hitboxes():
 	$Hitbox/CollisionShape2D.call_deferred("set_disabled", true)
 
 
-func die():
+func _die():
 	# spawn corpse and bloodstain
 	# queue_free after a timer, if desired
 	disable_hitboxes()
 	$Sprite.hide()
-	
+	var _err = connect("died", global.current_level, "_on_enemy_died")
+	if _err : push_warning(_err)
+	emit_signal("died", self) # so the level can move our corpse to the back
+	disconnect("died", global.current_level, "_on_enemy_died")
+
 	if has_node("DeadBody"):
 		$DeadBody.show()
 		if $DeadBody.has_node("CorposeDuration"):
@@ -175,7 +197,7 @@ func _on_hit(damage): # signal from BigArrow.tscn
 		$HitNoise.play()
 	health -= damage
 	if health < 0:
-		die()
+		_die()
 
 
 func _on_CorpseDuration_timeout():

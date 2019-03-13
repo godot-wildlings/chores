@@ -12,7 +12,7 @@ extents = Vector2( 9.66629, 7.99404 )
 "projectiles",
 ]]
 collision_layer = 8
-collision_mask = 30
+collision_mask = 158
 script = ExtResource( 1 )
 damage = 25
 

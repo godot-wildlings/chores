@@ -136,10 +136,22 @@ func _controls_loop():
 	_move_dir.x = - int(left) + int(right)
 	_move_dir.y = - int(up) + int(down)
 	
+func get_kiting_multiplier() -> float:
+	var myPos = get_global_position()
+	var mousePos = get_global_mouse_position()
+	if _move_dir.dot( (mousePos - myPos).normalized() ) < 0:
+		# info about using dot product for facing found here:
+				# https://docs.godotengine.org/en/latest/tutorials/math/vector_math.html?highlight=vector%20math#facing
+		return 0.75 # kiting. slow down
+	else:
+		return 1.0 # moving toward mouse. full speed ahead
+	
 func _movement_loop(delta):
+	
+	
 	var motion : Vector2
 	if _state == States.RUNNING:
-		motion = _move_dir.normalized() * SPEED * RUN_SPEED_MULTIPLIER
+		motion = _move_dir.normalized() * SPEED * RUN_SPEED_MULTIPLIER * get_kiting_multiplier()
 	elif _state == States.WALKING:
 		motion = _move_dir.normalized() * SPEED
 	if is_demon == false:
