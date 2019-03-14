@@ -28,6 +28,5 @@ immunities = {
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -114.982, 2.50871 )
-max_health = 10.0
 is_demon = false
 
