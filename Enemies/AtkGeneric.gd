@@ -43,7 +43,11 @@ func attack_ranged(attackTarget):
 	emit_signal("projectile_requested", projectile_scene, initial_vel, myPos, rot_deg )
 	attack_ready = false
 	
-	
+	if entity.has_node("AnimationPlayer"):
+		var anim_player = entity.get_node("AnimationPlayer")
+		anim_player.play("enemy_ranged_attack")
+		yield(anim_player, "animation_finished")
+		anim_player.play("enemy_ranged_walk")
 	
 	
 func attack_melee(attackTarget):

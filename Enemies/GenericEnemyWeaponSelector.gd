@@ -29,9 +29,9 @@ func set_default_weapon():
 		enemy_types.RUSH:
 			default_weapon = $Claws
 		enemy_types.KITE:
-			default_weapon = $Fireball
+			default_weapon = $Bullet
 		enemy_types.BLINK:
-			default_weapon = $Fireball
+			default_weapon = $Bullet
 		
 	default_weapon.set_state(default_weapon.States.ENABLED)
 	default_weapon.start(entity, global.player)
