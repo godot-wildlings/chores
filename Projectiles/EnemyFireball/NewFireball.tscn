@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Projectiles/EnemyFireball/EnemyRangedProjectile.gd" type="Script" id=1]
 [ext_resource path="res://Effects/fireSpritesheet.png" type="Texture" id=2]
+[ext_resource path="res://Effects/fwoosh2.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 18.1594
@@ -12,7 +13,7 @@ loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
@@ -41,4 +42,8 @@ autoplay = "burn"
 anims/burn = SubResource( 2 )
 
 [node name="DurationTimer" type="Timer" parent="."]
+
+[node name="fwoosh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
 

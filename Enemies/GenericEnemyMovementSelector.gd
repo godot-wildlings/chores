@@ -17,7 +17,7 @@ The attack script will decide when to attack
 
 extends Node
 
-enum States { INITIALIZING, IDLE, FLEEING, ATTACKING, AVOIDING, DEAD }
+enum States { INITIALIZING, IDLE, FLEEING, AVOIDING, DEAD }
 #warning-ignore:unused_class_variable
 var _state = States.INITIALIZING
 

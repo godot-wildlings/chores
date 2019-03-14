@@ -278,7 +278,7 @@ extents = Vector2( 13.0701, 27.4213 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 86
 script = ExtResource( 1 )
-max_health = 5.0
+max_health = 10.0
 is_demon = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -317,6 +317,7 @@ collision_mask = 48
 shape = SubResource( 2 )
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = -27.824
 margin_top = -67.9423
 margin_right = 26.176
@@ -404,7 +405,8 @@ region_enabled = true
 region_rect = Rect2( 2.125, 2.95762, 24, 17.875 )
 
 [node name="Health" type="Node2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( -1.46303, -12.1919 )
+scale = Vector2( 0.33, 0.33 )
 
 [node name="HealthBar" type="TextureProgress" parent="Health"]
 margin_left = -43.2958

@@ -119,7 +119,7 @@ func set_random_size(base_scale : Vector2, deviation : float):
 	set_scale(base_scale * rand_deviation)
 	
 func set_random_color():
-	var lightness = rand_range(0.3, 1.0)
+	var lightness = rand_range(0.7, 1.0)
 	set_modulate(Color(lightness, lightness, lightness))
 
 func choose_behaviour():

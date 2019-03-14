@@ -43,6 +43,9 @@ func attack_ranged(attackTarget):
 	emit_signal("projectile_requested", projectile_scene, initial_vel, myPos, rot_deg )
 	attack_ready = false
 	
+	
+	
+	
 func attack_melee(attackTarget):
 	if not is_instance_valid(attackTarget):
 		return
@@ -55,7 +58,16 @@ func attack_melee(attackTarget):
 		emit_signal("hit", damage_per_attack)
 		disconnect("hit", attackTarget, "_on_hit")
 	attack_ready = false
-	
+
+	if entity.has_node("AnimationPlayer"):
+		var anim_player = entity.get_node("AnimationPlayer")
+		anim_player.play("enemy_melee_attack")
+		yield(anim_player, "animation_finished")
+		anim_player.play("enemy_melee_walk")
+
+	if has_node("ClawNoise"):
+		$ClawNoise.play()
+
 func set_state(newState):
 	_state = newState
 

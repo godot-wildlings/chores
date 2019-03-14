@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Enemies/GenericEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/EnemyHitbox.gd" type="Script" id=2]
 [ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=3]
 [ext_resource path="res://Enemies/Melee/undead_walk_exp.png" type="Texture" id=4]
-[ext_resource path="res://Enemies/Melee/undead_attack_exp.png" type="Texture" id=5]
-[ext_resource path="res://Effects/hitNoise.wav" type="AudioStream" id=6]
+[ext_resource path="res://Effects/hitNoise.wav" type="AudioStream" id=5]
+[ext_resource path="res://Enemies/Melee/undead_attack_exp.png" type="Texture" id=6]
 [ext_resource path="res://Enemies/Melee/enemy_melee_walk.anim" type="Animation" id=7]
 [ext_resource path="res://Enemies/GenericEnemyMovementSelector.gd" type="Script" id=8]
 [ext_resource path="res://Enemies/MvRush.gd" type="Script" id=9]
@@ -15,16 +15,17 @@
 [ext_resource path="res://Effects/maon1.wav" type="AudioStream" id=13]
 [ext_resource path="res://Enemies/GenericEnemyWeaponSelector.gd" type="Script" id=14]
 [ext_resource path="res://Enemies/AtkGeneric.gd" type="Script" id=15]
-[ext_resource path="res://Projectiles/EnemyFireball/NewFireball.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Enemies/EnemyHealth.gd" type="Script" id=17]
-[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=18]
-[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=19]
+[ext_resource path="res://Effects/WoodCrack.wav" type="AudioStream" id=16]
+[ext_resource path="res://Projectiles/EnemyFireball/NewFireball.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Enemies/EnemyHealth.gd" type="Script" id=18]
+[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=19]
+[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 13.8834, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 34, 34 )
+extents = Vector2( 14.6381, 34 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "enemy_melee_attack"
@@ -38,7 +39,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 5 ) ]
+"values": [ ExtResource( 6 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("LiveBody/Sprite:frame")
@@ -93,14 +94,15 @@ hframes = 4
 [node name="LiveBody" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="LiveBody"]
-texture = ExtResource( 5 )
-hframes = 7
-frame = 1
+texture = ExtResource( 4 )
+hframes = 4
+frame = 3
 
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "enemy_melee_walk"
 anims/enemy_melee_attack = SubResource( 3 )
 anims/enemy_melee_walk = ExtResource( 7 )
 
@@ -129,11 +131,15 @@ script = ExtResource( 14 )
 
 [node name="Claws" type="Node2D" parent="Attacks"]
 script = ExtResource( 15 )
+attack_range = 45
+
+[node name="ClawNoise" type="AudioStreamPlayer2D" parent="Attacks/Claws"]
+stream = ExtResource( 16 )
 
 [node name="Fireball" type="Node2D" parent="Attacks"]
 script = ExtResource( 15 )
 attack_range = 400
-projectile_scene = ExtResource( 16 )
+projectile_scene = ExtResource( 17 )
 attack_type = 1
 
 [node name="Muzzle" type="Position2D" parent="Attacks/Fireball"]
@@ -145,7 +151,7 @@ position = Vector2( 7.92436, -13.2073 )
 one_shot = true
 
 [node name="Health" type="Node2D" parent="."]
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 max_health = 4.0
 health = 4.0
 
@@ -156,8 +162,8 @@ margin_right = 100.604
 margin_bottom = 30.1563
 rect_scale = Vector2( 0.429938, 0.287435 )
 value = 100.0
-texture_under = ExtResource( 18 )
-texture_progress = ExtResource( 19 )
+texture_under = ExtResource( 19 )
+texture_progress = ExtResource( 20 )
 
 [node name="BehaviourTimer" type="Timer" parent="."]
 one_shot = true
