@@ -32,10 +32,10 @@ extents = Vector2( 50.3812, 657.9 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 4494.9, 91.8439 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 157.725, 81.1065 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 103.18, 55.7823 )
 
 [node name="Farm" type="Node2D"]
@@ -47,6 +47,7 @@ volume_db = -12.0
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
 
@@ -167,7 +168,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House1"]
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House1"]
 scale = Vector2( 0.5, 0.5 )
@@ -183,7 +184,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House2"]
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House2"]
 scale = Vector2( 0.5, 0.5 )

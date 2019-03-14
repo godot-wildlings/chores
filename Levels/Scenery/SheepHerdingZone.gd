@@ -21,9 +21,11 @@ func _ready() -> void:
 func start() -> void:
 	var err = connect("dialog_box_requested", global.main_scene, "_on_DialogBox_requested")
 	if err: push_warning(err)
-	total_amount_of_sheep = global.current_level.get_node("Animals/FlockOfSheep").get_child_count()
-	
-
+	if global.current_level:
+		if global.current_level.has_node("Animals"):
+			var animal_container : Node2D = global.current_level.get_node("Animals")
+			if animal_container.has_node("FlockOfSheep"):
+				total_amount_of_sheep = animal_container.get_node("FlockOfSheep").get_child_count()
 
 func express_gratitude():
 	emit_signal("dialog_box_requested", dialog_box_title, dialog_text_array, self)
