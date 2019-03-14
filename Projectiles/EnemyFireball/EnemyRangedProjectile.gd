@@ -2,6 +2,8 @@ extends Area2D
 
 signal hit(weapon_damage)
 
+onready var anim_player : AnimationPlayer = $AnimationPlayer
+
 enum States { FLYING, STUCK }
 var _state = States.FLYING
 
@@ -35,7 +37,10 @@ func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float
 	global_position = bullet_position
 	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
 	var base_velocity = direction.normalized() * speed
-
+	
+	if anim_player.has_animation("shoot"):
+		anim_player.play("shoot")
+	
 	if _state == States.FLYING:
 		velocity = initial_velocity + base_velocity
 		rotation += direction.angle()

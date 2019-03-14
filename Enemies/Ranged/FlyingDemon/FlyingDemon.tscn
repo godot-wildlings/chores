@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Enemies/GenericEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/EnemyHitbox.gd" type="Script" id=2]
@@ -7,23 +7,19 @@
 [ext_resource path="res://Enemies/Ranged/FlyingDemon/demon_exp.png" type="Texture" id=5]
 [ext_resource path="res://Effects/hitNoise.wav" type="AudioStream" id=6]
 [ext_resource path="res://Enemies/Melee/undead_attack_exp.png" type="Texture" id=7]
-[ext_resource path="res://Enemies/Melee/enemy_melee_walk.anim" type="Animation" id=8]
-[ext_resource path="res://Enemies/Ranged/enemy_ranged_attack.anim" type="Animation" id=9]
-[ext_resource path="res://Enemies/Ranged/enemy_ranged_walk.anim" type="Animation" id=10]
-[ext_resource path="res://Enemies/GenericEnemyMovementSelector.gd" type="Script" id=11]
-[ext_resource path="res://Enemies/MvRush.gd" type="Script" id=12]
-[ext_resource path="res://Enemies/MvKite.gd" type="Script" id=13]
-[ext_resource path="res://Enemies/MvBlink.gd" type="Script" id=14]
-[ext_resource path="res://Enemies/Vocalization.gd" type="Script" id=15]
-[ext_resource path="res://Effects/maon1.wav" type="AudioStream" id=16]
-[ext_resource path="res://Enemies/GenericEnemyWeaponSelector.gd" type="Script" id=17]
-[ext_resource path="res://Enemies/AtkGeneric.gd" type="Script" id=18]
-[ext_resource path="res://Effects/WoodCrack.wav" type="AudioStream" id=19]
-[ext_resource path="res://Projectiles/EnemyFireball/NewFireball.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Projectiles/Bullet/Bullet.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Enemies/EnemyHealth.gd" type="Script" id=22]
-[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=23]
-[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=24]
+[ext_resource path="res://Enemies/GenericEnemyMovementSelector.gd" type="Script" id=8]
+[ext_resource path="res://Enemies/MvRush.gd" type="Script" id=9]
+[ext_resource path="res://Enemies/MvKite.gd" type="Script" id=10]
+[ext_resource path="res://Enemies/MvBlink.gd" type="Script" id=11]
+[ext_resource path="res://Enemies/Vocalization.gd" type="Script" id=12]
+[ext_resource path="res://Effects/maon1.wav" type="AudioStream" id=13]
+[ext_resource path="res://Enemies/GenericEnemyWeaponSelector.gd" type="Script" id=14]
+[ext_resource path="res://Enemies/AtkGeneric.gd" type="Script" id=15]
+[ext_resource path="res://Effects/WoodCrack.wav" type="AudioStream" id=16]
+[ext_resource path="res://Projectiles/EnemyFireball/NewFireball.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Enemies/EnemyHealth.gd" type="Script" id=18]
+[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=19]
+[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.8834, 32 )
@@ -32,6 +28,34 @@ extents = Vector2( 13.8834, 32 )
 extents = Vector2( 14.6381, 34 )
 
 [sub_resource type="Animation" id=3]
+resource_name = "New Anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("LiveBody/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LiveBody/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=4]
 resource_name = "enemy_melee_attack"
 tracks/0/type = "value"
 tracks/0/path = NodePath("LiveBody/Sprite:texture")
@@ -70,13 +94,59 @@ tracks/2/keys = {
 "values": [ 7 ]
 }
 
-[node name="GenericEnemy" type="KinematicBody2D" groups=[
+[sub_resource type="Animation" id=5]
+resource_name = "enemy_melee_walk"
+length = 1.6
+loop = true
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("LiveBody/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LiveBody/Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LiveBody/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="FlyingDemon" type="KinematicBody2D" groups=[
 "enemies",
 ]]
 collision_layer = 16
 collision_mask = 11
 script = ExtResource( 1 )
-type_of_enemy = 2
+type_of_enemy = 1
+immunities = {
+"magical": false,
+"physical": false
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -92,6 +162,7 @@ script = ExtResource( 2 )
 shape = SubResource( 2 )
 
 [node name="DeadBody" type="Node2D" parent="."]
+editor/display_folded = true
 visible = false
 
 [node name="BloodSplotch" type="Sprite" parent="DeadBody"]
@@ -117,58 +188,48 @@ hframes = 2
 stream = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/enemy_melee_attack = SubResource( 3 )
-anims/enemy_melee_walk = ExtResource( 8 )
-anims/enemy_ranged_attack = ExtResource( 9 )
-anims/enemy_ranged_walk = ExtResource( 10 )
+autoplay = "enemy_melee_walk"
+"anims/New Anim" = SubResource( 3 )
+anims/enemy_melee_attack = SubResource( 4 )
+anims/enemy_melee_walk = SubResource( 5 )
 
 [node name="Movement" type="Node" parent="."]
-script = ExtResource( 11 )
+script = ExtResource( 8 )
 
 [node name="Rush" type="Node" parent="Movement"]
-script = ExtResource( 12 )
+script = ExtResource( 9 )
 
 [node name="Kite" type="Node" parent="Movement"]
-script = ExtResource( 13 )
+script = ExtResource( 10 )
 
 [node name="Blink" type="Node" parent="Movement"]
-script = ExtResource( 14 )
+script = ExtResource( 11 )
 
 [node name="Vocalization" type="Node2D" parent="."]
-script = ExtResource( 15 )
+script = ExtResource( 12 )
 
 [node name="NoiseTimer" type="Timer" parent="Vocalization"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Vocalization"]
-stream = ExtResource( 16 )
+stream = ExtResource( 13 )
 
 [node name="Attacks" type="Node2D" parent="."]
-script = ExtResource( 17 )
+script = ExtResource( 14 )
 
 [node name="Claws" type="Node2D" parent="Attacks"]
-editor/display_folded = true
-script = ExtResource( 18 )
+script = ExtResource( 15 )
 attack_range = 45
 
 [node name="ClawNoise" type="AudioStreamPlayer2D" parent="Attacks/Claws"]
-stream = ExtResource( 19 )
+stream = ExtResource( 16 )
 
 [node name="Fireball" type="Node2D" parent="Attacks"]
-script = ExtResource( 18 )
+script = ExtResource( 15 )
 attack_range = 400
-projectile_scene = ExtResource( 20 )
+projectile_scene = ExtResource( 17 )
 attack_type = 1
 
 [node name="Muzzle" type="Position2D" parent="Attacks/Fireball"]
-position = Vector2( 7.92436, -13.2073 )
-
-[node name="Bullet" type="Node2D" parent="Attacks"]
-script = ExtResource( 18 )
-attack_range = 400
-projectile_scene = ExtResource( 21 )
-attack_type = 1
-
-[node name="Muzzle" type="Position2D" parent="Attacks/Bullet"]
 position = Vector2( 7.92436, -13.2073 )
 
 [node name="Node" type="Node" parent="Attacks"]
@@ -177,7 +238,7 @@ position = Vector2( 7.92436, -13.2073 )
 one_shot = true
 
 [node name="Health" type="Node2D" parent="."]
-script = ExtResource( 22 )
+script = ExtResource( 18 )
 max_health = 4.0
 health = 4.0
 
@@ -188,8 +249,8 @@ margin_right = 100.604
 margin_bottom = 30.1563
 rect_scale = Vector2( 0.429938, 0.287435 )
 value = 100.0
-texture_under = ExtResource( 23 )
-texture_progress = ExtResource( 24 )
+texture_under = ExtResource( 19 )
+texture_progress = ExtResource( 20 )
 
 [node name="BehaviourTimer" type="Timer" parent="."]
 one_shot = true
