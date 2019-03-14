@@ -38,7 +38,7 @@ func attack_ranged(attackTarget):
 	var myPos = $Muzzle.get_global_position()
 	var targetPos = target.get_global_position()
 	var deviation = rand_range(-5, 5) # in degrees, apparently
-	var rot_deg = rad2deg(Vector2.RIGHT.angle_to(targetPos)) + deviation
+	var rot_deg = rad2deg(Vector2.RIGHT.angle_to(targetPos))# + deviation
 	var initial_vel = Vector2.ZERO
 	emit_signal("projectile_requested", projectile_scene, initial_vel, myPos, rot_deg )
 	attack_ready = false

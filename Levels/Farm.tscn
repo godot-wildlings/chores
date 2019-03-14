@@ -25,10 +25,10 @@ extents = Vector2( 50.3812, 657.9 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4494.9, 91.8439 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 157.725, 81.1065 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 103.18, 55.7823 )
 
 [node name="Farm" type="Node2D"]
@@ -151,7 +151,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House1"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House1"]
 scale = Vector2( 0.5, 0.5 )
@@ -167,7 +167,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House2"]
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House2"]
 scale = Vector2( 0.5, 0.5 )
