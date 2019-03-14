@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/char_idle_exp.png" type="Texture" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://Player/player_run.anim" type="Animation" id=10]
 [ext_resource path="res://Player/player_walk.anim" type="Animation" id=11]
 [ext_resource path="res://Player/MonsterParts.png" type="Texture" id=12]
+[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=13]
+[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=14]
+[ext_resource path="res://Player/HealthBar.gd" type="Script" id=15]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -399,4 +402,17 @@ texture = ExtResource( 12 )
 offset = Vector2( -2.00527, -3.76002 )
 region_enabled = true
 region_rect = Rect2( 2.125, 2.95762, 24, 17.875 )
+
+[node name="Health" type="Node2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="HealthBar" type="TextureProgress" parent="Health"]
+margin_left = -43.2958
+margin_top = -150.324
+margin_right = 84.7042
+margin_bottom = -134.324
+value = 100.0
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 14 )
+script = ExtResource( 15 )
 

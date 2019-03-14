@@ -68,7 +68,6 @@ func set_velocity_vectors():
 	velocity_vectors.push_back(get_oscillating_dodge_vector())
 
 func average_velocity_vectors():
-	print(self.name, " velocity_vectors == ", velocity_vectors )
 	var returnVec : Vector2 = Vector2.ZERO
 	for vector in velocity_vectors:
 		returnVec += vector

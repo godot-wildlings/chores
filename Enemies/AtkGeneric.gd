@@ -7,9 +7,12 @@ var _state = States.DISABLED
 var entity
 var target
 var attack_ready : bool = false
-export var attack_range = 400
+export var attack_range = 75
 export var projectile_scene : PackedScene
 export var speed : float = 300
+
+enum attack_types { MELEE, RANGED }
+export (attack_types) var attack_type
 
 var damage_per_attack = 1
 
@@ -28,31 +31,39 @@ func start(newEntity, newTarget):
 	if err: push_warning(err)
 	
 
-func attack(attackTarget):
+func attack_ranged(attackTarget):
+	print(attackTarget)
+	print(self.name,  " attacking ", attackTarget.name )
+	# ask level to spawn a projectile
 	var myPos = $Muzzle.get_global_position()
 	var targetPos = target.get_global_position()
-	var target_vector = (targetPos - myPos).normalized()
-	var deviation = 0.1 # add some variation because we don't know how to lead the player yet
-	target_vector = target_vector.rotated(rand_range(-deviation, deviation))
-	var rot = Vector2.RIGHT.angle_to(targetPos)
-	var vel = target_vector * speed
-	emit_signal("projectile_requested", projectile_scene, myPos, rot, vel)
+	var deviation = rand_range(-5, 5) # in degrees, apparently
+	var rot_deg = rad2deg(Vector2.RIGHT.angle_to(targetPos)) + deviation
+	var initial_vel = Vector2.ZERO
+	emit_signal("projectile_requested", projectile_scene, initial_vel, myPos, rot_deg )
 	attack_ready = false
 	
+func attack_melee(attackTarget):
+	if not is_instance_valid(attackTarget):
+		return
 	
+	#print("CLAW CLAW")
+	# no need for a projectile. just damage the target
+	if attackTarget.has_method("_on_hit"):
+		var err = connect("hit", attackTarget, "_on_hit")
+		if err: push_warning(err)
+		emit_signal("hit", damage_per_attack)
+		disconnect("hit", attackTarget, "_on_hit")
+	attack_ready = false
 	
 func set_state(newState):
 	_state = newState
 
 
-# Whoops: this is for melee
-#	if attackTarget.has_method("_on_hit"):
-#		var err = connect("hit", attackTarget, "_on_hit")
-#		if err: push_warning(err)
-#		emit_signal("hit", damage_per_attack)
-#		disconnect("hit", attackTarget, "_on_hit")
-
 func in_range(attackTarget):
+	if not is_instance_valid(attackTarget):
+		return
+		
 	var myPos = entity.get_global_position()
 	var targetPos = attackTarget.get_global_position()
 	if myPos.distance_squared_to(targetPos) < attack_range * attack_range:
@@ -63,7 +74,10 @@ func in_range(attackTarget):
 func _process(delta):
 	if _state == States.ENABLED and entity.get_state() != entity.States.DEAD:
 		if attack_ready and in_range(target):
-			attack(target)
+			if attack_type == attack_types.MELEE:
+				attack_melee(target)
+			elif attack_type == attack_types.RANGED:
+				attack_ranged(target)
 
 func _on_attack_ready(): # signal from weapon selector
 	attack_ready = true

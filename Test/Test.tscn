@@ -7,9 +7,27 @@
 [node name="Test" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="GenericEnemy" parent="." instance=ExtResource( 2 )]
+[node name="Blinker" parent="." instance=ExtResource( 2 )]
 position = Vector2( 93.2402, -6.68988 )
+
+[node name="Rusher" parent="." instance=ExtResource( 2 )]
+position = Vector2( 127.074, 84.8616 )
+type_of_enemy = 0
+immunities = {
+"magical": false,
+"physical": false
+}
+
+[node name="Kiter" parent="." instance=ExtResource( 2 )]
+position = Vector2( 24.9083, -114.163 )
+type_of_enemy = 1
+immunities = {
+"magical": false,
+"physical": false
+}
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -114.982, 2.50871 )
+max_health = 10.0
+is_demon = false
 
