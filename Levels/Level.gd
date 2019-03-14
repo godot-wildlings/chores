@@ -56,6 +56,11 @@ func spawn_baphomet():
 	else:
 		add_child(new_baphomet)
 
+func get_enemies():
+	if has_node("enemies"):
+		return $enemies.get_children()
+	else:
+		push_warning(self.name + " get_enemies(). Error: missing node called enemies")
 
 func _input(event):
 	if event.is_action("spawn_baphomet") and Input.is_action_just_pressed("spawn_baphomet"):

@@ -1,0 +1,154 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Enemies/GenericEnemy.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/EnemyHitbox.gd" type="Script" id=2]
+[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Melee/undead_walk_exp.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/Melee/undead_attack_exp.png" type="Texture" id=5]
+[ext_resource path="res://Effects/hitNoise.wav" type="AudioStream" id=6]
+[ext_resource path="res://Enemies/Melee/enemy_melee_walk.anim" type="Animation" id=7]
+[ext_resource path="res://Enemies/EnemyMovement.gd" type="Script" id=8]
+[ext_resource path="res://Enemies/MvRush.gd" type="Script" id=9]
+[ext_resource path="res://Enemies/MvKite.gd" type="Script" id=10]
+[ext_resource path="res://Enemies/MvBlink.gd" type="Script" id=11]
+[ext_resource path="res://Enemies/Vocalization.gd" type="Script" id=12]
+[ext_resource path="res://Effects/maon1.wav" type="AudioStream" id=13]
+[ext_resource path="res://Enemies/AtkRanged.gd" type="Script" id=14]
+[ext_resource path="res://Enemies/EnemyHealth.gd" type="Script" id=15]
+[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=16]
+[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 34, 34 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "enemy_melee_attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("LiveBody/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LiveBody/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 6, 1 ]
+}
+
+[node name="GenericEnemy" type="KinematicBody2D" groups=[
+"enemies",
+]]
+collision_layer = 16
+collision_mask = 11
+script = ExtResource( 1 )
+type_of_enemy = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Hitbox" type="Area2D" parent="." groups=[
+"enemies",
+]]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 2 )
+
+[node name="DeadBody" type="Node2D" parent="."]
+visible = false
+
+[node name="BloodSplotch" type="Sprite" parent="DeadBody"]
+position = Vector2( 1.88676, 5.66027 )
+scale = Vector2( 0.312178, 0.262507 )
+texture = ExtResource( 3 )
+
+[node name="CorpseDuration" type="Timer" parent="DeadBody"]
+wait_time = 15.0
+
+[node name="BrokenBody" type="Sprite" parent="DeadBody"]
+rotation = -1.48353
+texture = ExtResource( 4 )
+hframes = 4
+
+[node name="LiveBody" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="LiveBody"]
+texture = ExtResource( 5 )
+hframes = 7
+frame = 1
+
+[node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/enemy_melee_attack = SubResource( 3 )
+anims/enemy_melee_walk = ExtResource( 7 )
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="Rush" type="Node" parent="Movement"]
+script = ExtResource( 9 )
+
+[node name="Kite" type="Node" parent="Movement"]
+script = ExtResource( 10 )
+
+[node name="Blink" type="Node" parent="Movement"]
+script = ExtResource( 11 )
+
+[node name="Vocalization" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="NoiseTimer" type="Timer" parent="Vocalization"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Vocalization"]
+stream = ExtResource( 13 )
+
+[node name="Attacks" type="Node2D" parent="."]
+
+[node name="Fireball" type="Node2D" parent="Attacks"]
+script = ExtResource( 14 )
+
+[node name="Muzzle" type="Position2D" parent="Attacks/Fireball"]
+position = Vector2( 7.92436, -13.2073 )
+
+[node name="Node" type="Node" parent="Attacks"]
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource( 15 )
+max_health = 100.0
+health = 100.0
+
+[node name="HealthBar" type="TextureProgress" parent="Health"]
+margin_left = -27.3961
+margin_top = -33.8437
+margin_right = 100.604
+margin_bottom = 30.1563
+rect_scale = Vector2( 0.429938, 0.287435 )
+value = 100.0
+texture_under = ExtResource( 16 )
+texture_progress = ExtResource( 17 )
+
+[node name="BehaviourTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DeadBody/CorpseDuration" to="." method="_on_CorpseDuration_timeout"]

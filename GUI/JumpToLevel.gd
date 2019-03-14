@@ -21,6 +21,9 @@ func _ready():
 	level_options.add_item("Cottage", 4)
 	level_options.set_item_text(4, "res://Levels/IllustratedManuscript.tscn")
 
+	level_options.add_item("Test", 5)
+	level_options.set_item_text(5, "res://Test/Test.tscn")
+
 
 	level_options.select(0)
 	

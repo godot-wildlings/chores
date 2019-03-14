@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/Themes/Fonts/Dancing_Script/DancingScript-32.tres" type="DynamicFont" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://GUI/QuitButton.gd" type="Script" id=8]
 [ext_resource path="res://GUI/Themes/Fonts/droid-sans/droid_sans.tres" type="DynamicFont" id=9]
 [ext_resource path="res://GUI/JumpToLevel.gd" type="Script" id=10]
+
+[sub_resource type="Theme" id=1]
 
 [node name="PauseMenu" type="PanelContainer"]
 pause_mode = 2
@@ -394,6 +396,7 @@ margin_bottom = 26.0
 margin_right = 454.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
+theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 9 )
 
 [node name="JumpToLevel" type="Button" parent="TabContainer/Cheat/MarginContainer/VBoxContainer/HSplitContainer"]

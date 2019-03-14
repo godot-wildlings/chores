@@ -22,17 +22,18 @@ func start() -> void:
 	var err = connect("dialog_box_requested", global.main_scene, "_on_DialogBox_requested")
 	if err: push_warning(err)
 	total_amount_of_sheep = global.current_level.get_node("Animals/FlockOfSheep").get_child_count()
+	
 
-#warning-ignore:unused_argument
-func _process(delta) -> void:
-	if not dialog_shown:
-		if amount_of_rescued_sheep >= min_amount_of_sheeps_to_rescue:
-				emit_signal("dialog_box_requested", dialog_box_title, dialog_text_array, self)
-				dialog_shown = true
+
+func express_gratitude():
+	emit_signal("dialog_box_requested", dialog_box_title, dialog_text_array, self)
+	dialog_shown = true
 		
 func _on_Area2D_body_entered(body : PhysicsBody2D) -> void:
 	if body.is_in_group("livestock"):
 		amount_of_rescued_sheep += 1
+		if not dialog_shown and amount_of_rescued_sheep >= min_amount_of_sheeps_to_rescue:
+			express_gratitude()
 		
 #warning-ignore:unused_argument
 func _on_DialogBox_completed(title: String) -> void:
