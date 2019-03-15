@@ -8,7 +8,7 @@ extends Node
 
 var Target
 var Entity
-var Velocity : Vector2
+#var Velocity : Vector2
 
 var velocity_vectors : Array
 export var Speed : float = 100

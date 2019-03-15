@@ -30,7 +30,7 @@ var default_walk_anim
 func _ready():
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 # ToDo: fix blinking when flipping
 #	if entity.type_of_enemy != enemy_types.BLINK:

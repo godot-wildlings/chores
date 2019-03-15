@@ -19,6 +19,7 @@ extends KinematicBody2D
 
 onready var Health = $Health
 onready var Movement = $Movement
+#warning-ignore:unused_class_variable
 onready var Attacks = $Attacks
 onready var Vocalization = $Vocalization
 onready var Hitbox = $Hitbox

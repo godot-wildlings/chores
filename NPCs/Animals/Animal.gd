@@ -132,18 +132,17 @@ func get_vector_away_from_neighbours() -> Vector2:
 	return avoid_vector
 			
 func get_random_speed():
-	if not is_instance_valid(global.player):
-		return
-
 	var rand_speed = rand_range(200, 250.0)
-	# increase based on fear and proximity to player
-	if frightened: rand_speed *= 1.5
 	
-	var myPos = get_global_position()
-	var playerPos = global.player.get_global_position()
-	var poking_distance : int = 100
-	if myPos.distance_squared_to(playerPos) < poking_distance * poking_distance:
-		rand_speed *= 1.5
+	if is_instance_valid(global.player):
+		# increase based on fear and proximity to player
+		if frightened: rand_speed *= 1.5
+		
+		var myPos = get_global_position()
+		var playerPos = global.player.get_global_position()
+		var poking_distance : int = 100
+		if myPos.distance_squared_to(playerPos) < poking_distance * poking_distance:
+			rand_speed *= 1.5
 
 	return rand_speed
 

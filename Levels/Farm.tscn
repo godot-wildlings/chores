@@ -24,19 +24,19 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50.3812, 657.9 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4541.88, 46.768 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 133.183, 467.228 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 4494.9, 91.8439 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 157.725, 81.1065 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 103.18, 55.7823 )
 
 [node name="Farm" type="Node2D"]
@@ -131,7 +131,7 @@ region_rect = Rect2( 0, 0, 5770, 64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallTop"]
 position = Vector2( -208.279, 1228.31 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="InvisWallLeft" type="StaticBody2D" parent="InvisWalls"]
 editor/display_folded = true
@@ -176,7 +176,7 @@ region_rect = Rect2( 0, 0, 432.75, 128 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallLeft"]
 visible = false
 position = Vector2( -624.929, -34.2095 )
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="Bush" type="Sprite" parent="InvisWalls/InvisWallLeft"]
 position = Vector2( -616.185, -503.696 )
@@ -233,7 +233,7 @@ region_rect = Rect2( 0, 0, 5770, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallBottom"]
 position = Vector2( -46.749, 1064.6 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Portal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 4079.88, 909.858 )
@@ -251,7 +251,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House1"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House1"]
 scale = Vector2( 0.5, 0.5 )
@@ -267,7 +267,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House2"]
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House2"]
 scale = Vector2( 0.5, 0.5 )
@@ -291,7 +291,6 @@ position = Vector2( 1470.69, 1054.49 )
 scale = Vector2( 0.177687, 0.154614 )
 
 [node name="Trees" type="Node2D" parent="Scenery"]
-editor/display_folded = true
 position = Vector2( 0, 84.0951 )
 
 [node name="Tree" parent="Scenery/Trees" instance=ExtResource( 14 )]
@@ -355,7 +354,7 @@ scale = Vector2( 3.11622, 2.48396 )
 position = Vector2( 1594.55, 858.734 )
 
 [node name="Tree18" parent="Scenery/Trees" instance=ExtResource( 14 )]
-position = Vector2( 1801.35, 1177.95 )
+position = Vector2( 1801.84, 1109.68 )
 
 [node name="Animals" type="Node2D" parent="."]
 editor/display_folded = true
@@ -382,7 +381,6 @@ position = Vector2( -38.5677, -40.617 )
 position = Vector2( -55.2526, 84.0745 )
 
 [node name="NPCs" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Uncle Anton" parent="NPCs" instance=ExtResource( 16 )]
 editor/display_folded = true
@@ -402,7 +400,6 @@ position = Vector2( 1.7962, -1.19739 )
 
 [node name="Grandpa" parent="NPCs" instance=ExtResource( 16 )]
 editor/display_folded = true
-modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 1336.6, 1142.89 )
 collision_layer = 4
 home = "House2"
@@ -412,12 +409,12 @@ dialog_text_array = [ "Hello Friedrich,
 I do have a chore for you. The sheep are away. Please herd them back to the farm. After that, you go play, but stay away from those caves!" ]
 
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
+self_modulate = Color( 0.619608, 0.619608, 0.619608, 1 )
 scale = Vector2( 0.66, 0.66 )
 texture = ExtResource( 18 )
 
 [node name="Agneth" parent="NPCs" instance=ExtResource( 16 )]
-modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
-position = Vector2( 4170.7, 1121.08 )
+position = Vector2( 4146.69, 1133.94 )
 collision_layer = 4
 home = "House2"
 reward_item_name = "Rod"
@@ -426,6 +423,7 @@ I've seen beastmen coming from the caves.
 Be safe!" ]
 
 [node name="Sprite" parent="NPCs/Agneth" index="0"]
+self_modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 19 )
 
