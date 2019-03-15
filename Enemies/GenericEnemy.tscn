@@ -36,7 +36,7 @@ extents = Vector2( 13.8834, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14.6381, 34 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "enemy_blinker_attack"
 length = 0.3
 step = 0.05
@@ -141,7 +141,7 @@ tracks/2/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "enemy_kiter_walk"
 length = 0.6
 loop = true
@@ -183,8 +183,7 @@ tracks/2/keys = {
 "values": [ ExtResource( 9 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "enemy_melee_attack"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LiveBody/Sprite:texture")
 tracks/0/interp = 1
@@ -222,8 +221,7 @@ tracks/2/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "enemy_ranged_walk"
+[sub_resource type="Animation" id=7]
 length = 1.6
 loop = true
 step = 0.4
@@ -321,13 +319,13 @@ frame = 1
 stream = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/enemy_blinker_attack = SubResource( 7 )
+anims/enemy_blinker_attack = SubResource( 3 )
 anims/enemy_blinker_walk = ExtResource( 8 )
 anims/enemy_kiter_attack = SubResource( 4 )
-anims/enemy_kiter_walk = SubResource( 6 )
-anims/enemy_melee_attack = SubResource( 3 )
+anims/enemy_kiter_walk = SubResource( 5 )
+anims/enemy_melee_attack = SubResource( 6 )
 anims/enemy_melee_walk = ExtResource( 11 )
-"anims/enemy_ranged_walk (copy)" = SubResource( 5 )
+"anims/enemy_ranged_walk (copy)" = SubResource( 7 )
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 13 )

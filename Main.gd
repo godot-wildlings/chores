@@ -78,9 +78,7 @@ func transition(animation_name : String):
 
 
 func load_level(level_path : String):
-	print(self.name, " load_level ", level_path )
 	var level_scene = load(level_path)
-	print(self.name, " loading ", level_scene)
 	transition("fade-out")
 	yield(get_tree().create_timer(0.5), "timeout")
 	

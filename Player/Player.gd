@@ -28,6 +28,8 @@ var _iframes : int = 0
 var _move_dir =  Vector2.ZERO
 var velocity : Vector2
 
+var previous_positions : Array = [] # <-- HAX for the demon h_flipping
+
 func _ready():
 	global.player = self
 	$Label.text = "Health: " + str(health)
@@ -180,26 +182,53 @@ func _update_human_animation(motion : Vector2):
 	elif get_local_mouse_position().x <= 0:
 		$Sprite.flip_h = true
 
+func get_direction_hack():
+	# store a bunch of previous positions and get the average
+	# so you can ignore blips in velocity when animating or h_flipping
+	var myPos = get_global_position()
+	var direction_vector = Vector2.ZERO
+	previous_positions.push_front(myPos)
+	if previous_positions.size() > 5:
+		previous_positions.pop_back()
+	
+	for pos in previous_positions:
+		direction_vector += pos
+	direction_vector /= previous_positions.size()
+	direction_vector -= myPos
+
+	print(direction_vector)
+
+	if direction_vector.x > 0:
+		print("left")
+		return -1
+		
+	else:
+		print("right")
+		return 1
+
+
 func _update_demon_animation(motion : Vector2):
+	
 	if _state == States.RUNNING:
 		$AnimationPlayer.play("demon_walk")
 	elif _state == States.WALKING:
 		$AnimationPlayer.play("demon_walk")
-	if motion.x > 0:
-		#$Sprite.flip_h = false
-		pass
-	elif motion.x < 0:
-		#$Sprite.flip_h = true
-		pass
-	elif motion == Vector2.ZERO:
-		$AnimationPlayer.play("demon_idle")
-	if get_local_mouse_position().x >= 0:
-		#$Sprite.flip_h = false
-		pass
-	elif get_local_mouse_position().x <= 0:
-		#$Sprite.flip_h = true
-		pass
 
+#	if get_direction_hack() > 0:
+#		$DemonForm.set_scale(Vector2(1, 1))
+#	else:
+#		$DemonForm.set_scale(Vector2(-1, 1))
+
+	if motion == Vector2.ZERO:
+		$AnimationPlayer.play("demon_idle")
+	
+	var mousePos = get_local_mouse_position()
+	flip_demon_sprites(sign(mousePos.x))
+
+func flip_demon_sprites(direction):
+		$DemonForm.set_scale(Vector2(direction, 1))
+	
+	
 
 func _damage_loop():
 	health = min(max_health, health)
