@@ -37,12 +37,12 @@ func _shoot():
 	connect("shoot", global.current_level, "_on_projectile_requested")
 	emit_signal("shoot", projectile_tscn, global.player.velocity, _spawn_position.global_position, global_rotation_degrees)
 	disconnect("shoot", global.current_level, "_on_projectile_requested")
-#	_state = States.RELOADING
-#	$ReloadTimer.start()
-#
-#func _on_AnimationPlayer_animation_finished(anim : String):
-#	if anim == wind_up_animation:
-#		_shoot()
-#
-#func _on_ReloadTimer_timeout():
-#	_state = States.IDLE
+	_state = States.RELOADING
+	$ReloadTimer.start()
+
+func _on_AnimationPlayer_animation_finished(anim : String):
+	if anim == wind_up_animation:
+		_shoot()
+
+func _on_ReloadTimer_timeout():
+	_state = States.IDLE
