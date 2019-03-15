@@ -48,6 +48,7 @@ func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float
 		$ShootNoise.play()
 
 func disappear():
+	$CollisionShape2D.call_deferred("set_disabled", true)
 	call_deferred("queue_free")
 
 func _on_DurationTimer_timeout():

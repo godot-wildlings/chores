@@ -66,7 +66,7 @@ immunities = {
 }
 
 [node name="Kiter2" parent="enemies" instance=ExtResource( 3 )]
-position = Vector2( 1375.88, 1829.13 )
+position = Vector2( 1362.34, 1790.32 )
 type_of_enemy = 1
 immunities = {
 "magical": false,

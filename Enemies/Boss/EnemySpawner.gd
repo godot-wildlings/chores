@@ -2,7 +2,7 @@ extends Node2D
 
 # Declare member variables here. Examples:
 export var num_creeps_per_wave : int = 5
-export var spawn_radius : float = 300
+export var spawn_radius : float = 100
 export var max_creeps : int = 100
 
 # Called when the node enters the scene tree for the first time.
@@ -28,14 +28,14 @@ func spawn_creeps():
 	var creep_type = randi()%3 # 0, 1, 2
 	# 0 = RUSH, 1 = KITE, 2 = BLINK
 	
-	#warning-ignore:unused_class_variable
+	#warning-ignore:unused_local_variable
 	for i in range(num_creeps_per_wave):
 		var creep_scene = load("res://Enemies/GenericEnemy.tscn")
 		
 		#var spawn_pos = get_safe_location()
 		# can't get desirable results out of get_safe_location
 		
-		var spawn_pos = get_global_position() + Vector2(rand_range(-100, 100), rand_range(-100, 100))
+		var spawn_pos = get_global_position() + Vector2(rand_range(-spawn_radius, spawn_radius), rand_range(-100, 100))
 		
 		if spawn_pos is Vector2:
 			var new_creep = creep_scene.instance()

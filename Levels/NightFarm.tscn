@@ -15,13 +15,9 @@
 script = ExtResource( 1 )
 
 [node name="FarmScenery" parent="." instance=ExtResource( 2 )]
-editor/display_folded = false
 modulate = Color( 0.768627, 0.513726, 0.513726, 1 )
 
-[node name="Grass" parent="FarmScenery/CanvasLayer/ParallaxBackground/ParallaxStatic" index="0"]
-position = Vector2( 4209.4, 1164.53 )
-
-[node name="Portal" parent="FarmScenery" index="6"]
+[node name="Portal" parent="FarmScenery" index="7"]
 path_to_exit_scene = "res://Levels/NightCaves.tscn"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
