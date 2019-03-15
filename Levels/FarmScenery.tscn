@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=1]
-[ext_resource path="res://Levels/Scenery/Sprite-0010.png" type="Texture" id=2]
+[ext_resource path="res://Levels/Scenery/background-far.png" type="Texture" id=2]
 [ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=3]
 [ext_resource path="res://Levels/Scenery/bushes.png" type="Texture" id=4]
 [ext_resource path="res://Levels/Scenery/TreeBushBorder.png" type="Texture" id=5]
@@ -47,13 +47,14 @@ region_rect = Rect2( 0, 0, 6144, 508 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
 motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 1, 0 )
 
 [node name="BG-Far" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
-position = Vector2( 130, 770 )
+self_modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
+position = Vector2( 2013.5, 716.944 )
 scale = Vector2( 1, 0.5 )
 texture = ExtResource( 2 )
-region_rect = Rect2( -3, 40, 261, 204 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 7320, 537 )
 
 [node name="ParallaxMed" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
 motion_scale = Vector2( 0.75, 1 )
