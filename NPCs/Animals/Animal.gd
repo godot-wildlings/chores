@@ -15,7 +15,7 @@ var direction : float = 0
 var base_scale : Vector2 = Vector2(0.5, 0.5)
 var Ticks : int = 0
 var fear_of_player : float = 2.0
-var fear_range : float = 400.0
+var fear_range : float = 300.0
 var goal_vectors : Array = []
 var frightened : bool = false
 
@@ -46,7 +46,7 @@ func flock():
 	velocity = Vector2.ZERO
 
 	goal_vectors = [
-			get_random_direction_vector() /2,
+			get_random_direction_vector(),
 			get_vector_toward_flock(),
 			get_vector_away_from_neighbours(),
 			get_vector_away_from_player() * fear_of_player # overweight this one. It's important
@@ -103,10 +103,11 @@ func get_vector_away_from_player():
 
 func get_vector_toward_flock():
 	var average_position = Vector2.ZERO
+	var myPos = get_global_position()
 	for sheep in get_flock():
 		average_position += sheep.get_global_position()
 	average_position /= get_flock_size()
-	return (average_position - get_global_position()).normalized()
+	return (average_position - myPos).normalized()
 
 func get_flock():
 	var flock_container = get_parent()
@@ -118,13 +119,14 @@ func get_flock_size():
 	
 func get_vector_away_from_neighbours() -> Vector2:
 	var avoid_vector : Vector2 = Vector2.ZERO
+	var myPos = get_global_position()
 	
 	for sheep in get_flock():
 		var dist_squared = get_global_position().distance_squared_to(sheep.get_global_position())
 		
 		var avoid_distance = 60
 		if dist_squared < avoid_distance * avoid_distance:
-			avoid_vector -= (sheep.get_global_position() - get_global_position()).normalized()
+			avoid_vector -= (sheep.get_global_position() - myPos).normalized()
 	if avoid_vector.length() > 0:
 		avoid_vector = avoid_vector.normalized()
 	return avoid_vector

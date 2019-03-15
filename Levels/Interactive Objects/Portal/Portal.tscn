@@ -4,7 +4,7 @@
 [ext_resource path="res://Levels/Scenery/CavePortal.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 99.2089, 106.283 )
+extents = Vector2( 69.3646, 67.597 )
 
 [node name="Portal" type="Node2D"]
 position = Vector2( 0, 6.10352e-005 )
@@ -19,6 +19,6 @@ position = Vector2( 3.70123, -1.85065 )
 collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -2.84072, 3.40027 )
+position = Vector2( -2.27192, 9.08826 )
 shape = SubResource( 1 )
 

@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/Scenery/SheepHerdingZone.gd" type="Script" id=1]
+[ext_resource path="res://Levels/Scenery/fenceTileableHorizontal.png" type="Texture" id=2]
+[ext_resource path="res://Levels/Scenery/fenceTileable.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 600, 600 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 657.006, 34.3729 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 136.232, 34.3729 )
 
 [node name="SheepHerdingZone" type="Area2D"]
 position = Vector2( 2, 0 )
@@ -25,76 +24,42 @@ shape = SubResource( 1 )
 
 [node name="TopWall" type="StaticBody2D" parent="Fences"]
 
-[node name="ColorRect" type="ColorRect" parent="Fences/TopWall"]
-margin_left = -644.0
-margin_top = -657.0
-margin_right = 652.0
-margin_bottom = -605.0
-color = Color( 0.603922, 0.517647, 0.415686, 1 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/TopWall"]
 position = Vector2( -6, -630 )
 rotation = -3.14159
 shape = SubResource( 2 )
 
-[node name="BottomWall" type="StaticBody2D" parent="Fences"]
+[node name="FenceImage4" type="Sprite" parent="Fences/TopWall"]
+position = Vector2( -16.7263, -632.19 )
+scale = Vector2( 1, 1.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1377, 172 )
 
-[node name="ColorRect" type="ColorRect" parent="Fences/BottomWall"]
-margin_left = -612.044
-margin_top = 597.278
-margin_right = 683.956
-margin_bottom = 649.278
-color = Color( 0.603922, 0.517647, 0.415686, 1 )
+[node name="BottomWall" type="StaticBody2D" parent="Fences"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/BottomWall"]
 position = Vector2( 25.9562, 624.278 )
 rotation = -3.14159
 shape = SubResource( 2 )
 
-[node name="LeftWall" type="StaticBody2D" parent="Fences"]
+[node name="FenceImage3" type="Sprite" parent="Fences/BottomWall"]
+position = Vector2( -54.2406, 629.75 )
+scale = Vector2( 1, 1.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1377, 172 )
 
-[node name="ColorRect2" type="ColorRect" parent="Fences/LeftWall"]
-margin_left = -603.0
-margin_top = -657.0
-margin_right = 710.0
-margin_bottom = -605.0
-rect_rotation = 89.9999
-color = Color( 0.603922, 0.517647, 0.415686, 1 )
+[node name="LeftWall" type="StaticBody2D" parent="Fences"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/LeftWall"]
 position = Vector2( -630, 0 )
 rotation = 1.57079
 shape = SubResource( 2 )
 
-[node name="RightWall1" type="StaticBody2D" parent="Fences"]
-
-[node name="ColorRect3" type="ColorRect" parent="Fences/RightWall1"]
-margin_left = 656.0
-margin_top = -656.0
-margin_right = 1965.0
-margin_bottom = -604.0
-rect_rotation = 89.9999
-rect_scale = Vector2( 0.197655, 1.22102 )
-color = Color( 0.603922, 0.517647, 0.415686, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/RightWall1"]
-position = Vector2( 624.55, -528.592 )
-rotation = 1.57079
-shape = SubResource( 3 )
-
-[node name="RightWall2" type="StaticBody2D" parent="Fences"]
-
-[node name="ColorRect3" type="ColorRect" parent="Fences/RightWall2"]
-margin_left = 668.364
-margin_top = 339.264
-margin_right = 1977.36
-margin_bottom = 391.264
-rect_rotation = 89.9999
-rect_scale = Vector2( 0.197655, 1.22102 )
-color = Color( 0.603922, 0.517647, 0.415686, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fences/RightWall2"]
-position = Vector2( 636.914, 466.672 )
-rotation = 1.57079
-shape = SubResource( 3 )
+[node name="FenceImage" type="Sprite" parent="Fences/LeftWall"]
+position = Vector2( -618.885, -28.7317 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 225, 1316.25 )
 

@@ -108,13 +108,13 @@ extents = Vector2( 23.7159, 13.9338 )
 "livestock",
 ]]
 script = ExtResource( 1 )
-Debug = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.3967, 21.6485 )
 shape = SubResource( 1 )
 
 [node name="BehaviourChangeTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 autostart = true
 
