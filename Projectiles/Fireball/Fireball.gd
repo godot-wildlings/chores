@@ -14,3 +14,9 @@ func shoot(bullet_position : Vector2, rot : float, initial_velocity : Vector2):
 	global_position = bullet_position
 	velocity = Vector2.RIGHT.rotated(rot) * speed + initial_velocity
 	rotation = rot
+	if has_node("SFX"):
+		var sfx : Node2D = get_node("SFX")
+		var sfx_count : int = sfx.get_child_count()
+		var rnd_sfx : int = randi() % sfx_count
+		var sfx_player : AudioStreamPlayer2D = sfx.get_child(rnd_sfx)
+		sfx_player.play()

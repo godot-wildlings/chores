@@ -3,7 +3,7 @@
 [ext_resource path="res://Projectiles/EnemyFireball/EnemyRangedProjectile.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Arrow/BigArrow.png" type="Texture" id=2]
 [ext_resource path="res://Projectiles/Bullet/shoot.anim" type="Animation" id=3]
-[ext_resource path="res://Effects/pluck.wav" type="AudioStream" id=4]
+[ext_resource path="res://Effects/ArrowSFX.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.1372, 10 )
@@ -12,7 +12,7 @@ extents = Vector2( 29.1372, 10 )
 resource_name = "burn"
 loop = true
 
-[node name="Bullet" type="Area2D"]
+[node name="EnemyArrow" type="Area2D"]
 collision_layer = 32
 script = ExtResource( 1 )
 
@@ -30,8 +30,6 @@ anims/shoot = ExtResource( 3 )
 [node name="DurationTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
-autoplay = true
+[node name="SFX" parent="." instance=ExtResource( 4 )]
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

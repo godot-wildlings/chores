@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Arrow_Shoot_2.wav-1229ba18a55561828d31d74aa3d85ba7.sample"
+
+[deps]
+
+source_file="res://Effects/Arrow_Shoot_2.wav"
+dest_files=[ "res://.import/Arrow_Shoot_2.wav-1229ba18a55561828d31d74aa3d85ba7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

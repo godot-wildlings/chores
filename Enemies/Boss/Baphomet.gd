@@ -141,7 +141,7 @@ func _damage_loop():
 func _attack():
 
 #	var projectile_instance : Node2D = projectile_tscn.instance()
-#	projectile_container.add_child(projectile_instance)
+#	projectile_container.add_child(projectile_instance)O
 #	if projectile_instance.has_method("shoot"):
 #		projectile_instance.shoot(global_position, (_player.global_position - global_position))
 ##		$AudioStreamPlayer.play()

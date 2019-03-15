@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Projectiles/EnemyFireball/EnemyRangedProjectile.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Fireball/fireball.png" type="Texture" id=2]
 [ext_resource path="res://Effects/fwoosh2.wav" type="AudioStream" id=3]
+[ext_resource path="res://Effects/FireballSFX.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 18.1594
@@ -31,4 +32,6 @@ anims/burn = SubResource( 2 )
 [node name="fwoosh" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 autoplay = true
+
+[node name="SFX" parent="." instance=ExtResource( 4 )]
 

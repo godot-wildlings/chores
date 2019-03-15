@@ -44,8 +44,12 @@ func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float
 	if _state == States.FLYING:
 		velocity = initial_velocity + base_velocity
 		rotation += direction.angle()
-	if has_node("ShootNoise"):
-		$ShootNoise.play()
+	if has_node("SFX"):
+		var sfx : Node2D = get_node("SFX")
+		var sfx_count : int = sfx.get_child_count()
+		var rnd_sfx : int = randi() % sfx_count
+		var sfx_player : AudioStreamPlayer2D = sfx.get_child(rnd_sfx)
+		sfx_player.play()
 
 func disappear():
 	$CollisionShape2D.call_deferred("set_disabled", true)

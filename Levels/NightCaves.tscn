@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://Levels/TileMaps/CavesTilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Boss/Baphomet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/GenericEnemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://BGMusic/testBGMusic.ogg" type="AudioStream" id=6]
-[ext_resource path="res://Levels/Interactive Objects/Portal/Portal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://BGMusic/Boss_Theme_Intro.wav" type="AudioStream" id=6]
+[ext_resource path="res://Levels/AudioStreamPlayer.gd" type="Script" id=7]
+[ext_resource path="res://BGMusic/Boss_Theme_Loop.wav" type="AudioStream" id=8]
+[ext_resource path="res://Levels/Interactive Objects/Portal/Portal.tscn" type="PackedScene" id=9]
 
 [node name="NightCaves" type="Node2D"]
 script = ExtResource( 1 )
@@ -276,14 +278,19 @@ immunities = {
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 2563.49, 1313.88 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayerIntro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -12.0
 autoplay = true
+script = ExtResource( 7 )
+
+[node name="AudioStreamPlayerLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -12.0
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Portal" parent="." instance=ExtResource( 7 )]
+[node name="Portal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 2321.16, 1297.55 )
 path_to_exit_scene = "res://Levels/NightFarm.tscn"
 

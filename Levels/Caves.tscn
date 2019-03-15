@@ -3,7 +3,7 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://Levels/TileMaps/CavesTilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/GenericEnemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://BGMusic/testBGMusic.ogg" type="AudioStream" id=4]
+[ext_resource path="res://BGMusic/Caves_Loop.wav" type="AudioStream" id=4]
 [ext_resource path="res://Collectibles/EvilBook.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Levels/Interactive Objects/Portal/Portal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=7]
@@ -102,7 +102,7 @@ immunities = {
 "physical": false
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayerLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -12.0
 autoplay = true

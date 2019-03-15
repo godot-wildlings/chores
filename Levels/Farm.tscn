@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://Levels/FarmScenery.tscn" type="PackedScene" id=2]
-[ext_resource path="res://BGMusic/Title_Screen_draft.ogg" type="AudioStream" id=3]
+[ext_resource path="res://BGMusic/Day_Theme_Loop.wav" type="AudioStream" id=3]
 [ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=4]
 [ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=5]
 [ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=6]

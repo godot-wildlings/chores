@@ -86,6 +86,7 @@ position = Vector2( -1.50941, 15.094 )
 shape = SubResource( 1 )
 
 [node name="Aura" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Aura"]
 self_modulate = Color( 1, 1, 1, 0.324143 )
@@ -95,6 +96,7 @@ region_enabled = true
 region_rect = Rect2( 278, -1, 150, 133 )
 
 [node name="HeadParts" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Head" type="Sprite" parent="HeadParts"]
 texture = ExtResource( 3 )
@@ -170,6 +172,7 @@ margin_right = 17.4131
 margin_bottom = -58.894
 
 [node name="Hitbox" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 16
 collision_mask = 9
 
@@ -178,6 +181,7 @@ position = Vector2( 0.513336, 13.3468 )
 shape = SubResource( 3 )
 
 [node name="AttackRadius" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]

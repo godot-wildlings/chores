@@ -5,11 +5,11 @@
 [ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=3]
 [ext_resource path="res://Enemies/Melee/undead_walk_exp.png" type="Texture" id=4]
 [ext_resource path="res://Enemies/Boss/goat.png" type="Texture" id=5]
-[ext_resource path="res://Enemies/Melee/undead_attack_exp.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/Ranged/FlyingDemon/fat_demon.png" type="Texture" id=6]
 [ext_resource path="res://Effects/hitNoise.wav" type="AudioStream" id=7]
-[ext_resource path="res://Enemies/Ranged/FlyingDemon/fat_demon.png" type="Texture" id=8]
-[ext_resource path="res://Enemies/Ranged/enemy_ranged_walk.anim" type="Animation" id=9]
-[ext_resource path="res://Enemies/Ranged/skeletonArcher.png" type="Texture" id=10]
+[ext_resource path="res://Enemies/Ranged/enemy_ranged_walk.anim" type="Animation" id=8]
+[ext_resource path="res://Enemies/Ranged/skeletonArcher.png" type="Texture" id=9]
+[ext_resource path="res://Enemies/Melee/undead_attack_exp.png" type="Texture" id=10]
 [ext_resource path="res://Enemies/Melee/enemy_melee_walk.anim" type="Animation" id=11]
 [ext_resource path="res://Enemies/Ranged/FlyingDemon/demon_exp.png" type="Texture" id=12]
 [ext_resource path="res://Enemies/GenericEnemyMovementSelector.gd" type="Script" id=13]
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 8 ) ]
+"values": [ ExtResource( 6 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("LiveBody/Sprite:hframes")
@@ -114,7 +114,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 10 ) ]
+"values": [ ExtResource( 9 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("LiveBody/Sprite:hframes")
@@ -180,7 +180,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 10 ) ]
+"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -195,7 +195,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 6 ) ]
+"values": [ ExtResource( 10 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("LiveBody/Sprite:frame")
@@ -313,14 +313,16 @@ region_rect = Rect2( 281, 2, 143, 130 )
 
 [node name="Sprite" type="Sprite" parent="LiveBody"]
 texture = ExtResource( 6 )
-hframes = 7
+hframes = 2
+frame = 1
 
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+bus = "SoundFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/enemy_blinker_attack = SubResource( 3 )
-anims/enemy_blinker_walk = ExtResource( 9 )
+anims/enemy_blinker_walk = ExtResource( 8 )
 anims/enemy_kiter_attack = SubResource( 4 )
 anims/enemy_kiter_walk = SubResource( 5 )
 anims/enemy_melee_attack = SubResource( 6 )
@@ -346,6 +348,7 @@ script = ExtResource( 17 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Vocalization"]
 stream = ExtResource( 18 )
+bus = "SoundFX"
 
 [node name="Attacks" type="Node2D" parent="."]
 script = ExtResource( 19 )
@@ -356,9 +359,11 @@ attack_range = 45
 
 [node name="Growl" type="AudioStreamPlayer2D" parent="Attacks/Claws"]
 stream = ExtResource( 21 )
+bus = "SoundFX"
 
 [node name="ClawStrikeNoise" type="AudioStreamPlayer2D" parent="Attacks/Claws"]
 stream = ExtResource( 22 )
+bus = "SoundFX"
 
 [node name="Fireball" type="Node2D" parent="Attacks"]
 script = ExtResource( 20 )
