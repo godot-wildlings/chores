@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Step_Cave_11.wav-a209bf2a69ffe97c99981ba795c1342d.sample"
+
+[deps]
+
+source_file="res://Effects/Step_Cave_11.wav"
+dest_files=[ "res://.import/Step_Cave_11.wav-a209bf2a69ffe97c99981ba795c1342d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

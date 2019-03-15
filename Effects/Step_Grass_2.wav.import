@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Step_Grass_2.wav-1f2b913c1ce7cffbb0b5a7ca97f91168.sample"
+
+[deps]
+
+source_file="res://Effects/Step_Grass_2.wav"
+dest_files=[ "res://.import/Step_Grass_2.wav-1f2b913c1ce7cffbb0b5a7ca97f91168.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0
