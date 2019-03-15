@@ -28,8 +28,10 @@ anims/burn = SubResource( 2 )
 anims/shoot = ExtResource( 3 )
 
 [node name="DurationTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 autoplay = true
 
+[connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

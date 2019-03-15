@@ -37,8 +37,8 @@ export var immunities : Dictionary = {
 	}
 
 
-var BehaviourTimer : Timer
-var base_behaviour_time : float = 3.0
+#var BehaviourTimer : Timer
+#var base_behaviour_time : float = 3.0
 
 signal hit(damage)
 signal died()
@@ -47,10 +47,10 @@ func _ready():
 	set_random_size(get_scale(), 0.2)
 	set_random_color()
 	
-	if Health.is_alive():
-		choose_behaviour()
+#	if Health.is_alive():
+#		choose_behaviour()
 	
-	setup_behaviour_timer()
+	#setup_behaviour_timer()
 
 	connect_signals()
 	initialize_components()
@@ -78,31 +78,32 @@ func connect_signals():
 	err = connect("died", Movement, "_on_entity_died")
 	if err: push_warning(err)
 
-	
-func setup_behaviour_timer():
-	if has_node("BehaviourTimer") == false:
-		create_behaviour_timer()
-	BehaviourTimer = $BehaviourTimer
-	base_behaviour_time = BehaviourTimer.get_wait_time()
-	connect_behaviour_timer()
-	reset_behaviour_timer()
-		
-func create_behaviour_timer():
-	BehaviourTimer = Timer.new()
-	BehaviourTimer.name = "BehaviourTimer"
-	add_child(BehaviourTimer)
-	BehaviourTimer.set_wait_time(base_behaviour_time)
 
-
-func connect_behaviour_timer():
-	var err = BehaviourTimer.connect("timeout", self, "_on_BehaviourTimer_timeout")
-	if err : push_warning("Error connecting BehaviourTimer: " + str(err))
-	
-func reset_behaviour_timer():
-	var min_time = base_behaviour_time * 0.8
-	var max_time = base_behaviour_time * 1.2
-	BehaviourTimer.set_wait_time(rand_range(min_time, max_time))
-	BehaviourTimer.start()
+#All this behaviour signalling is unimplemented	
+#func setup_behaviour_timer():
+#	if has_node("BehaviourTimer") == false:
+#		create_behaviour_timer()
+#	BehaviourTimer = $BehaviourTimer
+#	base_behaviour_time = BehaviourTimer.get_wait_time()
+#	connect_behaviour_timer()
+#	reset_behaviour_timer()
+#
+#func create_behaviour_timer():
+#	BehaviourTimer = Timer.new()
+#	BehaviourTimer.name = "BehaviourTimer"
+#	add_child(BehaviourTimer)
+#	BehaviourTimer.set_wait_time(base_behaviour_time)
+#
+#
+#func connect_behaviour_timer():
+#	var err = BehaviourTimer.connect("timeout", self, "_on_BehaviourTimer_timeout")
+#	if err : push_warning("Error connecting BehaviourTimer: " + str(err))
+#
+#func reset_behaviour_timer():
+#	var min_time = base_behaviour_time * 0.8
+#	var max_time = base_behaviour_time * 1.2
+#	BehaviourTimer.set_wait_time(rand_range(min_time, max_time))
+#	BehaviourTimer.start()
 
 
 	

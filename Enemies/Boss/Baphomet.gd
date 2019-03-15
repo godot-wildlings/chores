@@ -54,20 +54,20 @@ func _ready():
 		self.health = max_health
 	if health < 0:
 		_die()
-		
-	
+
+
 	if has_node("Label"):
 		$Label.text = "Health: " + str(health)
 	_initial_modulate = modulate
 
-	
+
 	_attack_timer.wait_time = attack_pause_time
 	#warning-ignore:return_value_discarded
 	_attack_timer.connect("timeout", self, "_on_AttackTimer_timeout")
 	#warning-ignore:return_value_discarded
 	connect("health_changed", self, "_on_health_change")
 	#warning-ignore:return_value_discarded
-	
+
 	if has_node("AttackRadius"):
 		$AttackRadius.connect("body_entered", self, "_on_AttackRadius_body_entered")
 		#warning-ignore:return_value_discarded
@@ -96,7 +96,7 @@ func _physics_process(delta : float):
 				_attack()
 				_can_attack = false
 				_attack_timer.start()
-	
+
 
 func _draw():
 	# figure out where you're trying to go
@@ -105,17 +105,17 @@ func _draw():
 	#print(self.name, " _move_dir == ", _move_dir )
 	draw_line( to_local(myPos), to_local(targetPos), Color.blue, 3.0, true )
 
-		
+
 func _movement_loop():
-	
+
 	if _hitstun == 0:
-		motion = _move_dir.normalized() * speed 
+		motion = _move_dir.normalized() * speed
 	else:
 		motion = _knock_dir.normalized() * 125
-	
+
 	#warning-ignore:return_value_discarded
 	move_and_slide(motion, Vector2.ZERO)
-	
+
 func _damage_loop():
 	health = min(max_health, health)
 	if _hitstun > 0:
@@ -132,11 +132,11 @@ func _damage_loop():
 				if _hitstun == 0 and body.damage != 0:
 					self.health -= body.damage
 					_hitstun = 10 # frames
-					_knock_dir = get_global_transform().origin - body.get_global_transform().origin 
+					_knock_dir = get_global_transform().origin - body.get_global_transform().origin
 					body.queue_free()
 
 func _attack():
-	
+
 #	var projectile_instance : Node2D = projectile_tscn.instance()
 #	projectile_container.add_child(projectile_instance)
 #	if projectile_instance.has_method("shoot"):
@@ -150,12 +150,12 @@ func _attack():
 		#var initial_vel = motion
 		var initial_vel = Vector2.ZERO # testing
 		emit_signal("shoot", projectile_tscn, my_pos, Vector2.RIGHT.angle_to(player_pos - my_pos), initial_vel)
-		
+
 		disconnect("shoot", global.current_level, "_on_projectile_requested")
 
 func _on_level_initialized():
 	_player = global.player
-	
+
 func _on_AttackRadius_body_entered(body : PhysicsBody2D):
 	if body == global.player:
 		_is_in_attack_range = true
@@ -174,7 +174,7 @@ func _set_health(new_health : float):
 	if new_health != health:
 		health = new_health
 		emit_signal("health_changed")
-		
+
 func disable_hitboxes():
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	$Hitbox/CollisionShape2D.call_deferred("set_disabled", true)
@@ -195,12 +195,13 @@ func _die():
 		if $DeadBody.has_node("CorposeDuration"):
 			$DeadBody/CorpseDuration.start() # disappear later
 	_state = States.DEAD
-	
+
 func _on_hit(damage): # signal from BigArrow.tscn
 
 	if spawner_activated == false:
-		activate_spawner()	
-	
+		activate_spawner()
+		
+
 	if has_node("HitNoise"):
 		$HitNoise.play()
 	self.health -= damage
@@ -219,7 +220,9 @@ func flash_red():
 	tween.start()
 
 func activate_spawner():
+	print(self.name, " starting enemy spawner")
 	$EnemySpawner.start()
+	spawner_activated = true
 
 
 func _on_CorpseDuration_timeout():

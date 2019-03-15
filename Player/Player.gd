@@ -10,7 +10,7 @@ Player should be able to:
 
 extends KinematicBody2D
 
-signal health_changed
+#signal health_changed
 signal level_requested(path_to_level)
 signal weapon_requested(weapon_name)
 

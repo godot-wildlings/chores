@@ -42,7 +42,9 @@ func setup_blink_timer():
 	BlinkTimer = Timer.new()
 	add_child(BlinkTimer)
 	BlinkTimer.set_wait_time(rand_range(0.5, 1.5))
-	BlinkTimer.connect("timeout", self, "_on_BlinkTimer_timeout")
+	var err = BlinkTimer.connect("timeout", self, "_on_BlinkTimer_timeout")
+	if err: push_warning(str(err))
+
 	BlinkTimer.start()
 
 func set_state(newState):
