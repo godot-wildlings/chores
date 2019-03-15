@@ -57,7 +57,6 @@ func get_ranged_attack_animation(enemy_type):
 	var type = entity.enemy_types
 	match enemy_type:
 		type.BLINK:
-			#return "enemy_blinker_attack"
 			return "enemy_blinker_attack"
 			
 		type.KITE:
@@ -85,8 +84,6 @@ func attack_melee(attackTarget):
 			deal_damage(attackTarget)
 		emit_signal("attack_completed")
 
-		#moved to movement subsystem
-		#anim_player.play("enemy_melee_walk")
 
 
 

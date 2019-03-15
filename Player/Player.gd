@@ -176,8 +176,10 @@ func _movement_loop(delta):
 func _update_human_animation(motion : Vector2):
 	if _state == States.RUNNING:
 		$AnimationPlayer.play("player_run")
+		play_random_step_sfx(true)
 	elif _state == States.WALKING:
 		$AnimationPlayer.play("player_walk")
+		play_random_step_sfx()
 	if motion.x > 0:
 		$Sprite.flip_h = false
 	elif motion.x < 0:
@@ -188,6 +190,25 @@ func _update_human_animation(motion : Vector2):
 		$Sprite.flip_h = false
 	elif get_local_mouse_position().x <= 0:
 		$Sprite.flip_h = true
+
+func play_random_step_sfx(running : bool = false):
+	if is_instance_valid(global.current_level):
+		match global.current_level.name:
+			"Farm", "NightFarm":
+				if has_node("StepSFXGrass"):
+					play_random_sfx($StepSFXGrass)
+			"Caves", "NightCaves":
+				if has_node("StepSFXCaves"):
+					play_random_sfx($StepSFXCaves)
+
+func play_random_sfx(container : Node2D):
+	if is_instance_valid(container):
+		var sfx_count : int = container.get_child_count()
+		var rnd_sfx_idx : int = randi() % sfx_count
+		var sfx_audio_player : AudioStreamPlayer2D = container.get_child(rnd_sfx_idx)
+		if is_instance_valid(sfx_audio_player):
+			if not sfx_audio_player.playing:
+				sfx_audio_player.play()
 
 func get_direction_hack():
 	# store a bunch of previous positions and get the average
