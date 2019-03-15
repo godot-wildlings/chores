@@ -64,6 +64,7 @@ autoplay = "burn"
 anims/burn = SubResource( 2 )
 
 [node name="DurationTimer" type="Timer" parent="."]
+wait_time = 3.5
 autostart = true
 
 [node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]

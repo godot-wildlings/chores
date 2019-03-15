@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Enemies/Boss/Baphomet.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Fireball/Fireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Boss/goat.png" type="Texture" id=3]
 [ext_resource path="res://Effects/HAHAHA.wav" type="AudioStream" id=4]
 [ext_resource path="res://Enemies/EnemySpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=6]
+[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=7]
+[ext_resource path="res://Enemies/Boss/HealthBar.gd" type="Script" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 53.7125
@@ -160,6 +163,7 @@ wait_time = 0.3
 autostart = true
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = -22.5869
 margin_top = -72.894
 margin_right = 17.4131
@@ -188,4 +192,14 @@ max_distance = 10000.0
 [node name="Tween" type="Tween" parent="."]
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 5 )]
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+margin_left = -61.3696
+margin_top = -75.8095
+margin_right = 66.6304
+margin_bottom = -35.8095
+value = 100.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 7 )
+script = ExtResource( 8 )
 

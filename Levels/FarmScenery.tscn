@@ -1,19 +1,17 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Levels/Scenery/background-far.png" type="Texture" id=1]
-[ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=2]
-[ext_resource path="res://Levels/Scenery/bushes.png" type="Texture" id=3]
-[ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=4]
+[ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=1]
+[ext_resource path="res://Levels/Scenery/background-far.png" type="Texture" id=2]
+[ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=3]
+[ext_resource path="res://Levels/Scenery/bushes.png" type="Texture" id=4]
 [ext_resource path="res://Levels/Scenery/TreeBushBorder.png" type="Texture" id=5]
 [ext_resource path="res://Levels/Scenery/roundBush.png" type="Texture" id=6]
 [ext_resource path="res://Levels/Interactive Objects/Portal/Portal.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Levels/Interactive Objects/Portal/Portal.gd" type="Script" id=8]
-[ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=9]
-[ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=10]
-[ext_resource path="res://Levels/Scenery/pond.png" type="Texture" id=11]
-[ext_resource path="res://Levels/Scenery/SheepHerdingZone.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Levels/Scenery/SheepHerdingZone.gd" type="Script" id=13]
-[ext_resource path="res://Levels/Scenery/Tree.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=8]
+[ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=9]
+[ext_resource path="res://Levels/Scenery/pond.png" type="Texture" id=10]
+[ext_resource path="res://Levels/Scenery/SheepHerdingZone.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Levels/Scenery/Tree.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50.3812, 657.9 )
@@ -34,7 +32,14 @@ extents = Vector2( 157.725, 81.1065 )
 extents = Vector2( 103.18, 55.7823 )
 
 [node name="FarmScenery" type="Node2D"]
-editor/display_folded = true
+
+[node name="Grass" type="Sprite" parent="."]
+position = Vector2( 4207.13, 1164.53 )
+scale = Vector2( 2, 1 )
+z_index = -1
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 6144, 508 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -47,7 +52,7 @@ motion_scale = Vector2( 0.5, 1 )
 self_modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
 position = Vector2( 2013.5, 716.944 )
 scale = Vector2( 1, 0.5 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 7320, 537 )
 
@@ -57,7 +62,7 @@ motion_scale = Vector2( 0.75, 1 )
 [node name="BG-Med" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxMed"]
 self_modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
 position = Vector2( 1957.74, 850.269 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 5520, 131 )
 
@@ -67,25 +72,17 @@ motion_scale = Vector2( 0.85, 1 )
 [node name="BG-Near" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxNear"]
 position = Vector2( 2031.46, 875.207 )
 scale = Vector2( 1, 0.5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 5520, 131 )
 
 [node name="Trees" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxNear"]
 position = Vector2( 2208.41, 847.55 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 6144, 98 )
 
 [node name="ParallaxStatic" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-
-[node name="Grass" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxStatic"]
-position = Vector2( 4207.13, 1164.53 )
-scale = Vector2( 2, 1 )
-z_index = -1
-texture = ExtResource( 4 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 6144, 508 )
 
 [node name="InvisWalls" type="Node2D" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -228,13 +225,11 @@ region_rect = Rect2( 0, 0, 5770, 128 )
 position = Vector2( -46.749, 1064.6 )
 shape = SubResource( 4 )
 
-[node name="Portal" type="Node2D" parent="." instance=ExtResource( 7 )]
+[node name="Portal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 4079.88, 909.858 )
-script = ExtResource( 8 )
 path_to_exit_scene = "res://Levels/Caves.tscn"
 
 [node name="Scenery" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="House1" type="StaticBody2D" parent="Scenery"]
 editor/display_folded = true
@@ -250,7 +245,7 @@ shape = SubResource( 5 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House1"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="House2" type="StaticBody2D" parent="Scenery"]
 editor/display_folded = true
@@ -266,7 +261,7 @@ shape = SubResource( 6 )
 
 [node name="HouseSprite" type="Sprite" parent="Scenery/House2"]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 10 )
+texture = ExtResource( 9 )
 
 [node name="Pond" type="StaticBody2D" parent="Scenery"]
 editor/display_folded = true
@@ -275,117 +270,80 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="PondSprite" type="Sprite" parent="Scenery/Pond"]
 position = Vector2( -3.47168, -15.6868 )
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Scenery/Pond"]
 position = Vector2( -2397.1, -1103.49 )
 polygon = PoolVector2Array( 2782.84, 1058.36, 2700.82, 1158.84, 2411.7, 1148.59, 2237.4, 1162.94, 1954.42, 1091.17, 2145.12, 1019.4, 2409.65, 1011.2 )
 
-[node name="SheepHerdingZone" type="Area2D" parent="Scenery" instance=ExtResource( 12 )]
+[node name="SheepHerdingZone" parent="Scenery" instance=ExtResource( 11 )]
 position = Vector2( 1470.69, 1054.49 )
 scale = Vector2( 0.177687, 0.154614 )
-script = ExtResource( 13 )
 
 [node name="Trees" type="Node2D" parent="Scenery"]
 editor/display_folded = true
 position = Vector2( 0, 84.0951 )
 
-[node name="Tree" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1135.46, 999.925 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree2" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree2" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 879, 902 )
 scale = Vector2( 1.74073, 1.35933 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree3" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree3" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 339, 1103 )
 scale = Vector2( 1.4402, 1.50248 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree4" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree4" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 214, 1147 )
 scale = Vector2( 1.04245, 0.719429 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree5" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree5" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 826, 917 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree6" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree6" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 2851.53, 990.259 )
 scale = Vector2( 1.71621, 1.585 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree7" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree7" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1305, 942 )
 scale = Vector2( 1.466, 1.5523 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree8" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree8" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1254, 869 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree9" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree9" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1336, 975 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree10" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree10" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 276, 1077 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree11" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree11" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 404.405, 1144.6 )
 scale = Vector2( 1.13142, 1 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree12" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree12" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1919.98, 960.808 )
 scale = Vector2( 1.84608, 0.723505 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree13" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree13" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1904, 817 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree14" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree14" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1716, 856 )
 scale = Vector2( 1.47207, 1.32566 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree15" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree15" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1797, 823 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree16" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree16" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 3952.4, 869.033 )
 scale = Vector2( 3.11622, 2.48396 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree17" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree17" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1594.55, 858.734 )
-collision_layer = 2
-collision_mask = 21
 
-[node name="Tree18" type="StaticBody2D" parent="Scenery/Trees" instance=ExtResource( 14 )]
+[node name="Tree18" parent="Scenery/Trees" instance=ExtResource( 12 )]
 position = Vector2( 1801.84, 1109.68 )
-collision_layer = 2
-collision_mask = 21
 
