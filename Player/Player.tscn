@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/char_idle_exp.png" type="Texture" id=2]
@@ -15,6 +15,15 @@
 [ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=13]
 [ext_resource path="res://GUI/HealthOver.png" type="Texture" id=14]
 [ext_resource path="res://Player/HealthBar.gd" type="Script" id=15]
+[ext_resource path="res://Effects/Enemies_Hurt_1.wav" type="AudioStream" id=16]
+[ext_resource path="res://Effects/Enemies_Hurt_2.wav" type="AudioStream" id=17]
+[ext_resource path="res://Effects/Enemies_Hurt_3.wav" type="AudioStream" id=18]
+[ext_resource path="res://Effects/Enemies_Hurt_4.wav" type="AudioStream" id=19]
+[ext_resource path="res://Effects/Enemies_Hurt_5.wav" type="AudioStream" id=20]
+[ext_resource path="res://Effects/Enemies_Hurt_6.wav" type="AudioStream" id=21]
+[ext_resource path="res://Effects/Enemies_Die_1.wav" type="AudioStream" id=22]
+[ext_resource path="res://Effects/Enemies_Die_2.wav" type="AudioStream" id=23]
+[ext_resource path="res://Effects/Enemies_Die_3.wav" type="AudioStream" id=24]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -332,6 +341,7 @@ anims/player_run = ExtResource( 10 )
 anims/player_walk = ExtResource( 11 )
 
 [node name="DemonForm" type="Node2D" parent="."]
+editor/display_folded = true
 visible = false
 position = Vector2( -0.614716, -15.6752 )
 scale = Vector2( 1.5, 1.5 )
@@ -417,4 +427,46 @@ texture_progress = ExtResource( 14 )
 script = ExtResource( 15 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="HurtSFX" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="HurtNoise" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 16 )
+bus = "SoundFX"
+
+[node name="HurtNoise2" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 17 )
+bus = "SoundFX"
+
+[node name="HurtNoise3" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 18 )
+bus = "SoundFX"
+
+[node name="HurtNoise4" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 19 )
+bus = "SoundFX"
+
+[node name="HurtNoise5" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 20 )
+bus = "SoundFX"
+
+[node name="HurtNoise6" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 21 )
+bus = "SoundFX"
+
+[node name="DeathSFX" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="DeathNoise" type="AudioStreamPlayer2D" parent="DeathSFX"]
+stream = ExtResource( 22 )
+bus = "SoundFX"
+
+[node name="DeathNoise2" type="AudioStreamPlayer2D" parent="DeathSFX"]
+stream = ExtResource( 23 )
+bus = "SoundFX"
+
+[node name="DeathNoise3" type="AudioStreamPlayer2D" parent="DeathSFX"]
+stream = ExtResource( 24 )
+bus = "SoundFX"
 

@@ -268,6 +268,12 @@ func _damage_loop():
 
 func take_damage(damage):
 	health -= damage
+	if has_node("HurtSFX"):
+		var hurt_sfx_count : int = get_node("HurtSFX").get_child_count()
+		var rnd_hurt_sfx : int = randi() % hurt_sfx_count
+		var rnd_audio_player : AudioStreamPlayer2D = get_node("HurtSFX").get_child(rnd_hurt_sfx)
+		if is_instance_valid(rnd_audio_player):
+			rnd_audio_player.play()
 	flash_red()
 	if health <= 0:
 		die()
@@ -295,6 +301,12 @@ func flash_red():
 
 func die():
 	print("GAME OVER")
+#	if has_node("DeathSFX"):
+#		var death_sfx_count : int = get_node("DeathSFX").get_child_count()
+#		var rnd_death_sfx : int = randi() % death_sfx_count
+#		var rnd_audio_player : AudioStreamPlayer2D = get_node("DeathSFX").get_child(rnd_death_sfx)
+#		if is_instance_valid(rnd_audio_player):
+#			rnd_audio_player.play()
 	var _err = connect("level_requested", global.main_scene, "_on_level_requested")
 	if _err: push_warning(_err)
 	emit_signal("level_requested", "res://Levels/RIPFriederich.tscn")

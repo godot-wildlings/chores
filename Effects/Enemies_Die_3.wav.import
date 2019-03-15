@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Enemies_Die_3.wav-f6497e58e2bc9d51dc5cf25a21500bee.sample"
+
+[deps]
+
+source_file="res://Effects/Enemies_Die_3.wav"
+dest_files=[ "res://.import/Enemies_Die_3.wav-f6497e58e2bc9d51dc5cf25a21500bee.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
