@@ -31,13 +31,14 @@ func _process(delta):
 		position += velocity * delta
 
 
+#warning-ignore:unused_argument
 func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float):
 	global_position = bullet_position
 	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
 	var base_velocity = direction.normalized() * speed
 	
 	if _state == States.FLYING:
-		velocity = initial_velocity + base_velocity
+		velocity = base_velocity
 		rotation += direction.angle()
 	if has_node("SFX"):
 		var sfx : Node2D = get_node("SFX")
