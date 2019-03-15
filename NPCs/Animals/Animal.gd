@@ -226,9 +226,11 @@ func die():
 	$NoiseTimer.stop()
 
 	
-		
-func _on_hit(damage): # signal from arrow
+	
+
+func take_damage(damage):
 	health -= damage
+	flash_red()
 	if health <= 0:
 		die()
 	else:
@@ -236,3 +238,20 @@ func _on_hit(damage): # signal from arrow
 		bleet()
 		fear_of_player = 30.0
 		fear_range = 600.0
+
+func flash_red():
+	var node_to_colorize
+	
+	if has_node("BodyParts"):
+		node_to_colorize = $BodyParts
+		
+		var tween = get_node("Tween")
+		tween.interpolate_property(node_to_colorize, "modulate",
+				Color.red, Color.white, .25,
+				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()	
+
+		
+func _on_hit(damage): # signal from arrow
+	take_damage(damage)
+	

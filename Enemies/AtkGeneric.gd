@@ -33,8 +33,6 @@ func start(newEntity, newTarget):
 	err = connect("attack_completed", entity, "_on_attack_completed")
 
 func attack_ranged(attackTarget):
-	print(attackTarget)
-	print(self.name,  " attacking ", attackTarget.name )
 	# ask level to spawn a projectile
 	var myPos = $Muzzle.get_global_position()
 	var targetPos = target.get_global_position()

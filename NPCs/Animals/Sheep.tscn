@@ -215,5 +215,7 @@ position = Vector2( -32.6422, -23.1323 )
 rotation = -0.666716
 texture = ExtResource( 6 )
 
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="timeout" from="BehaviourChangeTimer" to="." method="_on_BehaviourChangeTimer_timeout"]
 [connection signal="timeout" from="NoiseTimer" to="." method="_on_NoiseTimer_timeout"]

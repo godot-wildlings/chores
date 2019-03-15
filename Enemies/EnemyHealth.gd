@@ -53,13 +53,24 @@ func die():
 	$HealthBar.hide()
 	emit_signal("dropped_below_zero")
 	
-		
-func _on_hit(damage): # signal from arrow
-	#print("Zombie got hit for ", damage)
+func take_damage(damage):
 	health -= damage
 	if health <= 0:
 		die()
 	else:
-		
 		$HealthBar.set_value(get_health_ratio()*100)
+		flash_red()
+		
+func flash_red():
+	var node_to_colorize = entity
+
+	var tween = entity.get_node("Tween")
+	tween.interpolate_property(node_to_colorize, "modulate",
+			Color.red, Color.white, .25,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+
+
+func _on_hit(damage): # signal from arrow
+	take_damage(damage)
 

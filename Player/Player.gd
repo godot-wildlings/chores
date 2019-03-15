@@ -16,7 +16,7 @@ signal weapon_requested(weapon_name)
 
 enum States { IDLE, WALKING, RUNNING, CHATTING, DEAD }
 
-onready var health : float = max_health setget _set_health
+onready var health : float = max_health # setget _set_health
 
 export var max_health : float = 3
 export var is_demon : bool = false
@@ -43,10 +43,13 @@ func _ready():
 		become_human()
 
 func connect_signals():
-	var _err
-	_err = connect("health_changed", self, "_on_health_change")
-	if _err: push_warning(_err)
-	_err = null
+
+#	var _err
+#	_err = connect("health_changed", self, "_on_health_change")
+#	if _err: push_warning(_err)
+
+
+	var _err = null
 	_err = connect("weapon_requested", $WeaponSlots, "_on_weapon_requested")
 	if _err: push_warning(_err)
 
@@ -238,7 +241,8 @@ func _damage_loop():
 	else:
 		modulate = Color(1, 1, 1, 1)
 		if health <= 0:
-			self._state = States.DEAD
+			die()
+			#self._state = States.DEAD
 
 # moved to _on_hit
 #	for body in $Hitbox.get_overlapping_bodies():
@@ -251,15 +255,39 @@ func _damage_loop():
 #					self.health -= body.damage
 #					_iframes = 10
 
-func _on_health_change():
-	if health <= 0:
-		self._state = States.DEAD
-	$Label.text = "Health: " + str(health)
+#func _on_health_change():
+#	if health <= 0:
+#		die()
+#		#self._state = States.DEAD
+		
+#	$Label.text = "Health: " + str(health)
 
-func _set_health(new_health : float):
-	if new_health != health:
-		health = new_health
-		emit_signal("health_changed")
+func take_damage(damage):
+	health -= damage
+	flash_red()
+	if health <= 0:
+		die()
+
+func flash_red():
+	var node_to_colorize
+	if is_demon == false:
+		node_to_colorize = $Sprite
+	else:
+		node_to_colorize = $DemonForm
+
+
+	var tween = get_node("Tween")
+	tween.interpolate_property(node_to_colorize, "modulate",
+			Color.red, Color.white, .25,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+
+
+# moved all the set get health signaling stuff to _on_hit
+#func _set_health(new_health : float):
+#	if new_health != health:
+#		health = new_health
+#		#emit_signal("health_changed")
 
 func die():
 	print("GAME OVER")
@@ -288,6 +316,7 @@ func _on_NPC_started_chatting():
 func _on_NPC_stopped_chatting():
 	_state = States.IDLE
 
-func _on_hit(damage):
-	self.health -= damage
 
+func _on_hit(damage):
+	take_damage(damage)
+	

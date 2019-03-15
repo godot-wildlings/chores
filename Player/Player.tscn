@@ -282,10 +282,8 @@ max_health = 10.0
 is_demon = true
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 2 )
 hframes = 2
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.75103, 21.2793 )
@@ -335,6 +333,7 @@ anims/player_run = ExtResource( 10 )
 anims/player_walk = ExtResource( 11 )
 
 [node name="DemonForm" type="Node2D" parent="."]
+visible = false
 position = Vector2( -0.614716, -15.6752 )
 scale = Vector2( 1.5, 1.5 )
 
@@ -417,4 +416,6 @@ value = 100.0
 texture_under = ExtResource( 13 )
 texture_progress = ExtResource( 14 )
 script = ExtResource( 15 )
+
+[node name="Tween" type="Tween" parent="."]
 

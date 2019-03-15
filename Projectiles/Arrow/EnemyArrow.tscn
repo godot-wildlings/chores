@@ -5,7 +5,7 @@
 [ext_resource path="res://Projectiles/Bullet/shoot.anim" type="Animation" id=3]
 [ext_resource path="res://Effects/pluck.wav" type="AudioStream" id=4]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.1372, 10 )
 
 [sub_resource type="Animation" id=2]
@@ -21,7 +21,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/burn = SubResource( 2 )

@@ -40,6 +40,8 @@ tracks/1/keys = {
 [node name="FlamingSkull" type="Area2D"]
 collision_layer = 32
 script = ExtResource( 1 )
+speed = 200.0
+damage = 3
 
 [node name="skull" type="Sprite" parent="."]
 self_modulate = Color( 0.737255, 0.184314, 0.0745098, 1 )

@@ -34,8 +34,9 @@ func start(entity, target):
 	Target = target
 	#print("Blink starting")
 	setup_blink_timer()
-	connect("teleport_requested", Entity, "_on_teleport_requested")
-	connect("teleport_completed", Entity, "_on_teleport_completed")
+	var err = connect("teleport_requested", Entity, "_on_teleport_requested")
+	err = connect("teleport_completed", Entity, "_on_teleport_completed")
+	if err: push_warning(str(err))
 	
 func setup_blink_timer():
 	BlinkTimer = Timer.new()
