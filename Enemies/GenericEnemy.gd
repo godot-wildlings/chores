@@ -124,8 +124,10 @@ func set_random_color():
 	set_modulate(Color(lightness, lightness, lightness))
 
 func choose_behaviour():
-	print(self.name, ": choose_behaviour not yet implemented." )
-
+	
+	#print(self.name, ": choose_behaviour not yet implemented." )
+	pass
+	
 
 func die():
 	# spawn a blood splotch and a dead sheep sprite
@@ -137,9 +139,14 @@ func die():
 	entity.get_node("AnimationPlayer").stop()
 	entity.get_node("BehaviourTimer").stop()
 	Vocalization.get_node("NoiseTimer").stop()
-
+	place_corpse_behind_live_enemies()
 	emit_signal("died")
 
+func place_corpse_behind_live_enemies():
+	var entity = self
+	#entity.set_z_index(-1)
+	entity.get_parent().move_child( entity, 0 )
+	
 
 func disable_hitboxes():
 	get_node("CollisionShape2D").call_deferred("set_disabled", true)
@@ -155,8 +162,8 @@ func _on_BehaviourTimer_timeout():
 	# not yet implemented.
 
 func _on_Hitbox_received_hit(damage, damage_type):
-	print("Entity received hit" )
-	print("immunities: ", immunities)
+	#print("Entity received hit" )
+	#print("immunities: ", immunities)
 	if immunities[damage_type] == false:
 		
 		
@@ -171,3 +178,7 @@ func _on_teleport_requested():
 
 func _on_teleport_completed():
 	call_deferred("enable_hitboxes")
+	
+func _on_attack_completed():
+	Movement.walk()
+	

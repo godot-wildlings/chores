@@ -5,8 +5,9 @@ signal dialog_box_requested(textArr)
 export var min_amount_of_sheeps_to_rescue : int = 3
 export var dialog_box_title : String = "Thank you!"
 export var dialog_text_array : Array = [
-		"Thanks for all your help, Friedrich.",
-		"We depend on you so much. I don't know what I'd do without you."
+		"Thanks for all your help, Friedrich.\nI'll take it from here.",
+		"I can't imagine what we'd do without you... Did your mother ever tell you about the day we found her?",
+		"Ah well, it's not important. You go run along and play. I have work to do."
 ]
 
 var amount_of_rescued_sheep : int = 0

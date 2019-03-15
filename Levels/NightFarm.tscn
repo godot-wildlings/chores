@@ -1,204 +1,28 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
-[ext_resource path="res://BGMusic/Night_Theme_draft.ogg" type="AudioStream" id=2]
-[ext_resource path="res://Levels/Scenery/BackgroundNight.png" type="Texture" id=3]
-[ext_resource path="res://Levels/Scenery/background-near.png" type="Texture" id=4]
-[ext_resource path="res://Levels/Scenery/grass.png" type="Texture" id=5]
-[ext_resource path="res://Levels/Scenery/bushes.png" type="Texture" id=6]
-[ext_resource path="res://Levels/Scenery/wall1.png" type="Texture" id=7]
-[ext_resource path="res://Levels/Interactive Objects/Portal/Portal.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Levels/Buildings/House1.png" type="Texture" id=9]
-[ext_resource path="res://Levels/Buildings/House2.png" type="Texture" id=10]
-[ext_resource path="res://Levels/Scenery/pond.png" type="Texture" id=11]
-[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=12]
-[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=13]
-[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=14]
-[ext_resource path="res://NPCs/grandad.png" type="Texture" id=15]
-[ext_resource path="res://NPCs/grandma.png" type="Texture" id=16]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Levels/Scenery/SheepHerdingZone.tscn" type="PackedScene" id=18]
-[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=19]
-
-[sub_resource type="OpenSimplexNoise" id=1]
-
-[sub_resource type="NoiseTexture" id=2]
-seamless = true
-noise = SubResource( 1 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 50.3812, 657.9 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 4494.9, 91.8439 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 157.725, 81.1065 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 103.18, 55.7823 )
+[ext_resource path="res://Levels/FarmScenery.tscn" type="PackedScene" id=2]
+[ext_resource path="res://BGMusic/Night_Theme_draft.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=4]
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=5]
+[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=6]
+[ext_resource path="res://NPCs/grandad.png" type="Texture" id=7]
+[ext_resource path="res://NPCs/grandma.png" type="Texture" id=8]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=10]
 
 [node name="Farm" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-volume_db = -12.0
-autoplay = true
+[node name="FarmScenery" parent="." instance=ExtResource( 2 )]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-motion_scale = Vector2( 0.5, 1 )
-
-[node name="BG-Far" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
-self_modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
-position = Vector2( 1184.57, 715.013 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 3840, 224 )
-
-[node name="ParallaxMed" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-motion_scale = Vector2( 0.75, 1 )
-
-[node name="BG-Med" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxMed"]
-self_modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
-position = Vector2( 1955.64, 776.702 )
-texture = ExtResource( 4 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 5520, 131 )
-
-[node name="ParallaxNear" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-motion_scale = Vector2( 0.85, 1 )
-
-[node name="BG-Near" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxNear"]
-position = Vector2( 2468.87, 804.086 )
-scale = Vector2( 1, 0.5 )
-texture = ExtResource( 4 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 5520, 131 )
-
-[node name="ParallaxStatic" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-
-[node name="Grass" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxStatic"]
-position = Vector2( 4202.01, 1034.84 )
-scale = Vector2( 2, 1 )
-z_index = -1
-texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 6144, 508 )
-
-[node name="Bushes" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxStatic"]
-position = Vector2( 2210.12, 825.367 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 6144, 196 )
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-modulate = Color( 0.25098, 0.054902, 0.054902, 1 )
-self_modulate = Color( 1, 1, 1, 0.227451 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-texture = SubResource( 2 )
-expand = true
-
-[node name="InvisWalls" type="Node2D" parent="."]
-editor/display_folded = true
-scale = Vector2( 0.5, 0.5 )
-
-[node name="InvisWallLeft" type="StaticBody2D" parent="InvisWalls"]
-editor/display_folded = true
-position = Vector2( 187.503, 2291.84 )
-collision_layer = 2
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="InvisWalls/InvisWallLeft"]
-position = Vector2( -223.692, -127.824 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InvisWalls/InvisWallLeft"]
-polygon = PoolVector2Array( 239.398, -593.219, 187.47, -433.439, 223.42, -301.62, 115.569, -109.884, 51.6566, 49.8962, 83.6127, 125.792, -64.184, 161.742, -235.948, 421.385, -859.09, 461.33, -839.118, -641.153 )
-
-[node name="InvisWallRight" type="StaticBody2D" parent="InvisWalls"]
-position = Vector2( 8415.68, 2002.11 )
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallRight"]
-shape = SubResource( 3 )
-
-[node name="InvisWallTop" type="StaticBody2D" parent="InvisWalls"]
-editor/display_folded = true
-position = Vector2( 4191.17, 577.43 )
-collision_layer = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InvisWalls/InvisWallTop"]
-position = Vector2( 155.646, 1139.33 )
-polygon = PoolVector2Array( -4094.7, 49.7904, -3720.7, 72.1816, -3535.69, 55.3626, -3178.29, 93.2054, -3014.3, 84.7958, -2740.99, 21.7248, -2413.02, -41.3464, -2257.45, -20.3227, -2156.53, -11.9131, -2009.37, -66.5748, -1706.63, -7.70844, -1420.71, 59.5674, -958.184, 89.0005, -728.207, 73.1266, -462.572, 95.8952, -193.143, 65.537, 0.390625, -67.2802, 250.846, -17.9481, 558.223, 65.537, 1006.01, 80.7161, 1465.17, 99.69, 1748.16, 62.4053, 2019.86, -57.1431, 2220.92, -40.8411, 2514.36, 51.5373, 2954.51, 84.1413, 3459.88, 100.443, 3818.52, 35.2352, 4035.88, -19.105, 4236.94, -29.9731, 4285.85, -247.334, -4280.48, -184.819, -4345.18, 26.1012 )
-
-[node name="InvisWallBottom" type="StaticBody2D" parent="InvisWalls"]
-editor/display_folded = true
-position = Vector2( 4195.3, 1592.05 )
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisWalls/InvisWallBottom"]
-position = Vector2( -46.749, 1064.6 )
-shape = SubResource( 4 )
-
-[node name="Portal" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4028.72, 941.563 )
+[node name="Portal" parent="FarmScenery" index="6"]
 path_to_exit_scene = "res://Levels/NightCaves.tscn"
 
-[node name="Scenery" type="Node2D" parent="."]
-editor/display_folded = true
-
-[node name="House1" type="StaticBody2D" parent="Scenery"]
-editor/display_folded = true
-position = Vector2( 425.053, 948.72 )
-scale = Vector2( 0.5, 0.5 )
-collision_layer = 2
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House1"]
-shape = SubResource( 5 )
-
-[node name="HouseSprite" type="Sprite" parent="Scenery/House1"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 9 )
-
-[node name="House2" type="StaticBody2D" parent="Scenery"]
-editor/display_folded = true
-position = Vector2( 997.859, 898.223 )
-scale = Vector2( 0.5, 0.5 )
-collision_layer = 2
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/House2"]
-shape = SubResource( 6 )
-
-[node name="HouseSprite" type="Sprite" parent="Scenery/House2"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 10 )
-
-[node name="Pond" type="StaticBody2D" parent="Scenery"]
-editor/display_folded = true
-
-[node name="PondSprite" type="Sprite" parent="Scenery/Pond"]
-position = Vector2( 2385.25, 1086.8 )
-texture = ExtResource( 11 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Scenery/Pond"]
-polygon = PoolVector2Array( 2782.84, 1058.36, 2700.82, 1158.84, 2411.7, 1148.59, 2237.4, 1162.94, 1954.42, 1091.17, 2145.12, 1019.4, 2409.65, 1011.2 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -12.0
+autoplay = true
 
 [node name="BloodStains" type="Node2D" parent="."]
 editor/display_folded = true
@@ -206,22 +30,22 @@ editor/display_folded = true
 [node name="BloodSplotch" type="Sprite" parent="BloodStains"]
 position = Vector2( 518.088, 1034.98 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 12 )
+texture = ExtResource( 4 )
 
 [node name="BloodSplotch2" type="Sprite" parent="BloodStains"]
 position = Vector2( 1104.51, 984.662 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 12 )
+texture = ExtResource( 4 )
 
 [node name="BloodSplotch3" type="Sprite" parent="BloodStains"]
 position = Vector2( 2380.39, 1225.95 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 12 )
+texture = ExtResource( 4 )
 
 [node name="NPCs" type="Node2D" parent="."]
 editor/display_folded = true
 
-[node name="UncleAnton" parent="NPCs" instance=ExtResource( 13 )]
+[node name="UncleAnton" parent="NPCs" instance=ExtResource( 5 )]
 editor/display_folded = true
 position = Vector2( 507.779, 1026.21 )
 collision_layer = 4
@@ -230,9 +54,9 @@ dialog_text_array = [ "... Why?  Wh, who are you? Aaaaahhhhghh..." ]
 [node name="Sprite" parent="NPCs/UncleAnton" index="0"]
 rotation = 1.48353
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+texture = ExtResource( 6 )
 
-[node name="Grandpa" parent="NPCs" instance=ExtResource( 13 )]
+[node name="Grandpa" parent="NPCs" instance=ExtResource( 5 )]
 editor/display_folded = true
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 1101.55, 975.883 )
@@ -244,9 +68,9 @@ dialog_text_array = [ "The pain. What do you want? Why would you do this?..  Wai
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
 rotation = 1.06465
 scale = Vector2( 0.36, 0.59 )
-texture = ExtResource( 15 )
+texture = ExtResource( 7 )
 
-[node name="Agneth" parent="NPCs" instance=ExtResource( 13 )]
+[node name="Agneth" parent="NPCs" instance=ExtResource( 5 )]
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 2372.11, 1210.09 )
 collision_layer = 4
@@ -257,29 +81,27 @@ dialog_text_array = [ "Friederich, I know it's you, Friedrich. I warned you not 
 [node name="Sprite" parent="NPCs/Agneth" index="0"]
 rotation = 1.39626
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 16 )
+texture = ExtResource( 8 )
 
-[node name="Player" parent="." instance=ExtResource( 17 )]
+[node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 674.389, 1049.88 )
-
-[node name="SheepHerdingZone" parent="." instance=ExtResource( 18 )]
-position = Vector2( 1620.52, 1027.14 )
-scale = Vector2( 0.2, 0.2 )
 
 [node name="Animals" type="Node2D" parent="."]
 
-[node name="Sheep" parent="Animals" instance=ExtResource( 19 )]
+[node name="Sheep" parent="Animals" instance=ExtResource( 10 )]
 position = Vector2( 1620.97, 1047.95 )
 health = -5
 
-[node name="Sheep2" parent="Animals" instance=ExtResource( 19 )]
+[node name="Sheep2" parent="Animals" instance=ExtResource( 10 )]
 position = Vector2( 1668.86, 978.622 )
 health = -5
 
-[node name="Sheep3" parent="Animals" instance=ExtResource( 19 )]
+[node name="Sheep3" parent="Animals" instance=ExtResource( 10 )]
 position = Vector2( 1574.33, 974.21 )
 health = -5
 
+
+[editable path="FarmScenery"]
 
 [editable path="NPCs/UncleAnton"]
 

@@ -42,6 +42,9 @@ func _physics_process(_delta):
 func start(type_of_enemy):
 	set_default_movement(type_of_enemy)
 	set_default_walk_anim(type_of_enemy)
+	walk()
+
+func walk():
 	if entity.has_node("AnimationPlayer"):
 		var anim_player = entity.get_node("AnimationPlayer")
 		anim_player.play(default_walk_anim)
@@ -60,14 +63,19 @@ func set_default_movement(type_of_enemy):
 		default_movement.start(entity, global.player)
 
 func set_default_walk_anim(type_of_enemy):
+	# Note: The default walk animation sets the basic sprite texture.
+	
 	match type_of_enemy:
 		enemy_types.RUSH:
 			default_walk_anim = "enemy_melee_walk"
-		enemy_types.KITE, enemy_types.BLINK:
-			default_walk_anim = "enemy_ranged_walk"
+		enemy_types.KITE:
+			default_walk_anim = "enemy_kiter_walk"
+		enemy_types.BLINK:
+			default_walk_anim = "enemy_blinker_walk"
+		
 
 func _on_entity_died():
-	print(self.name, " received message: entity died" )
+	#print(self.name, " received message: entity died" )
 	_state = States.DEAD
 	default_movement.set_state(default_movement.States.DISABLED)
 	default_movement = null

@@ -32,7 +32,7 @@ func _ready():
 func start(entity, target):
 	Entity = entity
 	Target = target
-	print("Blink starting")
+	#print("Blink starting")
 	setup_blink_timer()
 	connect("teleport_requested", Entity, "_on_teleport_requested")
 	connect("teleport_completed", Entity, "_on_teleport_completed")
@@ -45,7 +45,7 @@ func setup_blink_timer():
 	BlinkTimer.start()
 
 func set_state(newState):
-	print("blink received set_state command")
+	#print("blink received set_state command")
 	if newState == States.DISABLED:
 		BlinkTimer.stop()
 		

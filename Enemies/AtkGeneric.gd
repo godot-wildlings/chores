@@ -18,6 +18,7 @@ var damage_per_attack = 1
 
 signal hit(damage)
 signal projectile_requested(pos, rot, vel)
+signal attack_completed()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,7 +30,7 @@ func start(newEntity, newTarget):
 	target = newTarget
 	var err = connect("projectile_requested", global.current_level, "_on_projectile_requested")
 	if err: push_warning(err)
-	
+	err = connect("attack_completed", entity, "_on_attack_completed")
 
 func attack_ranged(attackTarget):
 	print(attackTarget)
@@ -40,37 +41,71 @@ func attack_ranged(attackTarget):
 	var deviation = rand_range(-5, 5) # in degrees, apparently
 	var rot_deg = rad2deg(Vector2.RIGHT.angle_to(targetPos - myPos)) + deviation
 	var initial_vel = Vector2.ZERO
-	emit_signal("projectile_requested", projectile_scene, initial_vel, myPos, rot_deg )
 	attack_ready = false
 	
 	if entity.has_node("AnimationPlayer"):
 		var anim_player = entity.get_node("AnimationPlayer")
-		anim_player.play("enemy_ranged_attack")
+		anim_player.play(get_ranged_attack_animation(entity.type_of_enemy))
+		
+		
 		yield(anim_player, "animation_finished")
-		anim_player.play("enemy_ranged_walk")
+		emit_signal("attack_completed")
+
+		# throw the fireball after the attack animation
+		emit_signal("projectile_requested", projectile_scene, initial_vel, myPos, rot_deg )
 	
+
+func get_ranged_attack_animation(enemy_type):
+	var type = entity.enemy_types
+	match enemy_type:
+		type.BLINK:
+			#return "enemy_blinker_attack"
+			return "enemy_blinker_attack"
+			
+		type.KITE:
+			return "enemy_kiter_attack"
+		type.RUSH:
+			return "enemy_melee_attack"
+
+		
 	
 func attack_melee(attackTarget):
 	if not is_instance_valid(attackTarget):
 		return
+	attack_ready = false
 	
+	if has_node("Growl"):
+		$Growl.play()
+			
+	if entity.has_node("AnimationPlayer"):
+		var anim_player = entity.get_node("AnimationPlayer")
+		anim_player.play("enemy_melee_attack")
+		yield(anim_player, "animation_finished")
+		
+		#deal damage after the animation, not before
+		if in_range(attackTarget):
+			deal_damage(attackTarget)
+		emit_signal("attack_completed")
+
+		#moved to movement subsystem
+		#anim_player.play("enemy_melee_walk")
+
+
+
+func deal_damage(attackTarget):
 	#print("CLAW CLAW")
 	# no need for a projectile. just damage the target
+	if has_node("ClawStrikeNoise"):
+		$ClawStrikeNoise.play()
+
+
 	if attackTarget.has_method("_on_hit"):
 		var err = connect("hit", attackTarget, "_on_hit")
 		if err: push_warning(err)
 		emit_signal("hit", damage_per_attack)
 		disconnect("hit", attackTarget, "_on_hit")
-	attack_ready = false
+	
 
-	if entity.has_node("AnimationPlayer"):
-		var anim_player = entity.get_node("AnimationPlayer")
-		anim_player.play("enemy_melee_attack")
-		yield(anim_player, "animation_finished")
-		anim_player.play("enemy_melee_walk")
-
-	if has_node("ClawNoise"):
-		$ClawNoise.play()
 
 func set_state(newState):
 	_state = newState
@@ -87,7 +122,7 @@ func in_range(attackTarget):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if _state == States.ENABLED and entity.get_state() != entity.States.DEAD:
 		if attack_ready and in_range(target):
 			if attack_type == attack_types.MELEE:

@@ -3,11 +3,11 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://Levels/TileMaps/CavesTilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/GenericEnemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://BGMusic/testBGMusic.ogg" type="AudioStream" id=5]
-[ext_resource path="res://Collectibles/EvilBook.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Levels/Interactive Objects/Portal/Portal.tscn" type="PackedScene" id=7]
-[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=8]
+[ext_resource path="res://BGMusic/testBGMusic.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Collectibles/EvilBook.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/Interactive Objects/Portal/Portal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=8]
 
 [node name="Caves" type="Node2D"]
 script = ExtResource( 1 )
@@ -102,43 +102,43 @@ immunities = {
 "physical": false
 }
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2563.49, 1313.88 )
-is_demon = false
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 4 )
 volume_db = -12.0
 autoplay = true
 
-[node name="EvilBook" parent="." instance=ExtResource( 6 )]
+[node name="EvilBook" parent="." instance=ExtResource( 5 )]
 position = Vector2( 4422.05, 2227.3 )
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Portal" parent="." instance=ExtResource( 7 )]
+[node name="Portal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2320.22, 1327.65 )
 path_to_exit_scene = "res://Levels/Farm.tscn"
 
 [node name="Scenery" type="Node2D" parent="."]
 
-[node name="Sheep" parent="Scenery" instance=ExtResource( 8 )]
+[node name="Sheep" parent="Scenery" instance=ExtResource( 7 )]
 position = Vector2( 2695.75, 1337.76 )
 health = -5
 
-[node name="Sheep2" parent="Scenery" instance=ExtResource( 8 )]
+[node name="Sheep2" parent="Scenery" instance=ExtResource( 7 )]
 position = Vector2( 2950.32, 1332.34 )
 health = -5
 
-[node name="Sheep3" parent="Scenery" instance=ExtResource( 8 )]
+[node name="Sheep3" parent="Scenery" instance=ExtResource( 7 )]
 position = Vector2( 3610.7, 1192.73 )
 health = -5
 
-[node name="Sheep4" parent="Scenery" instance=ExtResource( 8 )]
+[node name="Sheep4" parent="Scenery" instance=ExtResource( 7 )]
 position = Vector2( 4023.99, 1456.44 )
 health = -5
 
-[node name="Sheep5" parent="Scenery" instance=ExtResource( 8 )]
+[node name="Sheep5" parent="Scenery" instance=ExtResource( 7 )]
 position = Vector2( 4286.35, 1981.15 )
 health = 5
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2563.49, 1313.88 )
+is_demon = false
 

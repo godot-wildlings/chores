@@ -45,7 +45,7 @@ func is_alive():
 
 func get_health_ratio():
 	var ratio = health / max_health
-	print(self.name, "get_health_ratio == ", ratio)
+	#print(self.name, "get_health_ratio == ", ratio)
 	return ratio
 	
 
@@ -55,7 +55,7 @@ func die():
 	
 		
 func _on_hit(damage): # signal from arrow
-	print("Zombie got hit for ", damage)
+	#print("Zombie got hit for ", damage)
 	health -= damage
 	if health <= 0:
 		die()

@@ -24,7 +24,6 @@ func start(entity, target):
 	Entity = entity
 	Target = target
 
-	print(Entity.name, " will rush ", Target.name)
 
 func set_state(newState):
 	_state = newState

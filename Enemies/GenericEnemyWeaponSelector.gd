@@ -22,16 +22,21 @@ func start(): # should be called from Entity, but we'll call it from _ready for 
 
 
 
-	
+
 func set_default_weapon():
 	var enemy_types = entity.enemy_types
 	match entity.type_of_enemy:
 		enemy_types.RUSH:
 			default_weapon = $Claws
 		enemy_types.KITE:
-			default_weapon = $Bullet
+			default_weapon = $Arrow
 		enemy_types.BLINK:
-			default_weapon = $Bullet
+			if randf() < 1.0:
+				default_weapon = $FlamingSkull
+				# my flaming skull is erroring out
+				#default_weapon = $Arrow
+			else:
+				default_weapon = $Bullet
 		
 	default_weapon.set_state(default_weapon.States.ENABLED)
 	default_weapon.start(entity, global.player)

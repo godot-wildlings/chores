@@ -10,7 +10,6 @@ export var params : Dictionary
 
 
 func start():
-	print(self.name, " level started.")
 	global.current_level = self
 	
 	"""no need. Player registers itself"""
