@@ -5,9 +5,9 @@
 [ext_resource path="res://BGMusic/Night_Theme_Loop.wav" type="AudioStream" id=3]
 [ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=4]
 [ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=5]
-[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=6]
-[ext_resource path="res://NPCs/grandad.png" type="Texture" id=7]
-[ext_resource path="res://NPCs/grandma.png" type="Texture" id=8]
+[ext_resource path="res://NPCs/NPC1.png" type="Texture" id=6]
+[ext_resource path="res://NPCs/NPC2.png" type="Texture" id=7]
+[ext_resource path="res://NPCs/NPC3.png" type="Texture" id=8]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=10]
 
@@ -44,21 +44,18 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="NPCs" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="UncleAnton" parent="NPCs" instance=ExtResource( 5 )]
-editor/display_folded = true
 position = Vector2( 507.779, 1026.21 )
 collision_layer = 4
 dialog_text_array = [ "... Why?  Wh, who are you? Aaaaahhhhghh..." ]
 
 [node name="Sprite" parent="NPCs/UncleAnton" index="0"]
 rotation = 1.48353
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 6 )
 
 [node name="Grandpa" parent="NPCs" instance=ExtResource( 5 )]
-editor/display_folded = true
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 1101.55, 975.883 )
 collision_layer = 4
@@ -68,10 +65,11 @@ dialog_text_array = [ "The pain. What do you want? Why would you do this?..  Wai
 
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
 rotation = 1.06465
-scale = Vector2( 0.36, 0.59 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 7 )
 
 [node name="Agneth" parent="NPCs" instance=ExtResource( 5 )]
+editor/display_folded = true
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 2372.11, 1210.09 )
 collision_layer = 4
@@ -81,7 +79,7 @@ dialog_text_array = [ "Friederich, I know it's you, Friedrich. I warned you not 
 
 [node name="Sprite" parent="NPCs/Agneth" index="0"]
 rotation = 1.39626
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]

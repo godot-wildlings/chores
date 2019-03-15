@@ -5,9 +5,9 @@
 [ext_resource path="res://BGMusic/Day_Theme_Loop.wav" type="AudioStream" id=3]
 [ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=4]
 [ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=5]
-[ext_resource path="res://NPCs/uncleAnton.png" type="Texture" id=6]
-[ext_resource path="res://NPCs/grandad.png" type="Texture" id=7]
-[ext_resource path="res://NPCs/grandma.png" type="Texture" id=8]
+[ext_resource path="res://NPCs/NPC1.png" type="Texture" id=6]
+[ext_resource path="res://NPCs/NPC2.png" type="Texture" id=7]
+[ext_resource path="res://NPCs/NPC3.png" type="Texture" id=8]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=9]
 
 [node name="Farm" type="Node2D"]
@@ -47,7 +47,6 @@ position = Vector2( -55.2526, 84.0745 )
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="Uncle Anton" parent="NPCs" instance=ExtResource( 5 )]
-editor/display_folded = true
 position = Vector2( 496.403, 990.286 )
 collision_layer = 4
 dialog_text_array = [ "Hello Friedrich,
@@ -55,7 +54,8 @@ dialog_text_array = [ "Hello Friedrich,
 The Chaos Wastes are expanding. It's time you learned to fight.  Use that bow I gave you earlier." ]
 
 [node name="Sprite" parent="NPCs/Uncle Anton" index="0"]
-scale = Vector2( 0.4, 0.4 )
+position = Vector2( 1, 0 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 6 )
 flip_h = true
 
@@ -63,8 +63,7 @@ flip_h = true
 position = Vector2( 1.7962, -1.19739 )
 
 [node name="Grandpa" parent="NPCs" instance=ExtResource( 5 )]
-editor/display_folded = true
-position = Vector2( 1336.6, 1142.89 )
+position = Vector2( 1331, 1140 )
 collision_layer = 4
 home = "House2"
 reward_item_name = "Rod"
@@ -74,7 +73,7 @@ I do have a chore for you. The sheep are away. Please herd them back to the farm
 
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
 self_modulate = Color( 0.619608, 0.619608, 0.619608, 1 )
-scale = Vector2( 0.66, 0.66 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 7 )
 
 [node name="Agneth" parent="NPCs" instance=ExtResource( 5 )]
@@ -88,7 +87,7 @@ Be safe!" ]
 
 [node name="Sprite" parent="NPCs/Agneth" index="0"]
 self_modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
-scale = Vector2( 0.35, 0.35 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
