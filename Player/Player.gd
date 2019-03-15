@@ -18,8 +18,10 @@ enum States { IDLE, WALKING, RUNNING, CHATTING, DEAD }
 
 onready var health : float = max_health # setget _set_health
 
-export var max_health : float = 3
+export var max_health : float = 10
+
 export var is_demon : bool = false
+export var demon_health : float = 20
 
 const SPEED : int = 200
 const RUN_SPEED_MULTIPLIER : float = 2.0
@@ -63,6 +65,8 @@ func become_demon():
 	emit_signal("weapon_requested", "FireCaster")
 	show_demon_sprites()
 	is_demon = true
+	max_health = demon_health
+	health = max_health
 	
 func become_human():
 	emit_signal("weapon_requested", "Bow")

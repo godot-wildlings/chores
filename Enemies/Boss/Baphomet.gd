@@ -12,6 +12,7 @@ extends KinematicBody2D
 signal health_changed
 signal shoot(projectile_scene, pos, rot, vel)
 signal died(deadNode)
+signal level_requested(path_to_level)
 
 enum States { ALIVE, DEAD }
 var _state = States.ALIVE
@@ -73,6 +74,8 @@ func _ready():
 		#warning-ignore:return_value_discarded
 		$AttackRadius.connect("body_exited", self, "_on_AttackRadius_body_exited")
 
+	var err = connect("level_requested", global.main_scene, "_on_level_requested")
+	if err : push_warning(str(err))
 
 #warning-ignore:unused_argument
 func _process(delta):
@@ -124,7 +127,7 @@ func _damage_loop():
 	else:
 		modulate = _initial_modulate
 		if health <= 0:
-			queue_free()
+			_die()
 
 	if health > 0:
 		for body in $Hitbox.get_overlapping_bodies():
@@ -184,7 +187,11 @@ func _die():
 	# spawn corpse and bloodstain
 	# queue_free after a timer, if desired
 	disable_hitboxes()
-	$Sprite.hide()
+	
+	if has_node("HeadParts"):
+		$HeadParts.hide()
+	
+	
 	var _err = connect("died", global.current_level, "_on_enemy_died")
 	if _err : push_warning(_err)
 	emit_signal("died", self) # so the level can move our corpse to the back
@@ -195,6 +202,9 @@ func _die():
 		if $DeadBody.has_node("CorposeDuration"):
 			$DeadBody/CorpseDuration.start() # disappear later
 	_state = States.DEAD
+	
+	emit_signal("level_requested", "res://Levels/InteriorCottageEnd.tscn")
+	
 
 func _on_hit(damage): # signal from BigArrow.tscn
 

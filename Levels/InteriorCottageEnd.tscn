@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Levels/InteriorCottageEnd.gd" type="Script" id=1]
+[ext_resource path="res://Levels/Scenery/interior-cottage.png" type="Texture" id=2]
+[ext_resource path="res://BGMusic/Title_Screen_draft.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Player/mons_idle_exp.png" type="Texture" id=4]
+[ext_resource path="res://NPCs/mother.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Ending"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Demon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -165.421, 365.736 ), Vector2( 245.823, 383.913 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Nun:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.8, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1245.09, 429.421 ), Vector2( 770.232, 440.782 ) ]
+}
+
+[node name="InteriorCottageEnd" type="Node2D"]
+script = ExtResource( 1 )
+next_scene_path = "res://Levels/Book2.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="interior" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -9.0
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Ending = SubResource( 1 )
+
+[node name="Demon" type="Sprite" parent="."]
+position = Vector2( -165.421, 365.736 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 4 )
+hframes = 3
+
+[node name="Nun" type="Sprite" parent="."]
+position = Vector2( 1205.52, 430.368 )
+scale = Vector2( 6, 6 )
+texture = ExtResource( 5 )
+

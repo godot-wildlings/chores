@@ -278,7 +278,6 @@ extents = Vector2( 13.0701, 27.4213 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 86
 script = ExtResource( 1 )
-max_health = 10.0
 is_demon = true
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -1,0 +1,35 @@
+[gd_scene format=2]
+
+[node name="GridContainer" type="GridContainer"]
+margin_right = 357.0
+margin_bottom = 202.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 100
+custom_constants/hseparation = 100
+columns = 2
+
+[node name="Label" type="Label" parent="."]
+margin_right = 157.0
+margin_bottom = 51.0
+text = "plexsoup"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 257.0
+margin_right = 357.0
+margin_bottom = 51.0
+text = "caevv"
+
+[node name="Label3" type="Label" parent="."]
+margin_top = 151.0
+margin_right = 157.0
+margin_bottom = 202.0
+text = "Josef"
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 257.0
+margin_top = 151.0
+margin_right = 357.0
+margin_bottom = 202.0
+text = "Cyril"
+

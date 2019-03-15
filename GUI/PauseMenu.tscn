@@ -83,6 +83,7 @@ Phase 4. Exorcism (Nighttime)
 The demon will not control me. I will fight it in my subconscious."
 
 [node name="Options" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -370,7 +371,6 @@ Inspirations: ...
 "
 
 [node name="Cheat" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
