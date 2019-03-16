@@ -23,6 +23,7 @@ modulate = Color( 0.423529, 0.211765, 0.552941, 1 )
 position = Vector2( -587.736, -672.227 )
 
 [node name="Portal" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.4, 0, 0, 1 )
 position = Vector2( 3497.57, 269.295 )
 path_to_exit_scene = "res://Levels/NightCaves.tscn"
 
@@ -32,7 +33,6 @@ volume_db = -12.0
 autoplay = true
 
 [node name="BloodStains" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( -587.999, -672.828 )
 
 [node name="BloodSplotch" type="Sprite" parent="BloodStains"]
@@ -48,6 +48,24 @@ texture = ExtResource( 6 )
 [node name="BloodSplotch3" type="Sprite" parent="BloodStains"]
 position = Vector2( 2380.39, 1225.95 )
 scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="BloodSplotch4" type="Sprite" parent="BloodStains"]
+position = Vector2( 4116.76, 1072.58 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 6 )
+
+[node name="BloodSplotch5" type="Sprite" parent="BloodStains"]
+self_modulate = Color( 0.694118, 0.615686, 0.615686, 1 )
+position = Vector2( 3998.9, 1098.42 )
+scale = Vector2( 0.397028, 0.435879 )
+texture = ExtResource( 6 )
+
+[node name="BloodSplotch6" type="Sprite" parent="BloodStains"]
+self_modulate = Color( 0.509804, 0.494118, 0.494118, 1 )
+position = Vector2( 3831.89, 1121.74 )
+rotation = -0.298451
+scale = Vector2( 0.287833, 0.3342 )
 texture = ExtResource( 6 )
 
 [node name="NPCs" type="Node2D" parent="."]
