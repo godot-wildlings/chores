@@ -59,5 +59,7 @@ autostart = true
 
 [node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+volume_db = -9.0
+bus = "SoundFX"
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

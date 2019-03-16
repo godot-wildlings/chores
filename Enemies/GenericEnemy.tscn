@@ -319,6 +319,7 @@ hframes = 2
 
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -349,6 +350,7 @@ script = ExtResource( 17 )
 
 [node name="ZombieInjuredNoise" type="AudioStreamPlayer2D" parent="Vocalization"]
 stream = ExtResource( 18 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="SkeletonInjuredNoise" type="AudioStreamPlayer2D" parent="Vocalization"]
@@ -358,6 +360,7 @@ bus = "SoundFX"
 
 [node name="HumanInjuredNoise" type="AudioStreamPlayer2D" parent="Vocalization"]
 stream = ExtResource( 20 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="Attacks" type="Node2D" parent="."]
@@ -369,10 +372,12 @@ attack_range = 45
 
 [node name="Growl" type="AudioStreamPlayer2D" parent="Attacks/Claws"]
 stream = ExtResource( 23 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="ClawStrikeNoise" type="AudioStreamPlayer2D" parent="Attacks/Claws"]
 stream = ExtResource( 24 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="Fireball" type="Node2D" parent="Attacks"]

@@ -29,8 +29,9 @@ path_to_exit_scene = "res://Levels/NightCaves.tscn"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -12.0
+volume_db = -18.0
 autoplay = true
+bus = "Music"
 
 [node name="BloodStains" type="Node2D" parent="."]
 position = Vector2( -587.999, -672.828 )

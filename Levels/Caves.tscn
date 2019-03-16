@@ -106,8 +106,9 @@ immunities = {
 
 [node name="AudioStreamPlayerLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -12.0
+volume_db = -18.0
 autoplay = true
+bus = "Music"
 
 [node name="EvilBook" parent="." instance=ExtResource( 5 )]
 position = Vector2( 4422.05, 2227.3 )

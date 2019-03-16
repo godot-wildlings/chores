@@ -57,6 +57,8 @@ shape = SubResource( 3 )
 
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+volume_db = -9.0
+bus = "SoundFX"
 
 [node name="DeadBody" type="Sprite" parent="."]
 visible = false

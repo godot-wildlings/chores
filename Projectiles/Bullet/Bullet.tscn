@@ -33,6 +33,8 @@ autostart = true
 
 [node name="fwoosh" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+volume_db = -9.0
 autoplay = true
+bus = "SoundFX"
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

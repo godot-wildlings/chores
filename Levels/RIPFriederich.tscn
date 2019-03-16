@@ -66,7 +66,9 @@ script = ExtResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -18.0
 autoplay = true
+bus = "Music"
 
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer/RestartButton" to="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer/RestartButton" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer/QuitButton" to="CanvasLayer/CenterContainer/VBoxContainer/HSplitContainer/QuitButton" method="_on_QuitButton_pressed"]
