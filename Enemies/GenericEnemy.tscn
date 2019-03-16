@@ -354,9 +354,11 @@ bus = "SoundFX"
 [node name="SkeletonInjuredNoise" type="AudioStreamPlayer2D" parent="Vocalization"]
 stream = ExtResource( 19 )
 volume_db = -9.0
+bus = "SoundFX"
 
 [node name="HumanInjuredNoise" type="AudioStreamPlayer2D" parent="Vocalization"]
 stream = ExtResource( 20 )
+bus = "SoundFX"
 
 [node name="Attacks" type="Node2D" parent="."]
 script = ExtResource( 21 )

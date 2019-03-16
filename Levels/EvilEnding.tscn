@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GUI/Themes/night_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Levels/EvilEndingImage2.jpg" type="Texture" id=2]
 [ext_resource path="res://NamesInGrid.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BGMusic/Boss_Theme_Intro.wav" type="AudioStream" id=4]
+[ext_resource path="res://Levels/BGMusicIntro.gd" type="Script" id=5]
+[ext_resource path="res://BGMusic/Boss_Theme_Loop.wav" type="AudioStream" id=6]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -49,4 +52,13 @@ margin_bottom = 514.0
 rect_min_size = Vector2( 0, 300 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="BGMusicIntro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -9.0
+script = ExtResource( 5 )
+
+[node name="BGMusicLoop" type="AudioStreamPlayer" parent="BGMusicIntro"]
+stream = ExtResource( 6 )
+volume_db = -9.0
 

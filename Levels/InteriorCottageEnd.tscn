@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -165.421, 365.736 ), Vector2( 245.823, 383.913 ) ]
+"values": [ Vector2( -165.421, 365.736 ), Vector2( 119.098, 417.913 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Nun:position")
@@ -28,10 +28,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.8, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1.8, 1.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1245.09, 429.421 ), Vector2( 770.232, 440.782 ) ]
+"values": [ Vector2( 1245.09, 429.421 ), Vector2( 1127.64, 512.874 ), Vector2( 876.704, 542.781 ) ]
 }
 
 [node name="InteriorCottageEnd" type="Node2D"]
@@ -57,12 +57,12 @@ anims/Ending = SubResource( 1 )
 
 [node name="Demon" type="Sprite" parent="."]
 position = Vector2( -165.421, 365.736 )
-scale = Vector2( 10, 10 )
+scale = Vector2( 13, 13 )
 texture = ExtResource( 4 )
 hframes = 3
 
 [node name="Nun" type="Sprite" parent="."]
-position = Vector2( 1205.52, 430.368 )
+position = Vector2( 1064.9, 520.351 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 5 )
 

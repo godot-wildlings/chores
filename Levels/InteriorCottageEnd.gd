@@ -26,7 +26,7 @@ func start():
 	var _err = connect("dialog_box_requested", global.main_scene, "_on_DialogBox_requested")
 
 	var outro_text = [
-			"Oh, Friedrich. I'm so sorry you had to go through that. Everything will be fine. Don't worry."
+			"Mother!\n\n\n\tOh, Friedrich. I'm so sorry you had to go through that.\n\n\tI'm here now. Everything will be fine. Don't worry."
 	]
 
 
