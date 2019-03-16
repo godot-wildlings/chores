@@ -36,12 +36,17 @@ func start(newEntity, newTarget):
 	err = connect("attack_completed", entity, "_on_attack_completed")
 
 func attack_ranged(attackTarget):
-
+		
 	if entity.has_node("AnimationPlayer"): # this has to be first.
 		var anim_player = entity.get_node("AnimationPlayer")
 		anim_player.play(get_ranged_attack_animation(entity.type_of_enemy))
 		yield(anim_player, "animation_finished")
 		emit_signal("attack_completed")
+
+	# player might have died before animation finished
+	if is_instance_valid(attackTarget) == false:
+		return
+	
 	
 	# ask level to spawn a projectile
 	var myPos = $Muzzle.get_global_position()
