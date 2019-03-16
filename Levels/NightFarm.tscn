@@ -21,6 +21,9 @@ autoplay = true
 
 [node name="FarmScenery" parent="." instance=ExtResource( 3 )]
 
+[node name="Portal" parent="FarmScenery" index="7"]
+path_to_exit_scene = "res://Levels/NightCaves.tscn"
+
 [node name="BloodStains" type="Node2D" parent="."]
 editor/display_folded = true
 
