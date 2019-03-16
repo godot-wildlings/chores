@@ -28,11 +28,18 @@ func shoot(bullet_position : Vector2, rot : float, initial_velocity : Vector2):
 		sfx_player.play()
 
 func _on_area_entered(area : Area2D):
-	if is_instance_valid(area.get_parent()):
-		if area.get_parent() == global.player:
-			connect("hit", area.get_parent(), "_on_hit")
+	var parent = area.get_parent()
+	var grandparent = parent.get_parent()
+	if is_instance_valid(parent):
+		if parent == global.player:
+			connect("hit", parent, "_on_hit")
 			emit_signal("hit", damage)
-
+			disconnect("hit", parent, "_on_hit")
+			
+		elif grandparent == global.player:
+			connect("hit", grandparent, "_on_hit")
+			emit_signal("hit", damage)
+			disconnect("hit", grandparent, "_on_hit")
 #
 #func _on_body_entered(body : PhysicsBody2D):
 #	print(body)
