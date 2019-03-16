@@ -1,16 +1,33 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Enemies/Boss/Baphomet.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Fireball/BaphometFireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Boss/goat.png" type="Texture" id=3]
 [ext_resource path="res://Effects/HAHAHA.wav" type="AudioStream" id=4]
 [ext_resource path="res://Enemies/EnemySpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=6]
-[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=7]
+[ext_resource path="res://GUI/bar_back_exp.png" type="Texture" id=6]
+[ext_resource path="res://GUI/bar_fill.png" type="Texture" id=7]
 [ext_resource path="res://Enemies/Boss/HealthBar.gd" type="Script" id=8]
+[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 53.7125
+
+[sub_resource type="Animation" id=5]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=2]
 loop = true
@@ -68,6 +85,25 @@ radius = 39.3588
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 243.719
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.00059998 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.236 ), -7.44512, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 6.18
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 250.0
+initial_velocity_random = 0.24
+angular_velocity = -5.08336e-017
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 7 )
 
 [node name="Baphomet" type="KinematicBody2D" groups=[
 "enemies",
@@ -157,6 +193,7 @@ region_rect = Rect2( 236.5, 73.409, 27.5, 13.5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
+anims/death = SubResource( 5 )
 anims/idle = SubResource( 2 )
 
 [node name="Flames" type="Sprite" parent="."]
@@ -200,12 +237,24 @@ bus = "SoundFX"
 [node name="EnemySpawner" parent="." instance=ExtResource( 5 )]
 
 [node name="HealthBar" type="TextureProgress" parent="."]
-margin_left = -61.3696
-margin_top = -75.8095
-margin_right = 66.6304
-margin_bottom = -35.8095
+margin_left = -33.0667
+margin_top = -67.62
+margin_right = 32.9333
+margin_bottom = -56.62
 value = 100.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 7 )
 script = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 32
+lifetime = 2.0
+explosiveness = 0.19
+randomness = 0.49
+visibility_rect = Rect2( -100, -100, 800, 800 )
+process_material = SubResource( 8 )
+texture = ExtResource( 9 )
 
