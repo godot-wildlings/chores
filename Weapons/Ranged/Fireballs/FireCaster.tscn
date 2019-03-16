@@ -30,7 +30,7 @@ hframes = 5
 anims/bow_wind_up = ExtResource( 5 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.18
 
 [node name="SFX" parent="." instance=ExtResource( 6 )]
 
