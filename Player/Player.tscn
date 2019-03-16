@@ -313,6 +313,7 @@ extents = Vector2( 13.0701, 27.4213 )
 collision_mask = 118
 script = ExtResource( 1 )
 is_demon = true
+demon_health = 30.0
 running_footstep_frequency = 0.4
 walking_footstep_frequency = 0.8
 

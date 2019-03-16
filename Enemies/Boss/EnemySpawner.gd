@@ -83,4 +83,5 @@ func get_creep_container():
 func _on_SpawnTimer_timeout():
 	spawn_creeps()
 	$SpawnTimer.start()
+	$HAHANoise.play()
 	

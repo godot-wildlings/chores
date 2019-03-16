@@ -78,9 +78,10 @@ func _ready():
 	if err : push_warning(str(err))
 
 #warning-ignore:unused_argument
-func _process(delta):
-	if debug:
-		update()
+#func _process(delta):
+#	if debug:
+#		update()
+
 
 #warning-ignore:unused_argument
 func _physics_process(delta : float):
@@ -101,12 +102,12 @@ func _physics_process(delta : float):
 				_attack_timer.start()
 
 
-func _draw():
-	# figure out where you're trying to go
-	var myPos = get_global_position()
-	var targetPos = myPos + _move_dir
-	#print(self.name, " _move_dir == ", _move_dir )
-	draw_line( to_local(myPos), to_local(targetPos), Color.blue, 3.0, true )
+#func _draw():
+#	# figure out where you're trying to go
+#	var myPos = get_global_position()
+#	var targetPos = myPos + _move_dir
+#	#print(self.name, " _move_dir == ", _move_dir )
+#	draw_line( to_local(myPos), to_local(targetPos), Color.blue, 3.0, true )
 
 
 func _movement_loop():
