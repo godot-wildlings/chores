@@ -157,6 +157,8 @@ func enable_hitboxes():
 	get_node("CollisionShape2D").call_deferred("set_disabled", false)
 	Hitbox.get_node("CollisionShape2D").call_deferred("set_disabled", false)
 		
+func get_velocity():
+	return Movement.get_velocity()
 	
 func _on_BehaviourTimer_timeout():
 	pass

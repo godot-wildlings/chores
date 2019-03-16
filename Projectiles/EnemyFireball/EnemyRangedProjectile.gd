@@ -15,6 +15,7 @@ export var persist_after_impact : bool = false
 var velocity : Vector2 = Vector2.ZERO
 
 func _ready():
+	if global.DEBUG: print("Arrow initialized: " , OS.get_time())
 	connect_signals()
 
 
@@ -33,8 +34,8 @@ func _process(delta):
 		position += velocity * delta
 
 
-func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float):
-	global_position = bullet_position
+func shoot(initial_velocity: Vector2, rot_deg : float):
+	if global.DEBUG: print("Arrow shot: ", OS.get_time())
 	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
 	var base_velocity = direction.normalized() * speed
 	
