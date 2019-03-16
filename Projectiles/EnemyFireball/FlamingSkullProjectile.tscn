@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Projectiles/EnemyFireball/EnemyRangedProjectile.gd" type="Script" id=1]
-[ext_resource path="res://Enemies/Ranged/FlyingDemon/demon_exp.png" type="Texture" id=2]
-[ext_resource path="res://Projectiles/Fireball/fireball.png" type="Texture" id=3]
-[ext_resource path="res://Effects/fwoosh2.wav" type="AudioStream" id=4]
+[ext_resource path="res://Enemies/Ranged/FlyingDemon/skull2.png" type="Texture" id=2]
+[ext_resource path="res://Projectiles/EnemyFireball/CheatRotation.gd" type="Script" id=3]
+[ext_resource path="res://Projectiles/Fireball/fireball.png" type="Texture" id=4]
+[ext_resource path="res://Effects/fwoosh2.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 17.4122
@@ -13,7 +14,7 @@ resource_name = "burn"
 length = 0.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("skull/Sprite:self_modulate")
+tracks/0/path = NodePath("skull/Flame:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,18 +25,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.133333 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("skull:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.737255, 0.184314, 0.0745098, 1 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [node name="FlamingSkull" type="Area2D"]
 collision_layer = 32
@@ -44,17 +33,18 @@ speed = 200.0
 damage = 3
 
 [node name="skull" type="Sprite" parent="."]
-self_modulate = Color( 0.737255, 0.184314, 0.0745098, 1 )
 position = Vector2( 0.05509, 0.0550909 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 36.375, 6.125, 22.625, 21.75 )
+script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="skull"]
+[node name="Flame" type="Sprite" parent="skull"]
+self_modulate = Color( 1, 1, 1, 0.720464 )
 show_behind_parent = true
 position = Vector2( -1.84026, -2.03398 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -68,6 +58,6 @@ wait_time = 3.5
 autostart = true
 
 [node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

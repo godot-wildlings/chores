@@ -84,7 +84,9 @@ func _on_projectile_body_entered(body):
 		pass # was hitting too many tiles
 
 func _on_projectile_area_entered(area):
-	if area.get_parent() == global.player:
-		hit_entity(area)
-	else:
-		pass
+	var parent = area.get_parent() # human form
+	var grandparent = parent.get_parent() # demon form
+	if parent == global.player:
+		hit_entity(parent)
+	elif grandparent == global.player:
+		hit_entity(grandparent)

@@ -49,11 +49,12 @@
 [ext_resource path="res://Effects/Step_Cave_14.wav" type="AudioStream" id=47]
 [ext_resource path="res://Effects/Step_Cave_15.wav" type="AudioStream" id=48]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=6]
+height = 0.704163
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 11.0
-height = 32.0
+height = 25.8427
 
 [sub_resource type="Animation" id=3]
 resource_name = "demon_idle"
@@ -321,8 +322,8 @@ hframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.75103, 21.2793 )
-shape = SubResource( 1 )
+position = Vector2( -0.715149, 15.3359 )
+shape = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -346,6 +347,7 @@ position = Vector2( 10, -3 )
 collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( -0.498249, 0.498251 )
 shape = SubResource( 2 )
 
 [node name="Label" type="Label" parent="."]
@@ -367,7 +369,6 @@ anims/player_run = ExtResource( 10 )
 anims/player_walk = ExtResource( 11 )
 
 [node name="DemonForm" type="Node2D" parent="."]
-editor/display_folded = true
 visible = false
 position = Vector2( -0.614716, -15.6752 )
 scale = Vector2( 1.5, 1.5 )
