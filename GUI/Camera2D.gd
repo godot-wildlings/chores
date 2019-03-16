@@ -2,7 +2,7 @@ extends Camera2D
 
 # Declare member variables here. Examples:
 
-var DesiredZoom = Vector2(6, 6)
+var DesiredZoom = Vector2(1, 1)
 var Ticks :int = 0
 
 var MinZoom = 0.3
