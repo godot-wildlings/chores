@@ -1,3 +1,7 @@
+"""
+Not sure if this is in use anywhere.
+"""
+
 extends KinematicBody2D
 
 signal health_changed
@@ -17,6 +21,8 @@ var _move_dir =  Vector2.ZERO
 var velocity : Vector2
 
 func _ready():
+	push_error("Someones using PlayerDemon.gd?")
+	
 	global.player = self
 	$Label.text = "Health: " + str(health)
 	#warning-ignore:return_value_discarded
@@ -40,6 +46,7 @@ func _state_idle():
 	_controls_loop()
 	if _move_dir != Vector2.ZERO:
 		self._state = States.WALKING
+		
 	else:
 		_update_animation(Vector2.ZERO)
 		_damage_loop()
@@ -149,6 +156,7 @@ func _set_state(new_state : int):
 			die()
 		elif new_state == States.IDLE:
 			velocity = Vector2.ZERO
+
 
 func _on_book_picked_up():
 	# do something. turn into a demon?

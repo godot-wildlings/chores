@@ -196,7 +196,7 @@ func _on_BehaviourChangeTimer_timeout():
 func bleet():
 	if has_node("AudioStreamPlayer2D"):
 		if $AudioStreamPlayer2D.is_playing() == false: # don't stutter/beatbox			 
-			$AudioStreamPlayer2D.set_volume_db(rand_range(-40.0, -22.0))
+			$AudioStreamPlayer2D.set_volume_db(rand_range(-40.0, -30.0))
 			$AudioStreamPlayer2D.play()
 
 

@@ -30,6 +30,9 @@ var _iframes : int = 0
 var _move_dir =  Vector2.ZERO
 var velocity : Vector2
 
+export var running_footstep_frequency = 0.1
+export var walking_footstep_frequency = 0.2
+
 var previous_positions : Array = [] # <-- HAX for the demon h_flipping
 
 func _ready():
@@ -43,6 +46,8 @@ func _ready():
 		become_demon()
 	else:
 		become_human()
+
+
 
 func connect_signals():
 
@@ -106,7 +111,7 @@ func _physics_process(delta):
 func _state_idle():
 	_controls_loop()
 	if _move_dir != Vector2.ZERO:
-		self._state = States.WALKING
+		_set_state(States.RUNNING)
 	else:
 		if is_demon == false:
 			_update_human_animation(Vector2.ZERO)
@@ -117,22 +122,22 @@ func _state_idle():
 #warning-ignore:unused_argument
 func _state_walking(delta : float):
 	if not Input.is_action_pressed("mv_walk"):
-		self._state = States.RUNNING
+		_set_state(States.RUNNING)
 	else:
 		_controls_loop()
 		if _move_dir == Vector2.ZERO:
-			self._state = States.IDLE
+			_set_state(States.IDLE)
 		else:
 			_movement_loop(delta)
 
 #warning-ignore:unused_argument
 func _state_running(delta : float):
 	if Input.is_action_pressed("mv_walk"):
-		self._state = States.WALKING
+		_set_state(States.WALKING)
 	else:
 		_controls_loop()
 		if _move_dir == Vector2.ZERO:
-			self._state = States.IDLE
+			_set_state(States.IDLE)
 		else:
 			_movement_loop(delta)
 
@@ -176,10 +181,12 @@ func _movement_loop(delta):
 func _update_human_animation(motion : Vector2):
 	if _state == States.RUNNING:
 		$AnimationPlayer.play("player_run")
-		play_random_step_sfx(true)
+		#Moved footstep to timer: _on_FootstepPauseTimer_timeout
+		#play_random_step_sfx(true)
 	elif _state == States.WALKING:
 		$AnimationPlayer.play("player_walk")
-		play_random_step_sfx()
+		#Moved footstep to timer: _on_FootstepPauseTimer_timeout
+		#play_random_step_sfx()
 	if motion.x > 0:
 		$Sprite.flip_h = false
 	elif motion.x < 0:
@@ -342,6 +349,10 @@ func _set_state(new_state : int):
 			die()
 		elif new_state == States.IDLE:
 			velocity = Vector2.ZERO
+		elif new_state == States.WALKING:
+			$FootstepPauseTimer.set_wait_time(walking_footstep_frequency)
+		elif new_state == States.RUNNING:
+			$FootstepPauseTimer.set_wait_time(running_footstep_frequency)
 
 func _on_book_picked_up():
 	# do something. turn into a demon?
@@ -356,4 +367,12 @@ func _on_NPC_stopped_chatting():
 
 func _on_hit(damage):
 	take_damage(damage)
+	
+
+
+func _on_FootstepPauseTimer_timeout():
+	if _state == States.WALKING and velocity != Vector2.ZERO:
+		play_random_step_sfx(false)
+	elif _state == States.RUNNING and velocity != Vector2.ZERO:
+		play_random_step_sfx(true)
 	
