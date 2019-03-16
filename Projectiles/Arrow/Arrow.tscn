@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Projectiles/RangedProjectile.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Arrow/BigArrow.png" type="Texture" id=2]
-[ext_resource path="res://Effects/WoodCrack.wav" type="AudioStream" id=3]
-[ext_resource path="res://Effects/ArrowSFX.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Effects/ArrowSFX.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.8816, 3.3884 )
@@ -27,10 +26,6 @@ shape = SubResource( 1 )
 [node name="DurationTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
-bus = "SoundFX"
-
-[node name="SFX" parent="." instance=ExtResource( 4 )]
+[node name="SFX" parent="." instance=ExtResource( 3 )]
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

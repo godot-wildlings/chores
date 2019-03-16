@@ -20,10 +20,13 @@ signal hit(damage)
 signal projectile_requested(pos, rot, vel)
 signal attack_completed()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-	
+func _process(_delta):
+	if _state == States.ENABLED and entity.get_state() != entity.States.DEAD:
+		if attack_ready and in_range(target):
+			if attack_type == attack_types.MELEE:
+				attack_melee(target)
+			elif attack_type == attack_types.RANGED:
+				attack_ranged(target)
 
 func start(newEntity, newTarget):
 	entity = newEntity
@@ -84,27 +87,20 @@ func attack_melee(attackTarget):
 			deal_damage(attackTarget)
 		emit_signal("attack_completed")
 
-
-
-
 func deal_damage(attackTarget):
 	#print("CLAW CLAW")
 	# no need for a projectile. just damage the target
 	if has_node("ClawStrikeNoise"):
 		$ClawStrikeNoise.play()
 
-
 	if attackTarget.has_method("_on_hit"):
 		var err = connect("hit", attackTarget, "_on_hit")
 		if err: push_warning(err)
 		emit_signal("hit", damage_per_attack)
 		disconnect("hit", attackTarget, "_on_hit")
-	
-
 
 func set_state(newState):
 	_state = newState
-
 
 func in_range(attackTarget):
 	if not is_instance_valid(attackTarget):
@@ -114,16 +110,6 @@ func in_range(attackTarget):
 	var targetPos = attackTarget.get_global_position()
 	if myPos.distance_squared_to(targetPos) < attack_range * attack_range:
 		return true
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if _state == States.ENABLED and entity.get_state() != entity.States.DEAD:
-		if attack_ready and in_range(target):
-			if attack_type == attack_types.MELEE:
-				attack_melee(target)
-			elif attack_type == attack_types.RANGED:
-				attack_ranged(target)
 
 func _on_attack_ready(): # signal from weapon selector
 	attack_ready = true
