@@ -12,6 +12,5 @@ func _ready():
 #func _process(delta):
 #	pass
 
-#warning-ignore:return_value_discarded
-func _on_CheckBox_toggled(button_pressed):
+func _on_CheckBox_toggled(_button_pressed):
 	global.options["projectiles_add_initial_velocity"] = is_pressed()

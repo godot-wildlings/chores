@@ -1,50 +1,55 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
-[ext_resource path="res://BGMusic/Night_Theme_Loop.wav" type="AudioStream" id=2]
-[ext_resource path="res://Levels/NightFarmScenery.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=4]
-[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=5]
-[ext_resource path="res://NPCs/NPC1.png" type="Texture" id=6]
-[ext_resource path="res://NPCs/NPC2.png" type="Texture" id=7]
-[ext_resource path="res://NPCs/NPC3.png" type="Texture" id=8]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=9]
-[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Levels/NightFarmCanvasLayer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/FarmScenery.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BGMusic/Night_Theme_Loop.wav" type="AudioStream" id=4]
+[ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=5]
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=6]
+[ext_resource path="res://NPCs/NPC1.png" type="Texture" id=7]
+[ext_resource path="res://NPCs/NPC2.png" type="Texture" id=8]
+[ext_resource path="res://NPCs/NPC3.png" type="Texture" id=9]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://NPCs/Animals/Sheep.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Levels/Interactive Objects/Portal/Portal.tscn" type="PackedScene" id=12]
 
 [node name="Farm" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="NightFarmCanvasLayer" parent="." instance=ExtResource( 2 )]
+
+[node name="FarmScenery" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0.423529, 0.211765, 0.552941, 1 )
+position = Vector2( -587.736, -672.227 )
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+stream = ExtResource( 4 )
 volume_db = -12.0
 autoplay = true
 
-[node name="FarmScenery" parent="." instance=ExtResource( 3 )]
-
-[node name="Portal" parent="FarmScenery" index="7"]
-path_to_exit_scene = "res://Levels/NightCaves.tscn"
-
 [node name="BloodStains" type="Node2D" parent="."]
 editor/display_folded = true
+position = Vector2( -587.999, -672.828 )
 
 [node name="BloodSplotch" type="Sprite" parent="BloodStains"]
 position = Vector2( 518.088, 1034.98 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="BloodSplotch2" type="Sprite" parent="BloodStains"]
 position = Vector2( 1104.51, 984.662 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="BloodSplotch3" type="Sprite" parent="BloodStains"]
 position = Vector2( 2380.39, 1225.95 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="NPCs" type="Node2D" parent="."]
+position = Vector2( -579.414, -674.065 )
 
-[node name="UncleAnton" parent="NPCs" instance=ExtResource( 5 )]
+[node name="UncleAnton" parent="NPCs" instance=ExtResource( 6 )]
 position = Vector2( 507.779, 1026.21 )
 collision_layer = 4
 dialog_text_array = [ "... Why?  Wh, who are you? Aaaaahhhhghh..." ]
@@ -52,9 +57,9 @@ dialog_text_array = [ "... Why?  Wh, who are you? Aaaaahhhhghh..." ]
 [node name="Sprite" parent="NPCs/UncleAnton" index="0"]
 rotation = 1.48353
 scale = Vector2( 1, 1 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
-[node name="Grandpa" parent="NPCs" instance=ExtResource( 5 )]
+[node name="Grandpa" parent="NPCs" instance=ExtResource( 6 )]
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 1101.55, 975.883 )
 collision_layer = 4
@@ -65,9 +70,9 @@ dialog_text_array = [ "The pain. What do you want? Why would you do this?..  Wai
 [node name="Sprite" parent="NPCs/Grandpa" index="0"]
 rotation = 1.06465
 scale = Vector2( 1, 1 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="Agneth" parent="NPCs" instance=ExtResource( 5 )]
+[node name="Agneth" parent="NPCs" instance=ExtResource( 6 )]
 editor/display_folded = true
 modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 position = Vector2( 2372.11, 1210.09 )
@@ -79,27 +84,30 @@ dialog_text_array = [ "Friederich, I know it's you, Friedrich. I warned you not 
 [node name="Sprite" parent="NPCs/Agneth" index="0"]
 rotation = 1.39626
 scale = Vector2( 1, 1 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
-[node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 674.389, 1049.88 )
+[node name="Player" parent="." instance=ExtResource( 10 )]
+position = Vector2( 53.7856, 469.429 )
 
 [node name="Animals" type="Node2D" parent="."]
+position = Vector2( -577.131, -672.828 )
 
-[node name="Sheep" parent="Animals" instance=ExtResource( 10 )]
+[node name="Sheep" parent="Animals" instance=ExtResource( 11 )]
 position = Vector2( 1620.97, 1047.95 )
 health = -5
 
-[node name="Sheep2" parent="Animals" instance=ExtResource( 10 )]
+[node name="Sheep2" parent="Animals" instance=ExtResource( 11 )]
 position = Vector2( 1668.86, 978.622 )
 health = -5
 
-[node name="Sheep3" parent="Animals" instance=ExtResource( 10 )]
+[node name="Sheep3" parent="Animals" instance=ExtResource( 11 )]
 position = Vector2( 1574.33, 974.21 )
 health = -5
 
+[node name="Portal" parent="." instance=ExtResource( 12 )]
+position = Vector2( 3497.57, 269.295 )
+path_to_exit_scene = "res://Levels/NightCaves.tscn"
 
-[editable path="FarmScenery"]
 
 [editable path="NPCs/UncleAnton"]
 

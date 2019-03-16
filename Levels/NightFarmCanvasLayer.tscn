@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Levels/Scenery/NightBGBack.png" type="Texture" id=1]
+[ext_resource path="res://Levels/Scenery/NightBGFarMountains.png" type="Texture" id=2]
+[ext_resource path="res://Levels/Scenery/NightBGFar2.png" type="Texture" id=3]
+[ext_resource path="res://Levels/CloudsShifting.gd" type="Script" id=4]
+[ext_resource path="res://Levels/Scenery/NightBGMedMountains.png" type="Texture" id=5]
+[ext_resource path="res://Levels/Scenery/NightBGNearHills.png" type="Texture" id=6]
+[ext_resource path="res://Levels/Scenery/NightBGNearClouds.png" type="Texture" id=7]
+
+[node name="DayFarmCanvasLayer" type="CanvasLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxStatic" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 284.607, -160.783 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxStatic"]
+position = Vector2( 343.212, 176.495 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10240, 448 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 284.607, -163.174 )
+motion_scale = Vector2( 0.5, 1 )
+
+[node name="MountainsFar" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+self_modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
+position = Vector2( 342.147, 278.22 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10240, 224 )
+
+[node name="CloudsFar" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 343.05, 291.927 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10240, 224 )
+script = ExtResource( 4 )
+speed_factor = 50.0
+
+[node name="ParallaxMed" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 284.607, -163.174 )
+motion_scale = Vector2( 0.75, 1 )
+
+[node name="MountainsMed" type="Sprite" parent="ParallaxBackground/ParallaxMed"]
+self_modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
+position = Vector2( 343.609, 292.411 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10240, 224 )
+
+[node name="ParallaxNear" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 284.607, -163.174 )
+motion_scale = Vector2( 0.85, 1 )
+
+[node name="HillsNear" type="Sprite" parent="ParallaxBackground/ParallaxNear"]
+position = Vector2( 342.235, 334.869 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10240, 224 )
+
+[node name="CloudsNear" type="Sprite" parent="ParallaxBackground/ParallaxNear"]
+position = Vector2( 343.945, 291.404 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10240, 224 )
+script = ExtResource( 4 )
+speed_factor = 80.0
+
