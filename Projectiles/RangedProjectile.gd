@@ -40,6 +40,9 @@ func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float
 	if _state == States.FLYING:
 		velocity = base_velocity
 		rotation += direction.angle()
+	play_sound_effect()
+	
+func play_sound_effect():
 	if has_node("SFX"):
 		var sfx : Node2D = get_node("SFX")
 		var sfx_count : int = sfx.get_child_count()

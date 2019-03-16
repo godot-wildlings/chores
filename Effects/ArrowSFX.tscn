@@ -9,17 +9,21 @@
 
 [node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
+volume_db = -12.0
 bus = "SoundFX"
 
 [node name="ShootNoise2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
+volume_db = -12.0
 bus = "SoundFX"
 
 [node name="ShootNoise3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+volume_db = -12.0
 bus = "SoundFX"
 
 [node name="ShootNoise4" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+volume_db = -12.0
 bus = "SoundFX"
 

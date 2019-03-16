@@ -12,7 +12,7 @@ extends Node2D
 
 var NoiseTimer : Timer
 var base_noise_time : float
-
+onready var entity = get_parent()
 
 func _ready():
 	if has_node("NoiseTimer") == false:
@@ -49,13 +49,30 @@ func set_pitch(size : float):  # expect a value between 0 and 1
 	if size > 1 or size < 0:
 		push_warning(self.name + " set_pitch() expected a value between 0 and 1")
 	if has_node("AudioStreamPlayer2D"):
-		$AudioStreamPlayer2D.set_pitch_scale(lerp(0.8, 1.5, size))
+		$AudioStreamPlayer2D.set_pitch_scale(lerp(0.8, 1.3, size))
 
 func set_random_pitch():
 	set_pitch(randf())
 
+func make_injury_noise():
+	var injury_noisemaker : AudioStreamPlayer2D
+	var types = entity.enemy_types
+	if entity.type_of_enemy == types.BLINK:
+		injury_noisemaker = $HumanInjuredNoise
+		injury_noisemaker.set_pitch_scale(rand_range(0.5, 0.7))
+	elif entity.type_of_enemy == types.RUSH:
+		injury_noisemaker = $ZombieInjuredNoise
+	elif entity.type_of_enemy == types.KITE:
+		injury_noisemaker = $SkeletonInjuredNoise
+
+	# should I check to see if it's already playing?
+	# if I don't, it'll have better game feel, but I could get beatboxing monsters.
+	injury_noisemaker.play()
+
 func make_noise():
+	
 	set_random_pitch()
+		
 	if has_node("AudioStreamPlayer2D"):
 		if $AudioStreamPlayer2D.is_playing() == false: # don't stutter/beatbox			 
 			$AudioStreamPlayer2D.set_volume_db(rand_range(-40.0, -22.0))
@@ -73,5 +90,5 @@ func _on_NoiseTimer_timeout():
 
 func _on_hit(_damage):
 	
-	make_noise()
+	make_injury_noise()
 	
