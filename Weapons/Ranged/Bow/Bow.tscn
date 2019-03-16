@@ -1,10 +1,75 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Weapons/Ranged/RangedPlayerWeapon.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Arrow/Arrow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/bow_no_arms.png" type="Texture" id=3]
 [ext_resource path="res://Player/right_hand_exp_symmetrical.png" type="Texture" id=4]
 [ext_resource path="res://Weapons/Ranged/Bow/bow_wind_up.anim" type="Animation" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "bow_release"
+length = 0.2
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteHand:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteHand:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpriteHand:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.14 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 4, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpriteBow:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpriteBow:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.08, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 1, 5 ]
+}
 
 [node name="Bow" type="Node2D" groups=[
 "ranged_weapons",
@@ -17,6 +82,7 @@ position = Vector2( -0.527832, 0.62093 )
 texture = ExtResource( 3 )
 offset = Vector2( 16.4276, 0.370718 )
 hframes = 6
+frame = 5
 
 [node name="SpriteHand" type="Sprite" parent="."]
 position = Vector2( -0.417648, 0.510748 )
@@ -27,6 +93,7 @@ hframes = 5
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bow_release = SubResource( 1 )
 anims/bow_wind_up = ExtResource( 5 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
