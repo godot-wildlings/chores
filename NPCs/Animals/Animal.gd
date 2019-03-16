@@ -167,7 +167,7 @@ func _physics_process(delta):
 	
 	
 	if _state == States.FLOCKING:
-		var myVec = Vector2(1,0).rotated(get_global_rotation())
+		var myVec = Vector2(1,0).rotated(direction)
 		var turningVec = myVec.linear_interpolate(velocity, 0.8)
 		var move_vector = turningVec * speed * delta * global.game_speed
 		flip_sprites(move_vector)
