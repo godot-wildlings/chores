@@ -9,7 +9,7 @@ var target
 var attack_ready : bool = false
 export var attack_range = 75
 export var projectile_scene : PackedScene
-export var speed : float = 300
+#export var speed : float = 300
 
 enum attack_types { MELEE, RANGED }
 export (attack_types) var attack_type
@@ -36,24 +36,30 @@ func start(newEntity, newTarget):
 	err = connect("attack_completed", entity, "_on_attack_completed")
 
 func attack_ranged(attackTarget):
-	# ask level to spawn a projectile
-	var myPos = $Muzzle.get_global_position()
-	var targetPos = target.get_global_position()
-	var deviation = rand_range(-5, 5) # in degrees, apparently
-	var rot_deg = rad2deg(Vector2.RIGHT.angle_to(targetPos - myPos)) + deviation
-	var initial_vel = Vector2.ZERO
-	attack_ready = false
-	
-	if entity.has_node("AnimationPlayer"):
+		
+	if entity.has_node("AnimationPlayer"): # this has to be first.
 		var anim_player = entity.get_node("AnimationPlayer")
 		anim_player.play(get_ranged_attack_animation(entity.type_of_enemy))
-		
-		
 		yield(anim_player, "animation_finished")
 		emit_signal("attack_completed")
 
-		# throw the fireball after the attack animation
-		emit_signal("projectile_requested", projectile_scene, initial_vel, myPos, rot_deg )
+	# player might have died before animation finished
+	if is_instance_valid(attackTarget) == false:
+		return
+	
+	
+	# ask level to spawn a projectile
+	var myPos = $Muzzle.get_global_position()
+	#var myPos = entity.get_global_position()
+	var targetPos = target.get_global_position()
+	#var deviation = rand_range(-5, 5) # in degrees, apparently
+	var deviation = 0.0
+	var rot_deg = rad2deg(Vector2.RIGHT.angle_to(targetPos - myPos)) + deviation
+	#var initial_vel = Vector2.ZERO
+	var initial_vel = entity.get_velocity()
+	attack_ready = false
+	
+	emit_signal("projectile_requested", projectile_scene, initial_vel, myPos, rot_deg )
 	
 
 func get_ranged_attack_animation(enemy_type):

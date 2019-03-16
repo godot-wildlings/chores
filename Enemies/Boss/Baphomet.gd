@@ -17,7 +17,7 @@ signal level_requested(path_to_level)
 enum States { ALIVE, DEAD }
 var _state = States.ALIVE
 
-export var debug : bool = false
+#export var debug : bool = false
 export var health : float = 3 setget _set_health
 #onready var projectile_container : Node2D = util.get_main_node().get_node("ProjectileContainer")
 onready var _player : KinematicBody2D = global.player
@@ -153,7 +153,7 @@ func _attack():
 		if _err: push_warning(_err)
 		#var initial_vel = motion
 		var initial_vel = Vector2.ZERO # testing
-		emit_signal("shoot", projectile_tscn, my_pos, Vector2.RIGHT.angle_to(player_pos - my_pos), initial_vel)
+		emit_signal("shoot", projectile_tscn, initial_vel, my_pos, Vector2.RIGHT.angle_to(player_pos - my_pos))
 
 		disconnect("shoot", global.current_level, "_on_projectile_requested")
 

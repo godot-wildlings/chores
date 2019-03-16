@@ -414,7 +414,7 @@ projectile_scene = ExtResource( 28 )
 attack_type = 1
 
 [node name="Muzzle" type="Position2D" parent="Attacks/Arrow"]
-position = Vector2( 18.5142, -13.163 )
+position = Vector2( 17.3516, -9.3431 )
 
 [node name="Node" type="Node" parent="Attacks"]
 
