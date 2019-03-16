@@ -72,9 +72,7 @@ func set_default_walk_anim(type_of_enemy):
 			default_walk_anim = "enemy_kiter_walk"
 		enemy_types.BLINK:
 			default_walk_anim = "enemy_blinker_walk"
-
-func get_velocity():
-	return default_movement.get_velocity()
+		
 
 func _on_entity_died():
 	#print(self.name, " received message: entity died" )

@@ -72,9 +72,8 @@ func _on_projectile_requested(bullet_scene, vel, pos, rot_deg):
 		add_child(container)
 	var new_projectile = bullet_scene.instance()
 	$Projectiles.add_child(new_projectile)
-	new_projectile.set_global_position(pos)
 	if new_projectile.has_method("shoot"):
-		new_projectile.shoot(vel, rot_deg)
+		new_projectile.shoot(vel, pos, rot_deg)
 	
 func _on_enemy_died(enemyNode):
 	print(self.name, " message received: _on_enemy_died" )

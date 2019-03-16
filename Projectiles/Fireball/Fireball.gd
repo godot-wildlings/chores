@@ -15,7 +15,6 @@ func _ready():
 func _process(delta):
 	position += velocity * delta
 
-# seems strange. arguments don't match other shoot functions. Who's calling this?
 func shoot(bullet_position : Vector2, rot : float, initial_velocity : Vector2):
 	#print(self.name, " shooting fireball", " pos: ", bullet_position, ", rot: ", rot, ", vel: " ,initial_velocity )
 	global_position = bullet_position

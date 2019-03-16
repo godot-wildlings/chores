@@ -39,9 +39,6 @@ func _process(_delta):
 		Entity = get_parent().get_parent()
 		Target = global.player
 
-func get_velocity():
-	return Velocity
-
 func move_toward_player():
 	var myPos = Entity.get_global_position()
 	var targetPos = Target.get_global_position()

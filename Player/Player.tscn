@@ -328,10 +328,6 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
 script = ExtResource( 3 )
 
 [node name="WeaponSlots" type="Node2D" parent="."]
@@ -636,8 +632,4 @@ bus = "SoundFX"
 wait_time = 0.2
 autostart = true
 
-[node name="ImmunityTimer" type="Timer" parent="."]
-wait_time = 0.1
-
 [connection signal="timeout" from="FootstepPauseTimer" to="." method="_on_FootstepPauseTimer_timeout"]
-[connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]

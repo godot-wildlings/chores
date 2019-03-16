@@ -8,7 +8,7 @@ extends Node
 
 var Target
 var Entity
-var Velocity : Vector2
+#var Velocity : Vector2
 
 var velocity_vectors : Array
 export var Speed : float = 100
@@ -51,15 +51,10 @@ func _process(delta):
 		Target = global.player
 
 func move(delta):
-	Velocity = average_velocity_vectors() * Speed
-	
-	var move_vec = Velocity * delta * global.game_speed
+	var move_vec = average_velocity_vectors() * Speed * delta * global.game_speed
 	var collision = Entity.move_and_collide(move_vec)
 	if collision:
 		pass
-
-func get_velocity():
-	return Velocity
 
 func set_velocity_vectors():
 	velocity_vectors = []
