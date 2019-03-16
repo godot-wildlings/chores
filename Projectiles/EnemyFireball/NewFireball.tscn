@@ -31,7 +31,7 @@ anims/burn = SubResource( 2 )
 
 [node name="fwoosh" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-autoplay = true
+volume_db = -9.0
 
 [node name="SFX" parent="." instance=ExtResource( 4 )]
 

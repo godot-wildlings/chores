@@ -108,7 +108,6 @@ extents = Vector2( 23.7159, 13.9338 )
 "livestock",
 ]]
 script = ExtResource( 1 )
-Debug = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.3967, 21.6485 )
@@ -121,7 +120,8 @@ autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
-volume_db = -22.0
+volume_db = -9.0
+bus = "SoundFX"
 
 [node name="NoiseTimer" type="Timer" parent="."]
 wait_time = 3.0

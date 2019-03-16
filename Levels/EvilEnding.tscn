@@ -55,12 +55,14 @@ size_flags_vertical = 3
 
 [node name="BGMusicIntro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -9.0
+volume_db = -18.0
 autoplay = true
+bus = "Music"
 script = ExtResource( 5 )
 
 [node name="BGMusicLoop" type="AudioStreamPlayer" parent="BGMusicIntro"]
 stream = ExtResource( 6 )
-volume_db = -9.0
+volume_db = -18.0
+bus = "Music"
 
 [connection signal="finished" from="BGMusicIntro" to="BGMusicIntro" method="_on_BGMusicIntro_finished"]

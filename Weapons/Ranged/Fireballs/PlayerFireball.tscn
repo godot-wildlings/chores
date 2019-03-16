@@ -30,6 +30,7 @@ autostart = true
 
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="SFX" parent="." instance=ExtResource( 4 )]

@@ -456,45 +456,52 @@ script = ExtResource( 15 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="HurtSFX" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="HurtNoise" type="AudioStreamPlayer2D" parent="HurtSFX"]
 stream = ExtResource( 16 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="HurtNoise2" type="AudioStreamPlayer2D" parent="HurtSFX"]
 stream = ExtResource( 17 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="HurtNoise3" type="AudioStreamPlayer2D" parent="HurtSFX"]
 stream = ExtResource( 18 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="HurtNoise4" type="AudioStreamPlayer2D" parent="HurtSFX"]
 stream = ExtResource( 19 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="HurtNoise5" type="AudioStreamPlayer2D" parent="HurtSFX"]
 stream = ExtResource( 20 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="HurtNoise6" type="AudioStreamPlayer2D" parent="HurtSFX"]
 stream = ExtResource( 21 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="DeathSFX" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="DeathNoise" type="AudioStreamPlayer2D" parent="DeathSFX"]
 stream = ExtResource( 22 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="DeathNoise2" type="AudioStreamPlayer2D" parent="DeathSFX"]
 stream = ExtResource( 23 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="DeathNoise3" type="AudioStreamPlayer2D" parent="DeathSFX"]
 stream = ExtResource( 24 )
+volume_db = -9.0
 bus = "SoundFX"
 
 [node name="StepSFXGrass" type="Node2D" parent="."]

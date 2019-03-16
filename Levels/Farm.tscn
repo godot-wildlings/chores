@@ -24,6 +24,7 @@ position = Vector2( -638.876, -486.365 )
 stream = ExtResource( 4 )
 volume_db = -18.0
 autoplay = true
+bus = "Music"
 
 [node name="Portal" parent="." instance=ExtResource( 5 )]
 position = Vector2( 3434.15, 439.018 )

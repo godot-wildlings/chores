@@ -20,7 +20,7 @@ var goal_vectors : Array = []
 var frightened : bool = false
 
 export var health : int = 3
-export var Debug : bool = true
+export var Debug : bool = false
 
 
 func _ready():

@@ -193,6 +193,7 @@ stream = ExtResource( 4 )
 volume_db = -9.0
 autoplay = true
 max_distance = 10000.0
+bus = "SoundFX"
 
 [node name="Tween" type="Tween" parent="."]
 
