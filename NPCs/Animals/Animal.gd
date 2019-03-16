@@ -10,7 +10,7 @@ var _state = States.INITIALIZING
 
 var velocity = Vector2.ZERO
 #var base_speed : float = 100
-var speed : float = 100
+var speed : float = 30
 var direction : float = 0
 var base_scale : Vector2 = Vector2(0.5, 0.5)
 var Ticks : int = 0
@@ -132,7 +132,7 @@ func get_vector_away_from_neighbours() -> Vector2:
 	return avoid_vector
 			
 func get_random_speed():
-	var rand_speed = rand_range(200, 250.0)
+	var rand_speed = rand_range(80, 120)
 	
 	if is_instance_valid(global.player):
 		# increase based on fear and proximity to player
