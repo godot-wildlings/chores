@@ -9,6 +9,7 @@ func _ready():
 
 
 func _on_BecomeDemonButton_pressed():
-	var _err = connect("level_requested", global.main_scene, "_on_level_requested")
-	emit_signal("level_requested", "res://Levels/NightFarm.tscn")
+	if not is_connected("level_requested", global.main_scene, "_on_level_requested"):
+		var _err = connect("level_requested", global.main_scene, "_on_level_requested")
+		emit_signal("level_requested", "res://Levels/NightFarm.tscn")
 	

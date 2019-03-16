@@ -20,7 +20,7 @@ var goal_vectors : Array = []
 var frightened : bool = false
 
 export var health : int = 3
-export var Debug : bool = false
+#export var Debug : bool = false
 
 
 func _ready():
@@ -162,8 +162,8 @@ func flip_sprites(direction_vector):
 
 func _physics_process(delta):
 	Ticks += 1
-	if Debug: 
-		update()
+	
+	update()
 	
 	
 	if _state == States.FLOCKING:
@@ -179,12 +179,13 @@ func _physics_process(delta):
 		graze(delta)
 	
 func _draw():
-	var colors = [Color.red, Color.darkgreen, Color.blue, Color.pink]
-	var i = 0
-	for vector in goal_vectors:
-		draw_line(to_local(get_global_position()), to_local(get_global_position() + vector * 30), colors[i], 3, true)
-		i = wrapi(i + 1, 0, colors.size())
-	
+	if global.DEBUG:
+		var colors = [Color.red, Color.darkgreen, Color.blue, Color.pink]
+		var i = 0
+		for vector in goal_vectors:
+			draw_line(to_local(get_global_position()), to_local(get_global_position() + vector * 30), colors[i], 3, true)
+			i = wrapi(i + 1, 0, colors.size())
+		
 func _on_BehaviourChangeTimer_timeout():
 	set_random_behaviour_state()
 	if _state == States.FLOCKING:

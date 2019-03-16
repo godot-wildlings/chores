@@ -17,11 +17,14 @@ collision_mask = 3
 script = ExtResource( 1 )
 
 [node name="OrangeBall" type="Sprite" parent="."]
+modulate = Color( 0.607843, 0.407843, 0.407843, 1 )
 texture = ExtResource( 2 )
 flip_v = true
 hframes = 3
+frame = 1
 
 [node name="Flames" type="Sprite" parent="OrangeBall"]
+self_modulate = Color( 0.59592, 0.341922, 0.315646, 1 )
 show_behind_parent = true
 position = Vector2( -12.9268, -0.692505 )
 rotation = -1.5708

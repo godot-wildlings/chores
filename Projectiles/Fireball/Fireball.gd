@@ -9,15 +9,17 @@ export var damage : int = 1
 var velocity : Vector2 = Vector2.ZERO
 
 func _ready():
-	connect("area_entered", self, "_on_area_entered")
+	var err = connect("area_entered", self, "_on_area_entered")
+	if err: push_warning(str(err))
 #	connect("body_entered", self, "_on_body_entered")
 
 func _process(delta):
 	position += velocity * delta
 
-func shoot(bullet_position : Vector2, rot : float, initial_velocity : Vector2):
+# seems strange. arguments don't match other shoot functions. Who's calling this?
+func shoot(initial_velocity : Vector2, rot : float):
 	#print(self.name, " shooting fireball", " pos: ", bullet_position, ", rot: ", rot, ", vel: " ,initial_velocity )
-	global_position = bullet_position
+	#global_position = bullet_position
 	velocity = Vector2.RIGHT.rotated(rot) * speed + initial_velocity
 	rotation = rot
 	if has_node("SFX"):
@@ -37,7 +39,8 @@ func _on_area_entered(area : Area2D):
 			disconnect("hit", parent, "_on_hit")
 			
 		elif grandparent == global.player:
-			connect("hit", grandparent, "_on_hit")
+			var err = connect("hit", grandparent, "_on_hit")
+			if err: push_warning(err)
 			emit_signal("hit", damage)
 			disconnect("hit", grandparent, "_on_hit")
 #

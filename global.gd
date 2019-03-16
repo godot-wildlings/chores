@@ -16,6 +16,8 @@ var game_speed : float = 1.0
 var main_scene : Node
 #warning-ignore:unused_class_variable
 var current_level : Node2D
+#warning-ignore:unused_class_variable
+var DEBUG : bool = false
 
 #warning-ignore:unused_class_variable
 var player : KinematicBody2D

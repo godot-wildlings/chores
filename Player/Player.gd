@@ -29,6 +29,7 @@ var _state : int = States.IDLE setget _set_state
 var _iframes : int = 0
 var _move_dir =  Vector2.ZERO
 var velocity : Vector2
+var temp_immunity_active : bool = false
 
 export var running_footstep_frequency = 0.1
 export var walking_footstep_frequency = 0.2
@@ -367,7 +368,10 @@ func _on_NPC_stopped_chatting():
 
 
 func _on_hit(damage):
-	take_damage(damage)
+	$ImmunityTimer.start()
+	if not temp_immunity_active:
+		temp_immunity_active = true
+		take_damage(damage)
 	
 
 
@@ -377,3 +381,6 @@ func _on_FootstepPauseTimer_timeout():
 	elif _state == States.RUNNING and velocity != Vector2.ZERO:
 		play_random_step_sfx(true)
 	
+
+func _on_ImmunityTimer_timeout():
+	temp_immunity_active = false

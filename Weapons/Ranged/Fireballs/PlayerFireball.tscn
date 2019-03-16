@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Projectiles/RangedProjectile.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Fireball/fireball_exp.png" type="Texture" id=2]
-[ext_resource path="res://Effects/fwoosh2.wav" type="AudioStream" id=3]
-[ext_resource path="res://Effects/FireballSFX.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Projectiles/Fireball/Fireball.anim" type="Animation" id=5]
+[ext_resource path="res://Projectiles/Fireball/fireball.png" type="Texture" id=3]
+[ext_resource path="res://Effects/fwoosh2.wav" type="AudioStream" id=4]
+[ext_resource path="res://Effects/FireballSFX.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Projectiles/Fireball/Fireball.anim" type="Animation" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 8.0
+radius = 10.4293
 
 [node name="PlayerFireball" type="Area2D" groups=[
 "projectiles",
@@ -17,9 +18,18 @@ collision_mask = 158
 script = ExtResource( 1 )
 damage = 10
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="OrangeBall" type="Sprite" parent="."]
+scale = Vector2( 1.26915, 1.0789 )
 texture = ExtResource( 2 )
 hframes = 3
+
+[node name="Flames" type="Sprite" parent="OrangeBall"]
+self_modulate = Color( 0.707543, 0.52371, 0.504693, 1 )
+show_behind_parent = true
+position = Vector2( -10.2223, -0.418693 )
+rotation = -1.5708
+scale = Vector2( 1, 1.21796 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.104675, -4.23193e-006 )
@@ -29,14 +39,14 @@ shape = SubResource( 1 )
 autostart = true
 
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
 volume_db = -9.0
 bus = "SoundFX"
 
-[node name="SFX" parent="." instance=ExtResource( 4 )]
+[node name="SFX" parent="." instance=ExtResource( 5 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Fireball"
-anims/Fireball = ExtResource( 5 )
+anims/Fireball = ExtResource( 6 )
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]

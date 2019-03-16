@@ -30,8 +30,8 @@ func _process(delta):
 		position += velocity * delta
 
 #warning-ignore:unused_argument
-func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float):
-	global_position = bullet_position
+func shoot(initial_velocity: Vector2, rot_deg : float):
+	#global_position = bullet_position
 	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
 	var base_velocity = direction.normalized() * speed
 	

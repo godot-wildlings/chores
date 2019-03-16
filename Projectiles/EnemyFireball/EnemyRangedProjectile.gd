@@ -4,7 +4,7 @@ signal hit(weapon_damage)
 
 onready var anim_player : AnimationPlayer = $AnimationPlayer
 
-enum States { FLYING, STUCK }
+enum States { FLYING, STUCK, DISABLED }
 var _state = States.FLYING
 
 export var speed : float = 600
@@ -15,6 +15,7 @@ export var persist_after_impact : bool = false
 var velocity : Vector2 = Vector2.ZERO
 
 func _ready():
+	if global.DEBUG: print("Arrow initialized: " , OS.get_time())
 	connect_signals()
 
 
@@ -33,8 +34,8 @@ func _process(delta):
 		position += velocity * delta
 
 
-func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float):
-	global_position = bullet_position
+func shoot(initial_velocity: Vector2, rot_deg : float):
+	if global.DEBUG: print("Arrow shot: ", OS.get_time())
 	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
 	var base_velocity = direction.normalized() * speed
 	
@@ -52,6 +53,7 @@ func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float
 		sfx_player.play()
 
 func disappear():
+	_state = States.DISABLED
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	call_deferred("queue_free")
 
@@ -60,17 +62,20 @@ func _on_DurationTimer_timeout():
 
 
 func hit_entity(entity):
-	if entity.has_method("_on_hit"):
+	if entity.has_method("_on_hit") and _state == States.FLYING:
+		_state = States.DISABLED
 		var _err = connect("hit", entity, "_on_hit")
 		if _err: push_warning(_err)
 		emit_signal("hit", damage)
 		disconnect("hit", entity, "_on_hit")
 		if has_node("HitNoise"):
 			$HitNoise.play()
-		if persist_after_impact == true:
-			_state = States.STUCK
-		else:
-			disappear()
+#		if persist_after_impact == true:
+#			_state = States.STUCK
+#		else:
+#			disappear()
+
+		disappear()
 
 
 
