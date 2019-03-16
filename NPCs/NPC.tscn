@@ -7,14 +7,16 @@
 [ext_resource path="res://NPCs/NPCStateLabel.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 20.7607
-height = 11.5152
+radius = 13.1243
+height = 23.8938
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 86.9013, 57.1785 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 22
+size = 18
+outline_size = 1
+outline_color = Color( 0.188235, 0.12549, 0, 1 )
 font_data = ExtResource( 4 )
 
 [node name="NPC" type="KinematicBody2D"]
@@ -37,14 +39,15 @@ shape = SubResource( 2 )
 wait_time = 15.0
 
 [node name="State" type="Label" parent="."]
-margin_left = -23.3507
-margin_top = -82.6257
-margin_right = 16.6493
-margin_bottom = -68.6257
+margin_left = -20.2514
+margin_top = -51.0854
+margin_right = 22.7486
+margin_bottom = -29.0854
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.870588, 0.894118, 0.0980392, 1 )
 text = "State"
 align = 1
 script = ExtResource( 5 )

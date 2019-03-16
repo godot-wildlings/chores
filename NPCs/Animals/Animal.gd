@@ -1,8 +1,6 @@
 """
-Sheep are mostly just scenery for the farm.
-If we have time, I can add flocking behaviour and avoid-the-player behaviour.
-That might give us a herd-the-sheep minigame.
-
+Sheep floock and avoid the player.
+They're useful as a herding minigame during the daytime farm.
 """
 
 extends KinematicBody2D
@@ -11,13 +9,19 @@ enum States { INITIALIZING, FLOCKING, GRAZING, IDLE, FLEEING, DEAD }
 var _state = States.INITIALIZING
 
 var velocity = Vector2.ZERO
-var speed : float = 100
+#var base_speed : float = 100
+var speed : float = 30
 var direction : float = 0
 var base_scale : Vector2 = Vector2(0.5, 0.5)
 var Ticks : int = 0
-var fear_of_player : float = 3.0
-var fear_range : float = 400.0
+var fear_of_player : float = 2.0
+var fear_range : float = 300.0
+var goal_vectors : Array = []
+var frightened : bool = false
+
 export var health : int = 3
+export var Debug : bool = true
+
 
 func _ready():
 	$DeadBody.hide()
@@ -40,10 +44,16 @@ func set_random_behaviour_state():
 
 func flock():
 	velocity = Vector2.ZERO
-	velocity += get_random_direction_vector()
-	velocity += get_vector_toward_flock()
-	velocity += get_vector_away_from_neighbours()
-	velocity += get_vector_away_from_player() * fear_of_player # overweight this one. It's important
+
+	goal_vectors = [
+			get_random_direction_vector(),
+			get_vector_toward_flock(),
+			get_vector_away_from_neighbours(),
+			get_vector_away_from_player() * fear_of_player # overweight this one. It's important
+		]
+		
+	for vector in goal_vectors:
+		velocity += vector
 	velocity = velocity.normalized()
 	
 	
@@ -64,10 +74,20 @@ func get_random_color():
 	var lightness = rand_range(0.3, 1.0)
 	$BodyParts.set_modulate(Color(lightness, lightness, lightness))
 
+func set_pitch(size : float):  # expect a value between 0 and 1
+	if size > 1 or size < 0:
+		push_warning(self.name + " set_pitch() expected a value between 0 and 1")
+	if has_node("AudioStreamPlayer2D"):
+		$AudioStreamPlayer2D.set_pitch_scale(lerp(0.8, 1.5, size))
+
 func get_random_size():
-	var rand_size = rand_range(0.3, 0.7)
+	var min_size = 0.45
+	var max_size = 0.70
+	
+	var rand_size = rand_range(min_size, max_size)
 	base_scale = Vector2(rand_size, rand_size)
 	set_scale(base_scale)
+	set_pitch( (rand_size - min_size) / (max_size - min_size))
 
 func get_vector_away_from_player():
 	var avoid_vector : Vector2 = Vector2.ZERO
@@ -83,10 +103,11 @@ func get_vector_away_from_player():
 
 func get_vector_toward_flock():
 	var average_position = Vector2.ZERO
+	var myPos = get_global_position()
 	for sheep in get_flock():
 		average_position += sheep.get_global_position()
 	average_position /= get_flock_size()
-	return (average_position - get_global_position()).normalized()
+	return (average_position - myPos).normalized()
 
 func get_flock():
 	var flock_container = get_parent()
@@ -98,20 +119,32 @@ func get_flock_size():
 	
 func get_vector_away_from_neighbours() -> Vector2:
 	var avoid_vector : Vector2 = Vector2.ZERO
+	var myPos = get_global_position()
 	
 	for sheep in get_flock():
 		var dist_squared = get_global_position().distance_squared_to(sheep.get_global_position())
 		
 		var avoid_distance = 60
 		if dist_squared < avoid_distance * avoid_distance:
-			avoid_vector -= (sheep.get_global_position() - get_global_position()).normalized()
+			avoid_vector -= (sheep.get_global_position() - myPos).normalized()
 	if avoid_vector.length() > 0:
 		avoid_vector = avoid_vector.normalized()
 	return avoid_vector
 			
 func get_random_speed():
-	return rand_range(200, 250.0)
+	var rand_speed = rand_range(80, 120)
+	
+	if is_instance_valid(global.player):
+		# increase based on fear and proximity to player
+		if frightened: rand_speed *= 1.5
+		
+		var myPos = get_global_position()
+		var playerPos = global.player.get_global_position()
+		var poking_distance : int = 100
+		if myPos.distance_squared_to(playerPos) < poking_distance * poking_distance:
+			rand_speed *= 1.5
 
+	return rand_speed
 
 			
 func get_random_direction_vector():
@@ -129,33 +162,41 @@ func flip_sprites(direction_vector):
 
 func _physics_process(delta):
 	Ticks += 1
+	if Debug: 
+		update()
+	
+	
 	if _state == States.FLOCKING:
-		var myVec = Vector2(1,0).rotated(get_global_rotation())
+		var myVec = Vector2(1,0).rotated(direction)
 		var turningVec = myVec.linear_interpolate(velocity, 0.8)
 		var move_vector = turningVec * speed * delta * global.game_speed
 		flip_sprites(move_vector)
 		var collision = move_and_collide(move_vector)
 		if collision:
-			#move_and_slide(collision.get_remainder().bounce(collision.get_normal()))
-			pass
+			collision = move_and_collide(collision.get_remainder().bounce(collision.get_normal()))
 
 	elif _state == States.GRAZING:
 		graze(delta)
 	
+func _draw():
+	var colors = [Color.red, Color.darkgreen, Color.blue, Color.pink]
+	var i = 0
+	for vector in goal_vectors:
+		draw_line(to_local(get_global_position()), to_local(get_global_position() + vector * 30), colors[i], 3, true)
+		i = wrapi(i + 1, 0, colors.size())
 	
 func _on_BehaviourChangeTimer_timeout():
 	set_random_behaviour_state()
 	if _state == States.FLOCKING:
 		flock()
-
+	speed = get_random_speed()
 	$BehaviourChangeTimer.set_wait_time(rand_range(0.5, 1.0))
 	$BehaviourChangeTimer.start()
 
 func bleet():
 	if has_node("AudioStreamPlayer2D"):
-		if $AudioStreamPlayer2D.is_playing() == false: # don't stutter/beatbox
-			$AudioStreamPlayer2D.set_pitch_scale(rand_range(0.8, 1.5)) 
-			$AudioStreamPlayer2D.set_volume_db(rand_range(-40.0, -22.0))
+		if $AudioStreamPlayer2D.is_playing() == false: # don't stutter/beatbox			 
+			$AudioStreamPlayer2D.set_volume_db(rand_range(-40.0, -30.0))
 			$AudioStreamPlayer2D.play()
 
 
@@ -185,12 +226,32 @@ func die():
 	$NoiseTimer.stop()
 
 	
-		
-func _on_hit(damage): # signal from arrow
+	
+
+func take_damage(damage):
 	health -= damage
+	flash_red()
 	if health <= 0:
 		die()
 	else:
+		frightened = true
 		bleet()
 		fear_of_player = 30.0
 		fear_range = 600.0
+
+func flash_red():
+	var node_to_colorize
+	
+	if has_node("BodyParts"):
+		node_to_colorize = $BodyParts
+		
+		var tween = get_node("Tween")
+		tween.interpolate_property(node_to_colorize, "modulate",
+				Color.red, Color.white, .25,
+				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()	
+
+		
+func _on_hit(damage): # signal from arrow
+	take_damage(damage)
+	

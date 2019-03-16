@@ -41,6 +41,8 @@ var _initial_modulate : Color
 var _can_attack : bool = true
 var motion : Vector2
 
+var spawner_activated : bool = false # start it after you take your first hit
+
 """
 walk up until in range (determined by area2d collisionshape)
 start attacking (timer based cooldown)
@@ -49,7 +51,7 @@ start attacking (timer based cooldown)
 
 func _ready():
 	if health == null:
-		health = max_health
+		self.health = max_health
 	if health < 0:
 		_die()
 		
@@ -195,11 +197,29 @@ func _die():
 	_state = States.DEAD
 	
 func _on_hit(damage): # signal from BigArrow.tscn
+
+	if spawner_activated == false:
+		activate_spawner()	
+	
 	if has_node("HitNoise"):
 		$HitNoise.play()
-	health -= damage
+	self.health -= damage
+	flash_red()
+
 	if health < 0:
 		_die()
+
+func flash_red():
+	var node_to_colorize = self
+
+	var tween = get_node("Tween")
+	tween.interpolate_property(node_to_colorize, "modulate",
+			Color.red, Color.white, .25,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+
+func activate_spawner():
+	$EnemySpawner.start()
 
 
 func _on_CorpseDuration_timeout():

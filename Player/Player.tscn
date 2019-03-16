@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/char_idle_exp.png" type="Texture" id=2]
+[ext_resource path="res://Player/char_run_exp.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Camera2D.gd" type="Script" id=3]
 [ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=4]
 [ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=5]
@@ -12,12 +12,49 @@
 [ext_resource path="res://Player/player_run.anim" type="Animation" id=10]
 [ext_resource path="res://Player/player_walk.anim" type="Animation" id=11]
 [ext_resource path="res://Player/MonsterParts.png" type="Texture" id=12]
+[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=13]
+[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=14]
+[ext_resource path="res://Player/HealthBar.gd" type="Script" id=15]
+[ext_resource path="res://Effects/Enemies_Hurt_1.wav" type="AudioStream" id=16]
+[ext_resource path="res://Effects/Enemies_Hurt_2.wav" type="AudioStream" id=17]
+[ext_resource path="res://Effects/Enemies_Hurt_3.wav" type="AudioStream" id=18]
+[ext_resource path="res://Effects/Enemies_Hurt_4.wav" type="AudioStream" id=19]
+[ext_resource path="res://Effects/Enemies_Hurt_5.wav" type="AudioStream" id=20]
+[ext_resource path="res://Effects/Enemies_Hurt_6.wav" type="AudioStream" id=21]
+[ext_resource path="res://Effects/Enemies_Die_1.wav" type="AudioStream" id=22]
+[ext_resource path="res://Effects/Enemies_Die_2.wav" type="AudioStream" id=23]
+[ext_resource path="res://Effects/Enemies_Die_3.wav" type="AudioStream" id=24]
+[ext_resource path="res://Effects/Step_Grass_1.wav" type="AudioStream" id=25]
+[ext_resource path="res://Effects/Step_Grass_2.wav" type="AudioStream" id=26]
+[ext_resource path="res://Effects/Step_Grass_3.wav" type="AudioStream" id=27]
+[ext_resource path="res://Effects/Step_Grass_4.wav" type="AudioStream" id=28]
+[ext_resource path="res://Effects/Step_Grass_5.wav" type="AudioStream" id=29]
+[ext_resource path="res://Effects/Step_Grass_6.wav" type="AudioStream" id=30]
+[ext_resource path="res://Effects/Step_Grass_7.wav" type="AudioStream" id=31]
+[ext_resource path="res://Effects/Step_Grass_8.wav" type="AudioStream" id=32]
+[ext_resource path="res://Effects/Step_Cave.wav" type="AudioStream" id=33]
+[ext_resource path="res://Effects/Step_Cave_1.wav" type="AudioStream" id=34]
+[ext_resource path="res://Effects/Step_Cave_2.wav" type="AudioStream" id=35]
+[ext_resource path="res://Effects/Step_Cave_3.wav" type="AudioStream" id=36]
+[ext_resource path="res://Effects/Step_Cave_4.wav" type="AudioStream" id=37]
+[ext_resource path="res://Effects/Step_Cave_5.wav" type="AudioStream" id=38]
+[ext_resource path="res://Effects/Step_Cave_6.wav" type="AudioStream" id=39]
+[ext_resource path="res://Effects/Step_Cave_7.wav" type="AudioStream" id=40]
+[ext_resource path="res://Effects/Step_Cave_8.wav" type="AudioStream" id=41]
+[ext_resource path="res://Effects/Step_Cave_9.wav" type="AudioStream" id=42]
+[ext_resource path="res://Effects/Step_Cave_10.wav" type="AudioStream" id=43]
+[ext_resource path="res://Effects/Step_Cave_11.wav" type="AudioStream" id=44]
+[ext_resource path="res://Effects/Step_Cave_12.wav" type="AudioStream" id=45]
+[ext_resource path="res://Effects/Step_Cave_13.wav" type="AudioStream" id=46]
+[ext_resource path="res://Effects/Step_Cave_14.wav" type="AudioStream" id=47]
+[ext_resource path="res://Effects/Step_Cave_15.wav" type="AudioStream" id=48]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=1]
+height = 0.704163
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 11.0
-height = 32.0
+height = 25.8427
 
 [sub_resource type="Animation" id=3]
 resource_name = "demon_idle"
@@ -273,24 +310,24 @@ tracks/6/keys = {
 extents = Vector2( 13.0701, 27.4213 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 86
+collision_mask = 118
 script = ExtResource( 1 )
-max_health = 5.0
 is_demon = true
+demon_health = 30.0
+running_footstep_frequency = 0.4
+walking_footstep_frequency = 0.8
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 2 )
-hframes = 2
+hframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.75103, 21.2793 )
+position = Vector2( -0.715149, 15.3359 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.8, 0.8 )
 script = ExtResource( 3 )
 
 [node name="WeaponSlots" type="Node2D" parent="."]
@@ -307,13 +344,14 @@ position = Vector2( 10, -3 )
 [node name="FireCaster" parent="WeaponSlots/Ranged" instance=ExtResource( 6 )]
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( -0.498249, 0.498251 )
 shape = SubResource( 2 )
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = -27.824
 margin_top = -67.9423
 margin_right = 26.176
@@ -331,6 +369,7 @@ anims/player_run = ExtResource( 10 )
 anims/player_walk = ExtResource( 11 )
 
 [node name="DemonForm" type="Node2D" parent="."]
+visible = false
 position = Vector2( -0.614716, -15.6752 )
 scale = Vector2( 1.5, 1.5 )
 
@@ -400,3 +439,190 @@ offset = Vector2( -2.00527, -3.76002 )
 region_enabled = true
 region_rect = Rect2( 2.125, 2.95762, 24, 17.875 )
 
+[node name="Health" type="Node2D" parent="."]
+position = Vector2( -1.46303, -12.1919 )
+scale = Vector2( 0.33, 0.33 )
+
+[node name="HealthBar" type="TextureProgress" parent="Health"]
+margin_left = -43.2958
+margin_top = -150.324
+margin_right = 84.7042
+margin_bottom = -134.324
+value = 100.0
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 14 )
+script = ExtResource( 15 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="HurtSFX" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="HurtNoise" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 16 )
+bus = "SoundFX"
+
+[node name="HurtNoise2" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 17 )
+bus = "SoundFX"
+
+[node name="HurtNoise3" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 18 )
+bus = "SoundFX"
+
+[node name="HurtNoise4" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 19 )
+bus = "SoundFX"
+
+[node name="HurtNoise5" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 20 )
+bus = "SoundFX"
+
+[node name="HurtNoise6" type="AudioStreamPlayer2D" parent="HurtSFX"]
+stream = ExtResource( 21 )
+bus = "SoundFX"
+
+[node name="DeathSFX" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="DeathNoise" type="AudioStreamPlayer2D" parent="DeathSFX"]
+stream = ExtResource( 22 )
+bus = "SoundFX"
+
+[node name="DeathNoise2" type="AudioStreamPlayer2D" parent="DeathSFX"]
+stream = ExtResource( 23 )
+bus = "SoundFX"
+
+[node name="DeathNoise3" type="AudioStreamPlayer2D" parent="DeathSFX"]
+stream = ExtResource( 24 )
+bus = "SoundFX"
+
+[node name="StepSFXGrass" type="Node2D" parent="."]
+
+[node name="StepSoundsGrass" type="AudioStreamPlayer2D" parent="StepSFXGrass"]
+stream = ExtResource( 25 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsGrass2" type="AudioStreamPlayer2D" parent="StepSFXGrass"]
+stream = ExtResource( 26 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsGrass3" type="AudioStreamPlayer2D" parent="StepSFXGrass"]
+stream = ExtResource( 27 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsGrass4" type="AudioStreamPlayer2D" parent="StepSFXGrass"]
+stream = ExtResource( 28 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsGrass5" type="AudioStreamPlayer2D" parent="StepSFXGrass"]
+stream = ExtResource( 29 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsGrass6" type="AudioStreamPlayer2D" parent="StepSFXGrass"]
+stream = ExtResource( 30 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsGrass7" type="AudioStreamPlayer2D" parent="StepSFXGrass"]
+stream = ExtResource( 31 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsGrass8" type="AudioStreamPlayer2D" parent="StepSFXGrass"]
+stream = ExtResource( 32 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSFXCaves" type="Node2D" parent="."]
+
+[node name="StepSoundsCave" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 33 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave2" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 34 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave3" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 35 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave4" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 36 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave5" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 37 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave6" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 38 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave7" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 39 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave8" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 40 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave9" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 41 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave10" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 42 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave11" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 43 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave12" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 44 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave13" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 45 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave14" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 46 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave15" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 47 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="StepSoundsCave16" type="AudioStreamPlayer2D" parent="StepSFXCaves"]
+stream = ExtResource( 48 )
+volume_db = -9.0
+bus = "SoundFX"
+
+[node name="FootstepPauseTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="FootstepPauseTimer" to="." method="_on_FootstepPauseTimer_timeout"]

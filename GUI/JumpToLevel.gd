@@ -6,20 +6,25 @@ onready var level_options = get_parent().get_node("ChooseLevel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	level_options.add_item("Caves", 0)
-	level_options.set_item_text(0, "res://Levels/Caves.tscn")
+	
+	var levels = [
+		"res://Levels/Caves.tscn",
+		"res://Levels/NightFarm.tscn",
+		"res://Levels/NightCaves.tscn",
+		"res://Levels/InteriorCottageStart.tscn",
+		"res://Levels/IllustratedManuscript.tscn",
+		"res://Test/Test.tscn",
+		"res://Levels/InteriorCottageEnd.tscn",
+		"res://Levels/Book2.tscn",
+		"res://Levels/GoodEnding.tscn",
+		"res://Levels/EvilEnding.tscn",
+	]
 
-	level_options.add_item("Farm", 1)
-	level_options.set_item_text(1, "res://Levels/NightFarm.tscn")
+	var i = 0
+	for level in levels:
+		level_options.add_item(level, i)
+		i += 1
 
-	level_options.add_item("NightCaves", 2)
-	level_options.set_item_text(2, "res://Levels/NightCaves.tscn")
-
-	level_options.add_item("Cottage", 3)
-	level_options.set_item_text(3, "res://Levels/InteriorCottageStart.tscn")
-
-	level_options.add_item("Cottage", 4)
-	level_options.set_item_text(4, "res://Levels/IllustratedManuscript.tscn")
 
 
 	level_options.select(0)

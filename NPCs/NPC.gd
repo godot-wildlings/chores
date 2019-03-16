@@ -17,12 +17,15 @@ Should be able to do the following:
 """
 
 signal dialog_box_requested(textArr)
+
+
 # Right now, I only have click-thru dialog boxes.
 # I might need to add decision tree dialog boxes?
 		# time permitting
 
-signal started_chatting() # tell the player to stop shooting and moving
-signal stopped_chatting()
+# moved to Main
+#signal started_chatting() # tell the player to stop shooting and moving
+#signal stopped_chatting()
 
 enum States { IDLE, WAITING_FOR_DIALOG, INTERACTING, MOVING, SLEEPING, FIGHTING }
 
@@ -53,7 +56,7 @@ export var dialog_text_array : Array = [
 var _state : int = States.IDLE setget set_state, get_state
 var _goal : int = Goals.GO_TO_WORK
 
-onready var level : Node2D = global.main_scene.current_level_node
+#onready var level : Node2D = global.main_scene.current_level_node
 
 #warning-ignore:unused_class_variable
 var target_destination : Vector2
@@ -64,7 +67,7 @@ var direction_vector : Vector2 = Vector2.ZERO
 #warning-ignore:unused_class_variable
 var speed : float = 200.0
 
-var navigation : Navigation2D
+#var navigation : Navigation2D
 
 func _ready():
 	call_deferred("start")
@@ -73,11 +76,11 @@ func start():
 	var err = connect("dialog_box_requested", global.main_scene, "_on_DialogBox_requested")
 	if err: push_warning(err)
 	
-	if level.has_node("Navigation2D"):
-		navigation = level.get_node("Navigation2D")
-	else:
-		push_warning("NPC, " + self.name + ", is lost. Can't find Navigation Node")
-	
+#	if level.has_node("Navigation2D"):
+#		navigation = level.get_node("Navigation2D")
+#	else:
+#		push_warning("NPC, " + self.name + ", is lost. Can't find Navigation Node")
+#
 
 func _process(delta):
 	consider_goals()
@@ -106,11 +109,12 @@ func get_input():
 		if Input.is_action_just_pressed("ui_accept"):
 			_state = States.INTERACTING
 			print(self.name, " requested dialog box: ", dialog_box_title)
-			var _err = connect("started_chatting", global.player, "_on_NPC_started_chatting")
-			if _err: push_warning(_err)
+			# moved started_chatting signal to main. it'll be required every time theres a dialog box
+#			var _err = connect("started_chatting", global.player, "_on_NPC_started_chatting")
+#			if _err: push_warning(_err)
 			emit_signal("dialog_box_requested", dialog_box_title, dialog_text_array, self)
-			emit_signal("started_chatting")
-			disconnect("started_chatting", global.player, "_on_NPC_started_chatting")
+#			emit_signal("started_chatting")
+#			disconnect("started_chatting", global.player, "_on_NPC_started_chatting")
 
 func get_vector_toward_goal(_delta):
 	# use the nav mesh on the level to get there.
@@ -150,8 +154,10 @@ func _on_DialogRange_body_exited(body):
 func _on_DialogBox_completed(_title):
 	# pick a new goal.
 	_state = States.IDLE
-	var _err = connect("stopped_chatting", global.player, "_on_NPC_stopped_chatting")
-	if _err: push_warning(_err)
-	emit_signal("stopped_chatting")
-	disconnect("stopped_chatting", global.player, "_on_NPC_stopped_chatting")
+
+	# moved to main
+#	var _err = connect("stopped_chatting", global.player, "_on_NPC_stopped_chatting")
+#	if _err: push_warning("Error in " + self.name + " _onDialogBox_completed: "  + str(_err))
+#	emit_signal("stopped_chatting")
+#	disconnect("stopped_chatting", global.player, "_on_NPC_stopped_chatting")
 	

@@ -15,7 +15,6 @@ var velocity : Vector2 = Vector2.ZERO
 func _ready():
 	connect_signals()
 
-
 func connect_signals():
 	var _err
 	_err = connect("area_entered", self, "_on_projectile_area_entered")
@@ -30,24 +29,40 @@ func _process(delta):
 	if _state == States.FLYING:
 		position += velocity * delta
 
-
+#warning-ignore:unused_argument
 func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float):
 	global_position = bullet_position
 	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
 	var base_velocity = direction.normalized() * speed
 	
 	if _state == States.FLYING:
-		velocity = initial_velocity + base_velocity
+		
+		if global.options["projectiles_add_initial_velocity"] == true:
+			#old method : included player velocity
+			velocity = initial_velocity + base_velocity
+		else:
+			velocity = base_velocity
 		rotation += direction.angle()
-	if has_node("ShootNoise"):
-		$ShootNoise.play()
+	play_sound_effect()
+	
+func play_sound_effect():
+	if has_node("SFX"):
+		var sfx : Node2D = get_node("SFX")
+		var sfx_count : int = sfx.get_child_count()
+		var rnd_sfx : int = randi() % sfx_count
+		var sfx_player : AudioStreamPlayer2D = sfx.get_child(rnd_sfx)
+		sfx_player.play()
 
 func disappear():
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.call_deferred("set_disabled", true)
+	if has_node("Sprite"):
+		$Sprite.set_visible(false)
+		
 	call_deferred("queue_free")
 
 func _on_DurationTimer_timeout():
 	disappear()
-
 
 func hit_entity(entity):
 	if entity.has_method("_on_hit"):
@@ -55,15 +70,10 @@ func hit_entity(entity):
 		if _err: push_warning(_err)
 		emit_signal("hit", damage)
 		disconnect("hit", entity, "_on_hit")
-		if has_node("HitNoise"):
-			$HitNoise.play()
 		if persist_after_impact == true:
 			_state = States.STUCK
 		else:
 			disappear()
-
-
-
 
 func _on_projectile_body_entered(body):
 	#print(self.name, " hit body: ", body)
@@ -72,7 +82,6 @@ func _on_projectile_body_entered(body):
 	else:
 		#disappear() # might hit Tilemap
 		pass # was hitting too many tiles
-
 
 func _on_projectile_area_entered(area):
 	#print(self.name, " hit area: ", area )

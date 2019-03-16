@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Levels/InteriorCottageStart.gd" type="Script" id=1]
 [ext_resource path="res://Levels/Scenery/interior-cottage.png" type="Texture" id=2]
-[ext_resource path="res://BGMusic/Title_Screen_draft.ogg" type="AudioStream" id=3]
+[ext_resource path="res://BGMusic/Menu_Loop.wav" type="AudioStream" id=3]
 
 [node name="InteriorCottageStart" type="Node2D"]
 script = ExtResource( 1 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Enemies_Hurt_5.wav-e8af485717c5f2f4671bc58056cc5078.sample"
+
+[deps]
+
+source_file="res://Effects/Enemies_Hurt_5.wav"
+dest_files=[ "res://.import/Enemies_Hurt_5.wav-e8af485717c5f2f4671bc58056cc5078.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

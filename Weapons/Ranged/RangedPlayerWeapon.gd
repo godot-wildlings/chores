@@ -39,7 +39,7 @@ func _shoot():
 	disconnect("shoot", global.current_level, "_on_projectile_requested")
 	_state = States.RELOADING
 	$ReloadTimer.start()
-	
+
 func _on_AnimationPlayer_animation_finished(anim : String):
 	if anim == wind_up_animation:
 		_shoot()

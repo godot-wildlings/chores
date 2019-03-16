@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Fireballs_2.wav-229824e47d80e1d29ba959cae14d015a.sample"
+
+[deps]
+
+source_file="res://Effects/Fireballs_2.wav"
+dest_files=[ "res://.import/Fireballs_2.wav-229824e47d80e1d29ba959cae14d015a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

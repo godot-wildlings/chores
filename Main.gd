@@ -10,6 +10,9 @@ Responsibilities:
 
 # Declare member variables here. Examples:
 signal Dialog_box_completed(box_name)
+signal started_chatting() # remove player move/attack controls
+signal stopped_chatting() # release player controls
+
 
 onready var dialog_box_container : Control = $GUIContainer/FullRect/CenterContainer/DialogBoxes
 onready var level_container : Node2D = $LevelContainer
@@ -51,6 +54,11 @@ func spawn_dialog_box(boxTitle : String, textArray : Array, requested_by):
 	dialog_box_container.add_child(new_dialog_box)
 	new_dialog_box.start(boxTitle, textArray, self, requested_by)
 		# note: the order is important. Must add_child() before you can start()
+	if is_instance_valid(global.player):
+		var err = connect("started_chatting", global.player, "_on_NPC_started_chatting")
+		if err: push_warning(err)
+		emit_signal("started_chatting")
+		disconnect("started_chatting", global.player, "_on_NPC_started_chatting")
 
 func show_pause_menu():
 	find_node("PauseMenu").show()
@@ -70,9 +78,7 @@ func transition(animation_name : String):
 
 
 func load_level(level_path : String):
-	print(self.name, " load_level ", level_path )
 	var level_scene = load(level_path)
-	print(self.name, " loading ", level_scene)
 	transition("fade-out")
 	yield(get_tree().create_timer(0.5), "timeout")
 	
@@ -118,6 +124,13 @@ func _on_DialogBox_completed(dialog_box_title : String, requesting_node : Node):
 		if _err: push_warning(_err)
 		emit_signal("Dialog_box_completed", dialog_box_title)
 		disconnect("Dialog_box_completed", requesting_node, "_on_DialogBox_completed")
+		
+		if is_instance_valid(global.player):
+			var err = connect("stopped_chatting", global.player, "_on_NPC_stopped_chatting")
+			if err: push_warning(err)
+			emit_signal("stopped_chatting")
+			disconnect("stopped_chatting", global.player, "_on_NPC_stopped_chatting")
+			
 
 func _on_DialogBox_requested(dialog_box_title : String, text_array : Array, requested_by ):
 		spawn_dialog_box(dialog_box_title, text_array, requested_by)

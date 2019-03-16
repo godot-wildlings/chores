@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Weapons/Ranged/RangedPlayerWeapon.gd" type="Script" id=1]
 [ext_resource path="res://Weapons/Ranged/Fireballs/PlayerFireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/bow_hand_exp.png" type="Texture" id=3]
 [ext_resource path="res://Player/right_hand_exp.png" type="Texture" id=4]
 [ext_resource path="res://Weapons/Ranged/Bow/bow_wind_up.anim" type="Animation" id=5]
+[ext_resource path="res://Effects/FireballSFX.tscn" type="PackedScene" id=6]
 
 [node name="FireCaster" type="Node2D" groups=[
 "ranged_weapons",
@@ -25,12 +26,12 @@ position = Vector2( -8.17671, 0 )
 texture = ExtResource( 4 )
 hframes = 5
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bow_wind_up = ExtResource( 5 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="SFX" parent="." instance=ExtResource( 6 )]
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://GUI/Themes/night_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Levels/EvilEndingImage2.jpg" type="Texture" id=2]
+[ext_resource path="res://NamesInGrid.tscn" type="PackedScene" id=3]
+[ext_resource path="res://BGMusic/Boss_Theme_Intro.wav" type="AudioStream" id=4]
+[ext_resource path="res://Levels/BGMusicIntro.gd" type="Script" id=5]
+[ext_resource path="res://BGMusic/Boss_Theme_Loop.wav" type="AudioStream" id=6]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="EvilEnding" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="EvilEnding"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+
+[node name="Inferno" type="TextureRect" parent="EvilEnding/MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="MarginContainer2" type="CenterContainer" parent="EvilEnding"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="EvilEnding/MarginContainer2"]
+margin_left = 333.0
+margin_top = 43.0
+margin_right = 690.0
+margin_bottom = 557.0
+
+[node name="GridContainer" parent="EvilEnding/MarginContainer2/VSplitContainer" instance=ExtResource( 3 )]
+
+[node name="MarginContainer" type="MarginContainer" parent="EvilEnding/MarginContainer2/VSplitContainer"]
+margin_top = 214.0
+margin_right = 357.0
+margin_bottom = 514.0
+rect_min_size = Vector2( 0, 300 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BGMusicIntro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -9.0
+autoplay = true
+script = ExtResource( 5 )
+
+[node name="BGMusicLoop" type="AudioStreamPlayer" parent="BGMusicIntro"]
+stream = ExtResource( 6 )
+volume_db = -9.0
+
+[connection signal="finished" from="BGMusicIntro" to="BGMusicIntro" method="_on_BGMusicIntro_finished"]
