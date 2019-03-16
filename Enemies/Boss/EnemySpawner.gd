@@ -19,7 +19,7 @@ func start():
 #	pass
 
 func spawn_creeps():
-	print(self.name, " spawning creeps")
+	#print(self.name, " spawning creeps")
 	# generate a wave of creeps
 	var creep_container = get_creep_container()
 	if creep_container.get_child_count() > max_creeps:

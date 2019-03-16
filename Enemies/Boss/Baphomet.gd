@@ -187,10 +187,15 @@ func disable_hitboxes():
 func _die():
 	# spawn corpse and bloodstain
 	# queue_free after a timer, if desired
+	_state = States.DEAD
+	
 	disable_hitboxes()
 	
 	if has_node("HeadParts"):
 		$HeadParts.hide()
+	
+	$AnimationPlayer.play("death")
+	yield($AnimationPlayer, "animation_finished")
 	
 	
 	var _err = connect("died", global.current_level, "_on_enemy_died")
@@ -202,7 +207,7 @@ func _die():
 		$DeadBody.show()
 		if $DeadBody.has_node("CorposeDuration"):
 			$DeadBody/CorpseDuration.start() # disappear later
-	_state = States.DEAD
+	
 	
 	emit_signal("level_requested", "res://Levels/InteriorCottageEnd.tscn")
 	

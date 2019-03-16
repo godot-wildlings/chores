@@ -29,8 +29,8 @@
 [ext_resource path="res://Projectiles/Bullet/Bullet.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Projectiles/Arrow/EnemyArrow.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Enemies/EnemyHealth.gd" type="Script" id=29]
-[ext_resource path="res://GUI/HealthUnder.png" type="Texture" id=30]
-[ext_resource path="res://GUI/HealthOver.png" type="Texture" id=31]
+[ext_resource path="res://GUI/bar_back_exp.png" type="Texture" id=30]
+[ext_resource path="res://GUI/bar_fill.png" type="Texture" id=31]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.8834, 32 )
@@ -427,10 +427,10 @@ max_health = 4.0
 health = 4.0
 
 [node name="HealthBar" type="TextureProgress" parent="Health"]
-margin_left = -27.3961
-margin_top = -33.8437
-margin_right = 100.604
-margin_bottom = 30.1563
+margin_left = -14.3952
+margin_top = -35.427
+margin_right = 54.6048
+margin_bottom = -17.427
 rect_scale = Vector2( 0.429938, 0.287435 )
 value = 100.0
 texture_under = ExtResource( 30 )

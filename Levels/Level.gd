@@ -79,5 +79,6 @@ func _on_projectile_requested(bullet_scene, vel, pos, rot_deg):
 func _on_enemy_died(enemyNode):
 	print(self.name, " message received: _on_enemy_died" )
 	if has_node("enemies"):
-		$enemies.move_child(enemyNode, 0)
+		if enemyNode.get_parent() == $enemies:
+			$enemies.move_child(enemyNode, 0)
 

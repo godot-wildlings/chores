@@ -6,4 +6,4 @@ onready var player = get_parent().get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	set_value(player.health / player.max_health * 100)
+	set_value(float(player.health) / float(player.max_health) * 100.0)
