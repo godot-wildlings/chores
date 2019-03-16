@@ -38,7 +38,12 @@ func shoot(initial_velocity: Vector2, bullet_position : Vector2, rot_deg : float
 	var base_velocity = direction.normalized() * speed
 	
 	if _state == States.FLYING:
-		velocity = base_velocity
+		
+		if global.options["projectiles_add_initial_velocity"] == true:
+			#old method : included player velocity
+			velocity = initial_velocity + base_velocity
+		else:
+			velocity = base_velocity
 		rotation += direction.angle()
 	play_sound_effect()
 	

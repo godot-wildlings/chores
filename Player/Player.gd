@@ -198,6 +198,7 @@ func _update_human_animation(motion : Vector2):
 	elif get_local_mouse_position().x <= 0:
 		$Sprite.flip_h = true
 
+#warning-ignore:return_value_discarded
 func play_random_step_sfx(running : bool = false):
 	if is_instance_valid(global.current_level):
 		match global.current_level.name:

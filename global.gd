@@ -3,6 +3,10 @@ extends Node
 enum States { INITIALIZING, READY, PAUSED }
 enum Difficulties { EASY, MEDIUM, HARD }
 
+var options : Dictionary = { 
+		"projectiles_add_initial_velocity" : true 
+	}
+
 var _state : int = States.INITIALIZING setget _set_state
 #warning-ignore:unused_class_variable
 var difficulty : int = Difficulties.MEDIUM
