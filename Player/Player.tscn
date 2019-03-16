@@ -49,7 +49,7 @@
 [ext_resource path="res://Effects/Step_Cave_14.wav" type="AudioStream" id=47]
 [ext_resource path="res://Effects/Step_Cave_15.wav" type="AudioStream" id=48]
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=1]
 height = 0.704163
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -323,7 +323,7 @@ frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.715149, 15.3359 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

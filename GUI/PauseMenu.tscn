@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/Themes/Fonts/Dancing_Script/DancingScript-32.tres" type="DynamicFont" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://GUI/Themes/Fonts/droid-sans/droid_sans.tres" type="DynamicFont" id=9]
 [ext_resource path="res://GUI/JumpToLevel.gd" type="Script" id=10]
 [ext_resource path="res://GUI/ArrowInitialVelocityCheckBox.gd" type="Script" id=11]
+[ext_resource path="res://GUI/Label.gd" type="Script" id=12]
 
 [sub_resource type="Theme" id=1]
 
@@ -35,6 +36,7 @@ size_flags_vertical = 3
 tab_align = 0
 
 [node name="Instructions" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -371,7 +373,6 @@ Inspirations: ...
 "
 
 [node name="Cheat" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -384,31 +385,33 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Cheat/MarginContainer"]
+[node name="CheatDetails" type="VBoxContainer" parent="TabContainer/Cheat/MarginContainer"]
+editor/display_folded = true
+visible = false
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 580.0
 margin_bottom = 341.0
 
-[node name="HSplitContainer" type="HSplitContainer" parent="TabContainer/Cheat/MarginContainer/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="TabContainer/Cheat/MarginContainer/CheatDetails"]
 margin_right = 560.0
 margin_bottom = 26.0
 
-[node name="ChooseLevel" type="OptionButton" parent="TabContainer/Cheat/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="ChooseLevel" type="OptionButton" parent="TabContainer/Cheat/MarginContainer/CheatDetails/HSplitContainer"]
 margin_right = 454.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
 theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 9 )
 
-[node name="JumpToLevel" type="Button" parent="TabContainer/Cheat/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="JumpToLevel" type="Button" parent="TabContainer/Cheat/MarginContainer/CheatDetails/HSplitContainer"]
 margin_left = 466.0
 margin_right = 560.0
 margin_bottom = 26.0
 text = "Jump To Level"
 script = ExtResource( 10 )
 
-[node name="CenterContainer" type="MarginContainer" parent="TabContainer/Cheat/MarginContainer/VBoxContainer"]
+[node name="CenterContainer" type="MarginContainer" parent="TabContainer/Cheat/MarginContainer/CheatDetails"]
 margin_top = 30.0
 margin_right = 560.0
 margin_bottom = 289.0
@@ -419,7 +422,7 @@ custom_constants/margin_top = 30
 custom_constants/margin_left = 30
 custom_constants/margin_bottom = 30
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Cheat/MarginContainer/VBoxContainer/CenterContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Cheat/MarginContainer/CheatDetails/CenterContainer"]
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 530.0
@@ -431,16 +434,25 @@ text = "ctrl-shift-t to Transform
 ctrl-shift-b to spawn Baphomet
 "
 
-[node name="CheckBox" type="CheckBox" parent="TabContainer/Cheat/MarginContainer/VBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="TabContainer/Cheat/MarginContainer/CheatDetails"]
 margin_top = 293.0
 margin_right = 560.0
 margin_bottom = 321.0
 text = "Add Initial Velocity to Arrows"
 script = ExtResource( 11 )
 
+[node name="Label" type="Label" parent="TabContainer/Cheat/MarginContainer"]
+margin_left = 20.0
+margin_top = 170.0
+margin_right = 580.0
+margin_bottom = 190.0
+text = "No Cheating"
+align = 1
+script = ExtResource( 12 )
+
 [connection signal="toggled" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Fullscreen/FullscreenCheckbox" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Fullscreen/FullscreenCheckbox" method="_on_FullscreenCheckbox_toggled"]
 [connection signal="item_selected" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Resolution/ResolutionList" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Resolution/ResolutionList" method="_on_ResolutionList_item_selected"]
 [connection signal="item_selected" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/GameOptions/Difficulty/DifficultyButton" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/GameOptions/Difficulty/DifficultyButton" method="_on_DifficultyButton_item_selected"]
 [connection signal="pressed" from="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer/QuitButton" to="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer/QuitButton" method="_on_QuitButton_pressed"]
-[connection signal="pressed" from="TabContainer/Cheat/MarginContainer/VBoxContainer/HSplitContainer/JumpToLevel" to="TabContainer/Cheat/MarginContainer/VBoxContainer/HSplitContainer/JumpToLevel" method="_on_JumpToLevel_pressed"]
-[connection signal="toggled" from="TabContainer/Cheat/MarginContainer/VBoxContainer/CheckBox" to="TabContainer/Cheat/MarginContainer/VBoxContainer/CheckBox" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="TabContainer/Cheat/MarginContainer/CheatDetails/HSplitContainer/JumpToLevel" to="TabContainer/Cheat/MarginContainer/CheatDetails/HSplitContainer/JumpToLevel" method="_on_JumpToLevel_pressed"]
+[connection signal="toggled" from="TabContainer/Cheat/MarginContainer/CheatDetails/CheckBox" to="TabContainer/Cheat/MarginContainer/CheatDetails/CheckBox" method="_on_CheckBox_toggled"]
