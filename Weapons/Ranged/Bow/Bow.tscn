@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Weapons/Ranged/RangedPlayerWeapon.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Arrow/Arrow.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Player/bow_hand_exp.png" type="Texture" id=3]
-[ext_resource path="res://Player/right_hand_exp.png" type="Texture" id=4]
+[ext_resource path="res://Player/bow_no_arms.png" type="Texture" id=3]
+[ext_resource path="res://Player/right_hand_exp_symmetrical.png" type="Texture" id=4]
 [ext_resource path="res://Weapons/Ranged/Bow/bow_wind_up.anim" type="Animation" id=5]
 
 [node name="Bow" type="Node2D" groups=[
@@ -13,15 +13,16 @@ script = ExtResource( 1 )
 projectile_tscn = ExtResource( 2 )
 
 [node name="SpriteBow" type="Sprite" parent="."]
-position = Vector2( 4, 0 )
+position = Vector2( -0.527832, 0.62093 )
 texture = ExtResource( 3 )
-hframes = 5
+offset = Vector2( 16.4276, 0.370718 )
+hframes = 6
 
 [node name="SpriteHand" type="Sprite" parent="."]
-position = Vector2( -8.17671, 0 )
+position = Vector2( -0.417648, 0.510748 )
 texture = ExtResource( 4 )
+offset = Vector2( 4.1407, 0.4809 )
 hframes = 5
-frame = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
@@ -30,5 +31,8 @@ anims/bow_wind_up = ExtResource( 5 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 18.9515, 0.77128 )
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]

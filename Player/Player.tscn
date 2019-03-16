@@ -1,11 +1,11 @@
 [gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/char_run_exp.png" type="Texture" id=2]
-[ext_resource path="res://GUI/Camera2D.gd" type="Script" id=3]
-[ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=4]
-[ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Weapons/Ranged/Fireballs/FireCaster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player/IdleNoHands.png" type="Texture" id=2]
+[ext_resource path="res://Player/WeaponSlots.gd" type="Script" id=3]
+[ext_resource path="res://Weapons/Ranged/Bow/Bow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Weapons/Ranged/Fireballs/FireCaster.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GUI/Camera2D.gd" type="Script" id=6]
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=7]
 [ext_resource path="res://Player/player_holding_bow.anim" type="Animation" id=8]
 [ext_resource path="res://Player/player_idle.anim" type="Animation" id=9]
@@ -330,10 +330,25 @@ walking_footstep_frequency = 0.8
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-hframes = 4
+hframes = 2
 frame = 1
 
+[node name="WeaponSlots" type="Node2D" parent="Sprite"]
+position = Vector2( -5.20417, -8.03871 )
+script = ExtResource( 3 )
+
+[node name="Melee" type="Node2D" parent="Sprite/WeaponSlots"]
+
+[node name="Ranged" type="Node2D" parent="Sprite/WeaponSlots"]
+position = Vector2( 0.0720634, 0.0526905 )
+
+[node name="Bow" parent="Sprite/WeaponSlots/Ranged" instance=ExtResource( 4 )]
+position = Vector2( 0.0181408, 0.0224743 )
+
+[node name="FireCaster" parent="Sprite/WeaponSlots/Ranged" instance=ExtResource( 5 )]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -0.715149, 15.3359 )
 shape = SubResource( 1 )
 
@@ -343,22 +358,10 @@ drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
-script = ExtResource( 3 )
-
-[node name="WeaponSlots" type="Node2D" parent="."]
-script = ExtResource( 4 )
-
-[node name="Melee" type="Node2D" parent="WeaponSlots"]
-
-[node name="Ranged" type="Node2D" parent="WeaponSlots"]
-visible = false
-
-[node name="Bow" parent="WeaponSlots/Ranged" instance=ExtResource( 5 )]
-position = Vector2( 10, -3 )
-
-[node name="FireCaster" parent="WeaponSlots/Ranged" instance=ExtResource( 6 )]
+script = ExtResource( 6 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -664,3 +667,5 @@ wait_time = 0.1
 
 [connection signal="timeout" from="FootstepPauseTimer" to="." method="_on_FootstepPauseTimer_timeout"]
 [connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]
+
+[editable path="Sprite/WeaponSlots/Ranged/Bow"]

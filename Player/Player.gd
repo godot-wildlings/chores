@@ -58,7 +58,7 @@ func connect_signals():
 
 
 	var _err = null
-	_err = connect("weapon_requested", $WeaponSlots, "_on_weapon_requested")
+	_err = connect("weapon_requested", $Sprite/WeaponSlots, "_on_weapon_requested")
 	if _err: push_warning(_err)
 
 func toggle_form():
@@ -94,7 +94,7 @@ func _process(delta):
 		
 
 	if Input.is_action_just_pressed("attack"):
-		$WeaponSlots.attack()
+		$Sprite/WeaponSlots.attack()
 
 	if Input.is_action_just_pressed("transform"):
 		toggle_form()
@@ -188,16 +188,30 @@ func _update_human_animation(motion : Vector2):
 		$AnimationPlayer.play("player_walk")
 		#Moved footstep to timer: _on_FootstepPauseTimer_timeout
 		#play_random_step_sfx()
-	if motion.x > 0:
-		$Sprite.flip_h = false
-	elif motion.x < 0:
-		$Sprite.flip_h = true
-	elif motion == Vector2.ZERO:
+
+
+#	if motion.x > 0:
+#		flip_horizontal(false)
+#	elif motion.x < 0:
+#		flip_horizontal(true)
+
+	if motion == Vector2.ZERO:
 		$AnimationPlayer.play("player_idle")
-	if get_local_mouse_position().x >= 0:
-		$Sprite.flip_h = false
-	elif get_local_mouse_position().x <= 0:
-		$Sprite.flip_h = true
+
+#	if get_local_mouse_position().x >= 0:
+#		flip_horizontal(false)
+#	elif get_local_mouse_position().x < 0:
+#		flip_horizontal(true)
+
+	var mousePos = get_local_mouse_position()
+	flip_human_sprites(sign(mousePos.x))
+
+
+func flip_human_sprites(direction):
+		$Sprite.set_scale(Vector2(direction, 1))
+		
+		
+		#$"Sprite/WeaponSlots".scale.y = direction
 
 #warning-ignore:unused_argument
 func play_random_step_sfx(running : bool = false):
