@@ -41,14 +41,40 @@ func attack():
 	active_weapon.attack()
 
 func _orientate_weapon():
-	position = Vector2.ZERO
-	rotation = 0
+	#position = Vector2.ZERO
+#	rotation = 0
+#
+#	#var new_position : Vector2 = get_local_mouse_position().normalized() * offset_distance
+	var myPos = get_global_position()
+	var mousePos = get_global_mouse_position()
 
-	var new_position : Vector2 = get_local_mouse_position().normalized() * offset_distance
-	var new_rotation : float = get_local_mouse_position().angle()
+	
+	var vector_to_mouse = mousePos - myPos
+	
+	var rot_to_mouse
+	if sign(vector_to_mouse.x) > 0:
+		rot_to_mouse = Vector2.RIGHT.angle_to_point(vector_to_mouse)
+	else:
+		
+		vector_to_mouse.y *= -1
+		
+		rot_to_mouse = Vector2.LEFT.angle_to_point(vector_to_mouse)
+	#var new_rotation : float = get_local_mouse_position().angle()
+#
+#
+#	#position = new_position
+	
+	
+	
+	var mouse_side = sign(vector_to_mouse.x)
+	flip_left_bow(mouse_side)
+	
+	set_global_rotation(rot_to_mouse + mouse_side * PI)
 
-	position = new_position
-	rotation = new_rotation
+
+func flip_left_bow(direction):
+	scale.y = direction
+
 
 #func _adjust_weapon_depth():
 #	if position.y >= 0:

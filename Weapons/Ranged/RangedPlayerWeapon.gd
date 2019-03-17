@@ -39,10 +39,11 @@ func _shoot():
 	disconnect("shoot", global.current_level, "_on_projectile_requested")
 	_state = States.RELOADING
 	$ReloadTimer.start()
+	$AnimationPlayer.play("bow_release")
 
-func _on_AnimationPlayer_animation_finished(anim : String):
-	if anim == wind_up_animation:
-		_shoot()
+#func _on_AnimationPlayer_animation_finished(anim : String):
+#	if anim == wind_up_animation:
+#		_shoot()
 
 func _on_ReloadTimer_timeout():
 	_state = States.IDLE

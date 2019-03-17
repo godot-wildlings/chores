@@ -188,6 +188,7 @@ func _die():
 	# spawn corpse and bloodstain
 	# queue_free after a timer, if desired
 	_state = States.DEAD
+	$EnemySpawner.destroy_all_creeps()
 	
 	disable_hitboxes()
 	
@@ -219,7 +220,9 @@ func _on_hit(damage): # signal from BigArrow.tscn
 		
 
 	if has_node("HitNoise"):
-		$HitNoise.play()
+		if randf() < 0.7:
+			$HitNoise.set_pitch_scale(rand_range(0.8, 1.2)) 
+			$HitNoise.play()
 	self.health -= damage
 	flash_red()
 

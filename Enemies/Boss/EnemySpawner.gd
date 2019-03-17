@@ -42,6 +42,14 @@ func spawn_creeps():
 			new_creep.type_of_enemy = creep_type
 			creep_container.add_child(new_creep)
 			new_creep.set_global_position(spawn_pos)
+
+func destroy_all_creeps():
+	for creep in get_creep_container().get_children():
+		if creep.name != "Baphomet":
+			if creep.has_method("die"):
+				creep.die()
+			else:
+				creep.queue_free()
 			
 func get_creep_container():
 	var level = global.current_level
@@ -81,7 +89,9 @@ func get_creep_container():
 
 		
 func _on_SpawnTimer_timeout():
-	spawn_creeps()
-	$SpawnTimer.start()
-	$HAHANoise.play()
+	var Baphomet = get_parent()
+	if Baphomet._state == Baphomet.States.ALIVE:
+		spawn_creeps()
+		$SpawnTimer.start()
+		$HAHANoise.play()
 	
