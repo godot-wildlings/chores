@@ -82,13 +82,14 @@ position = Vector2( -0.527832, 0.62093 )
 texture = ExtResource( 3 )
 offset = Vector2( 16.4276, 0.370718 )
 hframes = 6
-frame = 5
+frame = 4
 
 [node name="SpriteHand" type="Sprite" parent="."]
 position = Vector2( -0.417648, 0.510748 )
 texture = ExtResource( 4 )
 offset = Vector2( 4.1407, 0.4809 )
 hframes = 5
+frame = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

@@ -77,9 +77,10 @@ func get_velocity():
 	return default_movement.get_velocity()
 
 func _on_entity_died():
-	#print(self.name, " received message: entity died" )
-	_state = States.DEAD
-	default_movement.set_state(default_movement.States.DISABLED)
-	default_movement = null
+	if is_instance_valid(default_movement):
+		#print(self.name, " received message: entity died" )
+		_state = States.DEAD
+		default_movement.set_state(default_movement.States.DISABLED)
+		default_movement = null
 
 

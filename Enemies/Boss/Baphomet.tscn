@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Enemies/Boss/Baphomet.gd" type="Script" id=1]
 [ext_resource path="res://Projectiles/Fireball/BaphometFireball.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Enemies/Boss/HealthBar.gd" type="Script" id=8]
 [ext_resource path="res://Levels/Scenery/BloodSplotch.png" type="Texture" id=9]
 [ext_resource path="res://Effects/blood-squish.wav" type="AudioStream" id=10]
+[ext_resource path="res://Effects/OW.wav" type="AudioStream" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 53.7125
@@ -92,6 +93,42 @@ tracks/3/keys = {
 "update": 0,
 "values": [ 0.0, 5.0, 0.0 ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Aura/Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.228931, 14.3405 ), Vector2( -8.24188, 8.15025 ), Vector2( 0.228931, 14.3405 ), Vector2( 3.16113, 22.4855 ), Vector2( 0.228931, 14.3405 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HeadParts:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -6.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("HeadParts:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.404209, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -7.75408, 1.03389 ), Vector2( 6.20327, -7.75406 ) ]
+}
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 39.3588
@@ -121,6 +158,7 @@ scale_curve = SubResource( 7 )
 [node name="Baphomet" type="KinematicBody2D" groups=[
 "enemies",
 ]]
+scale = Vector2( 2.5, 2.5 )
 collision_layer = 128
 collision_mask = 9
 script = ExtResource( 1 )
@@ -136,17 +174,20 @@ position = Vector2( -1.50941, 15.094 )
 shape = SubResource( 1 )
 
 [node name="Aura" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Aura"]
-self_modulate = Color( 1, 1, 1, 0.324143 )
-position = Vector2( 0.0836182, 15.3633 )
+self_modulate = Color( 1, 1, 1, 0.351044 )
+position = Vector2( -7.11318, 8.97507 )
+rotation = 2.68897
 texture = ExtResource( 3 )
+offset = Vector2( 9.6287, -0.280359 )
 region_enabled = true
 region_rect = Rect2( 278, -1, 150, 133 )
 
 [node name="HeadParts" type="Node2D" parent="."]
 editor/display_folded = true
+position = Vector2( -4.89639, -0.765395 )
+rotation = -0.0558597
 
 [node name="Head" type="Sprite" parent="HeadParts"]
 texture = ExtResource( 3 )
@@ -156,7 +197,7 @@ region_rect = Rect2( -7, -4, 131, 115 )
 [node name="RightEar" type="Sprite" parent="HeadParts/Head"]
 show_behind_parent = true
 position = Vector2( -23.0212, -0.930645 )
-rotation = 0.0381947
+rotation = 0.0324165
 texture = ExtResource( 3 )
 offset = Vector2( -13.8665, 2.50406 )
 region_enabled = true
@@ -165,7 +206,7 @@ region_rect = Rect2( 123.612, 1.951, 46, 35 )
 [node name="LeftEar" type="Sprite" parent="HeadParts/Head"]
 show_behind_parent = true
 position = Vector2( 24.1811, -6.35017 )
-rotation = -0.0334203
+rotation = -0.0283645
 texture = ExtResource( 3 )
 offset = Vector2( 9.99815, -3.87406 )
 region_enabled = true
@@ -193,7 +234,7 @@ region_enabled = true
 region_rect = Rect2( 127.612, 36.951, 40, 30 )
 
 [node name="LowerJaw" type="Sprite" parent="HeadParts"]
-position = Vector2( 3.57462, 63.6728 )
+position = Vector2( 3.49812, 64.6291 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 160.432, 79.815, 31.875, 37 )
@@ -273,4 +314,8 @@ texture = ExtResource( 9 )
 
 [node name="SquishyDeathNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
+
+[node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+volume_db = -9.0
 

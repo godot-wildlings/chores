@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/Themes/Fonts/Dancing_Script/DancingScript-32.tres" type="DynamicFont" id=2]
@@ -8,10 +8,11 @@
 [ext_resource path="res://GUI/DifficultyButton.gd" type="Script" id=6]
 [ext_resource path="res://GUI/illustrations/800px-Tap_(démon).png" type="Texture" id=7]
 [ext_resource path="res://GUI/QuitButton.gd" type="Script" id=8]
-[ext_resource path="res://GUI/Themes/Fonts/droid-sans/droid_sans.tres" type="DynamicFont" id=9]
-[ext_resource path="res://GUI/JumpToLevel.gd" type="Script" id=10]
-[ext_resource path="res://GUI/ArrowInitialVelocityCheckBox.gd" type="Script" id=11]
-[ext_resource path="res://GUI/Label.gd" type="Script" id=12]
+[ext_resource path="res://GUI/RestartButton.gd" type="Script" id=9]
+[ext_resource path="res://GUI/Themes/Fonts/droid-sans/droid_sans.tres" type="DynamicFont" id=10]
+[ext_resource path="res://GUI/JumpToLevel.gd" type="Script" id=11]
+[ext_resource path="res://GUI/ArrowInitialVelocityCheckBox.gd" type="Script" id=12]
+[ext_resource path="res://GUI/Label.gd" type="Script" id=13]
 
 [sub_resource type="Theme" id=1]
 
@@ -36,6 +37,7 @@ size_flags_vertical = 3
 tab_align = 0
 
 [node name="Instructions" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -54,37 +56,26 @@ margin_bottom = -10.0
 margin_right = 580.0
 margin_bottom = 341.0
 bbcode_enabled = true
-bbcode_text = "Phase 1. Idyllic Life. (daytime)
+bbcode_text = "
+You are Friederich. Life is good. Go talk to the villagers to see what they need from you. 
 
-You are Friederich. Life is good. Go talk to the villagers to see what they need from you. Go play by the lake when your chores are done.
+Go play by the lake when your chores are done.
 
-WASD to move. Shift to run. Space to interact.
 
-Phase 2. Evil is not a toy. (Nighttime)
-That book was strange. Something doesn't feel right. Who is speaking to me?
 
-Phase 3. Regret. (Daytime)
-Look at the carnage I've wrought! If the villagers know it was me, they'll chase me out of town, or worse! Do your chores, but avoid the villagers.
+WASD to move. left mouse button to shoot. Shift to slow down. Space to interact. Mouse wheel to zoom the camera.
+"
+text = "
+You are Friederich. Life is good. Go talk to the villagers to see what they need from you. 
 
-Phase 4. Exorcism (Nighttime)
-The demon will not control me. I will fight it in my subconscious."
-text = "Phase 1. Idyllic Life. (daytime)
+Go play by the lake when your chores are done.
 
-You are Friederich. Life is good. Go talk to the villagers to see what they need from you. Go play by the lake when your chores are done.
 
-WASD to move. Shift to run. Space to interact.
 
-Phase 2. Evil is not a toy. (Nighttime)
-That book was strange. Something doesn't feel right. Who is speaking to me?
-
-Phase 3. Regret. (Daytime)
-Look at the carnage I've wrought! If the villagers know it was me, they'll chase me out of town, or worse! Do your chores, but avoid the villagers.
-
-Phase 4. Exorcism (Nighttime)
-The demon will not control me. I will fight it in my subconscious."
+WASD to move. left mouse button to shoot. Shift to slow down. Space to interact. Mouse wheel to zoom the camera.
+"
 
 [node name="Options" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 39.0
@@ -314,7 +305,7 @@ bbcode_enabled = true
 [node name="TextureRect" type="TextureRect" parent="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer"]
 margin_top = 4.0
 margin_right = 284.0
-margin_bottom = 311.0
+margin_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 200, 234 )
@@ -325,12 +316,19 @@ expand = true
 stretch_mode = 6
 
 [node name="QuitButton" type="Button" parent="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer"]
-margin_top = 315.0
+margin_top = 285.0
 margin_right = 284.0
-margin_bottom = 341.0
+margin_bottom = 311.0
 size_flags_horizontal = 5
 text = "Quit Game"
 script = ExtResource( 8 )
+
+[node name="RestartButton" type="Button" parent="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer"]
+margin_top = 315.0
+margin_right = 284.0
+margin_bottom = 341.0
+text = "Restart Game"
+script = ExtResource( 9 )
 
 [node name="Credits" type="Tabs" parent="TabContainer"]
 visible = false
@@ -401,14 +399,14 @@ margin_right = 454.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
 theme = SubResource( 1 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 
 [node name="JumpToLevel" type="Button" parent="TabContainer/Cheat/MarginContainer/CheatDetails/HSplitContainer"]
 margin_left = 466.0
 margin_right = 560.0
 margin_bottom = 26.0
 text = "Jump To Level"
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="CenterContainer" type="MarginContainer" parent="TabContainer/Cheat/MarginContainer/CheatDetails"]
 margin_top = 30.0
@@ -428,7 +426,7 @@ margin_right = 530.0
 margin_bottom = 197.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 9 )
+custom_fonts/normal_font = ExtResource( 10 )
 text = "ctrl-shift-t to Transform
 ctrl-shift-b to spawn Baphomet
 "
@@ -438,14 +436,14 @@ margin_top = 261.0
 margin_right = 560.0
 margin_bottom = 289.0
 text = "Add Initial Velocity to Arrows"
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="Debug" type="CheckBox" parent="TabContainer/Cheat/MarginContainer/CheatDetails"]
 margin_top = 293.0
 margin_right = 560.0
 margin_bottom = 321.0
 text = "global.DEBUG = true"
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="TabContainer/Cheat/MarginContainer"]
 margin_left = 20.0
@@ -454,12 +452,13 @@ margin_right = 580.0
 margin_bottom = 190.0
 text = "No Cheating"
 align = 1
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 
 [connection signal="toggled" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Fullscreen/FullscreenCheckbox" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Fullscreen/FullscreenCheckbox" method="_on_FullscreenCheckbox_toggled"]
 [connection signal="item_selected" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Resolution/ResolutionList" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/DisplayOptions/Resolution/ResolutionList" method="_on_ResolutionList_item_selected"]
 [connection signal="item_selected" from="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/GameOptions/Difficulty/DifficultyButton" to="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/GameOptions/Difficulty/DifficultyButton" method="_on_DifficultyButton_item_selected"]
 [connection signal="pressed" from="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer/QuitButton" to="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer/QuitButton" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer/RestartButton" to="TabContainer/Options/MarginContainer/HSplitContainer/RightSide/VBoxContainer/RestartButton" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="TabContainer/Cheat/MarginContainer/CheatDetails/HSplitContainer/JumpToLevel" to="TabContainer/Cheat/MarginContainer/CheatDetails/HSplitContainer/JumpToLevel" method="_on_JumpToLevel_pressed"]
 [connection signal="toggled" from="TabContainer/Cheat/MarginContainer/CheatDetails/InitialVel" to="TabContainer/Cheat/MarginContainer/CheatDetails/InitialVel" method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="TabContainer/Cheat/MarginContainer/CheatDetails/Debug" to="TabContainer/Cheat/MarginContainer/CheatDetails/Debug" method="_on_CheckBox_toggled"]

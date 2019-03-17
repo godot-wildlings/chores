@@ -100,6 +100,9 @@ func load_level(level_path : String):
 	
 func _on_level_requested(level_path : String):
 	load_level(level_path)
+	if is_paused():
+		resume_game()
+
 
 func _on_level_initialized():
 	_set_state(States.PLAYING)
@@ -112,9 +115,12 @@ func _input(event : InputEvent):
 			global.pause_game()
 	elif _state == States.PAUSED:
 		if event.is_action_pressed("pause"):
-			hide_pause_menu()
-			_set_state(States.PLAYING)
-			global.resume_game()
+			resume_game()
+
+func resume_game():
+	hide_pause_menu()
+	_set_state(States.PLAYING)
+	global.resume_game()
 
 
 func _on_DialogBox_completed(dialog_box_title : String, requesting_node : Node):
