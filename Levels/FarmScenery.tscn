@@ -229,7 +229,6 @@ position = Vector2( 1470.69, 1054.49 )
 scale = Vector2( 0.177687, 0.154614 )
 
 [node name="Trees" type="Node2D" parent="Scenery"]
-editor/display_folded = true
 position = Vector2( 0, 84.0951 )
 
 [node name="Tree" parent="Scenery/Trees" instance=ExtResource( 8 )]

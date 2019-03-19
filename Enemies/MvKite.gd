@@ -72,6 +72,9 @@ func set_velocity_vectors():
 		velocity_vectors.push_back(get_vector_toward_player())
 	velocity_vectors.push_back(get_oscillating_dodge_vector())
 
+	velocity_vectors.push_back(get_vector_away_from_neighbours())
+
+
 func average_velocity_vectors():
 	var returnVec : Vector2 = Vector2.ZERO
 	for vector in velocity_vectors:
@@ -95,7 +98,16 @@ func is_too_far():
 	else:
 		return false
 	
-		
+func get_vector_away_from_neighbours():
+	var return_vec = Vector2.ZERO
+	var max_range_to_avoid: float = 150
+	var myPos = Entity.get_global_position()
+	for creep in get_tree().get_nodes_in_group("enemies"):
+		var creepPos = creep.get_global_position()
+		if myPos.distance_squared_to(creepPos) < max_range_to_avoid * max_range_to_avoid:
+			return_vec += myPos - creepPos
+	return_vec = return_vec.normalized()
+	return return_vec
 
 func get_vector_toward_player():
 	var returnVec = Vector2.ZERO

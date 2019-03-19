@@ -34,7 +34,8 @@ func _process(_delta):
 		
 	if is_instance_valid(Entity) and is_instance_valid(Target):
 		if Entity.is_dead() == false:
-			move_toward_player()
+			move()
+			
 	else:
 		Entity = get_parent().get_parent()
 		Target = global.player
@@ -42,9 +43,53 @@ func _process(_delta):
 func get_velocity():
 	return Velocity
 
-func move_toward_player():
+func move():
+	Velocity = Vector2.ZERO
+	Velocity += get_vector_toward_player()
+	Velocity += get_vector_away_from_neighbours()
+
+	Entity.move_and_slide(Velocity * Speed)
+
+	
+func get_vector_toward_player():
+	var return_vec = Vector2.ZERO
 	var myPos = Entity.get_global_position()
 	var targetPos = Target.get_global_position()
-	Velocity = (targetPos - myPos).normalized() * Speed
+	return_vec = (targetPos - myPos).normalized()
+	return return_vec
 
-	Entity.move_and_slide(Velocity)
+func get_vector_away_from_neighbours():
+	var return_vec = Vector2.ZERO
+	var max_range_to_avoid: float = 55
+	var myPos = Entity.get_global_position()
+	for creep in get_tree().get_nodes_in_group("enemies"):
+		var creepPos = creep.get_global_position()
+		if myPos.distance_squared_to(creepPos) < max_range_to_avoid * max_range_to_avoid:
+			return_vec += myPos - creepPos
+	return_vec = return_vec.normalized()
+	
+	return return_vec
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
