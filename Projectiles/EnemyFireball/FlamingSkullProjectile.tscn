@@ -57,9 +57,11 @@ anims/burn = SubResource( 2 )
 wait_time = 3.5
 autostart = true
 
-[node name="ShootNoise" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="ShootNoise" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource( 5 )
-volume_db = -9.0
+volume_db = -16.0
 bus = "SoundFX"
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]
