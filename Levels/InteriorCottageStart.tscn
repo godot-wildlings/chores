@@ -9,6 +9,7 @@ script = ExtResource( 1 )
 next_scene_path = "res://Levels/Farm.tscn"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Level1. Press n to switch levels."

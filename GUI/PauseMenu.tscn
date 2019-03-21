@@ -131,7 +131,6 @@ margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = -24.0
 max_value = 24.0
-ticks_on_borders = true
 script = ExtResource( 3 )
 
 [node name="Music" type="HSplitContainer" parent="TabContainer/Options/MarginContainer/HSplitContainer/LeftSide/VolumeOptions"]
@@ -154,7 +153,6 @@ margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = -24.0
 max_value = 24.0
-ticks_on_borders = true
 script = ExtResource( 3 )
 bus = 1
 
@@ -178,7 +176,6 @@ margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = -24.0
 max_value = 24.0
-ticks_on_borders = true
 script = ExtResource( 3 )
 bus = 2
 

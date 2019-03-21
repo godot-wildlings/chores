@@ -28,27 +28,27 @@ anchor_bottom = 1.0
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Panel/CheatDetails"]
 margin_right = 984.0
-margin_bottom = 32.0
+margin_bottom = 25.0
 
 [node name="ChooseLevel" type="OptionButton" parent="Panel/CheatDetails/HSplitContainer"]
-margin_right = 834.0
-margin_bottom = 32.0
+margin_right = 871.0
+margin_bottom = 25.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 3
 theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 1 )
 
 [node name="JumpToLevel" type="Button" parent="Panel/CheatDetails/HSplitContainer"]
-margin_left = 846.0
+margin_left = 883.0
 margin_right = 984.0
-margin_bottom = 32.0
+margin_bottom = 25.0
 text = "Jump To Level"
 script = ExtResource( 2 )
 
 [node name="CenterContainer" type="MarginContainer" parent="Panel/CheatDetails"]
-margin_top = 36.0
+margin_top = 29.0
 margin_right = 984.0
-margin_bottom = 434.0
+margin_bottom = 430.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 30
@@ -60,7 +60,7 @@ custom_constants/margin_bottom = 30
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 954.0
-margin_bottom = 368.0
+margin_bottom = 371.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 1 )
@@ -69,24 +69,31 @@ ctrl-shift-b to spawn Baphomet
 "
 
 [node name="InitialVel" type="CheckBox" parent="Panel/CheatDetails"]
-margin_top = 438.0
+margin_top = 434.0
 margin_right = 984.0
-margin_bottom = 470.0
+margin_bottom = 458.0
 text = "Add Initial Velocity to Arrows"
 script = ExtResource( 3 )
 
 [node name="Debug" type="CheckBox" parent="Panel/CheatDetails"]
-margin_top = 474.0
+margin_top = 462.0
 margin_right = 984.0
-margin_bottom = 506.0
+margin_bottom = 486.0
 text = "global.DEBUG = true"
 script = ExtResource( 3 )
 
 [node name="HoldToShoot" type="CheckBox" parent="Panel/CheatDetails"]
-margin_top = 510.0
+margin_top = 490.0
+margin_right = 984.0
+margin_bottom = 514.0
+text = "global.options[\"hold_to_shoot\"] = true"
+script = ExtResource( 3 )
+
+[node name="ConfineMouse" type="CheckBox" parent="Panel/CheatDetails"]
+margin_top = 518.0
 margin_right = 984.0
 margin_bottom = 542.0
-text = "global.options[\"hold_to_shoot\"] = true"
+text = "global.options[\"confine_mouse\"] = true"
 script = ExtResource( 3 )
 
 [node name="HSplitContainer2" type="HSplitContainer" parent="Panel/CheatDetails"]
@@ -121,4 +128,5 @@ script = ExtResource( 5 )
 [connection signal="toggled" from="Panel/CheatDetails/InitialVel" to="Panel/CheatDetails/InitialVel" method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="Panel/CheatDetails/Debug" to="Panel/CheatDetails/Debug" method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="Panel/CheatDetails/HoldToShoot" to="Panel/CheatDetails/HoldToShoot" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="Panel/CheatDetails/ConfineMouse" to="Panel/CheatDetails/ConfineMouse" method="_on_CheckBox_toggled"]
 [connection signal="text_changed" from="Panel/CheatDetails/HSplitContainer2/ArrowSpeed" to="Panel/CheatDetails/HSplitContainer2/ArrowSpeed" method="_on_ArrowSpeed_text_changed"]

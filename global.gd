@@ -6,7 +6,8 @@ enum Difficulties { EASY, MEDIUM, HARD }
 var options : Dictionary = { 
 		"projectiles_add_initial_velocity" : true,
 		"arrow_speed" : 1000,
-		"hold_to_shoot" : true
+		"hold_to_shoot" : true,
+		"confine_mouse" : false
 	}
 
 var _state : int = States.INITIALIZING setget _set_state

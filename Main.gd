@@ -32,6 +32,13 @@ func _ready():
 	transition("fade-in")
 	load_level(first_scene)
 	
+	if global.options["confine_mouse"] == true:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	# I'm not sure what the response to this will be like.
+	# Some users requested it. Others might be upset that they can't click out of the window.
+	# should probably be a user-facing option
 
 func _set_state(new_state : int):
 	_state = new_state
