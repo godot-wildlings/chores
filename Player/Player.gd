@@ -92,9 +92,15 @@ func _process(delta):
 	if _state == States.CHATTING or _state == States.DEAD:
 		return
 		
-
-	if Input.is_action_just_pressed("attack"):
-		attack()
+	if global.options["hold_to_shoot"] == false:
+		if Input.is_action_just_pressed("attack"):
+			attack()
+	else:
+		# Note: this will send a continuous string of requests..
+		# but the weapon should reject them if the reload timer hasn't triggered
+		if Input.is_action_pressed("attack"):
+			attack()
+			
 
 	if Input.is_action_just_pressed("transform"):
 		toggle_form()

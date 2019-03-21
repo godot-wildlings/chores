@@ -11,6 +11,8 @@ func _ready():
 			pressed = global.options["projectiles_add_initial_velocity"]
 		"Debug":
 			pressed = global.DEBUG
+		"HoldToShoot":
+			pressed = global.options["hold_to_shoot"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -22,3 +24,6 @@ func _on_CheckBox_toggled(_button_pressed):
 			global.options["projectiles_add_initial_velocity"] = is_pressed()
 		"Debug":
 			global.DEBUG = is_pressed()
+		"HoldToShoot":
+			global.options["hold_to_shoot"] = is_pressed()
+	
