@@ -4,7 +4,8 @@ enum States { INITIALIZING, READY, PAUSED }
 enum Difficulties { EASY, MEDIUM, HARD }
 
 var options : Dictionary = { 
-		"projectiles_add_initial_velocity" : true 
+		"projectiles_add_initial_velocity" : true,
+		"arrow_speed" : 1000
 	}
 
 var _state : int = States.INITIALIZING setget _set_state

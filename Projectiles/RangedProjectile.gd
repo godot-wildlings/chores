@@ -14,6 +14,7 @@ var velocity : Vector2 = Vector2.ZERO
 
 func _ready():
 	connect_signals()
+	speed = global.options["arrow_speed"]
 
 func connect_signals():
 	var _err
@@ -33,7 +34,7 @@ func _process(delta):
 func shoot(initial_velocity: Vector2, rot_deg : float):
 	#global_position = bullet_position
 	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
-	var base_velocity = direction.normalized() * speed
+	var base_velocity = direction.normalized() * global.options["arrow_speed"]
 	
 	if _state == States.FLYING:
 		
