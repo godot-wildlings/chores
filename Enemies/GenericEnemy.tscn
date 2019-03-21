@@ -298,6 +298,7 @@ texture = ExtResource( 3 )
 wait_time = 15.0
 
 [node name="BrokenBody" type="Sprite" parent="DeadBody"]
+visible = false
 rotation = -1.48353
 texture = ExtResource( 4 )
 hframes = 4

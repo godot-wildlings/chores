@@ -98,7 +98,7 @@ anims/bow_release = SubResource( 1 )
 anims/bow_wind_up = ExtResource( 5 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.5
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 18.9515, 0.77128 )
