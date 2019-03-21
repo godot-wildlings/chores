@@ -12,6 +12,7 @@ export var spawn_distance : float = 10
 export var wind_up_animation : String = "bow_wind_up"
 
 var _spawn_position : Position2D
+var Ticks : int = 0
 
 func _ready():
 	_spawn_position = Position2D.new()
@@ -33,13 +34,22 @@ func attack():
 
 
 func _shoot():
+	var mousePos = get_global_mouse_position()
+	var spawnPos = _spawn_position.get_global_position()
 	#warning-ignore:return_value_discarded
 	connect("shoot", global.current_level, "_on_projectile_requested")
-	emit_signal("shoot", projectile_tscn, global.player.velocity, _spawn_position.global_position, global_rotation_degrees)
+	var arrow_vel = (mousePos - spawnPos).normalized() * global.options["arrow_speed"] + global.player.velocity
+	emit_signal("shoot", projectile_tscn, arrow_vel, spawnPos, global_rotation_degrees)
+	#emit_signal("shoot", projectile_tscn, global.player.velocity, _spawn_position.global_position, global_rotation_degrees)
 	disconnect("shoot", global.current_level, "_on_projectile_requested")
 	_state = States.RELOADING
 	$ReloadTimer.start()
 	$AnimationPlayer.play("bow_release")
+
+func _process(delta):
+	Ticks += 1
+	if global.DEBUG:
+		update()
 
 #func _on_AnimationPlayer_animation_finished(anim : String):
 #	if anim == wind_up_animation:
@@ -47,3 +57,7 @@ func _shoot():
 
 func _on_ReloadTimer_timeout():
 	_state = States.IDLE
+
+func _draw():
+	if global.DEBUG:
+		draw_line(to_local(_spawn_position.global_position), to_local(get_global_mouse_position()), Color.antiquewhite, 3, true)

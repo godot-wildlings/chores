@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://GUI/Themes/day_theme.tres" type="Theme" id=1]
-[ext_resource path="res://GUI/Label.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Themes/godot_theme.tres" type="Theme" id=2]
 [ext_resource path="res://GUI/Themes/Fonts/droid-sans/droid_sans.tres" type="DynamicFont" id=3]
 [ext_resource path="res://GUI/JumpToLevel.gd" type="Script" id=4]
 [ext_resource path="res://GUI/ArrowInitialVelocityCheckBox.gd" type="Script" id=5]
 [ext_resource path="res://GUI/ArrowSpeed.gd" type="Script" id=6]
+[ext_resource path="res://GUI/Label.gd" type="Script" id=7]
 
 [sub_resource type="Theme" id=1]
 
@@ -18,15 +19,6 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="Label" type="Label" parent="."]
-margin_left = 20.0
-margin_top = 290.0
-margin_right = 1004.0
-margin_bottom = 310.0
-text = "No Cheating"
-align = 1
-script = ExtResource( 2 )
-
 [node name="Panel" type="Panel" parent="."]
 margin_left = 20.0
 margin_top = 20.0
@@ -36,30 +28,31 @@ margin_bottom = 580.0
 [node name="CheatDetails" type="VBoxContainer" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Panel/CheatDetails"]
 margin_right = 984.0
-margin_bottom = 26.0
+margin_bottom = 27.0
 
 [node name="ChooseLevel" type="OptionButton" parent="Panel/CheatDetails/HSplitContainer"]
-margin_right = 75.0
-margin_bottom = 25.0
+margin_right = 865.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 3
 theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 3 )
 
 [node name="JumpToLevel" type="Button" parent="Panel/CheatDetails/HSplitContainer"]
-margin_left = 890.0
+margin_left = 873.0
 margin_right = 984.0
-margin_bottom = 26.0
+margin_bottom = 27.0
 text = "Jump To Level"
 script = ExtResource( 4 )
 
 [node name="CenterContainer" type="MarginContainer" parent="Panel/CheatDetails"]
-margin_top = 30.0
+margin_top = 31.0
 margin_right = 984.0
-margin_bottom = 472.0
+margin_bottom = 439.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 30
@@ -71,7 +64,7 @@ custom_constants/margin_bottom = 30
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 954.0
-margin_bottom = 412.0
+margin_bottom = 378.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 3 )
@@ -80,36 +73,56 @@ ctrl-shift-b to spawn Baphomet
 "
 
 [node name="InitialVel" type="CheckBox" parent="Panel/CheatDetails"]
-margin_top = 476.0
+margin_top = 443.0
 margin_right = 984.0
-margin_bottom = 504.0
+margin_bottom = 470.0
 text = "Add Initial Velocity to Arrows"
 script = ExtResource( 5 )
 
 [node name="Debug" type="CheckBox" parent="Panel/CheatDetails"]
-margin_top = 508.0
+margin_top = 474.0
 margin_right = 984.0
-margin_bottom = 536.0
+margin_bottom = 501.0
 text = "global.DEBUG = true"
 script = ExtResource( 5 )
 
+[node name="HoldToShoot" type="CheckBox" parent="Panel/CheatDetails"]
+margin_top = 505.0
+margin_right = 984.0
+margin_bottom = 532.0
+text = "global.options[\"hold_to_shoot\"] = true"
+script = ExtResource( 5 )
+
 [node name="HSplitContainer2" type="HSplitContainer" parent="Panel/CheatDetails"]
-margin_top = 540.0
+margin_top = 536.0
 margin_right = 984.0
 margin_bottom = 560.0
 
 [node name="Label" type="Label" parent="Panel/CheatDetails/HSplitContainer2"]
-margin_right = 74.0
-margin_bottom = 20.0
+margin_right = 116.0
+margin_bottom = 24.0
 text = "Arrow Speed"
 
 [node name="ArrowSpeed" type="TextEdit" parent="Panel/CheatDetails/HSplitContainer2"]
-margin_left = 86.0
+margin_left = 124.0
 margin_right = 984.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 255.0
+margin_right = 1004.0
+margin_bottom = 344.0
+text = "No Cheating. 
+(Press ctrl-shift-c if you absolutely need to cheat.)
+No Cheating. 
+"
+align = 1
+script = ExtResource( 7 )
 
 [connection signal="pressed" from="Panel/CheatDetails/HSplitContainer/JumpToLevel" to="Panel/CheatDetails/HSplitContainer/JumpToLevel" method="_on_JumpToLevel_pressed"]
 [connection signal="toggled" from="Panel/CheatDetails/InitialVel" to="Panel/CheatDetails/InitialVel" method="_on_CheckBox_toggled"]
 [connection signal="toggled" from="Panel/CheatDetails/Debug" to="Panel/CheatDetails/Debug" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="Panel/CheatDetails/HoldToShoot" to="Panel/CheatDetails/HoldToShoot" method="_on_CheckBox_toggled"]
 [connection signal="text_changed" from="Panel/CheatDetails/HSplitContainer2/ArrowSpeed" to="Panel/CheatDetails/HSplitContainer2/ArrowSpeed" method="_on_ArrowSpeed_text_changed"]

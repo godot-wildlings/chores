@@ -94,10 +94,14 @@ func _process(delta):
 		
 
 	if Input.is_action_just_pressed("attack"):
-		$Sprite/WeaponSlots.attack()
+		attack()
 
 	if Input.is_action_just_pressed("transform"):
 		toggle_form()
+
+func attack():
+	"""relayed through a few subsystems"""
+	$Sprite/WeaponSlots.attack()
 
 func _physics_process(delta):
 	match _state:

@@ -30,21 +30,30 @@ func _process(delta):
 	if _state == States.FLYING:
 		position += velocity * delta
 
+##warning-ignore:unused_argument
+#func shoot(initial_velocity: Vector2, rot_deg : float):
+#	"""why do arrows know their own velocity? shouldn't they only ever move at the initial_velocity given them?"""
+#	#global_position = bullet_position
+#	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
+#	var base_velocity = direction.normalized() * global.options["arrow_speed"]
+#
+#	if _state == States.FLYING:
+#
+#		if global.options["projectiles_add_initial_velocity"] == true:
+#			#old method : included player velocity
+#			velocity = initial_velocity + base_velocity
+#		else:
+#			velocity = base_velocity
+#		rotation += direction.angle()
+#	play_sound_effect()
+
 #warning-ignore:unused_argument
-func shoot(initial_velocity: Vector2, rot_deg : float):
-	#global_position = bullet_position
-	var direction = Vector2(1,0).rotated(deg2rad(rot_deg))
-	var base_velocity = direction.normalized() * global.options["arrow_speed"]
-	
-	if _state == States.FLYING:
-		
-		if global.options["projectiles_add_initial_velocity"] == true:
-			#old method : included player velocity
-			velocity = initial_velocity + base_velocity
-		else:
-			velocity = base_velocity
-		rotation += direction.angle()
+func shoot(arrow_velocity: Vector2, rot_deg : float):
+	velocity = arrow_velocity
+	rotation = deg2rad(rot_deg)
 	play_sound_effect()
+
+
 	
 func play_sound_effect():
 	if has_node("SFX"):
