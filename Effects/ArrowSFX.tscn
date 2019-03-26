@@ -6,5 +6,6 @@
 
 [node name="ShootSimple" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
-volume_db = -30.0
+volume_db = -40.0
+max_distance = 1000.0
 

@@ -12,7 +12,7 @@ var Velocity : Vector2
 
 var velocity_vectors : Array
 export var Speed : float = 100
-export var Preferred_Range : int = 400
+export var Preferred_Range : int = 300
 
 enum States { DISABLED, ENABLED }
 var _state = States.DISABLED

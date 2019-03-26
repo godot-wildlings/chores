@@ -1,0 +1,268 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://GUI/Themes/Fonts/Dancing_Script/DancingScript-32.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GUI/VolSlider.gd" type="Script" id=2]
+[ext_resource path="res://GUI/FullscreenCheckbox.gd" type="Script" id=3]
+[ext_resource path="res://GUI/ResolutionList.gd" type="Script" id=4]
+[ext_resource path="res://GUI/DifficultyButton.gd" type="Script" id=5]
+[ext_resource path="res://GUI/illustrations/800px-Tap_(démon).png" type="Texture" id=6]
+[ext_resource path="res://GUI/QuitButton.gd" type="Script" id=7]
+[ext_resource path="res://GUI/RestartButton.gd" type="Script" id=8]
+
+[node name="OptionsDetails" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+margin_right = 1004.0
+margin_bottom = 580.0
+dragger_visibility = 1
+
+[node name="LeftSide" type="VBoxContainer" parent="HSplitContainer"]
+margin_right = 496.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+custom_constants/separation = 30
+
+[node name="VolumeOptions" type="VBoxContainer" parent="HSplitContainer/LeftSide"]
+margin_right = 496.0
+margin_bottom = 99.0
+size_flags_horizontal = 3
+size_flags_vertical = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/LeftSide/VolumeOptions"]
+margin_right = 496.0
+margin_bottom = 39.0
+
+[node name="Title" type="Label" parent="HSplitContainer/LeftSide/VolumeOptions/MarginContainer"]
+margin_right = 496.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 1 )
+text = "Audio"
+align = 1
+
+[node name="Master" type="HSplitContainer" parent="HSplitContainer/LeftSide/VolumeOptions"]
+margin_top = 43.0
+margin_right = 496.0
+margin_bottom = 59.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftSide/VolumeOptions/Master"]
+margin_top = 1.0
+margin_right = 242.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Master"
+align = 2
+
+[node name="MasterVolSlider" type="HSlider" parent="HSplitContainer/LeftSide/VolumeOptions/Master"]
+margin_left = 254.0
+margin_right = 496.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = -24.0
+max_value = 24.0
+ticks_on_borders = true
+script = ExtResource( 2 )
+
+[node name="Music" type="HSplitContainer" parent="HSplitContainer/LeftSide/VolumeOptions"]
+margin_top = 63.0
+margin_right = 496.0
+margin_bottom = 79.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftSide/VolumeOptions/Music"]
+margin_top = 1.0
+margin_right = 242.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Music"
+align = 2
+
+[node name="MusicVolSlider" type="HSlider" parent="HSplitContainer/LeftSide/VolumeOptions/Music"]
+margin_left = 254.0
+margin_right = 496.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = -24.0
+max_value = 24.0
+ticks_on_borders = true
+script = ExtResource( 2 )
+bus = 1
+
+[node name="FX" type="HSplitContainer" parent="HSplitContainer/LeftSide/VolumeOptions"]
+margin_top = 83.0
+margin_right = 496.0
+margin_bottom = 99.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftSide/VolumeOptions/FX"]
+margin_top = 1.0
+margin_right = 242.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "SoundFX"
+align = 2
+
+[node name="SoundFxVolSlider" type="HSlider" parent="HSplitContainer/LeftSide/VolumeOptions/FX"]
+margin_left = 254.0
+margin_right = 496.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = -24.0
+max_value = 24.0
+script = ExtResource( 2 )
+bus = 2
+
+[node name="DisplayOptions" type="VBoxContainer" parent="HSplitContainer/LeftSide"]
+margin_top = 129.0
+margin_right = 496.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 11
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/LeftSide/DisplayOptions"]
+margin_right = 496.0
+margin_bottom = 39.0
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftSide/DisplayOptions/MarginContainer"]
+margin_right = 496.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 1 )
+text = "Display"
+align = 1
+
+[node name="Fullscreen" type="HSplitContainer" parent="HSplitContainer/LeftSide/DisplayOptions"]
+margin_top = 43.0
+margin_right = 496.0
+margin_bottom = 67.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftSide/DisplayOptions/Fullscreen"]
+margin_top = 5.0
+margin_right = 242.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Fullscreen"
+align = 2
+
+[node name="FullscreenCheckbox" type="CheckBox" parent="HSplitContainer/LeftSide/DisplayOptions/Fullscreen"]
+margin_left = 254.0
+margin_right = 496.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+script = ExtResource( 3 )
+
+[node name="Resolution" type="HSplitContainer" parent="HSplitContainer/LeftSide/DisplayOptions"]
+margin_top = 71.0
+margin_right = 496.0
+margin_bottom = 91.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftSide/DisplayOptions/Resolution"]
+margin_top = 3.0
+margin_right = 242.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Resolution"
+align = 2
+
+[node name="ResolutionList" type="OptionButton" parent="HSplitContainer/LeftSide/DisplayOptions/Resolution"]
+margin_left = 254.0
+margin_right = 496.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="GameOptions" type="VBoxContainer" parent="HSplitContainer/LeftSide"]
+visible = false
+margin_top = 272.0
+margin_right = 284.0
+margin_bottom = 341.0
+
+[node name="title2" type="MarginContainer" parent="HSplitContainer/LeftSide/GameOptions"]
+margin_right = 284.0
+margin_bottom = 39.0
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftSide/GameOptions/title2"]
+margin_right = 284.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 1 )
+text = "Game"
+align = 1
+
+[node name="Difficulty" type="HSplitContainer" parent="HSplitContainer/LeftSide/GameOptions"]
+margin_top = 43.0
+margin_right = 284.0
+margin_bottom = 69.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftSide/GameOptions/Difficulty"]
+margin_top = 3.0
+margin_right = 136.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+text = "Difficulty"
+align = 2
+
+[node name="DifficultyButton" type="OptionButton" parent="HSplitContainer/LeftSide/GameOptions/Difficulty"]
+margin_left = 148.0
+margin_right = 284.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+script = ExtResource( 5 )
+
+[node name="RightSide" type="VBoxContainer" parent="HSplitContainer"]
+margin_left = 508.0
+margin_right = 1004.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/RightSide"]
+margin_right = 496.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer/RightSide/VBoxContainer"]
+margin_right = 496.0
+bbcode_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="HSplitContainer/RightSide/VBoxContainer"]
+margin_top = 4.0
+margin_right = 496.0
+margin_bottom = 532.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 200, 234 )
+size_flags_horizontal = 9
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+
+[node name="QuitButton" type="Button" parent="HSplitContainer/RightSide/VBoxContainer"]
+margin_top = 536.0
+margin_right = 496.0
+margin_bottom = 556.0
+size_flags_horizontal = 5
+text = "Quit Game"
+script = ExtResource( 7 )
+
+[node name="RestartButton" type="Button" parent="HSplitContainer/RightSide/VBoxContainer"]
+margin_top = 560.0
+margin_right = 496.0
+margin_bottom = 580.0
+text = "Restart Game"
+script = ExtResource( 8 )
+
+[connection signal="toggled" from="HSplitContainer/LeftSide/DisplayOptions/Fullscreen/FullscreenCheckbox" to="HSplitContainer/LeftSide/DisplayOptions/Fullscreen/FullscreenCheckbox" method="_on_FullscreenCheckbox_toggled"]
+[connection signal="item_selected" from="HSplitContainer/LeftSide/DisplayOptions/Resolution/ResolutionList" to="HSplitContainer/LeftSide/DisplayOptions/Resolution/ResolutionList" method="_on_ResolutionList_item_selected"]
+[connection signal="item_selected" from="HSplitContainer/LeftSide/GameOptions/Difficulty/DifficultyButton" to="HSplitContainer/LeftSide/GameOptions/Difficulty/DifficultyButton" method="_on_DifficultyButton_item_selected"]
+[connection signal="pressed" from="HSplitContainer/RightSide/VBoxContainer/QuitButton" to="HSplitContainer/RightSide/VBoxContainer/QuitButton" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/RightSide/VBoxContainer/RestartButton" to="HSplitContainer/RightSide/VBoxContainer/RestartButton" method="_on_RestartButton_pressed"]

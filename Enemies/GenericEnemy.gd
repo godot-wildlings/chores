@@ -135,6 +135,10 @@ func die():
 	_state = States.DEAD
 	disable_hitboxes()
 	var entity = self
+	entity.remove_from_group("enemies")
+	entity.Hitbox.remove_from_group("enemies")
+	
+	print(entity.get_groups())
 	entity.get_node("DeadBody").show()
 	entity.get_node("LiveBody").hide()
 	entity.get_node("AnimationPlayer").stop()

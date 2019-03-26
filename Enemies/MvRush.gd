@@ -6,11 +6,12 @@ responsible for moving it's grandparent.
 
 """
 
-extends Node
+extends Node2D
 
 var Target
 var Entity
 var Velocity : Vector2
+var velocity_vectors = []
 export var Speed : float = 100
 
 enum States { DISABLED, ENABLED }
@@ -44,12 +45,21 @@ func get_velocity():
 	return Velocity
 
 func move():
-	Velocity = Vector2.ZERO
-	Velocity += get_vector_toward_player()
-	Velocity += get_vector_away_from_neighbours()
-
+	aggregate_velocity_vectors()
 	Entity.move_and_slide(Velocity * Speed)
 
+	if global.DEBUG:
+		update()
+	
+func aggregate_velocity_vectors():
+	velocity_vectors = []
+	velocity_vectors.push_back(get_vector_toward_player())
+	velocity_vectors.push_back(get_vector_away_from_neighbours())
+	
+	Velocity = Vector2.ZERO
+	for vec in velocity_vectors:
+		Velocity += vec
+	
 	
 func get_vector_toward_player():
 	var return_vec = Vector2.ZERO
@@ -70,8 +80,13 @@ func get_vector_away_from_neighbours():
 	
 	return return_vec
 	
-	
-	
+func _draw():
+	if global.DEBUG:
+		var colors = [Color.red, Color.lightgreen, Color.blue]
+		var i : int = 0
+		for vec in velocity_vectors:
+			draw_line(Vector2.ZERO, vec*15.0, colors[wrapi(i, 0, colors.size())], 1, false)
+			i += 1
 	
 	
 	

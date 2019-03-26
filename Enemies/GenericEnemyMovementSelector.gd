@@ -15,7 +15,7 @@ The attack script will decide when to attack
 
 """
 
-extends Node
+extends Node2D
 
 enum States { INITIALIZING, IDLE, FLEEING, AVOIDING, DEAD }
 #warning-ignore:unused_class_variable

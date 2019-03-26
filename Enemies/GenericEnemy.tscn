@@ -33,10 +33,10 @@
 [ext_resource path="res://GUI/bar_fill.png" type="Texture" id=31]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.8834, 32 )
+extents = Vector2( 13.8834, 27.2344 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.6381, 34 )
+extents = Vector2( 14.6381, 27.4722 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "enemy_blinker_attack"
@@ -332,10 +332,10 @@ anims/enemy_melee_attack = SubResource( 6 )
 anims/enemy_melee_walk = ExtResource( 11 )
 "anims/enemy_ranged_walk (copy)" = SubResource( 7 )
 
-[node name="Movement" type="Node" parent="."]
+[node name="Movement" type="Node2D" parent="."]
 script = ExtResource( 13 )
 
-[node name="Rush" type="Node" parent="Movement"]
+[node name="Rush" type="Node2D" parent="Movement"]
 script = ExtResource( 14 )
 
 [node name="Kite" type="Node" parent="Movement"]
